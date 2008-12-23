@@ -123,9 +123,5 @@
     <bean id="markManager" class="com.tamuvii.service.impl.MarkManagerImpl">
     	<constructor-arg ref="markDao" />
     </bean>
-
-    <bean id="titleManager" class="com.tamuvii.service.impl.TitleManagerImpl">
-    	<constructor-arg ref="titleDao" />
-    </bean>
     
 </beans>

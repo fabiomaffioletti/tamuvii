@@ -77,8 +77,4 @@
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
-    <bean id="titleDao" class="com.tamuvii.dao.impl.TitleDaoImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
 </beans>

@@ -1,4 +1,5 @@
 package com.tamuvii.model;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -28,7 +29,7 @@ import javax.persistence.Table;
 public  class Movie implements Cloneable, Serializable {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -559009207L;
+	private static final long serialVersionUID = -559009206L;
 
 
 	/** Field mapping. */
@@ -39,15 +40,14 @@ public  class Movie implements Cloneable, Serializable {
 	private String duration;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
+	/** Field mapping. */
+	private Set<LocalizedMovieData> localizedMovieDate = new HashSet<LocalizedMovieData>();
 
 	/** Field mapping. */
 	private Set<Mark> mark = new HashSet<Mark>();
 
 	/** Field mapping. */
 	private Set<Actor> actor = new HashSet<Actor>();
-
-	/** Field mapping. */
-	private Set<LocalizedMovieData> localizedMovieDatas = new HashSet<LocalizedMovieData>();
 
 	/**
 	 * Default constructor, mainly for hibernate use.
@@ -64,6 +64,8 @@ public  class Movie implements Cloneable, Serializable {
 	}
 	
  
+
+
     /**
      * Return the value associated with the column: date.
 	 * @return A Date object (this.date)
@@ -149,6 +151,35 @@ public  class Movie implements Cloneable, Serializable {
 
 
     /**
+     * Return the value associated with the column: localizedMovieData.
+	 * @return A Set&lt;LocalizedMovieData&gt; object (this.localizedMovieData)
+	 */
+	@Column( nullable = false  )
+ 	@OneToMany( cascade = CascadeType.ALL, mappedBy = "movie"  )
+	public Set<LocalizedMovieData> getLocalizedMovieDate() {
+		return this.localizedMovieDate;
+	}
+	
+	/**
+	 * Adds a bi-directional link of type LocalizedMovieData to the localizedMovieDate set.
+	 * @param localizedMovieData item to add
+	 */
+	public void addLocalizedMovieData(LocalizedMovieData localizedMovieData) {
+		this.localizedMovieDate.add(localizedMovieData);
+		localizedMovieData.setMovie(this);
+	}
+
+  
+    /**  
+     * Set the value related to the column: localizedMovieData.
+	 * @param localizedMovieData the localizedMovieData value you wish to set
+	 */
+	public void setLocalizedMovieDate(final Set<LocalizedMovieData> localizedMovieData) {
+		this.localizedMovieDate = localizedMovieData;
+	}
+
+
+    /**
      * Return the value associated with the column: mark.
 	 * @return A Set&lt;Mark&gt; object (this.mark)
 	 */
@@ -212,27 +243,6 @@ public  class Movie implements Cloneable, Serializable {
 	}
 
 
-	@Column( nullable = false  )
- 	@OneToMany( cascade = CascadeType.ALL, mappedBy = "movie"  )
-	public Set<LocalizedMovieData> getLocalizedMovieData() {
-		return this.localizedMovieDatas;
-	}
-
-	public void addLocalizedMovieData(LocalizedMovieData localizedMovieData) {
-		this.localizedMovieDatas.add(localizedMovieData);
-		localizedMovieData.setMovie(this);
-	}
-
-  
-    /**  
-     * Set the value related to the column: title.
-	 * @param title the title value you wish to set
-	 */
-	public void setLocalizedMovieData(final Set<LocalizedMovieData> localizedMovieDatas) {
-		this.localizedMovieDatas = localizedMovieDatas;
-	}
-
-
    /**
     * Deep copy.
 	* @return cloned object
@@ -247,9 +257,9 @@ public  class Movie implements Cloneable, Serializable {
 		copy.setDirector(this.getDirector());
 		copy.setDuration(this.getDuration());
 		copy.setId(this.getId());
+		copy.getLocalizedMovieDate().addAll(this.getLocalizedMovieDate());
 		copy.getMark().addAll(this.getMark());
 		copy.getActor().addAll(this.getActor());
-		copy.getLocalizedMovieData().addAll(this.getLocalizedMovieData());
 		return copy;
 	}
 
@@ -297,14 +307,14 @@ public  class Movie implements Cloneable, Serializable {
 			(((this.id == null) && (that.id == null)) 
 			   || (this.id != null  && this.id.equals(that.id)))
 			   && 
+			(((this.localizedMovieDate == null) && (that.localizedMovieDate == null)) 
+			   || (this.localizedMovieDate != null  && this.localizedMovieDate.equals(that.localizedMovieDate)))
+			   && 
 			(((this.mark == null) && (that.mark == null)) 
 			   || (this.mark != null  && this.mark.equals(that.mark)))
 			   && 
 			(((this.actor == null) && (that.actor == null)) 
 			   || (this.actor != null  && this.actor.equals(that.actor)))
-			   && 
-			(((this.localizedMovieDatas == null) && (that.localizedMovieDatas == null)) 
-			   || (this.localizedMovieDatas != null  && this.localizedMovieDatas.equals(that.localizedMovieDatas)))
 			   ;
 	}
 
@@ -320,8 +330,8 @@ public  class Movie implements Cloneable, Serializable {
 		result = 1000003 * result + (this.date == null ? 0 : this.date.hashCode());
 		result = 1000003 * result + (this.duration == null ? 0 : this.duration.hashCode());
 		result = 1000003 * result + (this.id == null ? 0 : this.id.hashCode());
+		result = 1000003 * result + (this.localizedMovieDate == null ? 0 : this.localizedMovieDate.hashCode());
 		result = 1000003 * result + (this.mark == null ? 0 : this.mark.hashCode());
-		result = 1000003 * result + (this.localizedMovieDatas == null ? 0 : this.localizedMovieDatas.hashCode());
 
 		return result;  
 	}

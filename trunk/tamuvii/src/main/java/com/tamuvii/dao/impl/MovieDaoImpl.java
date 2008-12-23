@@ -26,7 +26,7 @@ public class MovieDaoImpl extends GenericDaoHibernate<Movie, Integer> implements
 	@SuppressWarnings("unchecked")
 	public List<Movie> getAllMoviesByLocale(Locale locale) {
 		Session session = getSession();
-		Query q = session.createQuery("SELECT m FROM Movie m LEFT JOIN m.titli mt WHERE mt.locale = :locale");
+		Query q = session.createQuery("SELECT m FROM Movie m LEFT JOIN m.localizedMovieDate mlmd WHERE mlmd.locale = :locale");
 		q.setParameter("locale", locale.getCountry());
 		return q.list().size() > 0 ? q.list() : null;
 	}

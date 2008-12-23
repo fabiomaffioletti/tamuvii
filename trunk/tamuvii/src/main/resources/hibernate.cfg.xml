@@ -1,0 +1,14 @@
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <mapping class="com.tamuvii.model.User"/>
+        <mapping class="com.tamuvii.model.Role"/>
+        <mapping class="com.tamuvii.model.Actor"/>
+        <mapping class="com.tamuvii.model.Director"/>
+        <mapping class="com.tamuvii.model.Mark"/>
+        <mapping class="com.tamuvii.model.Movie"/>
+        <mapping class="com.tamuvii.model.Title"/>
+    </session-factory>
+</hibernate-configuration>

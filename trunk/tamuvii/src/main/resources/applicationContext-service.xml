@@ -124,4 +124,8 @@
     	<constructor-arg ref="markDao" />
     </bean>
     
+    <bean id="localizedMovieDataManager" class="com.tamuvii.service.impl.LocalizedMovieDataManager">
+    	<constructor-arg ref="localizedMovieDataDao" />
+    </bean>
+    
 </beans>

@@ -77,4 +77,8 @@
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
+    <bean id="localizedMovieDataDao" class="com.tamuvii.dao.impl.LocalizedMovieDataDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
 </beans>

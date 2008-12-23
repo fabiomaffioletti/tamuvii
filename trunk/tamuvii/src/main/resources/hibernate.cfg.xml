@@ -9,6 +9,6 @@
         <mapping class="com.tamuvii.model.Director"/>
         <mapping class="com.tamuvii.model.Mark"/>
         <mapping class="com.tamuvii.model.Movie"/>
-        <mapping class="com.tamuvii.model.Title"/>
+        <mapping class="com.tamuvii.model.LocalizedMovieData"/>
     </session-factory>
 </hibernate-configuration>

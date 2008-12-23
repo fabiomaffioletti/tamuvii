@@ -1,5 +1,10 @@
 package com.tamuvii.dao.impl;
 
+import java.util.List;
+import java.util.Locale;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import com.tamuvii.dao.MovieDao;
@@ -13,9 +18,16 @@ import com.tamuvii.model.Movie;
 @Repository
 public class MovieDaoImpl extends GenericDaoHibernate<Movie, Integer> implements MovieDao {
 	
-	/** Constructor method. */
-		public MovieDaoImpl() {
-			super(Movie.class);
-		}
+/** Constructor method. */
+	public MovieDaoImpl() {
+		super(Movie.class);
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public List<Movie> getAllMoviesByLocale(Locale locale) {
+		Session session = getSession();
+		Query q = session.createQuery("SELECT m FROM Movie m LEFT JOIN m.titli mt WHERE mt.locale = :locale");
+		q.setParameter("locale", locale.getCountry());
+		return q.list().size() > 0 ? q.list() : null;
+	}
+}

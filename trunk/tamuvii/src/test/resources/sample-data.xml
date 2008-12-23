@@ -133,20 +133,17 @@
         <column>movie</column>
         <column>duration</column>
         <column>director</column>
-        <column>plot</column>
         <column>date</column>
         <row>
             <value description="movie">-1</value>
             <value description="duration">180</value>
             <value description="director">-2</value>
-            <value description="plot"><![CDATA[Storia molto fantasiosa]]></value>
             <value description="date"><![CDATA[2005-02-03]]></value>
         </row>
         <row>
             <value description="movie">-2</value>
             <value description="duration">123</value>
             <value description="director">-1</value>
-            <value description="plot"><![CDATA[Storia molto macabra]]></value>
             <value description="date"><![CDATA[2005-01-12]]></value>
         </row>
     </table>
@@ -196,22 +193,25 @@
         </row>
     </table>
     
-    <table name="title">
-        <column>title</column>
+    <table name="localized_movie_data">
+        <column>localized_movie_data</column>
         <column>movie</column>
         <column>locale</column>
-        <column>localized_title</column>
+        <column>title</column>
+        <column>plot</column>
         <row>
-        	<value description="title">-1_it</value>
+        	<value description="localized_movie_data">-1_it</value>
         	<value description="movie">-1</value>
         	<value description="locale">it</value>
-        	<value description="localized_title">Non pensarci</value>
+        	<value description="title">La storia infinita</value>
+        	<value description="plot">Una storia molto lunga</value>
         </row>
         <row>
-        	<value description="title">-1_en</value>
+        	<value description="localized_movie_data">-1_en</value>
         	<value description="movie">-1</value>
         	<value description="locale">en</value>
-        	<value description="localized_title">Dont think</value>
+        	<value description="title">The endless story</value>
+        	<value description="plot">A very long story</value>
         </row>
     </table>
 </dataset>

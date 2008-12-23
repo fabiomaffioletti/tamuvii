@@ -39,8 +39,7 @@ public  class Movie implements Cloneable, Serializable {
 	private String duration;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
-	/** Field mapping. */
-	private String plot;
+
 	/** Field mapping. */
 	private Set<Mark> mark = new HashSet<Mark>();
 
@@ -48,7 +47,7 @@ public  class Movie implements Cloneable, Serializable {
 	private Set<Actor> actor = new HashSet<Actor>();
 
 	/** Field mapping. */
-	private Set<Title> titli = new HashSet<Title>();
+	private Set<LocalizedMovieData> localizedMovieDatas = new HashSet<LocalizedMovieData>();
 
 	/**
 	 * Default constructor, mainly for hibernate use.
@@ -65,8 +64,6 @@ public  class Movie implements Cloneable, Serializable {
 	}
 	
  
-
-
     /**
      * Return the value associated with the column: date.
 	 * @return A Date object (this.date)
@@ -152,26 +149,6 @@ public  class Movie implements Cloneable, Serializable {
 
 
     /**
-     * Return the value associated with the column: plot.
-	 * @return A String object (this.plot)
-	 */
-	@Column( length = 70000  )
-	public String getPlot() {
-		return this.plot;
-	}
-	
-
-  
-    /**  
-     * Set the value related to the column: plot.
-	 * @param plot the plot value you wish to set
-	 */
-	public void setPlot(final String plot) {
-		this.plot = plot;
-	}
-
-
-    /**
      * Return the value associated with the column: mark.
 	 * @return A Set&lt;Mark&gt; object (this.mark)
 	 */
@@ -235,23 +212,15 @@ public  class Movie implements Cloneable, Serializable {
 	}
 
 
-    /**
-     * Return the value associated with the column: title.
-	 * @return A Set&lt;Title&gt; object (this.title)
-	 */
 	@Column( nullable = false  )
  	@OneToMany( cascade = CascadeType.ALL, mappedBy = "movie"  )
-	public Set<Title> getTitli() {
-		return this.titli;
+	public Set<LocalizedMovieData> getLocalizedMovieData() {
+		return this.localizedMovieDatas;
 	}
-	
-	/**
-	 * Adds a bi-directional link of type Title to the titli set.
-	 * @param title item to add
-	 */
-	public void addTitle(Title title) {
-		this.titli.add(title);
-		title.setMovie(this);
+
+	public void addLocalizedMovieData(LocalizedMovieData localizedMovieData) {
+		this.localizedMovieDatas.add(localizedMovieData);
+		localizedMovieData.setMovie(this);
 	}
 
   
@@ -259,8 +228,8 @@ public  class Movie implements Cloneable, Serializable {
      * Set the value related to the column: title.
 	 * @param title the title value you wish to set
 	 */
-	public void setTitli(final Set<Title> title) {
-		this.titli = title;
+	public void setLocalizedMovieData(final Set<LocalizedMovieData> localizedMovieDatas) {
+		this.localizedMovieDatas = localizedMovieDatas;
 	}
 
 
@@ -278,10 +247,9 @@ public  class Movie implements Cloneable, Serializable {
 		copy.setDirector(this.getDirector());
 		copy.setDuration(this.getDuration());
 		copy.setId(this.getId());
-		copy.setPlot(this.getPlot());
 		copy.getMark().addAll(this.getMark());
 		copy.getActor().addAll(this.getActor());
-		copy.getTitli().addAll(this.getTitli());
+		copy.getLocalizedMovieData().addAll(this.getLocalizedMovieData());
 		return copy;
 	}
 
@@ -297,7 +265,6 @@ public  class Movie implements Cloneable, Serializable {
 		sb.append("date: " + this.date + ", ");
 		sb.append("duration: " + this.duration + ", ");
 		sb.append("id: " + this.id + ", ");
-		sb.append("plot: " + this.plot + ", ");
 		return sb.toString();		
 	}
 
@@ -330,17 +297,14 @@ public  class Movie implements Cloneable, Serializable {
 			(((this.id == null) && (that.id == null)) 
 			   || (this.id != null  && this.id.equals(that.id)))
 			   && 
-			(((this.plot == null) && (that.plot == null)) 
-			   || (this.plot != null  && this.plot.equals(that.plot)))
-			   && 
 			(((this.mark == null) && (that.mark == null)) 
 			   || (this.mark != null  && this.mark.equals(that.mark)))
 			   && 
 			(((this.actor == null) && (that.actor == null)) 
 			   || (this.actor != null  && this.actor.equals(that.actor)))
 			   && 
-			(((this.titli == null) && (that.titli == null)) 
-			   || (this.titli != null  && this.titli.equals(that.titli)))
+			(((this.localizedMovieDatas == null) && (that.localizedMovieDatas == null)) 
+			   || (this.localizedMovieDatas != null  && this.localizedMovieDatas.equals(that.localizedMovieDatas)))
 			   ;
 	}
 
@@ -356,9 +320,8 @@ public  class Movie implements Cloneable, Serializable {
 		result = 1000003 * result + (this.date == null ? 0 : this.date.hashCode());
 		result = 1000003 * result + (this.duration == null ? 0 : this.duration.hashCode());
 		result = 1000003 * result + (this.id == null ? 0 : this.id.hashCode());
-		result = 1000003 * result + (this.plot == null ? 0 : this.plot.hashCode());
 		result = 1000003 * result + (this.mark == null ? 0 : this.mark.hashCode());
-		result = 1000003 * result + (this.titli == null ? 0 : this.titli.hashCode());
+		result = 1000003 * result + (this.localizedMovieDatas == null ? 0 : this.localizedMovieDatas.hashCode());
 
 		return result;  
 	}

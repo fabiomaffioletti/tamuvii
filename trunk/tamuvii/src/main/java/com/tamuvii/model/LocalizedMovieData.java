@@ -74,58 +74,5 @@ public class LocalizedMovieData implements Cloneable, Serializable {
 	}
 	public void setMovie(Movie movie) {
 		this.movie = movie;
-	}
-
-	
-	
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((locale == null) ? 0 : locale.hashCode());
-		result = prime * result + ((movie == null) ? 0 : movie.hashCode());
-		result = prime * result + ((plot == null) ? 0 : plot.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		LocalizedMovieData other = (LocalizedMovieData) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (locale == null) {
-			if (other.locale != null)
-				return false;
-		} else if (!locale.equals(other.locale))
-			return false;
-		if (movie == null) {
-			if (other.movie != null)
-				return false;
-		} else if (!movie.equals(other.movie))
-			return false;
-		if (plot == null) {
-			if (other.plot != null)
-				return false;
-		} else if (!plot.equals(other.plot))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
-	}
-	
+	}	
 }

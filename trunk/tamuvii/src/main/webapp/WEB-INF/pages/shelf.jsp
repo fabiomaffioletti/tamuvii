@@ -1,0 +1,18 @@
+<%@ include file="/common/taglibs.jsp"%>
+
+<head>
+    <title><fmt:message key="shelf.title"/></title>
+    <meta name="heading" content="<fmt:message key='shelf'/>"/>
+    <meta name="menu" content="Shelf"/>
+</head>
+
+<display:table name="myMovies" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="myMovies" pagesize="25" class="table" export="true">
+    <display:column property="id" sortable="true" titleKey="id" media="html"/>
+    <display:column property="originalTitle" escapeXml="true" sortable="true" titleKey="title" />
+    <display:column property="duration" escapeXml="true" sortable="true" titleKey="duration" />
+    <display:column property="releaseDate" sortable="true" titleKey="release_date"/>
+</display:table>
+
+<script type="text/javascript">
+    highlightTableRows("myMovies");
+</script>

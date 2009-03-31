@@ -73,4 +73,19 @@
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
+    <bean id="genreDao" class="com.tamuvii.dao.impl.GenreDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="localizedDataDao" class="com.tamuvii.dao.impl.LocalizedDataDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="opinionDao" class="com.tamuvii.dao.impl.OpinionDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="reviewDao" class="com.tamuvii.dao.impl.ReviewDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>

@@ -108,4 +108,8 @@
 
     <!-- Add new Managers here -->
     
+    <bean id="movieManager" class="com.tamuvii.service.impl.MovieManagerImpl">
+        <constructor-arg ref="movieDao" />
+        <property name="userManager" ref="userManager" />
+    </bean>
 </beans>

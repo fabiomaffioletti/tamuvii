@@ -153,4 +153,40 @@
     	</row>
     </table>
     
+    <table name="movie">
+    	<column>movie</column>
+    	<column>original_title</column>
+    	<column>duration</column>
+    	<column>director</column>
+    	<column>release_date</column>
+    	<row>
+    		<value description="movie">-1</value>
+    		<value description="original_title">Terminator</value>
+    		<value description="duration">107</value>
+    		<value description="director">-2</value>
+    		<value description="release_date"><![CDATA[2009-04-09 00:00:00.0]]></value>
+    	</row>
+    	<row>
+    		<value description="movie">-2</value>
+    		<value description="original_title">La giusta distanza</value>
+    		<value description="duration">93</value>
+    		<value description="director">-1</value>
+    		<value description="release_date"><![CDATA[2008-04-09 00:00:00.0]]></value>
+    	</row>
+    	<row>
+    		<value description="movie">-3</value>
+    		<value description="original_title">Caramel</value>
+    		<value description="duration">124</value>
+    		<value description="director">-1</value>
+    		<value description="release_date"><![CDATA[2008-06-18 00:00:00.0]]></value>
+    	</row>
+    	<row>
+    		<value description="movie">-4</value>
+    		<value description="original_title">La giusta punizione</value>
+    		<value description="duration">83</value>
+    		<value description="director">-4</value>
+    		<value description="release_date"><![CDATA[2007-05-01 00:00:00.0]]></value>
+    	</row>
+    </table>
+    
 </dataset>

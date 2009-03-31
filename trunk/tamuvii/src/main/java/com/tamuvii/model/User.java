@@ -40,7 +40,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Address address = new Address();
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
-    private Set<Movie> movies = new HashSet<Movie>();
+    private List<Movie> movies = new ArrayList<Movie>();
     private Set<Opinion> opinions = new HashSet<Opinion>();
     private boolean enabled;
     private boolean accountExpired;
@@ -167,7 +167,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
             joinColumns = { @JoinColumn( name="user") },
             inverseJoinColumns = @JoinColumn( name="movie")
     )    
-    public Set<Movie> getMovies() {
+    public List<Movie> getMovies() {
         return movies;
     }
 
@@ -175,7 +175,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         getMovies().add(movie);
     }
     
-    public void setMovies(Set<Movie> movies) {
+    public void setMovies(List<Movie> movies) {
     	this.movies = movies;
     }
     

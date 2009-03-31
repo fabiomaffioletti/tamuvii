@@ -79,7 +79,9 @@
                 /mainMenu.html=filenameController
                 /passwordHint.html=passwordHintController
                 
-                /movieList.html=movieListController
+                /searchMovie.html=searchMovieController
+                /movie.html=movieActionsController
+                /shelf.html=shelfController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -97,7 +99,16 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     
-    <bean id="movieListController" class="com.tamuvii.webapp.controller.MovieListController">
+    <bean id="searchMovieController" class="com.tamuvii.webapp.controller.SearchMovieController">
     	<property name="movieManager" ref="movieManager" />
     </bean>
+    
+    <bean id="movieActionsController" class="com.tamuvii.webapp.controller.MovieActionsController">
+    	<property name="movieManager" ref="movieManager" />
+    </bean>
+    
+    <bean id="shelfController" class="com.tamuvii.webapp.controller.ShelfController">
+    	<property name="movieManager" ref="movieManager" />
+    </bean>
+    
 </beans>

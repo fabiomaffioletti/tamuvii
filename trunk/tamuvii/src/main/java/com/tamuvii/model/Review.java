@@ -1,8 +1,10 @@
 package com.tamuvii.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
@@ -47,7 +49,7 @@ public class Review implements Cloneable, Serializable, IReview {
 	/** Field mapping. */
 	private String reviewText;
 	/** Field mapping. */
-	private Set<Movie> movie = new HashSet<Movie>();
+	private List<Movie> movie = new ArrayList<Movie>();
 
 	/** Field mapping. */
 	private Set<Opinion> opinion = new HashSet<Opinion>();
@@ -146,8 +148,8 @@ public class Review implements Cloneable, Serializable, IReview {
      * Return the value associated with the column: movie.
 	 * @return A Set&lt;Movie&gt; object (this.movie)
 	 */
-	@ManyToMany( fetch = FetchType.LAZY, mappedBy = "review" )
-	public Set<Movie> getMovie() {
+	@ManyToMany( mappedBy = "review" )
+	public List<Movie> getMovie() {
 		return this.movie;
 		
 	}
@@ -167,7 +169,7 @@ public class Review implements Cloneable, Serializable, IReview {
      * Set the value related to the column: movie.
 	 * @param movie the movie value you wish to set
 	 */
-	public void setMovie(final Set<Movie> movie) {
+	public void setMovie(final List<Movie> movie) {
 		this.movie = movie;
 	}
 

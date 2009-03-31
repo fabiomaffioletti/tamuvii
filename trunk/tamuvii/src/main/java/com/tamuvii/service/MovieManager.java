@@ -11,8 +11,10 @@ public interface MovieManager extends GenericManager<Movie, Serializable> {
 	
 	public void addMovieToUser(Integer movieid, String username) throws Exception;
 	
+	public void deleteMovieFromUser(Integer movieid, String username) throws Exception;
+	
 	public Movie findMovieById(Integer movieId);
 	
-	public List<Movie> findMoviesByUsername(String username); 
-
+	public List<Movie> findMoviesByUsername(String username);
+	
 }

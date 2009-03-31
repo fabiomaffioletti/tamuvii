@@ -44,4 +44,12 @@ public class MovieManagerImpl extends GenericManagerImpl<Movie, Serializable> im
 		return user.getMovies();
 	}
 
+
+	public void deleteMovieFromUser(Integer movieid, String username) throws Exception {
+		Movie movie = findMovieById(movieid);
+		User user = userManager.getUserByUsername(username);
+		user.removeMovie(movie);
+		userManager.saveUser(user);
+	}
+
 }

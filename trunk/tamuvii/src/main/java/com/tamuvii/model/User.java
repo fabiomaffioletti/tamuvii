@@ -175,6 +175,10 @@ public class User extends BaseObject implements Serializable, UserDetails {
         getMovies().add(movie);
     }
     
+    public void removeMovie(Movie movie) {
+    	getMovies().remove(movie);
+    }
+    
     public void setMovies(List<Movie> movies) {
     	this.movies = movies;
     }

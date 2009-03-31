@@ -19,19 +19,32 @@ public class MovieActionsController implements Controller {
 
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		String username = request.getRemoteUser();
 		
 		try {
 			if(request.getParameter("action") != null && !request.getParameter("action").equals("") && request.getParameter("action").equals("add")) {
-				String username = request.getRemoteUser();
-				Integer movie = request.getParameter("movieId") == null ? null : Integer.parseInt(request.getParameter("movieId"));
-				movieManager.addMovieToUser(movie, username);
-				
+				Integer movieId = request.getParameter("movieId") == null ? null : Integer.parseInt(request.getParameter("movieId"));
+				movieManager.addMovieToUser(movieId, username);
 				mv.setViewName("mainMenu");
 				return mv;
+				
+			} else if(request.getParameter("action") != null && !request.getParameter("action").equals("") && request.getParameter("action").equals("delete")) {
+				Integer movieId = request.getParameter("movieId") == null ? null : Integer.parseInt(request.getParameter("movieId"));
+				movieManager.deleteMovieFromUser(movieId, username);
+				mv.setViewName("redirect:/shelf.html");
+				return mv;
+				
+			} else if(request.getParameter("action") != null && !request.getParameter("action").equals("") && request.getParameter("action").equals("details")) {
+				Integer movieId = request.getParameter("movieId") == null ? null : Integer.parseInt(request.getParameter("movieId"));
+				mv.addObject("movie", movieManager.findMovieById(movieId));
+				mv.setViewName("movieSocial");
+				return mv;
+				
 			}
 			else {
 				mv.setViewName("mainMenu");
 				return mv;
+				
 			}
 		} catch (Exception e) {
 			LoggingUtils.stackTraceToString(e);

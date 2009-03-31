@@ -1,16 +1,17 @@
 package com.tamuvii.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -65,7 +66,7 @@ public class Movie implements Cloneable, Serializable, IMovie {
 	private Set<Genre> genri = new HashSet<Genre>();
 
 	/** Field mapping. */
-	private Set<Review> review = new HashSet<Review>();
+	private List<Review> review = new ArrayList<Review>();
 
 
 	/**
@@ -96,7 +97,7 @@ public class Movie implements Cloneable, Serializable, IMovie {
      * Return the value associated with the column: director.
 	 * @return A Director object (this.director)
 	 */
-	@ManyToOne( fetch = FetchType.LAZY )
+	@ManyToOne()
 	@JoinColumn(name = "director", nullable = true  )
 	public Director getDirector() {
 		return this.director;
@@ -321,7 +322,7 @@ public class Movie implements Cloneable, Serializable, IMovie {
 		joinColumns = {@JoinColumn(name = "movie")},
 		inverseJoinColumns = {@JoinColumn(name = "review")}
 	)
-	public Set<Review> getReview() {
+	public List<Review> getReview() {
 		return this.review;
 		
 	}
@@ -341,7 +342,7 @@ public class Movie implements Cloneable, Serializable, IMovie {
      * Set the value related to the column: review.
 	 * @param review the review value you wish to set
 	 */
-	public void setReview(final Set<Review> review) {
+	public void setReview(final List<Review> review) {
 		this.review = review;
 	}
 

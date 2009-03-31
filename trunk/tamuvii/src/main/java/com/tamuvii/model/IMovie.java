@@ -1,5 +1,6 @@
 package com.tamuvii.model;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 
@@ -9,7 +10,6 @@ import java.util.Set;
  */
 
 public interface IMovie {
-
 
 
     /**
@@ -143,7 +143,7 @@ public interface IMovie {
      * Return the value associated with the column: review.
 	 * @return A Set&lt;Review&gt; object (this.review)
 	 */
-	Set<Review> getReview();
+	List<Review> getReview();
 	
 	/**
 	 * Adds a bi-directional link of type Review to the set.
@@ -156,7 +156,7 @@ public interface IMovie {
      * Set the value related to the column: review.
 	 * @param review the review value you wish to set
 	 */
-	void setReview(final Set<Review> review);
+	void setReview(final List<Review> review);
 
 	// end of interface
 }

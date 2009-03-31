@@ -1,4 +1,5 @@
 package com.tamuvii.model;
+import java.util.List;
 import java.util.Set;
 
 
@@ -43,7 +44,7 @@ public interface IReview {
      * Return the value associated with the column: movie.
 	 * @return A Set&lt;Movie&gt; object (this.movie)
 	 */
-	Set<Movie> getMovie();
+	List<Movie> getMovie();
 	
 	/**
 	 * Adds a bi-directional link of type Movie to the set.
@@ -56,7 +57,7 @@ public interface IReview {
      * Set the value related to the column: movie.
 	 * @param movie the movie value you wish to set
 	 */
-	void setMovie(final Set<Movie> movie);
+	void setMovie(final List<Movie> movie);
 
     /**
      * Return the value associated with the column: opinion.

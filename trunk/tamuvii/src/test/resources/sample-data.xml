@@ -189,4 +189,36 @@
     	</row>
     </table>
     
+    <table name="review">
+    	<column>review</column>
+    	<column>user</column>
+    	<column>title</column>
+    	<column>review_text</column>
+    	<row>
+    		<value description="review">-1</value>
+    		<value description="user">-1</value>
+    		<value description="title">Il mio primo commento</value>
+    		<value description="review_text"><![CDATA[Questo è il mio primo commento, mi piace, e poi taMuvii è troppo bello!]]></value>
+    	</row>
+    	<row>
+    		<value description="review">-2</value>
+    		<value description="user">-2</value>
+    		<value description="title">Il commento di admin</value>
+    		<value description="review_text"><![CDATA[Questo è il commento di admin, lui se la tira!]]></value>
+    	</row>
+    </table>
+    
+    <table name="movie_to_review">
+    	<column>movie</column>
+    	<column>review</column>
+    	<row>
+    		<value>-2</value>
+    		<value>-1</value>
+    	</row>
+    	<row>
+    		<value>-2</value>
+    		<value>-2</value>
+    	</row>
+    </table>
+    
 </dataset>

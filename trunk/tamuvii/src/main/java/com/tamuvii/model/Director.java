@@ -1,17 +1,23 @@
 package com.tamuvii.model;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.WeakHashMap;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springmodules.validation.bean.conf.loader.annotation.handler.Length;
 
 
 /** 
@@ -21,14 +27,22 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "director", catalog = "tamuvii")
-public  class Director implements Cloneable, Serializable {
+public class Director implements Cloneable, Serializable, IDirector {
 
 	/** Serial Version UID. */
 	private static final long serialVersionUID = -559009209L;
-
+	
+	/** Use a WeakHashMap so entries will be garbage collected once all entities 
+		referring to a saved hash are garbage collected themselves. */
+	private static final Map<Serializable, Integer> SAVED_HASHES =
+		Collections.synchronizedMap(new WeakHashMap<Serializable, Integer>());
+	
+	/** hashCode temporary storage. */
+	private volatile Integer hashCode;
+	
 
 	/** Field mapping. */
-	private Date dob;
+	private String aka;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
@@ -52,38 +66,59 @@ public  class Director implements Cloneable, Serializable {
 		this.id = id;
 	}
 	
+	/** Constructor taking a given ID.
+	 * @param id Integer object;
+	 * @param name String object;
+	 * @param surname String object;
+	 */
+	public Director(Integer id, String name, String surname) {
+
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+	}
+	
+ 
+	/** Return the type of this class. Useful for when dealing with proxies.
+	* @return Defining class.
+	*/
+	@Transient
+	public Class<?> getClassType() {
+		return Director.class;
+	}
  
 
-
     /**
-     * Return the value associated with the column: dob.
-	 * @return A Date object (this.dob)
+     * Return the value associated with the column: aka.
+	 * @return A String object (this.aka)
 	 */
-	
-	public Date getDob() {
-		return this.dob;
+	@Length(max=100)
+	@Column( length = 100  )
+	public String getAka() {
+		return this.aka;
+		
 	}
 	
 
   
     /**  
-     * Set the value related to the column: dob.
-	 * @param dob the dob value you wish to set
+     * Set the value related to the column: aka.
+	 * @param aka the aka value you wish to set
 	 */
-	public void setDob(final Date dob) {
-		this.dob = dob;
+	public void setAka(final String aka) {
+		this.aka = aka;
 	}
-
 
     /**
      * Return the value associated with the column: id.
 	 * @return A Integer object (this.id)
 	 */
     @Id 
-	@Column( name = "director", nullable = false  )
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column( name = "director"  )
 	public Integer getId() {
 		return this.id;
+		
 	}
 	
 
@@ -93,17 +128,26 @@ public  class Director implements Cloneable, Serializable {
 	 * @param id the id value you wish to set
 	 */
 	public void setId(final Integer id) {
+		// If we've just been persisted and hashCode has been
+		// returned then make sure other entities with this
+		// ID return the already returned hash code
+		if ( (this.id == null || this.id == 0) &&
+				(id != null) &&
+				(this.hashCode != null) ) {
+			SAVED_HASHES.put( id, this.hashCode );
+		}
 		this.id = id;
 	}
-
 
     /**
      * Return the value associated with the column: name.
 	 * @return A String object (this.name)
 	 */
-	@Column( length = 80  )
+	@Length(max=100)
+	@Column( length = 100  )
 	public String getName() {
 		return this.name;
+		
 	}
 	
 
@@ -116,14 +160,15 @@ public  class Director implements Cloneable, Serializable {
 		this.name = name;
 	}
 
-
     /**
      * Return the value associated with the column: surname.
 	 * @return A String object (this.surname)
 	 */
-	@Column( length = 80  )
+	@Length(max=100)
+	@Column( length = 100  )
 	public String getSurname() {
 		return this.surname;
+		
 	}
 	
 
@@ -136,15 +181,14 @@ public  class Director implements Cloneable, Serializable {
 		this.surname = surname;
 	}
 
-
     /**
      * Return the value associated with the column: movie.
 	 * @return A Set&lt;Movie&gt; object (this.movie)
 	 */
-	@Column( nullable = false  )
- 	@OneToMany( cascade = CascadeType.ALL, mappedBy = "director"  )
+ 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "director"  )
 	public Set<Movie> getMovie() {
 		return this.movie;
+		
 	}
 	
 	/**
@@ -152,8 +196,8 @@ public  class Director implements Cloneable, Serializable {
 	 * @param movie item to add
 	 */
 	public void addMovie(Movie movie) {
-		this.movie.add(movie);
 		movie.setDirector(this);
+		this.movie.add(movie);
 	}
 
   
@@ -176,7 +220,7 @@ public  class Director implements Cloneable, Serializable {
 		super.clone();  // keep hierarchy
         final Director copy = new Director();
 
-		copy.setDob(this.getDob());
+		copy.setAka(this.getAka());
 		copy.setId(this.getId());
 		copy.setName(this.getName());
 		copy.setSurname(this.getSurname());
@@ -193,62 +237,69 @@ public  class Director implements Cloneable, Serializable {
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		
-		sb.append("dob: " + this.dob + ", ");
-		sb.append("id: " + this.id + ", ");
-		sb.append("name: " + this.name + ", ");
-		sb.append("surname: " + this.surname + ", ");
+		sb.append("aka: " + this.getAka() + ", ");
+		sb.append("id: " + this.getId() + ", ");
+		sb.append("name: " + this.getName() + ", ");
+		sb.append("surname: " + this.getSurname() + ", ");
 		return sb.toString();		
 	}
 
-
-	
-	/** Equals implementation. 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 * @param aThat Object to compare with
-	 * @return true/false
-	 */
-	@Override
-	public boolean equals(final Object aThat) {
-		if ( this == aThat ) {
-			 return true;
-		}
-		if ((aThat == null) || ( !(aThat instanceof Director))) {
-			 return false;
-		}
-		final Director that = (Director) aThat;
-		
-		return (((this.dob == null) && (that.dob == null)) 
-			   || (this.dob != null  && this.dob.equals(that.dob)))
-			   && 
-			(((this.id == null) && (that.id == null)) 
-			   || (this.id != null  && this.id.equals(that.id)))
-			   && 
-			(((this.name == null) && (that.name == null)) 
-			   || (this.name != null  && this.name.equals(that.name)))
-			   && 
-			(((this.surname == null) && (that.surname == null)) 
-			   || (this.surname != null  && this.surname.equals(that.surname)))
-			   && 
-			(((this.movie == null) && (that.movie == null)) 
-			   || (this.movie != null  && this.movie.equals(that.movie)))
-			   ;
-	}
-
-
-	
-	/** Calculate the hashcode.
-	 * @see java.lang.Object#hashCode()
-	 * @return a calculated number
-	 */
 	@Override
 	public int hashCode() {
-		int result = 0;
-		result = 1000003 * result + (this.dob == null ? 0 : this.dob.hashCode());
-		result = 1000003 * result + (this.id == null ? 0 : this.id.hashCode());
-		result = 1000003 * result + (this.name == null ? 0 : this.name.hashCode());
-		result = 1000003 * result + (this.surname == null ? 0 : this.surname.hashCode());
-		result = 1000003 * result + (this.movie == null ? 0 : this.movie.hashCode());
-
-		return result;  
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((aka == null) ? 0 : aka.hashCode());
+		result = prime * result
+				+ ((hashCode == null) ? 0 : hashCode.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((movie == null) ? 0 : movie.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Director other = (Director) obj;
+		if (aka == null) {
+			if (other.aka != null)
+				return false;
+		} else if (!aka.equals(other.aka))
+			return false;
+		if (hashCode == null) {
+			if (other.hashCode != null)
+				return false;
+		} else if (!hashCode.equals(other.hashCode))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (movie == null) {
+			if (other.movie != null)
+				return false;
+		} else if (!movie.equals(other.movie))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (surname == null) {
+			if (other.surname != null)
+				return false;
+		} else if (!surname.equals(other.surname))
+			return false;
+		return true;
+	}
+
+
+	
 }

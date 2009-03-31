@@ -69,15 +69,7 @@
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
-    <bean id="markDao" class="com.tamuvii.dao.impl.MarkDaoImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
     <bean id="movieDao" class="com.tamuvii.dao.impl.MovieDaoImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
-    <bean id="localizedMovieDataDao" class="com.tamuvii.dao.impl.LocalizedMovieDataDaoImpl">
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     

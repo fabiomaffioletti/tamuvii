@@ -108,24 +108,4 @@
 
     <!-- Add new Managers here -->
     
-    <bean id="movieManager" class="com.tamuvii.service.impl.MovieManagerImpl">
-        <constructor-arg ref="movieDao" />
-    </bean>
-
-    <bean id="actorManager" class="com.tamuvii.service.impl.ActorManagerImpl">
-        <constructor-arg ref="actorDao" />
-    </bean>
-
-    <bean id="directorManager" class="com.tamuvii.service.impl.DirectorManagerImpl">
-        <constructor-arg ref="directorDao" />
-    </bean>
-
-    <bean id="markManager" class="com.tamuvii.service.impl.MarkManagerImpl">
-    	<constructor-arg ref="markDao" />
-    </bean>
-    
-    <bean id="localizedMovieDataManager" class="com.tamuvii.service.impl.LocalizedMovieDataManager">
-    	<constructor-arg ref="localizedMovieDataDao" />
-    </bean>
-    
 </beans>

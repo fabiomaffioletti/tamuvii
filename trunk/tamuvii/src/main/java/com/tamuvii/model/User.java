@@ -41,7 +41,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
     private Set<Movie> movies = new HashSet<Movie>();
-    private Set<Mark> mark = new HashSet<Mark>();
+    private Set<Opinion> opinions = new HashSet<Opinion>();
     private boolean enabled;
     private boolean accountExpired;
     private boolean accountLocked;
@@ -163,7 +163,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     
     @ManyToMany(fetch = FetchType.EAGER) 
     @JoinTable(
-            name="user_to_movie",
+            name="movie_to_user",
             joinColumns = { @JoinColumn( name="user") },
             inverseJoinColumns = @JoinColumn( name="movie")
     )    
@@ -180,21 +180,23 @@ public class User extends BaseObject implements Serializable, UserDetails {
     }
     
     
-    
-	@Column( nullable = false  )
- 	@OneToMany( cascade = CascadeType.ALL, mappedBy = "user"  )
-	public Set<Mark> getMark() {
-		return this.mark;
-	}
-	
-	public void addMark(Mark mark) {
-		this.mark.add(mark);
-		mark.setUser(this);
-	}
+    @ManyToMany(fetch = FetchType.EAGER) 
+    @JoinTable(
+            name="user_to_opinion",
+            joinColumns = { @JoinColumn( name="user") },
+            inverseJoinColumns = @JoinColumn( name="opinion")
+    )    
+    public Set<Opinion> getOpinions() {
+        return opinions;
+    }
 
-	public void setMark(final Set<Mark> mark) {
-		this.mark = mark;
-	}
+    public void addOpinion(Opinion opinion) {
+        getOpinions().add(opinion);
+    }
+    
+    public void setOpinions(Set<Opinion> opinions) {
+    	this.opinions = opinions;
+    }
     
     
     

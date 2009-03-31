@@ -3,12 +3,14 @@
 
 <hibernate-configuration>
     <session-factory>
-        <mapping class="com.tamuvii.model.User"/>
+		<mapping class="com.tamuvii.model.User"/>
         <mapping class="com.tamuvii.model.Role"/>
         <mapping class="com.tamuvii.model.Actor"/>
         <mapping class="com.tamuvii.model.Director"/>
-        <mapping class="com.tamuvii.model.Mark"/>
         <mapping class="com.tamuvii.model.Movie"/>
-        <mapping class="com.tamuvii.model.LocalizedMovieData"/>
+		<mapping class="com.tamuvii.model.Opinion"/>
+        <mapping class="com.tamuvii.model.Review"/>
+        <mapping class="com.tamuvii.model.Genre"/>
+        <mapping class="com.tamuvii.model.LocalizedData"/>
     </session-factory>
 </hibernate-configuration>

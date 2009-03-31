@@ -92,126 +92,65 @@
     </table>
     
     <table name="director">
-        <column>director</column>
-        <column>dob</column>
-        <column>name</column>
-        <column>surname</column>
-        <row>
-            <value description="director">-1</value>
-            <value description="dob"><![CDATA[2008-12-14]]></value>
-            <value description="name">Sean</value>
-            <value description="surname">Penn</value>
-        </row>
-        <row>
-            <value description="director">-2</value>
-            <value description="dob"><![CDATA[2008-08-23]]></value>
-            <value description="name">Robert</value>
-            <value description="surname">Redford</value>
-        </row>
+    	<column>director</column>
+    	<column>name</column>
+    	<column>surname</column>
+    	<column>aka</column>
+    	<row>
+    		<value description="director">-1</value>
+    		<value description="name">Giuseppe</value>
+    		<value description="surname">Bennati</value>
+    		<null/>
+    	</row>
+    	<row>
+    		<value description="director">-2</value>
+    		<value description="name">Fabrizio</value>
+    		<value description="surname">Bentivoglio</value>
+    		<null/>
+    	</row>
+    	<row>
+    		<value description="director">-3</value>
+    		<value description="name">Adriano</value>
+    		<value description="surname">Magli</value>
+    		<null/>
+    	</row>
+    	<row>
+    		<value description="director">-4</value>
+    		<value description="name">Franco</value>
+    		<value description="surname">Indovina</value>
+    		<null/>
+    	</row>
     </table>
     
     <table name="actor">
-        <column>actor</column>
-        <column>dob</column>
-        <column>name</column>
-        <column>surname</column>
-        <row>
-            <value description="actor">-1</value>
-            <value description="dob"><![CDATA[2008-05-09]]></value>
-            <value description="name">Nicole</value>
-            <value description="surname">Kidman</value>
-        </row>
-        <row>
-            <value description="actor">-2</value>
-            <value description="dob"><![CDATA[2008-08-23]]></value>
-            <value description="name">Tom</value>
-            <value description="surname">Cruise</value>
-        </row>
+    	<column>actor</column>
+    	<column>name</column>
+    	<column>surname</column>
+    	<column>aka</column>
+    	<row>
+    		<value description="actor">-1</value>
+    		<value description="name">Brad</value>
+    		<value description="surname">Pitt</value>
+    		<null/>
+    	</row>
+    	<row>
+    		<value description="actor">-2</value>
+    		<value description="name">Jane</value>
+    		<value description="surname">Fonda</value>
+    		<null/>
+    	</row>
+    	<row>
+    		<value description="actor">-3</value>
+    		<value description="name">Harrison</value>
+    		<value description="surname">Ford</value>
+    		<null/>
+    	</row>
+    	<row>
+    		<value description="actor">-4</value>
+    		<value description="name">Nicole</value>
+    		<value description="surname">Kidman</value>
+    		<null/>
+    	</row>
     </table>
     
-    <table name="movie">
-        <column>movie</column>
-        <column>duration</column>
-        <column>director</column>
-        <column>date</column>
-        <row>
-            <value description="movie">-1</value>
-            <value description="duration">180</value>
-            <value description="director">-2</value>
-            <value description="date"><![CDATA[2005-02-03]]></value>
-        </row>
-        <row>
-            <value description="movie">-2</value>
-            <value description="duration">123</value>
-            <value description="director">-1</value>
-            <value description="date"><![CDATA[2005-01-12]]></value>
-        </row>
-    </table>
-    
-    <table name="movie_to_actor">
-        <column>movie</column>
-        <column>actor</column>
-        <row>
-        	<value description="movie">-1</value>
-        	<value description="actor">-1</value>
-        </row>
-        <row>
-        	<value description="movie">-1</value>
-        	<value description="actor">-2</value>
-        </row>
-    </table>
-    
-    <table name="mark">
-        <column>mark</column>
-        <column>user</column>
-        <column>movie</column>
-        <column>stars</column>
-        <row>
-        	<value description="mark">-1_-1</value>
-        	<value description="user">-1</value>
-        	<value description="movie">-1</value>
-        	<value description="stars">4</value>
-        </row>
-        <row>
-        	<value description="mark">-1_-2</value>
-        	<value description="user">-1</value>
-        	<value description="movie">-2</value>
-        	<value description="stars">3</value>
-        </row>
-    </table>
-    
-    <table name="user_to_movie">
-        <column>user</column>
-        <column>movie</column>
-        <row>
-        	<value description="user">-1</value>
-        	<value description="movie">-1</value>
-        </row>
-        <row>
-        	<value description="user">-1</value>
-        	<value description="movie">-2</value>
-        </row>
-    </table>
-    
-    <table name="localized_movie_data">
-        <column>localized_movie_data</column>
-        <column>movie</column>
-        <column>locale</column>
-        <column>title</column>
-        <column>plot</column>
-        <row>
-        	<value description="localized_movie_data">-1_it</value>
-        	<value description="movie">-1</value>
-        	<value description="locale">it</value>
-        	<value description="title">La storia infinita</value>
-        	<value description="plot">Una storia molto lunga</value>
-        </row>
-        <row>
-        	<value description="localized_movie_data">-1_en</value>
-        	<value description="movie">-1</value>
-        	<value description="locale">en</value>
-        	<value description="title">The endless story</value>
-        	<value description="plot">A very long story</value>
-        </row>
-    </table>
 </dataset>

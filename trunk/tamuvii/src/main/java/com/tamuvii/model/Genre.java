@@ -138,7 +138,7 @@ public class Genre implements Cloneable, Serializable, IGenre {
      * Return the value associated with the column: movie.
 	 * @return A Set&lt;Movie&gt; object (this.movie)
 	 */
-	@ManyToMany( fetch = FetchType.LAZY, mappedBy = "genri" )
+	@ManyToMany( mappedBy = "genri" )
 	public Set<Movie> getMovie() {
 		return this.movie;
 		

@@ -185,7 +185,7 @@ public class Actor implements Cloneable, Serializable, IActor {
      * Return the value associated with the column: movie.
 	 * @return A Set&lt;Movie&gt; object (this.movie)
 	 */
-	@ManyToMany( fetch = FetchType.LAZY, mappedBy = "actor" )
+	@ManyToMany( mappedBy = "actor" )
 	public Set<Movie> getMovie() {
 		return this.movie;
 		

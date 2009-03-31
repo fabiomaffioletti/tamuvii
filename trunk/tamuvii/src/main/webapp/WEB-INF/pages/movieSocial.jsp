@@ -6,6 +6,8 @@
     <meta name="menu" content="MainMenu"/>
 </head>
 
+<b>Dati sul film:</b>
+<br/>
 id: ${movie.id}
 <br/>
 title: ${movie.originalTitle}
@@ -14,5 +16,10 @@ duration: ${movie.duration}
 <br/>
 release date: ${movie.releaseDate}
 <br/>
-reviews:
-${movie.review}
+<br/>
+<b>Reviews:</b>
+<br/>
+<display:table name="${movie.review}" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="review" pagesize="25" class="table" export="false">
+	<display:column property="title" sortable="true" titleKey="title" />
+	<display:column property="reviewText" sortable="true" titleKey="text" />
+</display:table>

@@ -132,7 +132,7 @@ public class Opinion implements Cloneable, Serializable, IOpinion {
      * Return the value associated with the column: review.
 	 * @return A Review object (this.review)
 	 */
-	@ManyToOne( fetch = FetchType.LAZY )
+	@ManyToOne( )
 	@JoinColumn(name = "review" )
 	public Review getReview() {
 		return this.review;

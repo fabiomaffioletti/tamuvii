@@ -8,7 +8,9 @@
 
 <display:table name="myMovies" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="myMovies" pagesize="25" class="table" export="true">
     <display:column property="id" sortable="true" titleKey="id" media="html" />
-    <display:column property="originalTitle" escapeXml="true" sortable="true" titleKey="title" url="/movie.html?action=details&movieId=${myMovies.id}" />
+    <display:column escapeXml="false" sortable="true" titleKey="title" >
+    	<a href="/movie.html?action=details&movieId=${myMovies.id}">${myMovies.originalTitle}</a>
+    </display:column>
     <display:column property="duration" escapeXml="true" sortable="true" titleKey="duration" />
     <display:column property="releaseDate" sortable="true" titleKey="release_date"/>
     <display:column titleKey="actions">

@@ -12,6 +12,7 @@ import java.util.WeakHashMap;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -66,7 +67,7 @@ public class Movie implements Cloneable, Serializable, IMovie {
 	private Set<Genre> genri = new HashSet<Genre>();
 
 	/** Field mapping. */
-	private List<Review> review = new ArrayList<Review>();
+	private Set<Review> review = new HashSet<Review>();
 
 
 	/**
@@ -213,7 +214,6 @@ public class Movie implements Cloneable, Serializable, IMovie {
 	@ManyToMany
 	@JoinTable(
 		name = "movie_to_actor",
-		catalog = "tamuvii",
 		joinColumns = {@JoinColumn(name = "movie")},
 		inverseJoinColumns = {@JoinColumn(name = "actor")}
 	)
@@ -248,7 +248,6 @@ public class Movie implements Cloneable, Serializable, IMovie {
 	@ManyToMany
 	@JoinTable(
 		name = "movie_to_data",
-		catalog = "tamuvii",
 		joinColumns = {@JoinColumn(name = "movie")},
 		inverseJoinColumns = {@JoinColumn(name = "localized_data")}
 	)
@@ -283,7 +282,6 @@ public class Movie implements Cloneable, Serializable, IMovie {
 	@ManyToMany
 	@JoinTable(
 		name = "movie_to_genre",
-		catalog = "tamuvii",
 		joinColumns = {@JoinColumn(name = "movie")},
 		inverseJoinColumns = {@JoinColumn(name = "genre")}
 	)
@@ -315,14 +313,13 @@ public class Movie implements Cloneable, Serializable, IMovie {
      * Return the value associated with the column: review.
 	 * @return A Set&lt;Review&gt; object (this.review)
 	 */
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 		name = "movie_to_review",
-		catalog = "tamuvii",
 		joinColumns = {@JoinColumn(name = "movie")},
 		inverseJoinColumns = {@JoinColumn(name = "review")}
 	)
-	public List<Review> getReview() {
+	public Set<Review> getReview() {
 		return this.review;
 		
 	}
@@ -333,8 +330,9 @@ public class Movie implements Cloneable, Serializable, IMovie {
 	 * @param review item to add
 	 */
 	public void addReview(Review review) {
-		review.getMovie().add(this);
-		this.review.add(review);
+//		review.getMovie().add(this);
+		getReview().add(review);
+//		this.review.add(review);
 	}
 
   
@@ -342,7 +340,7 @@ public class Movie implements Cloneable, Serializable, IMovie {
      * Set the value related to the column: review.
 	 * @param review the review value you wish to set
 	 */
-	public void setReview(final List<Review> review) {
+	public void setReview(final Set<Review> review) {
 		this.review = review;
 	}
 

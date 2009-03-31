@@ -40,24 +40,9 @@ public interface IReview {
 	 */
 	void setReviewText(final String reviewText);
 
-    /**
-     * Return the value associated with the column: movie.
-	 * @return A Set&lt;Movie&gt; object (this.movie)
-	 */
-	List<Movie> getMovie();
-	
-	/**
-	 * Adds a bi-directional link of type Movie to the set.
-	 * @param movie item to add
-	 */
-	void addMovie(Movie movie);
-
-  
-    /**  
-     * Set the value related to the column: movie.
-	 * @param movie the movie value you wish to set
-	 */
-	void setMovie(final List<Movie> movie);
+//	List<Movie> getMovie();
+//	void addMovie(Movie movie);
+//	void setMovie(final List<Movie> movie);
 
     /**
      * Return the value associated with the column: opinion.

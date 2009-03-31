@@ -173,7 +173,7 @@ public class LocalizedData implements Cloneable, Serializable, ILocalizedData {
      * Return the value associated with the column: movie.
 	 * @return A Set&lt;Movie&gt; object (this.movie)
 	 */
-	@ManyToMany( fetch = FetchType.LAZY, mappedBy = "date" )
+	@ManyToMany( mappedBy = "date" )
 	public Set<Movie> getMovie() {
 		return this.movie;
 		

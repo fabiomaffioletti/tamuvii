@@ -11,7 +11,6 @@ import java.util.WeakHashMap;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,7 +48,7 @@ public class Review implements Cloneable, Serializable, IReview {
 	/** Field mapping. */
 	private String reviewText;
 	/** Field mapping. */
-	private List<Movie> movie = new ArrayList<Movie>();
+//	private List<Movie> movie = new ArrayList<Movie>();
 
 	/** Field mapping. */
 	private Set<Opinion> opinion = new HashSet<Opinion>();
@@ -144,40 +143,25 @@ public class Review implements Cloneable, Serializable, IReview {
 		this.reviewText = reviewText;
 	}
 
-    /**
-     * Return the value associated with the column: movie.
-	 * @return A Set&lt;Movie&gt; object (this.movie)
-	 */
-	@ManyToMany( mappedBy = "review" )
-	public List<Movie> getMovie() {
-		return this.movie;
-		
-	}
-	
-	/**
-	 * Adds a bi-directional link of type Movie to the set.
-	 * 
-	 * @param movie item to add
-	 */
-	public void addMovie(Movie movie) {
-		movie.getReview().add(this);
-		this.movie.add(movie);
-	}
-
-  
-    /**  
-     * Set the value related to the column: movie.
-	 * @param movie the movie value you wish to set
-	 */
-	public void setMovie(final List<Movie> movie) {
-		this.movie = movie;
-	}
+//	@ManyToMany( mappedBy = "review" )
+//	public List<Movie> getMovie() {
+//		return this.movie;
+//		
+//	}
+//	public void addMovie(Movie movie) {
+//		movie.getReview().add(this);
+//		this.movie.add(movie);
+//	}
+//	public void setMovie(final List<Movie> movie) {
+//		this.movie = movie;
+//	}
+//	
 
     /**
      * Return the value associated with the column: opinion.
 	 * @return A Set&lt;Opinion&gt; object (this.opinion)
 	 */
- 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "review"  )
+ 	@OneToMany( mappedBy = "review"  )
 	public Set<Opinion> getOpinion() {
 		return this.opinion;
 		
@@ -254,7 +238,7 @@ public class Review implements Cloneable, Serializable, IReview {
 
 		copy.setId(this.getId());
 		copy.setReviewText(this.getReviewText());
-		copy.getMovie().addAll(this.getMovie());
+//		copy.getMovie().addAll(this.getMovie());
 		copy.getOpinion().addAll(this.getOpinion());
 		copy.setTitle(this.getTitle());
 		copy.setUser(this.getUser());
@@ -284,7 +268,7 @@ public class Review implements Cloneable, Serializable, IReview {
 		result = prime * result
 				+ ((hashCode == null) ? 0 : hashCode.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((movie == null) ? 0 : movie.hashCode());
+//		result = prime * result + ((movie == null) ? 0 : movie.hashCode());
 		result = prime * result + ((opinion == null) ? 0 : opinion.hashCode());
 		result = prime * result
 				+ ((reviewText == null) ? 0 : reviewText.hashCode());
@@ -312,11 +296,11 @@ public class Review implements Cloneable, Serializable, IReview {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (movie == null) {
-			if (other.movie != null)
-				return false;
-		} else if (!movie.equals(other.movie))
-			return false;
+//		if (movie == null) {
+//			if (other.movie != null)
+//				return false;
+//		} else if (!movie.equals(other.movie))
+//			return false;
 		if (opinion == null) {
 			if (other.opinion != null)
 				return false;

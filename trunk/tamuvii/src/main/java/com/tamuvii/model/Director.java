@@ -185,7 +185,7 @@ public class Director implements Cloneable, Serializable, IDirector {
      * Return the value associated with the column: movie.
 	 * @return A Set&lt;Movie&gt; object (this.movie)
 	 */
- 	@OneToMany( fetch = FetchType.LAZY, mappedBy = "director"  )
+ 	@OneToMany( mappedBy = "director"  )
 	public Set<Movie> getMovie() {
 		return this.movie;
 		

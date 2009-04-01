@@ -221,4 +221,24 @@
     	</row>
     </table>
     
+    <table name="opinion">
+    	<column>opinion</column>
+    	<column>review</column>
+    	<column>opinion_text</column>
+    	<row>
+    		<value description="opinion">-1</value>
+    		<value description="review">-1</value>
+    		<value description="opinion_text">Testo dell'opinione</value>
+    	</row>
+    </table>
+    
+    <table name="user_to_opinion">
+    	<column>user</column>
+    	<column>opinion</column>
+    	<row>
+    		<value>-1</value>
+    		<value>-1</value>
+    	</row>
+    </table>
+    
 </dataset>

@@ -22,4 +22,5 @@ release date: ${movie.releaseDate}
 <display:table name="${movie.review}" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="review" pagesize="25" class="table" export="false">
 	<display:column property="title" sortable="true" titleKey="title" />
 	<display:column property="reviewText" sortable="true" titleKey="text" />
+	<display:column property="user.username" sortable="true" titleKey="user" />
 </display:table>

@@ -41,13 +41,29 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
     private List<Movie> movies = new ArrayList<Movie>();
+    private List<Review> reviews = new ArrayList<Review>();
     private Set<Opinion> opinions = new HashSet<Opinion>();
     private boolean enabled;
     private boolean accountExpired;
     private boolean accountLocked;
     private boolean credentialsExpired;
+    
 
-    /**
+    @OneToMany(mappedBy = "user")
+    public List<Review> getReviews() {
+		return reviews;
+	}
+    
+    public void addReview(Review review) {
+    	review.setUser(this);
+    	this.reviews.add(review);
+    }
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	/**
      * Default constructor - creates a new instance with no values set.
      */
     public User() {}

@@ -1,10 +1,8 @@
 package com.tamuvii.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
@@ -14,7 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -29,7 +28,7 @@ import org.springmodules.validation.bean.conf.loader.annotation.handler.Length;
 
 @Entity
 @Table(name = "review", catalog = "tamuvii")
-public class Review implements Cloneable, Serializable, IReview {
+public class Review implements Cloneable, Serializable {
 
 	/** Serial Version UID. */
 	private static final long serialVersionUID = -559009203L;
@@ -56,7 +55,7 @@ public class Review implements Cloneable, Serializable, IReview {
 	/** Field mapping. */
 	private String title;
 	/** Field mapping. */
-	private Integer user;
+	private User user;
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */
@@ -76,7 +75,7 @@ public class Review implements Cloneable, Serializable, IReview {
 	 * @param reviewText String object;
 	 * @param user Integer object;
 	 */
-	public Review(Integer id, String reviewText, Integer user) {
+	public Review(Integer id, String reviewText, User user) {
 
 		this.id = id;
 		this.reviewText = reviewText;
@@ -210,7 +209,9 @@ public class Review implements Cloneable, Serializable, IReview {
      * Return the value associated with the column: user.
 	 * @return A Integer object (this.user)
 	 */
-	public Integer getUser() {
+	@ManyToOne()
+	@JoinColumn(name="user")
+	public User getUser() {
 		return this.user;
 		
 	}
@@ -221,7 +222,7 @@ public class Review implements Cloneable, Serializable, IReview {
      * Set the value related to the column: user.
 	 * @param user the user value you wish to set
 	 */
-	public void setUser(final Integer user) {
+	public void setUser(final User user) {
 		this.user = user;
 	}
 

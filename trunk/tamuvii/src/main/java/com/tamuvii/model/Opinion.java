@@ -7,7 +7,6 @@ import java.util.WeakHashMap;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,7 +21,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "opinion", catalog = "tamuvii")
-public class Opinion implements Cloneable, Serializable, IOpinion {
+public class Opinion implements Cloneable, Serializable {
 
 	/** Serial Version UID. */
 	private static final long serialVersionUID = -559009204L;
@@ -132,7 +131,7 @@ public class Opinion implements Cloneable, Serializable, IOpinion {
      * Return the value associated with the column: review.
 	 * @return A Review object (this.review)
 	 */
-	@ManyToOne( )
+	@ManyToOne
 	@JoinColumn(name = "review" )
 	public Review getReview() {
 		return this.review;

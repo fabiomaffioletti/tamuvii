@@ -9,7 +9,6 @@ import java.util.WeakHashMap;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +26,7 @@ import org.springmodules.validation.bean.conf.loader.annotation.handler.Length;
 
 @Entity
 @Table(name = "director", catalog = "tamuvii")
-public class Director implements Cloneable, Serializable, IDirector {
+public class Director implements Cloneable, Serializable {
 
 	/** Serial Version UID. */
 	private static final long serialVersionUID = -559009209L;

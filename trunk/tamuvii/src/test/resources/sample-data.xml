@@ -122,37 +122,6 @@
     	</row>
     </table>
     
-    <table name="actor">
-    	<column>actor</column>
-    	<column>name</column>
-    	<column>surname</column>
-    	<column>aka</column>
-    	<row>
-    		<value description="actor">-1</value>
-    		<value description="name">Brad</value>
-    		<value description="surname">Pitt</value>
-    		<null/>
-    	</row>
-    	<row>
-    		<value description="actor">-2</value>
-    		<value description="name">Jane</value>
-    		<value description="surname">Fonda</value>
-    		<null/>
-    	</row>
-    	<row>
-    		<value description="actor">-3</value>
-    		<value description="name">Harrison</value>
-    		<value description="surname">Ford</value>
-    		<null/>
-    	</row>
-    	<row>
-    		<value description="actor">-4</value>
-    		<value description="name">Nicole</value>
-    		<value description="surname">Kidman</value>
-    		<null/>
-    	</row>
-    </table>
-    
     <table name="movie">
     	<column>movie</column>
     	<column>original_title</column>
@@ -238,6 +207,28 @@
     	<row>
     		<value>-1</value>
     		<value>-1</value>
+    	</row>
+    </table>
+    
+    <table name="user_to_movie">
+    	<column>user_id</column>
+    	<column>movie_id</column>
+    	<column>date_added</column>
+    	<column>date_viewed</column>
+    	<column>mark</column>
+    	<row>
+    		<value>-1</value>
+    		<value>-1</value>
+    		<value><![CDATA[2009-04-09 00:00:00.0]]></value>
+    		<value><![CDATA[2009-04-09 00:00:00.0]]></value>
+    		<value>5</value>
+    	</row>
+    	<row>
+    		<value>-1</value>
+    		<value>-2</value>
+    		<value><![CDATA[2009-04-09 00:00:00.0]]></value>
+    		<value><![CDATA[2009-04-09 00:00:00.0]]></value>
+    		<value>4</value>
     	</row>
     </table>
     

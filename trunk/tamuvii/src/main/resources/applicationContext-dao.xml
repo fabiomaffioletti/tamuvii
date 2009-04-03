@@ -60,24 +60,11 @@
     -->
 
     <!-- Add new DAOs here -->
-    
-    <bean id="actorDao" class="com.tamuvii.dao.impl.ActorDaoImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
     <bean id="directorDao" class="com.tamuvii.dao.impl.DirectorDaoImpl">
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
     <bean id="movieDao" class="com.tamuvii.dao.impl.MovieDaoImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
-    <bean id="genreDao" class="com.tamuvii.dao.impl.GenreDaoImpl">
-    	<property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    
-    <bean id="localizedDataDao" class="com.tamuvii.dao.impl.LocalizedDataDaoImpl">
     	<property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     

@@ -1,8 +1,9 @@
 package com.tamuvii.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
@@ -50,7 +51,8 @@ public class Review implements Cloneable, Serializable {
 //	private List<Movie> movie = new ArrayList<Movie>();
 
 	/** Field mapping. */
-	private Set<Opinion> opinion = new HashSet<Opinion>();
+	@org.hibernate.annotations.IndexColumn(name = "opinion")
+	private List<Opinion> opinion = new ArrayList<Opinion>();
 
 	/** Field mapping. */
 	private String title;
@@ -161,7 +163,7 @@ public class Review implements Cloneable, Serializable {
 	 * @return A Set&lt;Opinion&gt; object (this.opinion)
 	 */
  	@OneToMany( mappedBy = "review"  )
-	public Set<Opinion> getOpinion() {
+	public List<Opinion> getOpinion() {
 		return this.opinion;
 		
 	}
@@ -180,7 +182,7 @@ public class Review implements Cloneable, Serializable {
      * Set the value related to the column: opinion.
 	 * @param opinion the opinion value you wish to set
 	 */
-	public void setOpinion(final Set<Opinion> opinion) {
+	public void setOpinion(final List<Opinion> opinion) {
 		this.opinion = opinion;
 	}
 

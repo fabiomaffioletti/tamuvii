@@ -1,17 +1,30 @@
 package com.tamuvii.model;
 
-import org.springframework.security.GrantedAuthority;
-import org.springframework.security.userdetails.UserDetails;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-
-import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+import org.springframework.security.GrantedAuthority;
+import org.springframework.security.userdetails.UserDetails;
 
 /**
  * This class represents the basic "user" object in AppFuse that allows for authentication
@@ -40,25 +53,34 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private Address address = new Address();
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
-    private List<Movie> movies = new ArrayList<Movie>();
-    private List<Review> reviews = new ArrayList<Review>();
-    private Set<Opinion> opinions = new HashSet<Opinion>();
     private boolean enabled;
     private boolean accountExpired;
     private boolean accountLocked;
     private boolean credentialsExpired;
     
-
-    @OneToMany(mappedBy = "user")
+    
+    private Set<UserMovie> userMovies = new HashSet<UserMovie>();
+    private List<Review> reviews = new ArrayList<Review>();
+    private List<Opinion> opinions = new ArrayList<Opinion>();
+    
+    
+    @OneToMany(mappedBy="user")
+	public Set<UserMovie> getUserMovies() {
+		return userMovies;
+	}
+	public void setUserMovies(Set<UserMovie> userMovies) {
+		this.userMovies = userMovies;
+	}
+	
+	
+	@OneToMany(mappedBy = "user")
     public List<Review> getReviews() {
 		return reviews;
 	}
-    
-    public void addReview(Review review) {
+	public void addReview(Review review) {
     	review.setUser(this);
     	this.reviews.add(review);
     }
-
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
@@ -177,36 +199,13 @@ public class User extends BaseObject implements Serializable, UserDetails {
     
     
     
-    @ManyToMany(fetch = FetchType.EAGER) 
-    @JoinTable(
-            name="movie_to_user",
-            joinColumns = { @JoinColumn( name="user") },
-            inverseJoinColumns = @JoinColumn( name="movie")
-    )    
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void addMovie(Movie movie) {
-        getMovies().add(movie);
-    }
-    
-    public void removeMovie(Movie movie) {
-    	getMovies().remove(movie);
-    }
-    
-    public void setMovies(List<Movie> movies) {
-    	this.movies = movies;
-    }
-    
-    
-    @ManyToMany(fetch = FetchType.EAGER) 
+    @ManyToMany 
     @JoinTable(
             name="user_to_opinion",
             joinColumns = { @JoinColumn( name="user") },
             inverseJoinColumns = @JoinColumn( name="opinion")
     )    
-    public Set<Opinion> getOpinions() {
+    public List<Opinion> getOpinions() {
         return opinions;
     }
 
@@ -214,7 +213,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         getOpinions().add(opinion);
     }
     
-    public void setOpinions(Set<Opinion> opinions) {
+    public void setOpinions(List<Opinion> opinions) {
     	this.opinions = opinions;
     }
     

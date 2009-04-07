@@ -51,6 +51,14 @@
     <logger name="com.tamuvii.webapp.filter.StaticFilter">
         <level value="INFO"/>
     </logger>
+    
+    <logger name="com.ibatis">
+    	<level value="DEBUG" />
+    </logger>
+    
+    <logger name="java.sql">
+		<level value="DEBUG" />
+	</logger>
 
     <root>
         <level value="WARN"/>

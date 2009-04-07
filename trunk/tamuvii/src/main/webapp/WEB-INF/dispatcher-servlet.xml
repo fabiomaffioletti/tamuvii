@@ -78,6 +78,8 @@
                 /admin/users.html=userController
                 /mainMenu.html=filenameController
                 /passwordHint.html=passwordHintController
+                
+                /shelf.html=shelfController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -93,5 +95,9 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
+    </bean>
+    
+    <bean id="shelfController" class="com.tamuvii.webapp.controller.ShelfController">
+    	<property name="movieManager" ref="movieManager" />
     </bean>
 </beans>

@@ -10,4 +10,5 @@
     <sqlMap resource="sqlmaps/LookupSQL.xml"/>
     <sqlMap resource="sqlmaps/RoleSQL.xml"/>
     <sqlMap resource="sqlmaps/UserSQL.xml"/>
+    <sqlMap resource="sqlmaps/movie_SqlMap.xml"/>
 </sqlMapConfig>

@@ -133,7 +133,7 @@ public final class iBatisDaoUtils {
      * @param className the name of the class - returns "get" + className + "s"
      */
     public static String getSelectQuery(String className) {
-        return "get" + className + "s";
+        return className + "SQL." + "get" + className + "s";
     }
 
     /**
@@ -141,7 +141,7 @@ public final class iBatisDaoUtils {
      * @param className the name of the class - returns "get" + className
      */
     public static String getFindQuery(String className) {
-        return "get" + className;
+        return className + "SQL." + "get" + className;
     }
 
     /**

@@ -25,14 +25,14 @@ public class RoleDaoiBatis extends GenericDaoiBatis<Role, Long> implements RoleD
      */
     @Override @SuppressWarnings("unchecked")
     public List<Role> getAll() {
-        return getSqlMapClientTemplate().queryForList("getRoles", null);
+        return getSqlMapClientTemplate().queryForList("RoleSQL.getRoles", null);
     }
 
     /**
      * {@inheritDoc}
      */
     public Role getRoleByName(String name) {
-        return (Role) getSqlMapClientTemplate().queryForObject("getRoleByName", name);
+        return (Role) getSqlMapClientTemplate().queryForObject("RoleSQL.getRoleByName", name);
     }
 
     /**
@@ -41,9 +41,9 @@ public class RoleDaoiBatis extends GenericDaoiBatis<Role, Long> implements RoleD
     @Override
     public Role save(final Role role) {
         if (role.getId() == null) {
-            getSqlMapClientTemplate().insert("addRole", role);
+            getSqlMapClientTemplate().insert("RoleSQL.addRole", role);
         } else {
-            getSqlMapClientTemplate().update("updateRole", role);
+            getSqlMapClientTemplate().update("RoleSQL.updateRole", role);
         }
         return role;
     }
@@ -52,7 +52,7 @@ public class RoleDaoiBatis extends GenericDaoiBatis<Role, Long> implements RoleD
      * {@inheritDoc}
      */
     public void removeRole(String rolename) {
-        getSqlMapClientTemplate().update("deleteRole", rolename);
+        getSqlMapClientTemplate().update("RoleSQL.deleteRole", rolename);
     }
 
 }

@@ -19,6 +19,6 @@ public class LookupDaoiBatis extends UniversalDaoiBatis implements LookupDao {
     public List<Role> getRoles() {
         log.debug("Retrieving all role names...");
 
-        return getSqlMapClientTemplate().queryForList("getRoles", null);
+        return getSqlMapClientTemplate().queryForList("LookupSQL.getRoles", null);
     }
 }

@@ -348,6 +348,11 @@
             <version>${commons.beanutils.version}</version>
         </dependency>
         <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons.collections.version}</version>
+        </dependency>
+        <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
             <version>${commons.dbcp.version}</version>
@@ -930,6 +935,7 @@
         <aspectj.version>1.6.0</aspectj.version>
         <clickstream.version>1.0.2</clickstream.version>
         <commons.beanutils.version>1.7.0</commons.beanutils.version>
+        <commons.collections.version>3.2</commons.collections.version>
         <commons.dbcp.version>1.2.1</commons.dbcp.version>
         <commons.fileupload.version>1.2.1</commons.fileupload.version>
         <commons.io.version>1.3.2</commons.io.version>
@@ -937,7 +943,7 @@
         <displaytag.version>1.1.1</displaytag.version>
         <dwr.version>2.0.1</dwr.version>
         <ehcache.version>1.4.1</ehcache.version>
-        <ibatis.version>2.3.0</ibatis.version>
+        <ibatis.version>2.3.4.726</ibatis.version>
         <javamail.version>1.4</javamail.version>
         <jpa.version>1.0</jpa.version>
         <jstl.version>1.1.2</jstl.version>

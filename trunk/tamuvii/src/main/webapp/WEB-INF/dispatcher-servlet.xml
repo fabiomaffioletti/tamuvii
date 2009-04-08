@@ -81,6 +81,9 @@
                 
                 /shelf.html=shelfController
                 /socialMovie.html=socialMovieController
+                
+                <!-- Backend mappings -->
+                /be_moviesList.html=moviesListController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -103,6 +106,10 @@
     </bean>
     
     <bean id="socialMovieController" class="com.tamuvii.webapp.controller.SocialMovieController">
+    	<property name="movieManager" ref="movieManager" />
+    </bean>
+    
+    <bean id="moviesListController" class="com.tamuvii.webapp.controller.MoviesListController">
     	<property name="movieManager" ref="movieManager" />
     </bean>
 </beans>

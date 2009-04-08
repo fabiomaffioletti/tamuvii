@@ -1,20 +1,18 @@
 package com.tamuvii.service.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.tamuvii.dao.CustomMovieDAO;
+import com.tamuvii.dao.MovieDAO;
 import com.tamuvii.dao.ReviewDAO;
+import com.tamuvii.model.Movie;
 import com.tamuvii.model.Review;
 import com.tamuvii.model.ReviewExample;
 import com.tamuvii.model.UserToMovie;
 import com.tamuvii.model.ReviewExample.Criteria;
 import com.tamuvii.pojo.PersonalMovie;
-import com.tamuvii.dao.MovieDAO;
-import com.tamuvii.model.Movie;
-import com.tamuvii.model.MovieExample;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;

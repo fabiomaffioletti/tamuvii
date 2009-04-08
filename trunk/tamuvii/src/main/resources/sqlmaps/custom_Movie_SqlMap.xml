@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
-<sqlMap namespace="shelf" >
+<sqlMap namespace="custom" >
 
   <resultMap id="shelfItemMap" class="com.tamuvii.pojo.ShelfItem" >
     <result column="movie" property="movieId" jdbcType="INTEGER" />
@@ -11,6 +11,15 @@
     <result column="date_added" property="dateAdded" jdbcType="TIMESTAMP" />
     <result column="date_viewed" property="dateViewed" jdbcType="TIMESTAMP" />
     <result column="mark" property="mark" jdbcType="INTEGER" />
+  </resultMap>
+
+  <resultMap id="socialMovieMap" class="com.tamuvii.pojo.SocialMovie" >
+    <result column="movie" property="movieId" jdbcType="INTEGER" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
+    <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
+    <result column="director" property="director" jdbcType="VARCHAR" />
+    <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
+    <result column="numReviews" property="numReviews" jdbcType="INTEGER" />
   </resultMap>
 
   <select id="getMoviesByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
@@ -29,6 +38,21 @@
 							on u.id = um.user
 							
 		where u.username = #username#
+  </select>
+  
+  <select id="getSocialMovieDetails" resultMap="socialMovieMap" parameterClass="java.lang.Integer">
+  		select				m.movie, 
+							m.duration, 
+							m.original_title, 
+							d.surname as director, 
+							m.release_date,
+							count(r.review) as numReviews
+							
+		from 				movie m inner 				join review r
+							on	m.movie = r.movie inner join director d
+							on m.director = d.director
+							
+		where m.movie = #movieId#
   </select>
   
 </sqlMap>

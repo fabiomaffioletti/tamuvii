@@ -2,17 +2,15 @@ package com.tamuvii.pojo;
 
 import java.util.Date;
 
-
-public class ShelfItem {
+public class SocialMovie {
 	
 	private Integer movieId;
 	private String duration;
 	private String originalTitle;
 	private String director;
 	private Date releaseDate;
-	private Date dateAdded;
-	private Date dateViewed;
-	private Integer mark;
+	private Integer numReviews;
+	
 	
 	public Integer getMovieId() {
 		return movieId;
@@ -44,23 +42,11 @@ public class ShelfItem {
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
-	public Date getDateAdded() {
-		return dateAdded;
+	public Integer getNumReviews() {
+		return numReviews;
 	}
-	public void setDateAdded(Date dateAdded) {
-		this.dateAdded = dateAdded;
+	public void setNumReviews(Integer numReviews) {
+		this.numReviews = numReviews;
 	}
-	public Date getDateViewed() {
-		return dateViewed;
-	}
-	public void setDateViewed(Date dateViewed) {
-		this.dateViewed = dateViewed;
-	}
-	public Integer getMark() {
-		return mark;
-	}
-	public void setMark(Integer mark) {
-		this.mark = mark;
-	}
-	
+
 }

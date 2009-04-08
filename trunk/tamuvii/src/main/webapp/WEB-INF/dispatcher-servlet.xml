@@ -80,6 +80,7 @@
                 /passwordHint.html=passwordHintController
                 
                 /shelf.html=shelfController
+                /socialMovie.html=socialMovieController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -98,6 +99,10 @@
     </bean>
     
     <bean id="shelfController" class="com.tamuvii.webapp.controller.ShelfController">
+    	<property name="movieManager" ref="movieManager" />
+    </bean>
+    
+    <bean id="socialMovieController" class="com.tamuvii.webapp.controller.SocialMovieController">
     	<property name="movieManager" ref="movieManager" />
     </bean>
 </beans>

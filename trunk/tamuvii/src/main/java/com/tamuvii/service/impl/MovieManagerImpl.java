@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.pojo.ShelfItem;
+import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.service.MovieManager;
 
 public class MovieManagerImpl implements MovieManager {
@@ -16,6 +17,11 @@ public class MovieManagerImpl implements MovieManager {
 
 	public List<ShelfItem> getMoviesByUsername(String username) {
 		return customMovieDao.getMoviesByUsername(username);
+	}
+
+
+	public SocialMovie getSocialMovieDetails(Integer movieId) {
+		return customMovieDao.getSocialMovieDetails(movieId);
 	}
 
 }

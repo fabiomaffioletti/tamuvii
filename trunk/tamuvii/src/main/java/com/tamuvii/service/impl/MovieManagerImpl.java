@@ -1,11 +1,15 @@
 package com.tamuvii.service.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.dao.ReviewDAO;
 import com.tamuvii.model.Review;
 import com.tamuvii.model.ReviewExample;
+import com.tamuvii.model.UserToMovie;
 import com.tamuvii.model.ReviewExample.Criteria;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.dao.MovieDAO;
@@ -66,8 +70,15 @@ public class MovieManagerImpl implements MovieManager {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public List<Movie> getAllMovies() {
 		return movieDao.selectByExample(null);
+	}
+
+	public void updatePersonalMovieDetails(PersonalMovie personalMovie, String username) throws Exception {
+		UserToMovie userToMovie = new UserToMovie();
+		BeanUtils.copyProperties(userToMovie, personalMovie);
+		
 	}
 
 }

@@ -85,11 +85,4 @@
 		where m.movie = #movieId# and u.username = #username#
   </select>
   
-  <update id="updatePersonalMovieDetails" parameterMap="personalMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap">
-		update				user_to_movie um
-		set					um.mark = #mark#
-		where				um.movie = #movieId#
-		and					um.username = #username#
-  </update>
-  
 </sqlMap>

@@ -51,10 +51,10 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <table tableName="review" domainObjectName="Review" >
+    <!-- table tableName="review" domainObjectName="Review" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table>
+    </table-->
     
     <!--table tableName="opinion" domainObjectName="Opinion" >
       <property name="useActualColumnNames" value="false"/>
@@ -70,6 +70,11 @@
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
+    
+    <table tableName="user_to_movie" domainObjectName="UserToMovie" >
+      <property name="useActualColumnNames" value="false"/>
+	  <columnRenamingRule searchString="_" replaceString="" />
+    </table>
     
   </ibatorContext>
 </ibatorConfiguration>

@@ -15,6 +15,8 @@ public interface MovieManager {
 	
 	public PersonalMovie getPersonalMovieDetails(Integer movieId, String username);
 	
+	public void updatePersonalMovieDetails(PersonalMovie personalMovie, String username) throws Exception;
+	
 	public List<Movie> getAllMovies();
 
 }

@@ -1,8 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="userList.title"/></title>
-    <meta name="heading" content="<fmt:message key='menu.movieslist'/>"/>
+    <title><fmt:message key="be_movieslist.pagetitle"/></title>
+    <meta name="heading" content="<fmt:message key='be_movieslist.headingtitle'/>"/>
     <meta name="menu" content="AdminMenu"/>
 </head>
 

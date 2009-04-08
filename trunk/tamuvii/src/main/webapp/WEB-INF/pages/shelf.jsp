@@ -11,7 +11,7 @@
     <display:column property="originalTitle" escapeXml="true" sortable="true" titleKey="movie.originaltitle" />
     <display:column property="duration" escapeXml="true" sortable="true" titleKey="movie.duration" />
     <display:column property="director" escapeXml="true" sortable="true" titleKey="director.surname" />
-    <display:column property="releaseDate" escapeXml="true" sortable="true" titleKey="movie.releasedate" />
+    <display:column property="releaseDate" format="{0,date,yyyy}" escapeXml="false" sortable="true" titleKey="movie.releasedate" />
     <display:column property="dateAdded" escapeXml="true" sortable="true" titleKey="movie.dateAdded" />
     <display:column property="dateViewed" escapeXml="true" sortable="true" titleKey="movie.dateViewed" />
     <display:column property="mark" escapeXml="true" sortable="true" titleKey="movie.mark" />

@@ -17,7 +17,8 @@ public class MoviesListController implements Controller {
 	public void setMovieManager(MovieManager movieManager) {
 		this.movieManager = movieManager;
 	}
- 
+
+
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<Movie> movies = movieManager.getAllMovies(); 

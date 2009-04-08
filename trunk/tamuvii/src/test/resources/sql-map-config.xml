@@ -12,4 +12,5 @@
     <sqlMap resource="sqlmaps/UserSQL.xml"/>
     <sqlMap resource="sqlmaps/movie_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/custom_Movie_SqlMap.xml"/>
+    <sqlMap resource="sqlmaps/review_SqlMap.xml"/>
 </sqlMapConfig>

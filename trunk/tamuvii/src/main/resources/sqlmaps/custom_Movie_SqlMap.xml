@@ -21,6 +21,18 @@
     <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
     <result column="numReviews" property="numReviews" jdbcType="INTEGER" />
   </resultMap>
+  
+  <resultMap id="personalMovieMap" class="com.tamuvii.pojo.PersonalMovie" >
+    <result column="movie" property="movieId" jdbcType="INTEGER" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
+    <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
+    <result column="director" property="director" jdbcType="VARCHAR" />
+    <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
+    <result column="date_added" property="dateAdded" jdbcType="TIMESTAMP" />
+    <result column="date_viewed" property="dateViewed" jdbcType="TIMESTAMP" />
+    <result column="mark" property="mark" jdbcType="INTEGER" />
+  </resultMap>
+
 
   <select id="getMoviesByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
 		select				m.movie, 
@@ -35,7 +47,7 @@
 		from 				user_to_movie um			inner join movie m
 							on um.movie = m.movie 		inner join director d
 							on d.director = m.director 	inner join app_user u
-							on u.id = um.user
+							on u.username = um.username
 							
 		where u.username = #username#
   </select>
@@ -54,5 +66,30 @@
 							
 		where m.movie = #movieId#
   </select>
+  
+  <select id="getPersonalMovieDetails" resultMap="personalMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap">
+  		select				m.movie, 
+							m.duration, 
+							m.original_title, 
+							d.surname as director, 
+							m.release_date, 
+							um.date_added, 
+							um.date_viewed, 
+							um.mark
+							
+		from 				user_to_movie um			inner join movie m
+							on um.movie = m.movie 		inner join director d
+							on d.director = m.director 	inner join app_user u
+							on u.username = um.username 			
+							
+		where m.movie = #movieId# and u.username = #username#
+  </select>
+  
+  <update id="updatePersonalMovieDetails" parameterMap="personalMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap">
+		update				user_to_movie um
+		set					um.mark = #mark#
+		where				um.movie = #movieId#
+		and					um.username = #username#
+  </update>
   
 </sqlMap>

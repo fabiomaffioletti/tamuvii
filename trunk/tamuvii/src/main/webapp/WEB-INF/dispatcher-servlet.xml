@@ -81,6 +81,7 @@
                 
                 /shelf.html=shelfController
                 /socialMovie.html=socialMovieController
+                /personalMovie.html=personalMovieFormController
                 
                 <!-- Backend mappings -->
                 /be_moviesList.html=moviesListController
@@ -107,6 +108,13 @@
     
     <bean id="socialMovieController" class="com.tamuvii.webapp.controller.SocialMovieController">
     	<property name="movieManager" ref="movieManager" />
+    </bean>
+    
+    <bean id="personalMovieFormController" class="com.tamuvii.webapp.controller.PersonalMovieFormController">
+    	<property name="movieManager" ref="movieManager" />
+    	<property name="formView" value="personalMovie"/>
+    	<property name="successView" value="redirect:shelf.html"/>
+    	<property name="cancelView" value="redirect:shelf.html"/>
     </bean>
     
     <bean id="moviesListController" class="com.tamuvii.webapp.controller.MoviesListController">

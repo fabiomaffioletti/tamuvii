@@ -18,7 +18,6 @@ public class MoviesListController implements Controller {
 		this.movieManager = movieManager;
 	}
 
-
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<Movie> movies = movieManager.getAllMovies(); 
@@ -26,6 +25,5 @@ public class MoviesListController implements Controller {
 		mv.setViewName("be_moviesList");
 		return mv;
 	}
-	
 	
 }

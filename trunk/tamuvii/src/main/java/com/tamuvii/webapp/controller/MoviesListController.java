@@ -25,5 +25,6 @@ public class MoviesListController implements Controller {
 		mv.setViewName("be_moviesList");
 		return mv;
 	}
+
 	
 }

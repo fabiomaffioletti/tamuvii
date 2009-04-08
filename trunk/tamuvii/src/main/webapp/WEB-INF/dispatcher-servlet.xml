@@ -84,7 +84,7 @@
                 /personalMovie.html=personalMovieFormController
                 
                 <!-- Backend mappings -->
-                /be_moviesList.html=moviesListController
+                /be_moviesList.html=movieListController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -117,7 +117,7 @@
     	<property name="cancelView" value="redirect:shelf.html"/>
     </bean>
     
-    <bean id="moviesListController" class="com.tamuvii.webapp.controller.MoviesListController">
+    <bean id="movieListController" class="com.tamuvii.webapp.controller.MovieListController">
     	<property name="movieManager" ref="movieManager" />
     </bean>
 </beans>

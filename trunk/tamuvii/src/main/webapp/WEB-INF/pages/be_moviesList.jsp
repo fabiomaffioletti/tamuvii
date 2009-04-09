@@ -6,7 +6,7 @@
     <meta name="menu" content="AdminMenu"/>
 </head>
 
-<display:table name="movies" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="movies" pagesize="25" class="table" export="true">
+<display:table name="movies" cellspacing="0" cellpadding="0" requestURI="" id="movies" pagesize="25" class="table" export="true">
     <display:column property="movie" escapeXml="true" sortable="true" titleKey="movie.movie" />
     <display:column property="duration" escapeXml="true" sortable="true" titleKey="movie.duration" />
     <display:column property="originaltitle" escapeXml="true" sortable="true" titleKey="movie.originaltitle" />

@@ -8,6 +8,7 @@ import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.dao.MovieDAO;
 import com.tamuvii.dao.ReviewDAO;
 import com.tamuvii.model.Movie;
+import com.tamuvii.model.MovieExample;
 import com.tamuvii.model.Review;
 import com.tamuvii.model.ReviewExample;
 import com.tamuvii.model.UserToMovie;
@@ -70,7 +71,9 @@ public class MovieManagerImpl implements MovieManager {
 
 	@SuppressWarnings("unchecked")
 	public List<Movie> getAllMovies() {
-		return movieDao.selectByExample(null);
+		MovieExample movieExample = new MovieExample();
+		movieExample.setOrderByClause("original_title");
+		return movieDao.selectByExample(movieExample);
 	}
 
 	public void updatePersonalMovieDetails(PersonalMovie personalMovie, String username) throws Exception {

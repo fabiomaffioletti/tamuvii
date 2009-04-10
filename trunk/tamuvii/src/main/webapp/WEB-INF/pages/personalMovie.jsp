@@ -11,7 +11,7 @@ TITOLO: ${personalMovie.originalTitle}
 
 
 <form:form name="personalMovieForm" commandName="personalMovie" method="POST">
-	
+
 	voto: 	<form:select path="mark">
 				<form:option value="0">0</form:option>
 				<form:option value="1">1</form:option>

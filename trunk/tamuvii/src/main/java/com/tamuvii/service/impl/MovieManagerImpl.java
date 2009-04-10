@@ -7,6 +7,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.dao.MovieDAO;
 import com.tamuvii.dao.ReviewDAO;
+import com.tamuvii.dao.UserToMovieDAO;
 import com.tamuvii.model.Movie;
 import com.tamuvii.model.MovieExample;
 import com.tamuvii.model.Review;
@@ -23,6 +24,11 @@ public class MovieManagerImpl implements MovieManager {
 	private CustomMovieDAO customMovieDao = null;
 	private ReviewDAO reviewDao = null;
 	private MovieDAO movieDao = null;
+	private UserToMovieDAO userToMovieDao = null;
+	
+	public void setUserToMovieDao(UserToMovieDAO userToMovieDao) {
+		this.userToMovieDao = userToMovieDao;
+	}
 
 	public void setReviewDao(ReviewDAO reviewDao) {
 		this.reviewDao = reviewDao;
@@ -41,17 +47,17 @@ public class MovieManagerImpl implements MovieManager {
 	}
 
 
-	public SocialMovie getSocialMovieDetails(Integer movieId) {
-		return customMovieDao.getSocialMovieDetails(movieId);
+	public SocialMovie getSocialMovieDetails(Integer movie) {
+		return customMovieDao.getSocialMovieDetails(movie);
 	}
 
 
 	@SuppressWarnings("unchecked")
-	public PersonalMovie getPersonalMovieDetails(Integer movieId, String username) {
+	public PersonalMovie getPersonalMovieDetails(Integer movie, String username) {
 		/*
 		 * Fetch personal movie data
 		 */
-		PersonalMovieFilterMap personalMovieFilterMap = new PersonalMovieFilterMap(movieId, username);
+		PersonalMovieFilterMap personalMovieFilterMap = new PersonalMovieFilterMap(movie, username);
 		PersonalMovie personalMovie = new PersonalMovie();
 		personalMovie = customMovieDao.getPersonalMovieDetails(personalMovieFilterMap);
 		
@@ -60,7 +66,7 @@ public class MovieManagerImpl implements MovieManager {
 		 */
 		ReviewExample reviewExample = new ReviewExample();
 		Criteria reviewCriteria = reviewExample.createCriteria();
-		reviewCriteria.andMovieEqualTo(personalMovieFilterMap.getMovieId());
+		reviewCriteria.andMovieEqualTo(personalMovieFilterMap.getMovie());
 		reviewCriteria.andUsernameEqualTo(personalMovieFilterMap.getUsername());
 		List<Review> reviews = reviewDao.selectByExample(reviewExample);
 		personalMovie.setReview( (reviews.size() > 0) ? (Review) reviews.get(0) : new Review() );
@@ -78,8 +84,10 @@ public class MovieManagerImpl implements MovieManager {
 
 	public void updatePersonalMovieDetails(PersonalMovie personalMovie, String username) throws Exception {
 		UserToMovie userToMovie = new UserToMovie();
+		userToMovie.setUsername(username);
+//		userToMovie.setMovie(personalMovie.getMovieId());
 		BeanUtils.copyProperties(userToMovie, personalMovie);
-		
+		userToMovieDao.updateByPrimaryKeySelective(userToMovie);
 	}
 
 }

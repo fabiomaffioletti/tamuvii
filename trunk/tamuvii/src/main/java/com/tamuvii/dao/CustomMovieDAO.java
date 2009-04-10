@@ -11,7 +11,7 @@ public interface CustomMovieDAO {
 	
 	public List<ShelfItem> getMoviesByUsername(String username);
 	
-	public SocialMovie getSocialMovieDetails(Integer movieId);
+	public SocialMovie getSocialMovieDetails(Integer movie);
 	
 	public PersonalMovie getPersonalMovieDetails(PersonalMovieFilterMap personalMovieFilterMap);
 	

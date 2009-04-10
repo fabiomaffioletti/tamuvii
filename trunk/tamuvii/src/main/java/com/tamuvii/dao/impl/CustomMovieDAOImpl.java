@@ -21,8 +21,8 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 		return getSqlMapClientTemplate().queryForList("custom.getMoviesByUsername", username);
 	}
 
-	public SocialMovie getSocialMovieDetails(Integer movieId) {
-		return (SocialMovie) getSqlMapClientTemplate().queryForObject("custom.getSocialMovieDetails", movieId);
+	public SocialMovie getSocialMovieDetails(Integer movie) {
+		return (SocialMovie) getSqlMapClientTemplate().queryForObject("custom.getSocialMovieDetails", movie);
 	}
 
 	public PersonalMovie getPersonalMovieDetails(PersonalMovieFilterMap personalMovieFilterMap) {

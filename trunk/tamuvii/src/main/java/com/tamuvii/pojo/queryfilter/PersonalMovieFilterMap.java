@@ -2,20 +2,20 @@ package com.tamuvii.pojo.queryfilter;
 
 public class PersonalMovieFilterMap {
 	
-	private Integer movieId;
+	private Integer movie;
 	private String username;
 	
-	public PersonalMovieFilterMap(Integer movieId, String username) {
+	public PersonalMovieFilterMap(Integer movie, String username) {
 		super();
-		this.movieId = movieId;
+		this.movie = movie;
 		this.username = username;
 	}
 
-	public Integer getMovieId() {
-		return movieId;
+	public Integer getMovie() {
+		return movie;
 	}
-	public void setMovieId(Integer movieId) {
-		this.movieId = movieId;
+	public void setMovie(Integer movie) {
+		this.movie = movie;
 	}
 	public String getUsername() {
 		return username;

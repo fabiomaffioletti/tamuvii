@@ -20,9 +20,9 @@ public class SocialMovieController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		Integer movieId = request.getParameter("movieId") == null ? null : Integer.parseInt(request.getParameter("movieId"));
+		Integer movie = request.getParameter("movie") == null ? null : Integer.parseInt(request.getParameter("movie"));
 		
-		SocialMovie socialMovie = movieManager.getSocialMovieDetails(movieId); 
+		SocialMovie socialMovie = movieManager.getSocialMovieDetails(movie); 
 		
 		mv.addObject("socialMovie", socialMovie);
 		

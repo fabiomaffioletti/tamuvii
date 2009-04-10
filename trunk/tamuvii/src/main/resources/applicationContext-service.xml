@@ -111,5 +111,6 @@
     	<property name="customMovieDao" ref="customMovieDao" />
     	<property name="reviewDao" ref="reviewDao" />
     	<property name="movieDao" ref="movieDao" />
+    	<property name="userToMovieDao" ref="userToMovieDao" />
     </bean>
 </beans>

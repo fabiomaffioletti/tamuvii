@@ -7,9 +7,9 @@
 </head>
 
 <display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="25" class="table" export="true">
-    <display:column property="movieId" escapeXml="true" sortable="true" titleKey="movie.movie" />
+    <display:column property="movie" escapeXml="true" sortable="true" titleKey="movie.movie" />
     <display:column escapeXml="false" sortable="true" titleKey="movie.originaltitle">
-    	<a href="/socialMovie.html?movieId=${shelfItems.movieId}">${shelfItems.originalTitle}</a>
+    	<a href="/socialMovie.html?movie=${shelfItems.movie}">${shelfItems.originalTitle}</a>
     </display:column>
     <display:column property="duration" escapeXml="true" sortable="true" titleKey="movie.duration" />
     <display:column property="director" escapeXml="true" sortable="true" titleKey="director.surname" />
@@ -18,7 +18,7 @@
     <display:column property="dateViewed" escapeXml="true" sortable="true" titleKey="movie.dateViewed" />
     <display:column property="mark" escapeXml="true" sortable="true" titleKey="movie.mark" />
     <display:column title="modify">
-    	<a href="/personalMovie.html?movieId=${shelfItems.movieId}">modify</a>
+    	<a href="/personalMovie.html?movie=${shelfItems.movie}">modify</a>
     </display:column>
 </display:table>
 

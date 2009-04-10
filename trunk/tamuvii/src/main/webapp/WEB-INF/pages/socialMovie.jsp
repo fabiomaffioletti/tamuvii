@@ -7,7 +7,7 @@
 </head>
 
 <display:table name="socialMovie" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="socialMovie" pagesize="25" class="table" export="true">
-    <display:column property="movieId" escapeXml="true" sortable="true" titleKey="movieId" />
+    <display:column property="movie" escapeXml="true" sortable="true" titleKey="movie" />
     <display:column property="originalTitle" escapeXml="true" sortable="true" titleKey="originalTitle" />
     <display:column property="duration" escapeXml="true" sortable="true" titleKey="duration" />
     <display:column property="director" escapeXml="true" sortable="true" titleKey="director" />

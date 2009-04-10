@@ -67,4 +67,10 @@
     	<property name="dataSource" ref="dataSource"/>
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
+
+    <bean id="userToMovieDao" class="com.tamuvii.dao.impl.UserToMovieDAOImpl">
+    	<property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    
 </beans>

@@ -3,7 +3,7 @@
 <sqlMap namespace="custom" >
 
   <resultMap id="shelfItemMap" class="com.tamuvii.pojo.ShelfItem" >
-    <result column="movie" property="movieId" jdbcType="INTEGER" />
+    <result column="movie" property="movie" jdbcType="INTEGER" />
     <result column="duration" property="duration" jdbcType="VARCHAR" />
     <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
     <result column="director" property="director" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
   </resultMap>
 
   <resultMap id="socialMovieMap" class="com.tamuvii.pojo.SocialMovie" >
-    <result column="movie" property="movieId" jdbcType="INTEGER" />
+    <result column="movie" property="movie" jdbcType="INTEGER" />
     <result column="duration" property="duration" jdbcType="VARCHAR" />
     <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
     <result column="director" property="director" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
   </resultMap>
   
   <resultMap id="personalMovieMap" class="com.tamuvii.pojo.PersonalMovie" >
-    <result column="movie" property="movieId" jdbcType="INTEGER" />
+    <result column="movie" property="movie" jdbcType="INTEGER" />
     <result column="duration" property="duration" jdbcType="VARCHAR" />
     <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
     <result column="director" property="director" jdbcType="VARCHAR" />
@@ -64,7 +64,7 @@
 							on	m.movie = r.movie inner join director d
 							on m.director = d.director
 							
-		where m.movie = #movieId#
+		where m.movie = #movie#
   </select>
   
   <select id="getPersonalMovieDetails" resultMap="personalMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap">
@@ -82,7 +82,7 @@
 							on d.director = m.director 	inner join app_user u
 							on u.username = um.username 			
 							
-		where m.movie = #movieId# and u.username = #username#
+		where m.movie = #movie# and u.username = #username#
   </select>
   
 </sqlMap>

@@ -27,9 +27,9 @@ public class PersonalMovieFormController extends BaseFormController {
 	protected Object formBackingObject(HttpServletRequest request) throws Exception {
 
 		if (!isFormSubmission(request)) {
-			if (request.getParameter("movieId") != null && !"".equals(request.getParameter("movieId")) && request.getParameter("cancel") == null) {
-				Integer movieId = Integer.parseInt(request.getParameter("movieId"));
-				return movieManager.getPersonalMovieDetails(movieId, request.getRemoteUser());
+			if (request.getParameter("movie") != null && !"".equals(request.getParameter("movie")) && request.getParameter("cancel") == null) {
+				Integer movie = Integer.parseInt(request.getParameter("movie"));
+				return movieManager.getPersonalMovieDetails(movie, request.getRemoteUser());
 
 			} else {
 				// TODO: in questo caso deve andare in errore, qualcuno sta tentando di aggiungere un nuovo movie non presente
@@ -66,7 +66,7 @@ public class PersonalMovieFormController extends BaseFormController {
             return new ModelAndView(getSuccessView());
             
         } else if(request.getParameter("update") != null) {
-        	//TODO fare update
+        	movieManager.updatePersonalMovieDetails(personalMovie, request.getRemoteUser());
         	return new ModelAndView(getSuccessView());
         }
 		

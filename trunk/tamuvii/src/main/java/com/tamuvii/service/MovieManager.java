@@ -11,9 +11,9 @@ public interface MovieManager {
 	
 	public List<ShelfItem> getMoviesByUsername(String username);
 	
-	public SocialMovie getSocialMovieDetails(Integer movieId);
+	public SocialMovie getSocialMovieDetails(Integer movie);
 	
-	public PersonalMovie getPersonalMovieDetails(Integer movieId, String username);
+	public PersonalMovie getPersonalMovieDetails(Integer movie, String username);
 	
 	public void updatePersonalMovieDetails(PersonalMovie personalMovie, String username) throws Exception;
 	

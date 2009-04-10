@@ -6,7 +6,7 @@ import com.tamuvii.model.Review;
 
 public class PersonalMovie {
 	
-	private Integer movieId;
+	private Integer movie;
 	private String duration;
 	private String originalTitle;
 	private String director;
@@ -20,11 +20,11 @@ public class PersonalMovie {
 		review = new Review();
 	}
 	
-	public Integer getMovieId() {
-		return movieId;
+	public Integer getMovie() {
+		return movie;
 	}
-	public void setMovieId(Integer movieId) {
-		this.movieId = movieId;
+	public void setMovie(Integer movie) {
+		this.movie = movie;
 	}
 	public Review getReview() {
 		return review;

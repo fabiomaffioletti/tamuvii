@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class SocialMovie {
 	
-	private Integer movieId;
+	private Integer movie;
 	private String duration;
 	private String originalTitle;
 	private String director;
@@ -12,11 +12,11 @@ public class SocialMovie {
 	private Integer numReviews;
 	
 	
-	public Integer getMovieId() {
-		return movieId;
+	public Integer getMovie() {
+		return movie;
 	}
-	public void setMovieId(Integer movieId) {
-		this.movieId = movieId;
+	public void setMovie(Integer movie) {
+		this.movie = movie;
 	}
 	public String getDuration() {
 		return duration;

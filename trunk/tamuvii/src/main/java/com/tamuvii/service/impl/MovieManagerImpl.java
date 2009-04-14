@@ -1,5 +1,6 @@
 package com.tamuvii.service.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -84,10 +85,29 @@ public class MovieManagerImpl implements MovieManager {
 
 	public void updatePersonalMovieDetails(PersonalMovie personalMovie, String username) throws Exception {
 		UserToMovie userToMovie = new UserToMovie();
+		Review review = new Review();
 		userToMovie.setUsername(username);
-//		userToMovie.setMovie(personalMovie.getMovieId());
 		BeanUtils.copyProperties(userToMovie, personalMovie);
+		BeanUtils.copyProperties(review, personalMovie.getReview());
 		userToMovieDao.updateByPrimaryKeySelective(userToMovie);
+		
+		ReviewExample reviewExample = new ReviewExample();
+		Criteria reviewCriteria = reviewExample.createCriteria();
+		reviewCriteria.andUsernameEqualTo(username);
+		reviewCriteria.andMovieEqualTo(personalMovie.getMovie());
+		Review tempReview = (Review) reviewDao.selectByExample(reviewExample).get(0); 
+		if(tempReview != null) {
+			review.setReview(tempReview.getReview());
+			review.setMovie(personalMovie.getMovie());
+			review.setUsername(username);
+			reviewDao.updateByExampleSelective(review, reviewExample);
+		}
+		else {
+			review.setMovie(personalMovie.getMovie());
+			review.setUsername(username);
+			review.setDateinserted(Calendar.getInstance().getTime());
+			reviewDao.insertSelective(review);
+		}
 	}
 
 }

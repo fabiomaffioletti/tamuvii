@@ -83,6 +83,7 @@ public class MovieManagerImpl implements MovieManager {
 		return movieDao.selectByExample(movieExample);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void updatePersonalMovieDetails(PersonalMovie personalMovie, String username) throws Exception {
 		UserToMovie userToMovie = new UserToMovie();
 		Review review = new Review();
@@ -91,22 +92,30 @@ public class MovieManagerImpl implements MovieManager {
 		BeanUtils.copyProperties(review, personalMovie.getReview());
 		userToMovieDao.updateByPrimaryKeySelective(userToMovie);
 		
-		ReviewExample reviewExample = new ReviewExample();
-		Criteria reviewCriteria = reviewExample.createCriteria();
-		reviewCriteria.andUsernameEqualTo(username);
-		reviewCriteria.andMovieEqualTo(personalMovie.getMovie());
-		Review tempReview = (Review) reviewDao.selectByExample(reviewExample).get(0); 
-		if(tempReview != null) {
-			review.setReview(tempReview.getReview());
-			review.setMovie(personalMovie.getMovie());
-			review.setUsername(username);
-			reviewDao.updateByExampleSelective(review, reviewExample);
-		}
-		else {
-			review.setMovie(personalMovie.getMovie());
-			review.setUsername(username);
-			review.setDateinserted(Calendar.getInstance().getTime());
-			reviewDao.insertSelective(review);
+		/*
+		 * Controlla se il testo della review è nullo o vuoto, nel qual caso non effettua nessuna operazione.
+		 * Altrimenti controlla se l'utente ha già inserito una review, nel qual caso fa l'update, altrimenti
+		 * inserisce la review nuova settandogli l'ora di inserimento.
+		 */
+		if(review.getReviewtext() != null && !review.getReviewtext().trim().equals("")) {
+			ReviewExample reviewExample = new ReviewExample();
+			Criteria reviewCriteria = reviewExample.createCriteria();
+			reviewCriteria.andUsernameEqualTo(username);
+			reviewCriteria.andMovieEqualTo(personalMovie.getMovie());
+			List<Review> reviews = reviewDao.selectByExample(reviewExample);
+			Review tempReview = null;
+			if(reviews.size() > 0) {
+				tempReview  = (Review) reviewDao.selectByExample(reviewExample).get(0); 
+				review.setReview(tempReview.getReview());
+				review.setMovie(personalMovie.getMovie());
+				review.setUsername(username);
+				reviewDao.updateByExampleSelective(review, reviewExample);
+			} else {
+				review.setMovie(personalMovie.getMovie());
+				review.setUsername(username);
+				review.setDateinserted(Calendar.getInstance().getTime());
+				reviewDao.insertSelective(review);
+			}
 		}
 	}
 

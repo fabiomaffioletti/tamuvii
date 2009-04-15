@@ -6,6 +6,7 @@
     <result column="movie" property="movie" jdbcType="INTEGER" />
     <result column="duration" property="duration" jdbcType="VARCHAR" />
     <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
+    <result column="directorId" property="directorId" jdbcType="INTEGER" />
     <result column="director" property="director" jdbcType="VARCHAR" />
     <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
     <result column="date_added" property="dateAdded" jdbcType="TIMESTAMP" />
@@ -17,6 +18,7 @@
     <result column="movie" property="movie" jdbcType="INTEGER" />
     <result column="duration" property="duration" jdbcType="VARCHAR" />
     <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
+    <result column="directorId" property="directorId" jdbcType="INTEGER" />
     <result column="director" property="director" jdbcType="VARCHAR" />
     <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
     <result column="numReviews" property="numReviews" jdbcType="INTEGER" />
@@ -26,6 +28,7 @@
     <result column="movie" property="movie" jdbcType="INTEGER" />
     <result column="duration" property="duration" jdbcType="VARCHAR" />
     <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
+    <result column="directorId" property="directorId" jdbcType="INTEGER" />
     <result column="director" property="director" jdbcType="VARCHAR" />
     <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
     <result column="date_added" property="dateAdded" jdbcType="TIMESTAMP" />
@@ -37,8 +40,9 @@
   <select id="getMoviesByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
 		select				m.movie, 
 							m.duration, 
-							m.original_title, 
-							d.surname as director, 
+							m.original_title,
+							d.director as directorId, 
+							CONCAT(d.name, " ", d.surname) as director, 
 							m.release_date, 
 							um.date_added, 
 							um.date_viewed, 
@@ -55,8 +59,9 @@
   <select id="getSocialMovieDetails" resultMap="socialMovieMap" parameterClass="java.lang.Integer">
   		select				m.movie, 
 							m.duration, 
-							m.original_title, 
-							d.surname as director, 
+							m.original_title,
+							d.director as directorId, 
+							CONCAT(d.name, " ", d.surname) as director, 
 							m.release_date,
 							count(r.review) as numReviews
 							
@@ -70,8 +75,9 @@
   <select id="getPersonalMovieDetails" resultMap="personalMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap">
   		select				m.movie, 
 							m.duration, 
-							m.original_title, 
-							d.surname as director, 
+							m.original_title,
+							d.director as directorId, 
+							CONCAT(d.name, " ", d.surname) as director, 
 							m.release_date, 
 							um.date_added, 
 							um.date_viewed, 

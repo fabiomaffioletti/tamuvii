@@ -10,7 +10,9 @@
     <display:column property="movie" escapeXml="true" sortable="true" titleKey="movie" />
     <display:column property="originalTitle" escapeXml="true" sortable="true" titleKey="originalTitle" />
     <display:column property="duration" escapeXml="true" sortable="true" titleKey="duration" />
-    <display:column property="director" escapeXml="true" sortable="true" titleKey="director" />
+    <display:column escapeXml="false" sortable="true" titleKey="director">
+    	<a href="/directorDetails.html?director=${socialMovie.directorId}">${socialMovie.director}</a>
+    </display:column>
     <display:column property="releaseDate" escapeXml="true" sortable="true" titleKey="releaseDate" />
     <display:column property="numReviews" escapeXml="true" sortable="true" titleKey="numReviews" />
 </display:table>

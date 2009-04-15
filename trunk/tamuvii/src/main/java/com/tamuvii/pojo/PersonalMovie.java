@@ -9,6 +9,7 @@ public class PersonalMovie {
 	private Integer movie;
 	private String duration;
 	private String originalTitle;
+	private Integer directorId;
 	private String director;
 	private Date releaseDate;
 	private Date dateAdded;
@@ -25,6 +26,12 @@ public class PersonalMovie {
 	}
 	public void setMovie(Integer movie) {
 		this.movie = movie;
+	}
+	public Integer getDirectorId() {
+		return directorId;
+	}
+	public void setDirectorId(Integer directorId) {
+		this.directorId = directorId;
 	}
 	public Review getReview() {
 		return review;

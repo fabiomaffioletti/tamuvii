@@ -7,11 +7,17 @@ public class SocialMovie {
 	private Integer movie;
 	private String duration;
 	private String originalTitle;
+	private Integer directorId;
 	private String director;
 	private Date releaseDate;
 	private Integer numReviews;
 	
-	
+	public Integer getDirectorId() {
+		return directorId;
+	}
+	public void setDirectorId(Integer directorId) {
+		this.directorId = directorId;
+	}
 	public Integer getMovie() {
 		return movie;
 	}

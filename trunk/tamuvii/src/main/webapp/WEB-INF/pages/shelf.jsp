@@ -12,7 +12,9 @@
     	<a href="/socialMovie.html?movie=${shelfItems.movie}">${shelfItems.originalTitle}</a>
     </display:column>
     <display:column property="duration" escapeXml="true" sortable="true" titleKey="movie.duration" />
-    <display:column property="director" escapeXml="true" sortable="true" titleKey="director.surname" />
+    <display:column escapeXml="false" sortable="true" titleKey="director.surname">
+    	<a href="/directorDetails.html?director=${shelfItems.directorId}">${shelfItems.director}</a>
+    </display:column>
     <display:column property="releaseDate" format="{0,date,yyyy}" escapeXml="false" sortable="true" titleKey="movie.releasedate" />
     <display:column property="dateAdded" escapeXml="true" sortable="true" titleKey="movie.dateAdded" />
     <display:column property="dateViewed" escapeXml="true" sortable="true" titleKey="movie.dateViewed" />

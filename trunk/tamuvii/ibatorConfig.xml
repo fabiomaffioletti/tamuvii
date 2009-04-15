@@ -64,17 +64,17 @@
     <table tableName="actor" domainObjectName="Actor" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table>
+    </table-->
     
     <table tableName="director" domainObjectName="Director" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table-->
+    </table>
     
-    <table tableName="user_to_movie" domainObjectName="UserToMovie" >
+    <!-- table tableName="user_to_movie" domainObjectName="UserToMovie" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table>
+    </table-->
     
   </ibatorContext>
 </ibatorConfiguration>

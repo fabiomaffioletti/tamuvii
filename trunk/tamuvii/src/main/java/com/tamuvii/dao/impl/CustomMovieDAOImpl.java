@@ -18,15 +18,15 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 
 	@SuppressWarnings("unchecked")
 	public List<ShelfItem> getMoviesByUsername(String username) {
-		return getSqlMapClientTemplate().queryForList("custom.getMoviesByUsername", username);
+		return getSqlMapClientTemplate().queryForList("custom_movie.getMoviesByUsername", username);
 	}
 
 	public SocialMovie getSocialMovieDetails(Integer movie) {
-		return (SocialMovie) getSqlMapClientTemplate().queryForObject("custom.getSocialMovieDetails", movie);
+		return (SocialMovie) getSqlMapClientTemplate().queryForObject("custom_movie.getSocialMovieDetails", movie);
 	}
 
 	public PersonalMovie getPersonalMovieDetails(PersonalMovieFilterMap personalMovieFilterMap) {
-		PersonalMovie personalMovie = (PersonalMovie) getSqlMapClientTemplate().queryForObject("custom.getPersonalMovieDetails", personalMovieFilterMap);
+		PersonalMovie personalMovie = (PersonalMovie) getSqlMapClientTemplate().queryForObject("custom_movie.getPersonalMovieDetails", personalMovieFilterMap);
 		return personalMovie;
 	}
 

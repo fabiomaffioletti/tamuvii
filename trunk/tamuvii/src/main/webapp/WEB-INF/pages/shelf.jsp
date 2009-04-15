@@ -13,7 +13,7 @@
     </display:column>
     <display:column property="duration" escapeXml="true" sortable="true" titleKey="movie.duration" />
     <display:column escapeXml="false" sortable="true" titleKey="director.surname">
-    	<a href="/directorDetails.html?director=${shelfItems.directorId}">${shelfItems.director}</a>
+    	<a href="/directorDetail.html?director=${shelfItems.directorId}">${shelfItems.director}</a>
     </display:column>
     <display:column property="releaseDate" format="{0,date,yyyy}" escapeXml="false" sortable="true" titleKey="movie.releasedate" />
     <display:column property="dateAdded" escapeXml="true" sortable="true" titleKey="movie.dateAdded" />

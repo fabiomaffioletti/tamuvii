@@ -113,4 +113,9 @@
     	<property name="movieDao" ref="movieDao" />
     	<property name="userToMovieDao" ref="userToMovieDao" />
     </bean>
+    
+    <bean id="directorManager" class="com.tamuvii.service.impl.DirectorManagerImpl">
+    	<property name="directorDao" ref="directorDao" />
+    	<property name="movieDao" ref="movieDao" />
+    </bean>
 </beans>

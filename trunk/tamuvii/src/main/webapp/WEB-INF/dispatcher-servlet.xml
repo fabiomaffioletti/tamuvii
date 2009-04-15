@@ -83,6 +83,8 @@
                 /socialMovie.html=socialMovieController
                 /personalMovie.html=personalMovieFormController
                 
+                /directorDetail.html=directorDetailController
+                
                 <!-- Backend mappings -->
                 /be_moviesList.html=movieListController
             </value>
@@ -119,5 +121,9 @@
     
     <bean id="movieListController" class="com.tamuvii.webapp.controller.MovieListController">
     	<property name="movieManager" ref="movieManager" />
+    </bean>
+    
+    <bean id="directorDetailController" class="com.tamuvii.webapp.controller.DirectorDetailController">
+    	<property name="directorManager" ref="directorManager" />
     </bean>
 </beans>

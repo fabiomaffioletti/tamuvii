@@ -73,4 +73,8 @@
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
     
+    <bean id="directorDao" class="com.tamuvii.dao.impl.DirectorDAOImpl">
+    	<property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
 </beans>

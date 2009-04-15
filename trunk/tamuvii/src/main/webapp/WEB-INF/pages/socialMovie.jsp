@@ -15,6 +15,7 @@
     </display:column>
     <display:column property="releaseDate" escapeXml="true" sortable="true" titleKey="releaseDate" />
     <display:column property="numReviews" escapeXml="true" sortable="true" titleKey="numReviews" />
+    <display:column property="avgMark" escapeXml="true" sortable="true" titleKey="avgMark" />
 </display:table>
 
 <script type="text/javascript">

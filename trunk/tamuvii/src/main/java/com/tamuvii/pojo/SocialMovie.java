@@ -11,7 +11,14 @@ public class SocialMovie {
 	private String director;
 	private Date releaseDate;
 	private Integer numReviews;
+	private Float avgMark;
 	
+	public Float getAvgMark() {
+		return avgMark;
+	}
+	public void setAvgMark(Float avgMark) {
+		this.avgMark = avgMark;
+	}
 	public Integer getDirectorId() {
 		return directorId;
 	}

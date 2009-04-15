@@ -22,6 +22,7 @@
     <result column="director" property="director" jdbcType="VARCHAR" />
     <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
     <result column="numReviews" property="numReviews" jdbcType="INTEGER" />
+    <result column="avgMark" property="avgMark" jdbcType="FLOAT" />
   </resultMap>
   
   <resultMap id="personalMovieMap" class="com.tamuvii.pojo.PersonalMovie" >
@@ -63,13 +64,15 @@
 							d.director as directorId, 
 							CONCAT(d.name, " ", d.surname) as director, 
 							m.release_date,
-							count(r.review) as numReviews
+							count(distinct r.review) as numReviews,
+							avg(um.mark) as avgMark
 							
-		from 				movie m inner 				join review r
-							on	m.movie = r.movie inner join director d
-							on m.director = d.director
+		from 				movie m 					inner join review r
+							on	m.movie = r.movie 		inner join director d
+							on m.director = d.director	inner join user_to_movie um 
+							on um.movie = m.movie
 							
-		where m.movie = #movie#
+		where m.movie = -1
   </select>
   
   <select id="getPersonalMovieDetails" resultMap="personalMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap">

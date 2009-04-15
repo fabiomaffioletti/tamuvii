@@ -56,20 +56,20 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <!--table tableName="opinion" domainObjectName="Opinion" >
+    <table tableName="opinion" domainObjectName="Opinion" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table>
     
-    <table tableName="actor" domainObjectName="Actor" >
+    <!-- >table tableName="actor" domainObjectName="Actor" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <table tableName="director" domainObjectName="Director" >
+    <!-- table tableName="director" domainObjectName="Director" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table>
+    </table-->
     
     <!-- table tableName="user_to_movie" domainObjectName="UserToMovie" >
       <property name="useActualColumnNames" value="false"/>

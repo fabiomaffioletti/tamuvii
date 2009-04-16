@@ -14,7 +14,9 @@
     	<a href="/directorDetail.html?director=${socialMovie.directorId}">${socialMovie.director}</a>
     </display:column>
     <display:column property="releaseDate" escapeXml="true" sortable="true" titleKey="releaseDate" />
-    <display:column property="numReviews" escapeXml="true" sortable="true" titleKey="numReviews" />
+    <display:column escapeXml="false" sortable="true" titleKey="numReviews">
+    	<a href="/reviewDiscussion.html?movie=${socialMovie.movie}">${socialMovie.numReviews}</a>
+    </display:column>
     <display:column property="avgMark" escapeXml="true" sortable="true" titleKey="avgMark" />
 </display:table>
 

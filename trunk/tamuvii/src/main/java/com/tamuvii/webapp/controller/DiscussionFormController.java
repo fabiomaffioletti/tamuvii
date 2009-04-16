@@ -11,10 +11,17 @@ import org.springframework.validation.Errors;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tamuvii.model.Opinion;
+import com.tamuvii.service.DiscussionManager;
 
 
 public class DiscussionFormController extends BaseFormController {
+	private DiscussionManager discussionManager;
 	
+	public void setDiscussionManager(DiscussionManager discussionManager) {
+		this.discussionManager = discussionManager;
+	}
+
+
 	public DiscussionFormController() {
         setCommandName("opinion");
         setCommandClass(Opinion.class);
@@ -35,6 +42,9 @@ public class DiscussionFormController extends BaseFormController {
 	@SuppressWarnings("unchecked")
 	protected Map referenceData(HttpServletRequest request, Object command, Errors errors) throws Exception {
 		Map refMap = new HashMap();
+		Integer movie = request.getParameter("movie") == null ? null : Integer.parseInt(request.getParameter("movie"));
+		
+		refMap.put("discussion", discussionManager.getReviewDiscussion(movie));
 		
 		return refMap;
 	}

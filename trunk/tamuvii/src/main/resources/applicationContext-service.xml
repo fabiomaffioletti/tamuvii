@@ -118,4 +118,9 @@
     	<property name="directorDao" ref="directorDao" />
     	<property name="movieDao" ref="movieDao" />
     </bean>
+    
+    <bean id="discussionManager" class="com.tamuvii.service.impl.DiscussionManagerImpl">
+    	<property name="reviewDao" ref="reviewDao" />
+    	<property name="opinionDao" ref="opinionDao" />
+    </bean>
 </beans>

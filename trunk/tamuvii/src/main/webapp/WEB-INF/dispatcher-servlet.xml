@@ -84,6 +84,7 @@
                 /personalMovie.html=personalMovieFormController
                 
                 /directorDetail.html=directorDetailController
+                /reviewDiscussion.html=discussionFormController
                 
                 <!-- Backend mappings -->
                 /be_moviesList.html=movieListController
@@ -125,5 +126,12 @@
     
     <bean id="directorDetailController" class="com.tamuvii.webapp.controller.DirectorDetailController">
     	<property name="directorManager" ref="directorManager" />
+    </bean>
+    
+    <bean id="discussionFormController" class="com.tamuvii.webapp.controller.DiscussionFormController">
+    	<property name="discussionManager" ref="discussionManager" />
+    	<property name="formView" value="personalMovie"/>
+    	<property name="successView" value="redirect:shelf.html"/>
+    	<property name="cancelView" value="redirect:shelf.html"/>
     </bean>
 </beans>

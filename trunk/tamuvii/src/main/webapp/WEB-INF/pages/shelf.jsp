@@ -19,9 +19,12 @@
     <display:column property="dateAdded" escapeXml="true" sortable="true" titleKey="movie.dateAdded" />
     <display:column property="dateViewed" escapeXml="true" sortable="true" titleKey="movie.dateViewed" />
     <display:column property="mark" escapeXml="true" sortable="true" titleKey="movie.mark" />
-    <display:column title="modify">
-    	<a href="/personalMovie.html?movie=${shelfItems.movie}">modify</a>
-    </display:column>
+    
+    <c:if test="${empty username || username == pageContext.request.remoteUser}">
+	    <display:column title="modify">
+	    	<a href="/personalMovie.html?movie=${shelfItems.movie}">modify</a>
+	    </display:column>
+    </c:if>
 </display:table>
 
 <script type="text/javascript">

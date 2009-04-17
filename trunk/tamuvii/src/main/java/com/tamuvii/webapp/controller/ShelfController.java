@@ -21,8 +21,24 @@ public class ShelfController implements Controller {
 
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<ShelfItem> shelfItems = movieManager.getMoviesByUsername(request.getRemoteUser()); 
+		
+		String username = "";
+		if(request.getParameter("username") == null)
+			if(request.getRemoteUser() == null) {
+				//TODO aggiungere il messaggio di errore
+				mv.setViewName("genericErrorView");
+				return mv;
+			}
+			else {
+				username = request.getRemoteUser();
+			}
+		else {
+			username = request.getParameter("username");
+		}
+			
+		List<ShelfItem> shelfItems = movieManager.getMoviesByUsername(username); 
 		mv.addObject("shelfItems", shelfItems);
+		mv.addObject("username", username);
 		mv.setViewName("shelf");
 		return mv;
 	}

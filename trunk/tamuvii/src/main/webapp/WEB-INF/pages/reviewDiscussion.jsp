@@ -6,12 +6,25 @@
     <meta name="menu" content="AdminMenu"/>
 </head>
 
-${discussion.review}
+<c:if test="${not empty discussion.review.title}">
+	Title: ${discussion.review.title}
+	<br/>
+</c:if>
+Text: ${discussion.review.reviewtext}
 
+<display:table name="${discussion.opinions}" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="opinion" pagesize="25" class="table" export="false">
+	<display:column property="opinion" escapeXml="true" sortable="true" titleKey="opinion" />
+	<display:column property="opiniontext" escapeXml="true" sortable="true" titleKey="text" />
+	<display:column property="user" escapeXml="true" sortable="true" titleKey="user" />
+	<display:column property="dateinserted" escapeXml="true" sortable="true" titleKey="dateinserted" />
+</display:table>
+
+
+Insert new opinion:
 <form:form name="reviewDiscussionForm" commandName="opinion" method="POST">
+	<form:textarea path="opiniontext"/>
+	<br/>
 
 	<input type="submit" name="update" value="salva" />
 	<input type="submit" name="cancel" value="annulla" />
-	<input type="submit" name="delete" value="elimina" />
-	
 </form:form>

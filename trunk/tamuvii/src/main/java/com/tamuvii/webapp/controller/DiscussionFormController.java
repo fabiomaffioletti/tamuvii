@@ -42,9 +42,9 @@ public class DiscussionFormController extends BaseFormController {
 	@SuppressWarnings("unchecked")
 	protected Map referenceData(HttpServletRequest request, Object command, Errors errors) throws Exception {
 		Map refMap = new HashMap();
-		Integer movie = request.getParameter("movie") == null ? null : Integer.parseInt(request.getParameter("movie"));
+		Integer review = request.getParameter("review") == null ? null : Integer.parseInt(request.getParameter("review"));
 		
-		refMap.put("discussion", discussionManager.getReviewDiscussion(movie));
+		refMap.put("discussion", discussionManager.getReviewDiscussion(review));
 		
 		return refMap;
 	}

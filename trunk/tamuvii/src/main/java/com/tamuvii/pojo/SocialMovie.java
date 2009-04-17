@@ -1,6 +1,9 @@
 package com.tamuvii.pojo;
 
 import java.util.Date;
+import java.util.List;
+
+import com.tamuvii.model.Review;
 
 public class SocialMovie {
 	
@@ -11,8 +14,15 @@ public class SocialMovie {
 	private String director;
 	private Date releaseDate;
 	private Integer numReviews;
+	private List<Review> reviews;
 	private Float avgMark;
 	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
 	public Float getAvgMark() {
 		return avgMark;
 	}

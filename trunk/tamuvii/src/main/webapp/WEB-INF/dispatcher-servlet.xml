@@ -130,7 +130,7 @@
     
     <bean id="discussionFormController" class="com.tamuvii.webapp.controller.DiscussionFormController">
     	<property name="discussionManager" ref="discussionManager" />
-    	<property name="formView" value="personalMovie"/>
+    	<property name="formView" value="reviewDiscussion"/>
     	<property name="successView" value="redirect:shelf.html"/>
     	<property name="cancelView" value="redirect:shelf.html"/>
     </bean>

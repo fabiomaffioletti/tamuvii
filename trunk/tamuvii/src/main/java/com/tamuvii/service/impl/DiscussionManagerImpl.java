@@ -1,30 +1,36 @@
 package com.tamuvii.service.impl;
 
-import com.tamuvii.dao.OpinionDAO;
-import com.tamuvii.dao.ReviewDAO;
-import com.tamuvii.model.ReviewExample;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.tamuvii.model.Opinion;
+import com.tamuvii.model.Review;
 import com.tamuvii.pojo.Discussion;
 import com.tamuvii.service.DiscussionManager;
+import com.tamuvii.service.OpinionManager;
+import com.tamuvii.service.ReviewManager;
 
 public class DiscussionManagerImpl implements DiscussionManager {
-	private ReviewDAO reviewDao = null;
-	private OpinionDAO opinionDao = null;
+	private ReviewManager reviewManager = null;
+	private OpinionManager opinionManager = null;
 	
-	public void setReviewDao(ReviewDAO reviewDao) {
-		this.reviewDao = reviewDao;
-	}
-	public void setOpinionDao(OpinionDAO opinionDao) {
-		this.opinionDao = opinionDao;
+	public void setReviewManager(ReviewManager reviewManager) {
+		this.reviewManager = reviewManager;
 	}
 
+	public void setOpinionManager(OpinionManager opinionManager) {
+		this.opinionManager = opinionManager;
+	}
 
 
-	public Discussion getReviewDiscussion(Integer movie) {
+
+	public Discussion getReviewDiscussion(Integer review) {
 		Discussion discussion = new Discussion();
-		ReviewExample reviewExample = new ReviewExample();
-		//TODO prendere la review con il movie in parametro e le opinions con la review di ritorno
-		
-		
+		Review discussionReview = reviewManager.getReviewById(review);
+		discussion.setReview(discussionReview);
+		List<Opinion> opinions = new ArrayList<Opinion>();
+		opinions = opinionManager.getOpinionsByReview(discussionReview.getReview());
+		discussion.setOpinions(opinions);
 		return discussion;
 	}
 

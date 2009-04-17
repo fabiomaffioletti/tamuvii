@@ -72,7 +72,7 @@
 							on m.director = d.director	inner join user_to_movie um 
 							on um.movie = m.movie
 							
-		where m.movie = -1
+		where m.movie = #movie#
   </select>
   
   <select id="getPersonalMovieDetails" resultMap="personalMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap">

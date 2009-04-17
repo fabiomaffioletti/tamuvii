@@ -13,6 +13,7 @@
         <intercept-url pattern="/signup.html*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>
         <intercept-url pattern="/a4j.res/*.html*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>
         <!-- Tamuvii -->
+        <intercept-url pattern="/shelf.html*" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>
         <intercept-url pattern="/be_moviesList.html*" access="ROLE_ADMIN"/>
         
         

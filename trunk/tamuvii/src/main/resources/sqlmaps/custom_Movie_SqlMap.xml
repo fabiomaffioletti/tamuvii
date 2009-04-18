@@ -47,7 +47,11 @@
     <result column="numOpinions" property="numOpinions" jdbcType="INTEGER" />
   </resultMap>
   
-  
+  <resultMap id="movieUser" class="com.tamuvii.pojo.MovieUser">
+        <result property="movieUser" jdbcType="INTEGER" column="movieUser"/>
+        <result property="username" jdbcType="VARCHAR" column="username"/>
+        <result column="mark" jdbcType="INTEGER" property="mark" />
+  </resultMap>
 
 
   <select id="getMoviesByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
@@ -121,6 +125,18 @@
 		
 		where				r.movie = #movie#
 		group by			r.review
+  </select>
+  
+  <select id="getUsersByMovie" resultMap="movieUser" parameterClass="java.lang.Integer">
+		select			u.id as movieUser,
+						u.username,
+						um.mark
+					
+		from			app_user u		inner join		user_to_movie um
+						on u.username = um.username
+						
+		where			um.movie = #movie#
+		group by 		u.username  
   </select>
   
   

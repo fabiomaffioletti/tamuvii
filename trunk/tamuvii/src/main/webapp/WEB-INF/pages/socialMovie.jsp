@@ -40,6 +40,18 @@ Reviews:
 	</display:column>
 </display:table>
 
+<br/>
+Totale Users:
+<c:out value="${fn:length(socialMovie.movieUsers)}" />
+
+<display:table name="${socialMovie.movieUsers}" cellspacing="0" cellpadding="0" id="movieUser" pagesize="25" class="table" export="false">
+	<display:column property="movieUser" escapeXml="true" sortable="true" titleKey="id" />
+	<display:column escapeXml="false" sortable="true" titleKey="username">
+		<a href="/shelf.html?username=${movieUser.username}">${movieUser.username}</a>
+	</display:column>
+	<display:column property="mark" escapeXml="true" sortable="true" titleKey="mark" />
+</display:table>
+
 <script type="text/javascript">
     highlightTableRows("review");
 </script>

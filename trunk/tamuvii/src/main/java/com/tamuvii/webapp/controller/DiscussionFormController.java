@@ -32,7 +32,11 @@ public class DiscussionFormController extends BaseFormController {
 	 * un nuovo inserimento. 
 	 */
 	protected Object formBackingObject(HttpServletRequest request) throws Exception {
-		return new Opinion();
+		if (!isFormSubmission(request)) {
+			return new Opinion();
+		}
+		
+		return super.formBackingObject(request);
 	}
 	
 	
@@ -44,7 +48,8 @@ public class DiscussionFormController extends BaseFormController {
 		Map refMap = new HashMap();
 		Integer review = request.getParameter("review") == null ? null : Integer.parseInt(request.getParameter("review"));
 		
-		refMap.put("discussion", discussionManager.getReviewDiscussion(review));
+		if(review != null)
+			refMap.put("discussion", discussionManager.getReviewDiscussion(review));
 		
 		return refMap;
 	}
@@ -65,6 +70,14 @@ public class DiscussionFormController extends BaseFormController {
 	}
 	
 	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
+		Opinion opinion = (Opinion) command;
+		
+		if(request.getParameter("save") != null) {
+			discussionManager.insertOpinion(opinion, request.getRemoteUser());
+			return new ModelAndView("redirect:/reviewDiscussion.html?review="+opinion.getReview());
+		}
+		
+		
 		return showForm(request, response, errors);
 	}
 

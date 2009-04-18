@@ -85,6 +85,7 @@
                 
                 /directorDetail.html=directorDetailController
                 /reviewDiscussion.html=discussionFormController
+                /opinion.html=opinionController
                 
                 <!-- Backend mappings -->
                 /be_moviesList.html=movieListController
@@ -134,4 +135,10 @@
     	<property name="successView" value="redirect:shelf.html"/>
     	<property name="cancelView" value="redirect:shelf.html"/>
     </bean>
+    
+    <bean id="opinionController" class="com.tamuvii.webapp.controller.OpinionController">
+    	<property name="opinionManager" ref="opinionManager" />
+    </bean>
+    
+    
 </beans>

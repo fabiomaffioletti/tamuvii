@@ -24,4 +24,27 @@ public class OpinionManagerImpl implements OpinionManager {
 		return opinionDao.selectByExample(opinionExample);
 	}
 
+
+	public void insertOpinion(Opinion opinion) {
+		opinionDao.insertSelective(opinion);
+	}
+
+
+	public void deleteOpinion(Opinion opinion) {
+		opinionDao.deleteByPrimaryKey(opinion.getOpinion());
+	}
+
+
+	public Opinion doesOpinionBelongToUser(Integer opinionId, String username) {
+		OpinionExample opinionExample = new OpinionExample();
+		Criteria opinionCriteria = opinionExample.createCriteria();
+		opinionCriteria.andOpinionEqualTo(opinionId);
+		opinionCriteria.andUsernameEqualTo(username);
+		List<Opinion> opinions = opinionDao.selectByExample(opinionExample);
+		if(opinions.size() > 0)
+			return opinions.get(0);
+		else
+			return null;
+	}
+
 }

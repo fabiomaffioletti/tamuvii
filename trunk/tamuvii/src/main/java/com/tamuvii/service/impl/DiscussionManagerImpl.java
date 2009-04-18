@@ -1,6 +1,7 @@
 package com.tamuvii.service.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.tamuvii.model.Opinion;
@@ -32,6 +33,12 @@ public class DiscussionManagerImpl implements DiscussionManager {
 		opinions = opinionManager.getOpinionsByReview(discussionReview.getReview());
 		discussion.setOpinions(opinions);
 		return discussion;
+	}
+
+	public void insertOpinion(Opinion opinion, String username) {
+		opinion.setDateinserted(Calendar.getInstance().getTime());
+		opinion.setUsername(username);
+		opinionManager.insertOpinion(opinion);
 	}
 
 }

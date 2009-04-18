@@ -5,17 +5,24 @@ import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.dao.ReviewDAO;
 import com.tamuvii.model.Review;
 import com.tamuvii.model.ReviewExample;
 import com.tamuvii.model.ReviewExample.Criteria;
+import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
 import com.tamuvii.service.ReviewManager;
 
 public class ReviewManagerImpl implements ReviewManager {
 	private ReviewDAO reviewDao = null;
+	private CustomMovieDAO customMovieDao = null;
 	
+	public void setCustomMovieDao(CustomMovieDAO customMovieDao) {
+		this.customMovieDao = customMovieDao;
+	}
+
 	public void setReviewDao(ReviewDAO reviewDao) {
 		this.reviewDao = reviewDao;
 	}
@@ -37,6 +44,10 @@ public class ReviewManagerImpl implements ReviewManager {
 		Criteria reviewCriteria = reviewExample.createCriteria();
 		reviewCriteria.andMovieEqualTo(movie);		
 		return reviewDao.selectByExample(reviewExample);
+	}
+	
+	public List<DetailedReview> getDetailedReviewsByMovie(Integer movie) {
+		return customMovieDao.getDetailedReviewsByMovie(movie);
 	}
 
 

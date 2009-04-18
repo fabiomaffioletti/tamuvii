@@ -121,6 +121,7 @@
     
     <bean id="reviewManager" class="com.tamuvii.service.impl.ReviewManagerImpl">
     	<property name="reviewDao" ref="reviewDao" />
+    	<property name="customMovieDao" ref="customMovieDao" />
     </bean>
     
     <bean id="opinionManager" class="com.tamuvii.service.impl.OpinionManagerImpl">

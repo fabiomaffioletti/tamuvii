@@ -12,6 +12,7 @@ import com.tamuvii.model.Movie;
 import com.tamuvii.model.MovieExample;
 import com.tamuvii.model.Review;
 import com.tamuvii.model.UserToMovie;
+import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
@@ -46,9 +47,9 @@ public class MovieManagerImpl implements MovieManager {
 
 	public SocialMovie getSocialMovieDetails(Integer movie) {
 		SocialMovie socialMovie = customMovieDao.getSocialMovieDetails(movie);
-		List<Review> movieReviews = new ArrayList<Review>();
-		movieReviews = reviewManager.getReviewsByMovie(socialMovie.getMovie());
-		socialMovie.setReviews(movieReviews);
+		List<DetailedReview> movieDetailedReviews = new ArrayList<DetailedReview>();
+		movieDetailedReviews = reviewManager.getDetailedReviewsByMovie(socialMovie.getMovie());
+		socialMovie.setDetailedReviews(movieDetailedReviews);
 		return socialMovie;
 	}
 

@@ -35,6 +35,7 @@ public class OpinionManagerImpl implements OpinionManager {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public Opinion doesOpinionBelongToUser(Integer opinionId, String username) {
 		OpinionExample opinionExample = new OpinionExample();
 		Criteria opinionCriteria = opinionExample.createCriteria();

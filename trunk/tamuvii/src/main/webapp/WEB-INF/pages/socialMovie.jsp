@@ -27,7 +27,7 @@ Avg Mark: ${socialMovie.avgMark}
 
 Reviews:
 <br/>
-<display:table name="${socialMovie.reviews}" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="review" pagesize="25" class="table" export="false">
+<display:table name="${socialMovie.detailedReviews}" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="review" pagesize="25" class="table" export="false">
 	<display:column property="review" escapeXml="true" sortable="true" titleKey="review" />
 	<display:column property="title" escapeXml="true" sortable="true" titleKey="title" />
 	<display:column property="reviewtext" escapeXml="true" sortable="true" titleKey="text" />
@@ -36,7 +36,7 @@ Reviews:
 	</display:column>
 	<display:column property="dateinserted" escapeXml="true" sortable="true" titleKey="dateinserted" />
 	<display:column escapeXml="false" sortable="false" title="actions">
-		<a href="/reviewDiscussion.html?review=${review.review}">Segui discussione</a>
+		<a href="/reviewDiscussion.html?review=${review.review}">${review.numOpinions}</a>
 	</display:column>
 </display:table>
 

@@ -36,6 +36,18 @@
     <result column="date_viewed" property="dateViewed" jdbcType="TIMESTAMP" />
     <result column="mark" property="mark" jdbcType="INTEGER" />
   </resultMap>
+  
+  <resultMap id="detailedReviewMap" class="com.tamuvii.pojo.DetailedReview" >
+    <result column="review" jdbcType="INTEGER" property="review" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="movie" jdbcType="INTEGER" property="movie" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="review_text" jdbcType="VARCHAR" property="reviewtext" />
+    <result column="date_inserted" jdbcType="TIMESTAMP" property="dateinserted" />
+    <result column="numOpinions" property="numOpinions" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
 
 
   <select id="getMoviesByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
@@ -67,7 +79,7 @@
 							count(distinct r.review) as numReviews,
 							avg(um.mark) as avgMark
 							
-		from 				movie m 					inner join review r
+		from 				movie m 					left join review r
 							on	m.movie = r.movie 		inner join director d
 							on m.director = d.director	inner join user_to_movie um 
 							on um.movie = m.movie
@@ -93,5 +105,23 @@
 							
 		where m.movie = #movie# and u.username = #username#
   </select>
+  
+  
+  <select id="getDetailedReviewsByMovie" resultMap="detailedReviewMap" parameterClass="java.lang.Integer">
+  		select				r.review,
+  							r.username,
+  							r.movie,
+  							r.title,
+  							r.review_text,
+  							r.date_inserted,
+							count(o.opinion) as numOpinions
+
+		from				review r		left join		opinion o
+						on	r.review = o.review
+		
+		where				r.movie = #movie#
+		group by			r.review
+  </select>
+  
   
 </sqlMap>

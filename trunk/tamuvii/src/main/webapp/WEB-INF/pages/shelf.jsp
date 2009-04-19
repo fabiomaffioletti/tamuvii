@@ -6,6 +6,13 @@
     <meta name="menu" content="AdminMenu"/>
 </head>
 
+<form:form name="searchSocialMovieForm" action="/searchSocialMovies.html" method="POST">
+	<input type="text" name="filter" />
+	<input type="submit" name="doSearch" value="Search" />
+</form:form>
+<br/>
+<br/>
+
 <display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="25" class="table" export="true">
     <display:column property="movie" escapeXml="true" sortable="true" titleKey="movie.movie" />
     <display:column escapeXml="false" sortable="true" titleKey="movie.originaltitle">

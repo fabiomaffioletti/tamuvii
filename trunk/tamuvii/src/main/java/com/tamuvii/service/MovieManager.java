@@ -18,5 +18,13 @@ public interface MovieManager {
 	public void updatePersonalMovieDetails(PersonalMovie personalMovie, String username) throws Exception;
 	
 	public List<Movie> getAllMovies();
+	
+	public List<SocialMovie> searchSocialMovie(String filter);
+	
+	public boolean doesMovieBelongToUserShelf(Integer movie, String username);
+	
+	public void addMovieToShelf(Integer movie, String username);
+	
+	public List<Integer> getPersonalMoviesIds(String username); 
 
 }

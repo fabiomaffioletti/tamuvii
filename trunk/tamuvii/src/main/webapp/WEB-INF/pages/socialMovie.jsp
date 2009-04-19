@@ -6,7 +6,27 @@
     <meta name="menu" content="AdminMenu"/>
 </head>
 
+Hai cercato: ${filter}
 
+<form:form name="searchSocialMovieForm" action="/searchSocialMovies.html" method="POST">
+	<input type="text" name="filter" />
+	<input type="submit" name="doSearch" value="Search" />
+</form:form>
+<br/>
+<br/>
+
+<c:choose>
+	<c:when test="${!presentInShelf && !presentInWishlist}">
+		<a href="/shelfManagement.html?action=add&movie=${socialMovie.movie}">Add to shelf</a>
+		<a href="/shelfManagement.html?action=wish&movie=${socialMovie.movie}">Add to wishlist</a>
+	</c:when>
+	<c:when test="${!presentInShelf && presentInWishlist}">
+		<a href="/shelfManagement.html?move=add&movie=${socialMovie.movie}">Move to shelf</a>
+	</c:when>
+</c:choose>
+
+<br/>
+<br/>
 MovieId: ${socialMovie.movie}
 <br/>
 OriginalTitle: ${socialMovie.originalTitle}

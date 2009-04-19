@@ -20,14 +20,26 @@
     <display:column property="dateViewed" escapeXml="true" sortable="true" titleKey="movie.dateViewed" />
     <display:column property="mark" escapeXml="true" sortable="true" titleKey="movie.mark" />
     
-    <c:if test="${empty username || username == pageContext.request.remoteUser}">
-	    <display:column title="modify">
-	    	<a href="/personalMovie.html?movie=${shelfItems.movie}">modify</a>
-	    </display:column>
-    </c:if>
+    <c:choose>
+	    <c:when test="${empty username || username == pageContext.request.remoteUser}">
+		    <display:column title="modify">
+		    	<a href="/personalMovie.html?movie=${shelfItems.movie}">modify</a>
+		    </display:column>
+	    </c:when>
+	    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
+	    	<display:column title="actions">
+		    	<c:forEach var="personalMovieId" items="${personalMoviesIds}">
+		    		<c:if test="${personalMovieId != shelfItems.movie}">
+		    			<a href="/shelfManagement.html?action=add&movie=${shelfItems.movie}">add</a>
+		    		</c:if>
+		    	</c:forEach>
+	    	</display:column>
+	    </c:when>
+    </c:choose>
+    
+    
 </display:table>
 
 <script type="text/javascript">
     highlightTableRows("shelfItems");
 </script>
-

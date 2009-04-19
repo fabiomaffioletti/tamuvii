@@ -140,4 +140,28 @@
   </select>
   
   
+  <select id="searchSocialMovies" resultMap="socialMovieMap" parameterClass="com.tamuvii.pojo.SearchMovieFilter" >
+		select				m.movie, 
+							m.duration, 
+							m.original_title,
+							d.director as directorId, 
+							CONCAT(d.name, " ", d.surname) as director, 
+							m.release_date,
+							count(distinct r.review) as numReviews,
+							avg(um.mark) as avgMark
+							
+		from 				movie m 					left join review r
+							on	m.movie = r.movie 		inner join director d
+							on m.director = d.director	inner join user_to_movie um 
+							on um.movie = m.movie
+							
+		group by m.movie
+  </select>
+  
+  <select id="getPersonalMoviesIds" resultClass="java.lang.Integer" parameterClass="java.lang.String" >
+  		select			um.movie
+		from			user_to_movie um
+		where			um.username = #username#
+  </select>
+  
 </sqlMap>

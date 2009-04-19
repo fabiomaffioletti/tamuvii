@@ -6,32 +6,28 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.service.MovieManager;
 
-public class SocialMovieController implements Controller {
+public class SearchSocialMovieController implements Controller {
 	private MovieManager movieManager = null;
+
+	public MovieManager getMovieManager() {
+		return movieManager;
+	}
 
 	public void setMovieManager(MovieManager movieManager) {
 		this.movieManager = movieManager;
 	}
 
-
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		Integer movie = request.getParameter("movie") == null ? null : Integer.parseInt(request.getParameter("movie"));
+		String filter = request.getParameter("filter") == null ? null : request.getParameter("filter"); 
+		mv.addObject("resultSocialMovies", movieManager.searchSocialMovie(filter));
+		mv.addObject("filter", filter);
 		
-		SocialMovie socialMovie = movieManager.getSocialMovieDetails(movie); 
-		
-		mv.addObject("socialMovie", socialMovie);
-		
-		if(request.getRemoteUser() != null)
-			mv.addObject("presentInShelf", movieManager.doesMovieBelongToUserShelf(movie, request.getRemoteUser()));
-		
-		mv.setViewName("socialMovie");
+		mv.setViewName("resultSocialMovies");
 		return mv;
 	}
-	
 
 }

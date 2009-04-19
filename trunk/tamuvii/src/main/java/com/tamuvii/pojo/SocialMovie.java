@@ -3,8 +3,6 @@ package com.tamuvii.pojo;
 import java.util.Date;
 import java.util.List;
 
-import com.tamuvii.model.User;
-
 public class SocialMovie {
 	
 	private Integer movie;

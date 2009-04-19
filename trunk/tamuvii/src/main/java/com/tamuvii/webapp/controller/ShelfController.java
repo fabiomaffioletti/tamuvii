@@ -34,9 +34,11 @@ public class ShelfController implements Controller {
 			}
 		else {
 			username = request.getParameter("username");
+			List<Integer> personalMoviesIds = movieManager.getPersonalMoviesIds(request.getRemoteUser());
+			mv.addObject("personalMoviesIds", personalMoviesIds);
 		}
 			
-		List<ShelfItem> shelfItems = movieManager.getMoviesByUsername(username); 
+		List<ShelfItem> shelfItems = movieManager.getMoviesByUsername(username);
 		mv.addObject("shelfItems", shelfItems);
 		mv.addObject("username", username);
 		mv.setViewName("shelf");

@@ -80,12 +80,14 @@
                 /passwordHint.html=passwordHintController
                 
                 /shelf.html=shelfController
+                /shelfManagement.html=shelfManagementController
                 /socialMovie.html=socialMovieController
                 /personalMovie.html=personalMovieFormController
                 
                 /directorDetail.html=directorDetailController
                 /reviewDiscussion.html=discussionFormController
                 /opinion.html=opinionController
+                /searchSocialMovies.html=searchSocialMovieController
                 
                 <!-- Backend mappings -->
                 /be_moviesList.html=movieListController
@@ -140,5 +142,12 @@
     	<property name="opinionManager" ref="opinionManager" />
     </bean>
     
+    <bean id="searchSocialMovieController" class="com.tamuvii.webapp.controller.SearchSocialMovieController">
+    	<property name="movieManager" ref="movieManager" />
+    </bean>
+    
+    <bean id="shelfManagementController" class="com.tamuvii.webapp.controller.ShelfManagementController">
+    	<property name="movieManager" ref="movieManager" />
+    </bean>
     
 </beans>

@@ -111,7 +111,7 @@
     	<property name="customMovieDao" ref="customMovieDao" />
     	<property name="reviewManager" ref="reviewManager" />
     	<property name="movieDao" ref="movieDao" />
-    	<property name="userToMovieDao" ref="userToMovieDao" />
+    	<property name="userToMovieManager" ref="userToMovieManager" />
     </bean>
     
     <bean id="directorManager" class="com.tamuvii.service.impl.DirectorManagerImpl">
@@ -133,5 +133,7 @@
     	<property name="opinionManager" ref="opinionManager" />
     </bean>
     
-    
+	<bean id="userToMovieManager" class="com.tamuvii.service.impl.UserToMovieManagerImpl">
+		<property name="userToMovieDao" ref="userToMovieDao" />
+	</bean>    
 </beans>

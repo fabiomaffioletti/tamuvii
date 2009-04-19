@@ -7,7 +7,6 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.dao.MovieDAO;
-import com.tamuvii.dao.UserToMovieDAO;
 import com.tamuvii.model.Movie;
 import com.tamuvii.model.MovieExample;
 import com.tamuvii.model.Review;
@@ -15,20 +14,22 @@ import com.tamuvii.model.UserToMovie;
 import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.MovieUser;
 import com.tamuvii.pojo.PersonalMovie;
+import com.tamuvii.pojo.SearchMovieFilter;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
 import com.tamuvii.service.MovieManager;
 import com.tamuvii.service.ReviewManager;
+import com.tamuvii.service.UserToMovieManager;
 
 public class MovieManagerImpl implements MovieManager {
 	private CustomMovieDAO customMovieDao = null;
 	private ReviewManager reviewManager = null;
 	private MovieDAO movieDao = null;
-	private UserToMovieDAO userToMovieDao = null;
+	private UserToMovieManager userToMovieManager = null;
 	
-	public void setUserToMovieDao(UserToMovieDAO userToMovieDao) {
-		this.userToMovieDao = userToMovieDao;
+	public void setUserToMovieManager(UserToMovieManager userToMovieManager) {
+		this.userToMovieManager = userToMovieManager;
 	}
 	public void setReviewManager(ReviewManager reviewManager) {
 		this.reviewManager = reviewManager;
@@ -82,13 +83,35 @@ public class MovieManagerImpl implements MovieManager {
 		return movieDao.selectByExample(movieExample);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void updatePersonalMovieDetails(PersonalMovie personalMovie, String username) throws Exception {
 		UserToMovie userToMovie = new UserToMovie();
 		userToMovie.setUsername(username);
 		BeanUtils.copyProperties(userToMovie, personalMovie);
-		userToMovieDao.updateByPrimaryKeySelective(userToMovie);
+		userToMovieManager.updatePersonalMovieDetails(userToMovie);
 		reviewManager.updatePersonalMovieReviewData(personalMovie, username);
+	}
+	
+	public List<SocialMovie> searchSocialMovie(String filter) {
+		String[] splittedFilter = filter.split(" ");
+		
+		SearchMovieFilter searchMovieFilter = new SearchMovieFilter();
+		searchMovieFilter.setFilter(splittedFilter);
+		return customMovieDao.searchSocialMovie(searchMovieFilter);
+	}
+	
+	
+	public boolean doesMovieBelongToUserShelf(Integer movie, String username) {
+		return userToMovieManager.doesMovieBelongToUserShelf(movie, username);
+	}
+	
+	
+	public void addMovieToShelf(Integer movie, String username) {
+		userToMovieManager.addMovieToShelf(movie, username);
+	}
+	
+	
+	public List<Integer> getPersonalMoviesIds(String username) {
+		return customMovieDao.getPersonalMoviesIds(username);
 	}
 
 }

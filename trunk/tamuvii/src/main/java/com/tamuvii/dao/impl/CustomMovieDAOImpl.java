@@ -8,6 +8,7 @@ import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.MovieUser;
 import com.tamuvii.pojo.PersonalMovie;
+import com.tamuvii.pojo.SearchMovieFilter;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
@@ -40,6 +41,16 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 	@SuppressWarnings("unchecked")
 	public List<MovieUser> getUsersByMovie(Integer movie) {
 		return getSqlMapClientTemplate().queryForList("custom_movie.getUsersByMovie", movie);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<SocialMovie> searchSocialMovie(SearchMovieFilter searchMovieFilter) {
+		return getSqlMapClientTemplate().queryForList("custom_movie.searchSocialMovies", searchMovieFilter);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Integer> getPersonalMoviesIds(String username) {
+		return getSqlMapClientTemplate().queryForList("custom_movie.getPersonalMoviesIds", username);
 	}
 
 }

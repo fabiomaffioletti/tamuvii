@@ -35,11 +35,15 @@
 	    </c:when>
 	    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
 	    	<display:column title="actions">
+	    		<c:set var="found" value="0" />
 		    	<c:forEach var="personalMovieId" items="${personalMoviesIds}">
-		    		<c:if test="${personalMovieId != shelfItems.movie}">
-		    			<a href="/shelfManagement.html?action=add&movie=${shelfItems.movie}">add</a>
+		    		<c:if test="${personalMovieId == shelfItems.movie}">
+		    			<c:set var="found" value="1" />
 		    		</c:if>
 		    	</c:forEach>
+		    	<c:if test="${found == 0}">
+		    		<a href="/shelfManagement.html?action=add&movie=${shelfItems.movie}">add</a>
+		    	</c:if>
 	    	</display:column>
 	    </c:when>
     </c:choose>

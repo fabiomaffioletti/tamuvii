@@ -26,8 +26,10 @@ public class SocialMovieController implements Controller {
 		
 		mv.addObject("socialMovie", socialMovie);
 		
-		if(request.getRemoteUser() != null)
+		if(request.getRemoteUser() != null) {
 			mv.addObject("presentInShelf", movieManager.doesMovieBelongToUserShelf(movie, request.getRemoteUser()));
+			mv.addObject("presentInWishlist", movieManager.doesMovieBelongToUserWishlist(movie, request.getRemoteUser()));
+		}
 		
 		mv.setViewName("socialMovie");
 		return mv;

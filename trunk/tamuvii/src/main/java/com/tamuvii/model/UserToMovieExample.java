@@ -505,43 +505,33 @@ public class UserToMovieExample {
 			return this;
 		}
 
-		public Criteria andWishedEqualTo(String value) {
+		public Criteria andWishedEqualTo(Integer value) {
 			addCriterion("wished =", value, "wished");
 			return this;
 		}
 
-		public Criteria andWishedNotEqualTo(String value) {
+		public Criteria andWishedNotEqualTo(Integer value) {
 			addCriterion("wished <>", value, "wished");
 			return this;
 		}
 
-		public Criteria andWishedGreaterThan(String value) {
+		public Criteria andWishedGreaterThan(Integer value) {
 			addCriterion("wished >", value, "wished");
 			return this;
 		}
 
-		public Criteria andWishedGreaterThanOrEqualTo(String value) {
+		public Criteria andWishedGreaterThanOrEqualTo(Integer value) {
 			addCriterion("wished >=", value, "wished");
 			return this;
 		}
 
-		public Criteria andWishedLessThan(String value) {
+		public Criteria andWishedLessThan(Integer value) {
 			addCriterion("wished <", value, "wished");
 			return this;
 		}
 
-		public Criteria andWishedLessThanOrEqualTo(String value) {
+		public Criteria andWishedLessThanOrEqualTo(Integer value) {
 			addCriterion("wished <=", value, "wished");
-			return this;
-		}
-
-		public Criteria andWishedLike(String value) {
-			addCriterion("wished like", value, "wished");
-			return this;
-		}
-
-		public Criteria andWishedNotLike(String value) {
-			addCriterion("wished not like", value, "wished");
 			return this;
 		}
 
@@ -555,12 +545,12 @@ public class UserToMovieExample {
 			return this;
 		}
 
-		public Criteria andWishedBetween(String value1, String value2) {
+		public Criteria andWishedBetween(Integer value1, Integer value2) {
 			addCriterion("wished between", value1, value2, "wished");
 			return this;
 		}
 
-		public Criteria andWishedNotBetween(String value1, String value2) {
+		public Criteria andWishedNotBetween(Integer value1, Integer value2) {
 			addCriterion("wished not between", value1, value2, "wished");
 			return this;
 		}

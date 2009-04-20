@@ -80,6 +80,7 @@
                 /passwordHint.html=passwordHintController
                 
                 /shelf.html=shelfController
+                /wishlist.html=wishlistController
                 /shelfManagement.html=shelfManagementController
                 /socialMovie.html=socialMovieController
                 /personalMovie.html=personalMovieFormController
@@ -109,6 +110,10 @@
     </bean>
     
     <bean id="shelfController" class="com.tamuvii.webapp.controller.ShelfController">
+    	<property name="movieManager" ref="movieManager" />
+    </bean>
+    
+    <bean id="wishlistController" class="com.tamuvii.webapp.controller.WishlistController">
     	<property name="movieManager" ref="movieManager" />
     </bean>
     

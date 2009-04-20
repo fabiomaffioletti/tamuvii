@@ -8,6 +8,7 @@
     <menu:displayMenu name="UserMenu"/>
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="ShelfMenu"/>
+    <menu:displayMenu name="WishlistMenu"/>
     <menu:displayMenu name="Logout"/>
 </ul>
 </menu:useMenuDisplayer>

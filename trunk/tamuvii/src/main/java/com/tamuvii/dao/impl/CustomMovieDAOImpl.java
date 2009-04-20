@@ -23,6 +23,11 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 	public List<ShelfItem> getMoviesByUsername(String username) {
 		return getSqlMapClientTemplate().queryForList("custom_movie.getMoviesByUsername", username);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ShelfItem> getWishedMoviesByUsername(String username) {
+		return getSqlMapClientTemplate().queryForList("custom_movie.getWishedMoviesByUsername", username);
+	}
 
 	public SocialMovie getSocialMovieDetails(Integer movie) {
 		return (SocialMovie) getSqlMapClientTemplate().queryForObject("custom_movie.getSocialMovieDetails", movie);
@@ -51,6 +56,11 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 	@SuppressWarnings("unchecked")
 	public List<Integer> getPersonalMoviesIds(String username) {
 		return getSqlMapClientTemplate().queryForList("custom_movie.getPersonalMoviesIds", username);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Integer> getShelfMoviesIds(String username) {
+		return getSqlMapClientTemplate().queryForList("custom_movie.getShelfMoviesIds", username);
 	}
 
 	@SuppressWarnings("unchecked")

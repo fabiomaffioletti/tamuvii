@@ -14,6 +14,8 @@ public interface CustomMovieDAO {
 	
 	public List<ShelfItem> getMoviesByUsername(String username);
 	
+	public List<ShelfItem> getWishedMoviesByUsername(String username);
+	
 	public SocialMovie getSocialMovieDetails(Integer movie);
 	
 	public List<DetailedReview> getDetailedReviewsByMovie(Integer movie);
@@ -25,6 +27,8 @@ public interface CustomMovieDAO {
 	public List<SocialMovie> searchSocialMovie(SearchMovieFilter searchMovieFilter);
 	
 	public List<Integer> getPersonalMoviesIds(String username);
+	
+	public List<Integer> getShelfMoviesIds(String username);
 	
 	public List<Integer> getWishedMoviesIds(String username);
 	

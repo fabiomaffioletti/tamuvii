@@ -21,8 +21,12 @@ Hai cercato: ${filter}
 		<a href="/shelfManagement.html?action=wish&movie=${socialMovie.movie}">Add to wishlist</a>
 	</c:when>
 	<c:when test="${!presentInShelf && presentInWishlist}">
+		Questo libro è presente nella tua wishlist:
 		<a href="/shelfManagement.html?move=add&movie=${socialMovie.movie}">Move to shelf</a>
 	</c:when>
+	<c:otherwise>
+		Questo libro è presente nella tua shelf!
+	</c:otherwise>
 </c:choose>
 
 <br/>

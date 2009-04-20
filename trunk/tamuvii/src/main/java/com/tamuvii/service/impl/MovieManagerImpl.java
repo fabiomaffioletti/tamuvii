@@ -45,6 +45,10 @@ public class MovieManagerImpl implements MovieManager {
 	public List<ShelfItem> getMoviesByUsername(String username) {
 		return customMovieDao.getMoviesByUsername(username);
 	}
+	
+	public List<ShelfItem> getWishedMoviesByUsername(String username) {
+		return customMovieDao.getWishedMoviesByUsername(username);
+	}
 
 
 	public SocialMovie getSocialMovieDetails(Integer movie) {
@@ -104,9 +108,17 @@ public class MovieManagerImpl implements MovieManager {
 		return userToMovieManager.doesMovieBelongToUserShelf(movie, username);
 	}
 	
+	public boolean doesMovieBelongToUserWishlist(Integer movie, String username) {
+		return userToMovieManager.doesMovieBelongToUserWishlist(movie, username);
+	}
+	
 	
 	public void addMovieToShelf(Integer movie, String username) {
 		userToMovieManager.addMovieToShelf(movie, username);
+	}
+	
+	public void addMovieToWishlist(Integer movie, String username) {
+		userToMovieManager.addMovieToWishlist(movie, username);
 	}
 	
 	

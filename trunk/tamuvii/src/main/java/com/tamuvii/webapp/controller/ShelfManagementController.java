@@ -23,10 +23,14 @@ public class ShelfManagementController implements Controller {
 		
 		if(request.getParameter("action") != null && request.getParameter("action").equals("add")) {
 			movieManager.addMovieToShelf(movie, request.getRemoteUser());
+			mv.setViewName("redirect:/personalMovie.html?movie="+movie);
+		} else if(request.getParameter("action") != null && request.getParameter("action").equals("wish")) {
+			movieManager.addMovieToWishlist(movie, request.getRemoteUser());
+			//FIXME Mettere un'altra view più il controllo che non possa modificare la review e il voto senza prima
+			//averlo aggiunto alla shelf...
+			mv.setViewName("redirect:/wishlist.html");
 		}
-		//FIXME mettere una view esistente.
 		return mv;
 	}
-	
 
 }

@@ -10,7 +10,7 @@
     <result column="date_added" jdbcType="TIMESTAMP" property="dateadded" />
     <result column="date_viewed" jdbcType="TIMESTAMP" property="dateviewed" />
     <result column="mark" jdbcType="INTEGER" property="mark" />
-    <result column="wished" jdbcType="CHAR" property="wished" />
+    <result column="wished" jdbcType="INTEGER" property="wished" />
   </resultMap>
   <sql id="ibatorgenerated_Example_Where_Clause">
     <!--
@@ -84,7 +84,7 @@
     -->
     insert into user_to_movie (movie, username, date_added, date_viewed, mark, wished)
     values (#movie:INTEGER#, #username:VARCHAR#, #dateadded:TIMESTAMP#, #dateviewed:TIMESTAMP#,
-      #mark:INTEGER#, #wished:CHAR#)
+      #mark:INTEGER#, #wished:INTEGER#)
   </insert>
   <insert id="ibatorgenerated_insertSelective" parameterClass="com.tamuvii.model.UserToMovie">
     <!--
@@ -130,7 +130,7 @@
         #mark:INTEGER#
       </isNotNull>
       <isNotNull prepend="," property="wished">
-        #wished:CHAR#
+        #wished:INTEGER#
       </isNotNull>
       )
     </dynamic>
@@ -164,7 +164,7 @@
         mark = #record.mark:INTEGER#
       </isNotNull>
       <isNotNull prepend="," property="record.wished">
-        wished = #record.wished:CHAR#
+        wished = #record.wished:INTEGER#
       </isNotNull>
     </dynamic>
     <isParameterPresent>
@@ -181,7 +181,7 @@
       date_added = #record.dateadded:TIMESTAMP#,
       date_viewed = #record.dateviewed:TIMESTAMP#,
       mark = #record.mark:INTEGER#,
-      wished = #record.wished:CHAR#
+      wished = #record.wished:INTEGER#
     <isParameterPresent>
       <include refid="user_to_movie.ibatorgenerated_Example_Where_Clause" />
     </isParameterPresent>
@@ -202,7 +202,7 @@
         mark = #mark:INTEGER#
       </isNotNull>
       <isNotNull prepend="," property="wished">
-        wished = #wished:CHAR#
+        wished = #wished:INTEGER#
       </isNotNull>
     </dynamic>
     where movie = #movie:INTEGER#
@@ -216,7 +216,7 @@
     set date_added = #dateadded:TIMESTAMP#,
       date_viewed = #dateviewed:TIMESTAMP#,
       mark = #mark:INTEGER#,
-      wished = #wished:CHAR#
+      wished = #wished:INTEGER#
     where movie = #movie:INTEGER#
       and username = #username:VARCHAR#
   </update>

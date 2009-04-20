@@ -11,6 +11,8 @@ public interface MovieManager {
 	
 	public List<ShelfItem> getMoviesByUsername(String username);
 	
+	public List<ShelfItem> getWishedMoviesByUsername(String username);
+	
 	public SocialMovie getSocialMovieDetails(Integer movie);
 	
 	public PersonalMovie getPersonalMovieDetails(Integer movie, String username);
@@ -23,7 +25,11 @@ public interface MovieManager {
 	
 	public boolean doesMovieBelongToUserShelf(Integer movie, String username);
 	
+	public boolean doesMovieBelongToUserWishlist(Integer movie, String username);
+	
 	public void addMovieToShelf(Integer movie, String username);
+	
+	public void addMovieToWishlist(Integer movie, String username);
 	
 	public List<Integer> getPersonalMoviesIds(String username); 
 	

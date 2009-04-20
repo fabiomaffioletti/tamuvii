@@ -6,15 +6,9 @@
     <meta name="menu" content="MainMenu"/>
 </head>
 
-<p><fmt:message key="mainMenu.message"/></p>
-
-<div class="separator"></div>
-
-<ul class="glassList">
-    <li>
-        <a href="<c:url value='/userform.html'/>"><fmt:message key="menu.user"/></a>
-    </li>
-    <li>
-        <a href="<c:url value='/fileupload.html'/>"><fmt:message key="menu.selectFile"/></a>
-    </li>
-</ul>
+<form:form name="searchSocialMovieForm" action="/searchSocialMovies.html" method="POST">
+	<input type="text" name="filter" />
+	<input type="submit" name="doSearch" value="Search" />
+</form:form>
+<br/>
+<br/>

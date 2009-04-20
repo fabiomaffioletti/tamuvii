@@ -29,6 +29,20 @@ public class UserToMovieManagerImpl implements UserToMovieManager {
 			userToMovie.setDateadded(Calendar.getInstance().getTime());
 			userToMovie.setDateviewed(null);
 			userToMovie.setMark(null);
+			userToMovie.setWished(0);
+			userToMovieDao.insert(userToMovie);
+		}
+	}
+	
+	public void addMovieToWishlist(Integer movie, String username) {
+		if(!doesMovieBelongToUserWishlist(movie, username) && !doesMovieBelongToUserShelf(movie, username)) {
+			UserToMovie userToMovie = new UserToMovie();
+			userToMovie.setMovie(movie);
+			userToMovie.setUsername(username);
+			userToMovie.setDateadded(Calendar.getInstance().getTime());
+			userToMovie.setDateviewed(null);
+			userToMovie.setMark(null);
+			userToMovie.setWished(1);
 			userToMovieDao.insert(userToMovie);
 		}
 	}
@@ -38,6 +52,16 @@ public class UserToMovieManagerImpl implements UserToMovieManager {
 		Criteria userToMovieCriteria = userToMovieExample.createCriteria();
 		userToMovieCriteria.andMovieEqualTo(movie);
 		userToMovieCriteria.andUsernameEqualTo(username);
+		userToMovieCriteria.andWishedEqualTo(0);
+		return userToMovieDao.selectByExample(userToMovieExample).size() > 0;
+	}
+	
+	public boolean doesMovieBelongToUserWishlist(Integer movie, String username) {
+		UserToMovieExample userToMovieExample = new UserToMovieExample();
+		Criteria userToMovieCriteria = userToMovieExample.createCriteria();
+		userToMovieCriteria.andMovieEqualTo(movie);
+		userToMovieCriteria.andUsernameEqualTo(username);
+		userToMovieCriteria.andWishedEqualTo(1);
 		return userToMovieDao.selectByExample(userToMovieExample).size() > 0;
 	}
 

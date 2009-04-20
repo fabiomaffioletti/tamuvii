@@ -75,6 +75,27 @@
 		
   </select>
   
+  <select id="getWishedMoviesByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
+		select				m.movie, 
+							m.duration, 
+							m.original_title,
+							d.director as directorId, 
+							CONCAT(d.name, " ", d.surname) as director, 
+							m.release_date, 
+							um.date_added, 
+							um.date_viewed, 
+							um.mark
+							
+		from 				user_to_movie um			inner join movie m
+							on um.movie = m.movie 		inner join director d
+							on d.director = m.director 	inner join app_user u
+							on u.username = um.username
+							
+		where				u.username = #username#
+		and					um.wished = '1'
+		
+  </select>
+  
   <select id="getSocialMovieDetails" resultMap="socialMovieMap" parameterClass="java.lang.Integer">
   		select				m.movie, 
 							m.duration, 
@@ -161,6 +182,12 @@
   </select>
   
   <select id="getPersonalMoviesIds" resultClass="java.lang.Integer" parameterClass="java.lang.String" >
+  		select			um.movie
+		from			user_to_movie um
+		where			um.username = #username#
+  </select>
+  
+  <select id="getShelfMoviesIds" resultClass="java.lang.Integer" parameterClass="java.lang.String" >
   		select			um.movie
 		from			user_to_movie um
 		where			um.username = #username#

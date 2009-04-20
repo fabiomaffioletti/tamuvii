@@ -26,5 +26,7 @@ public interface MovieManager {
 	public void addMovieToShelf(Integer movie, String username);
 	
 	public List<Integer> getPersonalMoviesIds(String username); 
+	
+	public List<Integer> getWishedMoviesIds(String username);
 
 }

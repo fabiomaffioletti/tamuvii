@@ -53,4 +53,9 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 		return getSqlMapClientTemplate().queryForList("custom_movie.getPersonalMoviesIds", username);
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Integer> getWishedMoviesIds(String username) {
+		return getSqlMapClientTemplate().queryForList("custom_movie.getWishedMoviesIds", username);
+	}
+
 }

@@ -113,5 +113,9 @@ public class MovieManagerImpl implements MovieManager {
 	public List<Integer> getPersonalMoviesIds(String username) {
 		return customMovieDao.getPersonalMoviesIds(username);
 	}
+	
+	public List<Integer> getWishedMoviesIds(String username) {
+		return customMovieDao.getWishedMoviesIds(username);
+	}
 
 }

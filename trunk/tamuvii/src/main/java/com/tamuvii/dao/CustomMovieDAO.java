@@ -26,4 +26,6 @@ public interface CustomMovieDAO {
 	
 	public List<Integer> getPersonalMoviesIds(String username);
 	
+	public List<Integer> getWishedMoviesIds(String username);
+	
 }

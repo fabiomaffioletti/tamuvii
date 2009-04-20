@@ -70,7 +70,9 @@
 							on d.director = m.director 	inner join app_user u
 							on u.username = um.username
 							
-		where u.username = #username#
+		where				u.username = #username#
+		and					um.wished = '0'
+		
   </select>
   
   <select id="getSocialMovieDetails" resultMap="socialMovieMap" parameterClass="java.lang.Integer">
@@ -162,6 +164,14 @@
   		select			um.movie
 		from			user_to_movie um
 		where			um.username = #username#
+		and				um.wished = '0'
+  </select>
+  
+  <select id="getWishedMoviesIds" resultClass="java.lang.Integer" parameterClass="java.lang.String" >
+  		select			um.movie
+		from			user_to_movie um
+		where			um.username = #username#
+		and				um.wished = '1'
   </select>
   
 </sqlMap>

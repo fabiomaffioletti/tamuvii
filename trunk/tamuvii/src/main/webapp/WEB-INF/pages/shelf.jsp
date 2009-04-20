@@ -43,6 +43,7 @@
 		    	</c:forEach>
 		    	<c:if test="${found == 0}">
 		    		<a href="/shelfManagement.html?action=add&movie=${shelfItems.movie}">add</a>
+		    		<a href="/shelfManagement.html?action=wish&movie=${shelfItems.movie}">wish</a>
 		    	</c:if>
 	    	</display:column>
 	    </c:when>

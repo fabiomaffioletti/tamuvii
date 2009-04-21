@@ -27,7 +27,7 @@
 		</c:when>
 		<c:otherwise>
 			da implementare: <a href="/relationshipManagement.html?action=addFriend&username=${username}">Aggiungi come amico</a> <br/>
-			da implementare: aggiungi come vicino
+			da implementare: <a href="/relationshipManagement.html?action=addNeighborhood&username=${username}">Aggiungi come vicino</a> <br/>
 		</c:otherwise>
 	</c:choose>
 </c:if>

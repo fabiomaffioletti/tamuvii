@@ -178,6 +178,20 @@
 							on m.director = d.director	inner join user_to_movie um 
 							on um.movie = m.movie
 							
+		<dynamic prepend="WHERE">
+	         <isNotNull property="filter" prepend="and">
+                  <iterate conjunction="and" property="filter" removeFirstPrepend="true">
+                       (
+                       m.original_title like #filter[]#
+                       or
+                       d.surname like #filter[]#
+                       or
+                       d.name like #filter[]#
+                       )
+                  </iterate>
+	        </isNotNull>
+	    </dynamic>								
+							
 		group by m.movie
   </select>
   

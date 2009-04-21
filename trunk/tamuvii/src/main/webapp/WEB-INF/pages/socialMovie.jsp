@@ -70,6 +70,9 @@ Totale Users:
 
 <display:table name="${socialMovie.movieUsers}" cellspacing="0" cellpadding="0" id="movieUser" pagesize="25" class="table" export="false">
 	<display:column property="movieUser" escapeXml="true" sortable="true" titleKey="id" />
+	<display:column escapeXml="false" sortable="false" titleKey="immagine">
+		<img src="/images/placeholder_user.jpg" height="20px" width="20px;"/>
+	</display:column>
 	<display:column escapeXml="false" sortable="true" titleKey="username">
 		<a href="/shelf.html?username=${movieUser.username}">${movieUser.username}</a>
 	</display:column>

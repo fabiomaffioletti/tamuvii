@@ -97,6 +97,9 @@ public class MovieManagerImpl implements MovieManager {
 	
 	public List<SocialMovie> searchSocialMovie(String filter) {
 		String[] splittedFilter = filter.split(" ");
+		for (int i=0; i<splittedFilter.length; i++) {
+			splittedFilter[i] = "%" + splittedFilter[i] + "%"; 
+		}
 		
 		SearchMovieFilter searchMovieFilter = new SearchMovieFilter();
 		searchMovieFilter.setFilter(splittedFilter);

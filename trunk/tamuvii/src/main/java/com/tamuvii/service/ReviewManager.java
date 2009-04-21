@@ -13,6 +13,8 @@ public interface ReviewManager {
 	
 	public Review getReviewByMovie(Integer movie);
 	
+	public void deleteReview(Integer movie, String username);
+	
 	public List<DetailedReview> getDetailedReviewsByMovie(Integer movie);
 	
 	public List<Review> getReviewsByMovie(Integer movie);
@@ -20,5 +22,5 @@ public interface ReviewManager {
 	public Review getPersonalMovieReview(PersonalMovieFilterMap personalMovieFilterMap);
 	
 	public void updatePersonalMovieReviewData(PersonalMovie personalMovie, String username) throws Exception;
-
+	
 }

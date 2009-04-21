@@ -142,6 +142,7 @@ public class MovieManagerImpl implements MovieManager {
 	
 	public void deleteMovieFromShelf(Integer movie, String username) {
 		if(doesMovieBelongToUserShelf(movie, username)) {
+			reviewManager.deleteReview(movie, username);
 			userToMovieManager.deleteMovieFromShelf(movie, username);
 		}
 	}
@@ -151,6 +152,7 @@ public class MovieManagerImpl implements MovieManager {
 			userToMovieManager.deleteMovieFromWishlist(movie, username);
 		}
 	}
+	
 	public void moveMovieFromWishlistToShelf(Integer movie, String username) {
 		if(doesMovieBelongToUserWishlist(movie, username)) {
 			userToMovieManager.moveMovieFromWishlistToShelf(movie, username);

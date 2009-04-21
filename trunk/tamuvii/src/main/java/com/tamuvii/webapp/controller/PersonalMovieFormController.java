@@ -62,7 +62,7 @@ public class PersonalMovieFormController extends BaseFormController {
 		Locale locale = request.getLocale();
 		
 		if (request.getParameter("delete") != null) {
-			//TODO fare elimina
+			movieManager.deleteMovieFromShelf(personalMovie.getMovie(), request.getRemoteUser());
             return new ModelAndView(getSuccessView());
             
         } else if(request.getParameter("update") != null) {

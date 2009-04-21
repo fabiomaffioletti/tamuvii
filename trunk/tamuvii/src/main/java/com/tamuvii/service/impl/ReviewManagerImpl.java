@@ -100,4 +100,12 @@ public class ReviewManagerImpl implements ReviewManager {
 		return reviewDao.selectByPrimaryKey(review);
 	}
 
+	public void deleteReview(Integer movie, String username) {
+		ReviewExample reviewExample = new ReviewExample();
+		Criteria reviewCriteria = reviewExample.createCriteria();
+		reviewCriteria.andMovieEqualTo(movie);
+		reviewCriteria.andUsernameEqualTo(username);
+		reviewDao.deleteByExample(reviewExample);
+	}
+
 }

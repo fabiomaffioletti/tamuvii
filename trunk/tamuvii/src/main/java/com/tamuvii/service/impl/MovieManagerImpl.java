@@ -14,6 +14,7 @@ import com.tamuvii.model.UserToMovie;
 import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.MovieUser;
 import com.tamuvii.pojo.PersonalMovie;
+import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.SearchMovieFilter;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
@@ -131,6 +132,10 @@ public class MovieManagerImpl implements MovieManager {
 	
 	public List<Integer> getWishedMoviesIds(String username) {
 		return customMovieDao.getWishedMoviesIds(username);
+	}
+	public List<PersonalMovieIdAndWishedFlag> getPersonalMoviesIdsAndWishedFlags(
+			String username) {
+		return customMovieDao.getPersonalMoviesIdsAndWishedFlags(username);
 	}
 
 }

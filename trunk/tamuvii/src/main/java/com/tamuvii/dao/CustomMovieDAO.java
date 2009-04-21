@@ -5,6 +5,7 @@ import java.util.List;
 import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.MovieUser;
 import com.tamuvii.pojo.PersonalMovie;
+import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.SearchMovieFilter;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
@@ -31,5 +32,7 @@ public interface CustomMovieDAO {
 	public List<Integer> getShelfMoviesIds(String username);
 	
 	public List<Integer> getWishedMoviesIds(String username);
+	
+	public List<PersonalMovieIdAndWishedFlag> getPersonalMoviesIdsAndWishedFlags(String username);
 	
 }

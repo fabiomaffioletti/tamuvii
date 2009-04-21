@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.service.MovieManager;
 
@@ -34,8 +35,8 @@ public class ShelfController implements Controller {
 			}
 		else {
 			username = request.getParameter("username");
-			List<Integer> personalMoviesIds = movieManager.getPersonalMoviesIds(request.getRemoteUser());
-			mv.addObject("personalMoviesIds", personalMoviesIds);
+			List<PersonalMovieIdAndWishedFlag> personalMoviesIdsAndWishedFlags = movieManager.getPersonalMoviesIdsAndWishedFlags(request.getRemoteUser());
+			mv.addObject("personalMoviesIdsAndWishedFlags", personalMoviesIdsAndWishedFlags);
 		}
 			
 		List<ShelfItem> shelfItems = movieManager.getMoviesByUsername(username);

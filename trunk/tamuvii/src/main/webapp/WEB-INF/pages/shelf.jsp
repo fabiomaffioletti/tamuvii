@@ -35,16 +35,29 @@
 	    </c:when>
 	    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
 	    	<display:column title="actions">
-	    		<c:set var="found" value="0" />
-		    	<c:forEach var="personalMovieId" items="${personalMoviesIds}">
-		    		<c:if test="${personalMovieId == shelfItems.movie}">
-		    			<c:set var="found" value="1" />
+	    		<c:set var="isInPersonalMovies" value="0" />
+	    		<c:set var="isWished" value="0" />
+		    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">
+		    		<c:if test="${personalMovieId.movie == shelfItems.movie}">
+		    			<c:set var="isInPersonalMovies" value="1" />
+		    			<c:if test="${personalMovieId.wished == 1}">
+		    				<c:set var="isWished" value="1" />
+		    			</c:if>
 		    		</c:if>
 		    	</c:forEach>
-		    	<c:if test="${found == 0}">
-		    		<a href="/shelfManagement.html?action=add&movie=${shelfItems.movie}">add</a>
-		    		<a href="/shelfManagement.html?action=wish&movie=${shelfItems.movie}">wish</a>
-		    	</c:if>
+		    	
+		    	<c:choose>
+			    	<c:when test="${isInPersonalMovies == 0}">
+			    		<a href="/shelfManagement.html?action=add&movie=${shelfItems.movie}">add</a>
+			    		<a href="/shelfManagement.html?action=wish&movie=${shelfItems.movie}">wish</a>
+			    	</c:when>
+			    	<c:otherwise>
+			    		Film gi&agrave; presente in
+			    		<c:if test="${isWished == 0}"> libreria </c:if>
+			    		<c:if test="${isWished == 1}"> wishlist </c:if>
+			    	</c:otherwise>
+		    	</c:choose>
+		    	
 	    	</display:column>
 	    </c:when>
     </c:choose>

@@ -52,6 +52,11 @@
         <result property="username" jdbcType="VARCHAR" column="username"/>
         <result column="mark" jdbcType="INTEGER" property="mark" />
   </resultMap>
+  
+  <resultMap id="personalMovieIdAndWishedFlag" class="com.tamuvii.pojo.PersonalMovieIdAndWishedFlag" >
+	    <result column="movie" property="movie" jdbcType="INTEGER" />
+	    <result column="wished" property="wished" jdbcType="VARCHAR" />
+  </resultMap>
 
 
   <select id="getMoviesByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
@@ -214,5 +219,13 @@
 		where			um.username = #username#
 		and				um.wished = '1'
   </select>
+  
+  <select id="getPersonalMoviesIdsAndWishedFlags" resultMap="personalMovieIdAndWishedFlag" parameterClass="java.lang.String" >
+  		select			um.movie,
+  						um.wished
+		from			user_to_movie um
+		where			um.username = #username#
+  </select>
+  
   
 </sqlMap>

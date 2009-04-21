@@ -26,7 +26,7 @@
 			da implementare: rimuovi dalla vicinanza
 		</c:when>
 		<c:otherwise>
-			da implementare: aggiungi come amico<br/>
+			da implementare: <a href="/relationshipManagement.html?action=addFriend&username=${username}">Aggiungi come amico</a> <br/>
 			da implementare: aggiungi come vicino
 		</c:otherwise>
 	</c:choose>

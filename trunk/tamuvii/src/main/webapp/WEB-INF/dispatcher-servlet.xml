@@ -93,6 +93,7 @@
                 
                 <!-- Relationship -->
                 /relationship.html=relationshipController
+                /relationshipManagement.html=relationshipManagementController
                 
                 <!-- Backend mappings -->
                 /be_moviesList.html=movieListController
@@ -165,6 +166,10 @@
     </bean>
     
     <bean id="relationshipController" class="com.tamuvii.webapp.controller.RelationshipController">
+    	<property name="relationshipManager" ref="relationshipManager" />
+    </bean>
+    
+    <bean id="relationshipManagementController" class="com.tamuvii.webapp.controller.RelationshipManagementController">
     	<property name="relationshipManager" ref="relationshipManager" />
     </bean>
     

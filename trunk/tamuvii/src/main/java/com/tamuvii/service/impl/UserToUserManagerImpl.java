@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.dao.UserToUserDAO;
+import com.tamuvii.model.UserToUser;
 import com.tamuvii.model.UserToUserExample;
+import com.tamuvii.model.UserToUserKey;
 import com.tamuvii.model.UserToUserExample.Criteria;
 import com.tamuvii.pojo.UserNeighbor;
 import com.tamuvii.service.UserToUserManager;
@@ -47,4 +49,40 @@ public class UserToUserManagerImpl implements UserToUserManager {
 		userToUserCriteria.andFriendEqualTo(0);
 		return userToUserDao.selectByExample(userToUserExample).size() > 0;
 	}
+	
+	public boolean areRelated(String first, String second) {
+		UserToUserKey userToUserKey = new UserToUserKey();
+		userToUserKey.setFirst(first);
+		userToUserKey.setSecond(second);
+		return userToUserDao.selectByPrimaryKey(userToUserKey) != null;
+	}
+	
+	
+	public void addFriend(String username, String remoteUser) {
+		UserToUser userToUser = new UserToUser();
+		userToUser.setFirst(remoteUser);
+		userToUser.setSecond(username);
+		userToUser.setFriend(1);
+		userToUserDao.insertSelective(userToUser);
+	}
+	
+	public void addNeighborhood(String username, String remoteUser) {
+		UserToUser userToUser = new UserToUser();
+		userToUser.setFirst(remoteUser);
+		userToUser.setSecond(username);
+		userToUser.setFriend(0);
+		userToUserDao.insertSelective(userToUser);
+	}
+	
+	public void deleteRelation(String username, String remoteUser) {
+		UserToUserKey userToUserKey = new UserToUserKey();
+		userToUserKey.setFirst(remoteUser);
+		userToUserKey.setSecond(username);
+		userToUserDao.deleteByPrimaryKey(userToUserKey);
+	}
+	
+	public void moveRelation(String username, String remoteUser, int value) {
+		//TODO!!! move relation
+	}
+
 }

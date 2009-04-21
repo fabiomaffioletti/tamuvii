@@ -12,6 +12,12 @@ public interface UserToMovieManager {
 	
 	public void addMovieToShelf(Integer movie, String username);
 	
+	public void deleteMovieFromShelf(Integer movie, String username);
+	
 	public void addMovieToWishlist(Integer movie, String username);
+	
+	public void deleteMovieFromWishlist(Integer movie, String username);
+	
+	public void moveMovieFromWishlistToShelf(Integer movie, String username);
 	
 }

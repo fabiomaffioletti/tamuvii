@@ -18,14 +18,15 @@ Hai cercato: ${filter}
 <c:choose>
 	<c:when test="${!presentInShelf && !presentInWishlist}">
 		<a href="/shelfManagement.html?action=add&movie=${socialMovie.movie}">Add to shelf</a>
-		<a href="/shelfManagement.html?action=wish&movie=${socialMovie.movie}">Add to wishlist</a>
+		<a href="/wishlistManagement.html?action=wish&movie=${socialMovie.movie}">Add to wishlist</a>
 	</c:when>
 	<c:when test="${!presentInShelf && presentInWishlist}">
 		Questo libro è presente nella tua wishlist:
-		<a href="/shelfManagement.html?move=add&movie=${socialMovie.movie}">Move to shelf</a>
+		<a href="/shelfManagement.html?action=move&movie=${socialMovie.movie}">Move to shelf</a>
 	</c:when>
 	<c:otherwise>
 		Questo libro è presente nella tua shelf!
+		<a href="/shelfManagement.html?action=delete&movie=${socialMovie.movie}">Delete from shelf</a>
 	</c:otherwise>
 </c:choose>
 

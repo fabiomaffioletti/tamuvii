@@ -13,7 +13,7 @@ import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
 
 public interface CustomMovieDAO {
 	
-	public List<ShelfItem> getMoviesByUsername(String username);
+	public List<ShelfItem> getShelfByUsername(String username);
 	
 	public List<ShelfItem> getWishedMoviesByUsername(String username);
 	

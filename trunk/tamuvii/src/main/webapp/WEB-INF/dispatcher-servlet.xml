@@ -82,6 +82,7 @@
                 /shelf.html=shelfController
                 /wishlist.html=wishlistController
                 /shelfManagement.html=shelfManagementController
+                /wishlistManagement.html=wishlistManagementController
                 /socialMovie.html=socialMovieController
                 /personalMovie.html=personalMovieFormController
                 
@@ -152,6 +153,10 @@
     </bean>
     
     <bean id="shelfManagementController" class="com.tamuvii.webapp.controller.ShelfManagementController">
+    	<property name="movieManager" ref="movieManager" />
+    </bean>
+    
+    <bean id="wishlistManagementController" class="com.tamuvii.webapp.controller.WishlistManagementController">
     	<property name="movieManager" ref="movieManager" />
     </bean>
     

@@ -59,7 +59,7 @@
   </resultMap>
 
 
-  <select id="getMoviesByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
+  <select id="getShelfByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
 		select				m.movie, 
 							m.duration, 
 							m.original_title,

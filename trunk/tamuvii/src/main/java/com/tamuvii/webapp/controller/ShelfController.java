@@ -39,7 +39,7 @@ public class ShelfController implements Controller {
 			mv.addObject("personalMoviesIdsAndWishedFlags", personalMoviesIdsAndWishedFlags);
 		}
 			
-		List<ShelfItem> shelfItems = movieManager.getMoviesByUsername(username);
+		List<ShelfItem> shelfItems = movieManager.getShelfByUsername(username);
 		mv.addObject("shelfItems", shelfItems);
 		mv.addObject("username", username);
 		mv.setViewName("shelf");

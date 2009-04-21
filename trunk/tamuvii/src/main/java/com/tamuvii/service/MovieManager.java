@@ -10,7 +10,7 @@ import com.tamuvii.pojo.SocialMovie;
 
 public interface MovieManager {
 	
-	public List<ShelfItem> getMoviesByUsername(String username);
+	public List<ShelfItem> getShelfByUsername(String username);
 	
 	public List<ShelfItem> getWishedMoviesByUsername(String username);
 	
@@ -31,6 +31,12 @@ public interface MovieManager {
 	public void addMovieToShelf(Integer movie, String username);
 	
 	public void addMovieToWishlist(Integer movie, String username);
+	
+	public void deleteMovieFromShelf(Integer movie, String username);
+	
+	public void deleteMovieFromWishlist(Integer movie, String username);
+	
+	public void moveMovieFromWishlistToShelf(Integer movie, String username);
 	
 	public List<Integer> getPersonalMoviesIds(String username); 
 	

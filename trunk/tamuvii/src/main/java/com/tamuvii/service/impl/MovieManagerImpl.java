@@ -43,8 +43,8 @@ public class MovieManagerImpl implements MovieManager {
 	}
 
 
-	public List<ShelfItem> getMoviesByUsername(String username) {
-		return customMovieDao.getMoviesByUsername(username);
+	public List<ShelfItem> getShelfByUsername(String username) {
+		return customMovieDao.getShelfByUsername(username);
 	}
 	
 	public List<ShelfItem> getWishedMoviesByUsername(String username) {
@@ -133,9 +133,28 @@ public class MovieManagerImpl implements MovieManager {
 	public List<Integer> getWishedMoviesIds(String username) {
 		return customMovieDao.getWishedMoviesIds(username);
 	}
+	
 	public List<PersonalMovieIdAndWishedFlag> getPersonalMoviesIdsAndWishedFlags(
 			String username) {
 		return customMovieDao.getPersonalMoviesIdsAndWishedFlags(username);
+	}
+	
+	
+	public void deleteMovieFromShelf(Integer movie, String username) {
+		if(doesMovieBelongToUserShelf(movie, username)) {
+			userToMovieManager.deleteMovieFromShelf(movie, username);
+		}
+	}
+	
+	public void deleteMovieFromWishlist(Integer movie, String username) {
+		if(doesMovieBelongToUserWishlist(movie, username)) {
+			userToMovieManager.deleteMovieFromWishlist(movie, username);
+		}
+	}
+	public void moveMovieFromWishlistToShelf(Integer movie, String username) {
+		if(doesMovieBelongToUserWishlist(movie, username)) {
+			userToMovieManager.moveMovieFromWishlistToShelf(movie, username);
+		}
 	}
 
 }

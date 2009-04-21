@@ -5,6 +5,7 @@ import java.util.Calendar;
 import com.tamuvii.dao.UserToMovieDAO;
 import com.tamuvii.model.UserToMovie;
 import com.tamuvii.model.UserToMovieExample;
+import com.tamuvii.model.UserToMovieKey;
 import com.tamuvii.model.UserToMovieExample.Criteria;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.service.UserToMovieManager;
@@ -63,6 +64,33 @@ public class UserToMovieManagerImpl implements UserToMovieManager {
 		userToMovieCriteria.andUsernameEqualTo(username);
 		userToMovieCriteria.andWishedEqualTo(1);
 		return userToMovieDao.selectByExample(userToMovieExample).size() > 0;
+	}
+
+
+	public void deleteMovieFromShelf(Integer movie, String username) {
+		UserToMovieKey userToMovieKey = new UserToMovieKey();
+		userToMovieKey.setMovie(movie);
+		userToMovieKey.setUsername(username);
+		userToMovieDao.deleteByPrimaryKey(userToMovieKey);
+	}
+
+
+	public void deleteMovieFromWishlist(Integer movie, String username) {
+		UserToMovieKey userToMovieKey = new UserToMovieKey();
+		userToMovieKey.setMovie(movie);
+		userToMovieKey.setUsername(username);
+		userToMovieDao.deleteByPrimaryKey(userToMovieKey);
+	}
+
+
+	public void moveMovieFromWishlistToShelf(Integer movie, String username) {
+		UserToMovieKey userToMovieKey = new UserToMovieKey();
+		userToMovieKey.setMovie(movie);
+		userToMovieKey.setUsername(username);
+		UserToMovie userToMovie = userToMovieDao.selectByPrimaryKey(userToMovieKey);
+		userToMovie.setDateadded(Calendar.getInstance().getTime());
+		userToMovie.setWished(0);
+		userToMovieDao.updateByPrimaryKeySelective(userToMovie);
 	}
 
 }

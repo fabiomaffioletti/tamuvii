@@ -8,7 +8,7 @@ import org.springframework.web.servlet.mvc.Controller;
 
 import com.tamuvii.service.MovieManager;
 
-public class ShelfManagementController implements Controller {
+public class WishlistManagementController implements Controller {
 	private MovieManager movieManager = null;
 
 	public void setMovieManager(MovieManager movieManager) {
@@ -21,13 +21,17 @@ public class ShelfManagementController implements Controller {
 		
 		Integer movie = request.getParameter("movie") == null ? null : Integer.parseInt(request.getParameter("movie"));
 		
-		if(request.getParameter("action") != null && request.getParameter("action").equals("add")) {
-			movieManager.addMovieToShelf(movie, request.getRemoteUser());
-			mv.setViewName("redirect:/personalMovie.html?movie="+movie);
+		if(request.getParameter("action") != null && request.getParameter("action").equals("wish")) {
+			movieManager.addMovieToWishlist(movie, request.getRemoteUser());
+			mv.setViewName("redirect:/wishlist.html");
 		} else if(request.getParameter("action") != null && request.getParameter("action").equals("delete")) {
-			movieManager.deleteMovieFromShelf(movie, request.getRemoteUser());
-			mv.setViewName("redirect:/shelf.html");
+			movieManager.deleteMovieFromWishlist(movie, request.getRemoteUser());
+			mv.setViewName("redirect:/wishlist.html");
+		} else if(request.getParameter("action") != null && request.getParameter("action").equals("move")) {
+			movieManager.moveMovieFromWishlistToShelf(movie, request.getRemoteUser());
+			mv.setViewName("redirect:/personalMovie.html?movie="+movie);
 		}
+		
 		return mv;
 	}
 

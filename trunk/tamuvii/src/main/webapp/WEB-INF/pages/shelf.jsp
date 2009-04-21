@@ -49,7 +49,7 @@
 		    	<c:choose>
 			    	<c:when test="${isInPersonalMovies == 0}">
 			    		<a href="/shelfManagement.html?action=add&movie=${shelfItems.movie}">add</a>
-			    		<a href="/shelfManagement.html?action=wish&movie=${shelfItems.movie}">wish</a>
+			    		<a href="/wishlistManagement.html?action=wish&movie=${shelfItems.movie}">wish</a>
 			    	</c:when>
 			    	<c:otherwise>
 			    		Film gi&agrave; presente in

@@ -21,4 +21,12 @@ public class RelationshipManagerImpl implements RelationshipManager {
 		return userToUserManager.getUserNeighborhoods(username);
 	}
 
+	public boolean areFriends(String first, String second) {
+		return userToUserManager.areFriends(first, second);
+	}
+
+	public boolean areNeighborhoods(String first, String second) {
+		return userToUserManager.areNeighborhoods(first, second);
+	}
+
 }

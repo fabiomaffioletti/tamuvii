@@ -9,5 +9,9 @@ public interface UserToUserManager {
 	public List<UserNeighbor> getUserNeighborhoods(String username);
 	
 	public List<UserNeighbor> getUserFriends(String username);
+	
+	public boolean areFriends(String first, String second);
+	
+	public boolean areNeighborhoods(String first, String second);
 
 }

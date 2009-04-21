@@ -13,6 +13,25 @@
 <br/>
 <br/>
 
+<c:if test="${not empty username && username != pageContext.request.remoteUser}">
+	<c:choose>
+		<c:when test="${areFriends}">
+			è un tuo amico<br/>
+			da implementare: vicinizza<br/>
+			da implementare: rimuovi dalle amicizie
+		</c:when>
+		<c:when test="${areNeighborhoods}">
+			è un tuo vicino<br/>
+			da implementare: amicizza<br/>
+			da implementare: rimuovi dalla vicinanza
+		</c:when>
+		<c:otherwise>
+			da implementare: aggiungi come amico<br/>
+			da implementare: aggiungi come vicino
+		</c:otherwise>
+	</c:choose>
+</c:if>
+
 <display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="25" class="table" export="true">
     <display:column property="movie" escapeXml="true" sortable="true" titleKey="movie.movie" />
     <display:column escapeXml="false" sortable="true" titleKey="movie.originaltitle">

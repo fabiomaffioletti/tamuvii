@@ -139,6 +139,7 @@
 	
 	<bean id="userToUserManager" class="com.tamuvii.service.impl.UserToUserManagerImpl">
 		<property name="customMovieDao" ref="customMovieDao" />
+		<property name="userToUserDao" ref="userToUserDao" />
 	</bean>
 	
 	<bean id="relationshipManager" class="com.tamuvii.service.impl.RelationshipManagerImpl">

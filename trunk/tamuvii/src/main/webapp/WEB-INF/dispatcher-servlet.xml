@@ -115,6 +115,7 @@
     
     <bean id="shelfController" class="com.tamuvii.webapp.controller.ShelfController">
     	<property name="movieManager" ref="movieManager" />
+    	<property name="relationshipManager" ref="relationshipManager" />
     </bean>
     
     <bean id="wishlistController" class="com.tamuvii.webapp.controller.WishlistController">

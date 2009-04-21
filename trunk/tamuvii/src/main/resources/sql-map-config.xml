@@ -16,4 +16,5 @@
     <sqlMap resource="sqlmaps/user_to_movie_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/director_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/opinion_SqlMap.xml"/>
+    <sqlMap resource="sqlmaps/user_to_user_SqlMap.xml"/>
 </sqlMapConfig>

@@ -5,8 +5,14 @@ public class MovieUser {
 	private Integer movieUser;
 	private String username;
 	private Integer mark;
+	private String imageLink;
 	
-	
+	public String getImageLink() {
+		return imageLink;
+	}
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
 	public Integer getMark() {
 		return mark;
 	}

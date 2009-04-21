@@ -82,4 +82,9 @@
     	<property name="dataSource" ref="dataSource"/>
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
+    
+    <bean id="userToUserDao" class="com.tamuvii.dao.impl.UserToUserDAOImpl">
+    	<property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
 </beans>

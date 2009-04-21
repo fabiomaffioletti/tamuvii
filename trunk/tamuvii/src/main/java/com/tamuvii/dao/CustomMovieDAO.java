@@ -9,6 +9,7 @@ import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.SearchMovieFilter;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
+import com.tamuvii.pojo.UserNeighbor;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
 
 public interface CustomMovieDAO {
@@ -34,5 +35,9 @@ public interface CustomMovieDAO {
 	public List<Integer> getWishedMoviesIds(String username);
 	
 	public List<PersonalMovieIdAndWishedFlag> getPersonalMoviesIdsAndWishedFlags(String username);
+	
+	public List<UserNeighbor> getUserFriends(String username);
+	
+	public List<UserNeighbor> getUserNeighborhoods(String username);
 	
 }

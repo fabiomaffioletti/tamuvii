@@ -91,6 +91,9 @@
                 /opinion.html=opinionController
                 /searchSocialMovies.html=searchSocialMovieController
                 
+                <!-- Relationship -->
+                /relationship.html=relationshipController
+                
                 <!-- Backend mappings -->
                 /be_moviesList.html=movieListController
             </value>
@@ -158,6 +161,10 @@
     
     <bean id="wishlistManagementController" class="com.tamuvii.webapp.controller.WishlistManagementController">
     	<property name="movieManager" ref="movieManager" />
+    </bean>
+    
+    <bean id="relationshipController" class="com.tamuvii.webapp.controller.RelationshipController">
+    	<property name="relationshipManager" ref="relationshipManager" />
     </bean>
     
 </beans>

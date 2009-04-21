@@ -46,7 +46,12 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <table tableName="user_to_movie" domainObjectName="UserToMovie" >
+    <!-- table tableName="user_to_movie" domainObjectName="UserToMovie" >
+      <property name="useActualColumnNames" value="false"/>
+	  <columnRenamingRule searchString="_" replaceString="" />
+    </table-->
+    
+    <table tableName="user_to_user" domainObjectName="UserToUser" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table>

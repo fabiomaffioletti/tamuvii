@@ -51,12 +51,23 @@
         <result property="movieUser" jdbcType="INTEGER" column="movieUser"/>
         <result property="username" jdbcType="VARCHAR" column="username"/>
         <result column="mark" jdbcType="INTEGER" property="mark" />
+        <result property="imageLink" jdbcType="VARCHAR" column="imageLink"/>
   </resultMap>
   
   <resultMap id="personalMovieIdAndWishedFlag" class="com.tamuvii.pojo.PersonalMovieIdAndWishedFlag" >
 	    <result column="movie" property="movie" jdbcType="INTEGER" />
 	    <result column="wished" property="wished" jdbcType="VARCHAR" />
   </resultMap>
+  
+  <resultMap id="userNeighbor" class="com.tamuvii.pojo.UserNeighbor">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+		<result property="email" column="email"/>
+        <result property="website" column="website"/>
+        <result property="address.city" column="city"/>
+        <result property="address.country" column="country"/>
+        <result property="imageLink" column="imageLink"/>
+   </resultMap>
 
 
   <select id="getShelfByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
@@ -158,7 +169,8 @@
   <select id="getUsersByMovie" resultMap="movieUser" parameterClass="java.lang.Integer">
 		select			u.id as movieUser,
 						u.username,
-						um.mark
+						um.mark,
+						u.image as imageLink
 					
 		from			app_user u		inner join		user_to_movie um
 						on u.username = um.username
@@ -226,6 +238,39 @@
 		from			user_to_movie um
 		where			um.username = #username#
   </select>
+  
+  
+  <select id="getUserFriends" resultMap="userNeighbor" parameterClass="java.lang.String" >
+		select 			u.id,
+					 	u.username, 
+						u.email,
+						u.website,
+						u.city,
+						u.country,
+						u.image as imageLink
+			
+		from 			user_to_user uu 		inner join 		app_user u
+						on uu.second = u.username
+		
+		where 			uu.first = #username#
+		and 			uu.friend = 1
+  </select>
+  
+  <select id="getUserNeighborhoods" resultMap="userNeighbor" parameterClass="java.lang.String" >
+		select 			u.id,
+					 	u.username, 
+						u.email,
+						u.website,
+						u.city,
+						u.country,
+						u.image as imageLink
+			
+		from 			user_to_user uu 		inner join 		app_user u
+						on uu.second = u.username
+		
+		where 			uu.first = #username#
+		and 			uu.friend = 0
+  </select>	
   
   
 </sqlMap>

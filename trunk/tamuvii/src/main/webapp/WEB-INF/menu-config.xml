@@ -17,6 +17,8 @@
         </Menu>
         <Menu name="ShelfMenu" title="menu.shelf" page="/shelf.html" roles="ROLE_ADMIN,ROLE_USER" />
         <Menu name="WishlistMenu" title="menu.wishlist" page="/wishlist.html" roles="ROLE_ADMIN,ROLE_USER" />
+        <Menu name="FriendsMenu" title="menu.friends" page="/relationship.html?mode=friends" roles="ROLE_ADMIN,ROLE_USER" />
+        <Menu name="NeighborhoodsMenu" title="menu.neighborhoods" page="/relationship.html?mode=neighborhoods" roles="ROLE_ADMIN,ROLE_USER" />
         <Menu name="Logout" title="user.logout" page="/logout.jsp" roles="ROLE_ADMIN,ROLE_USER"/>
     </Menus>
 </MenuConfig>

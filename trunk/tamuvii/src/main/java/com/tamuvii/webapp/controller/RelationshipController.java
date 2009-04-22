@@ -1,14 +1,11 @@
 package com.tamuvii.webapp.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.service.RelationshipManager;
 
 public class RelationshipController implements Controller {

@@ -13,24 +13,33 @@
 <br/>
 <br/>
 
-<c:if test="${not empty username && username != pageContext.request.remoteUser}">
-	<c:choose>
-		<c:when test="${areFriends}">
-			è un tuo amico<br/>
-			<a href="/relationshipManagement.html?action=moveToNeighborhoods&username=${username}">Cambia a vicino</a> <br/><br/>
-			<a href="/relationshipManagement.html?action=deleteFriend&username=${username}">Cancella come amico</a> <br/>
-		</c:when>
-		<c:when test="${areNeighborhoods}">
-			è un tuo vicino<br/>
-			<a href="/relationshipManagement.html?action=moveToFriends&username=${username}">Cambia a amico</a> <br/><br/>
-			<a href="/relationshipManagement.html?action=deleteNeighborhood&username=${username}">Cancella come vicino</a> <br/>
-		</c:when>
-		<c:otherwise>
-			<a href="/relationshipManagement.html?action=addFriend&username=${username}">Aggiungi come amico</a> <br/>
-			<a href="/relationshipManagement.html?action=addNeighborhood&username=${username}">Aggiungi come vicino</a> <br/>
-		</c:otherwise>
-	</c:choose>
-</c:if>
+<c:choose>
+	<c:when test="${not empty username && username != pageContext.request.remoteUser}">
+		<c:choose>
+			<c:when test="${areFriends}">
+				è un tuo amico<br/>
+				<a href="/relationshipManagement.html?action=moveToNeighborhoods&username=${username}">Cambia a vicino</a>
+				<br/>
+				<a href="/relationshipManagement.html?action=deleteFriend&username=${username}">Cancella come amico</a>
+				<br/>
+				<br/>
+			</c:when>
+			<c:when test="${areNeighborhoods}">
+				è un tuo vicino<br/>
+				<a href="/relationshipManagement.html?action=moveToFriends&username=${username}">Cambia a amico</a> <br/>
+				<a href="/relationshipManagement.html?action=deleteNeighborhood&username=${username}">Cancella come vicino</a> <br/>
+			</c:when>
+			<c:otherwise>
+				<a href="/relationshipManagement.html?action=addFriend&username=${username}">Aggiungi come amico</a> <br/>
+				<a href="/relationshipManagement.html?action=addNeighborhood&username=${username}">Aggiungi come vicino</a> <br/>
+			</c:otherwise>
+		</c:choose>
+		
+		<a href="/relationship.html?mode=friends&username=${username}">Vedi i suoi amici</a>
+		<a href="/relationship.html?mode=neighborhoods&username=${username}">Vedi i suoi vicini</a>
+	</c:when>
+</c:choose>
+
 
 <display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="25" class="table" export="true">
     <display:column property="movie" escapeXml="true" sortable="true" titleKey="movie.movie" />

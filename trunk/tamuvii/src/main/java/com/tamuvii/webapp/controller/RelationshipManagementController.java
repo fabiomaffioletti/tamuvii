@@ -25,13 +25,24 @@ public class RelationshipManagementController implements Controller {
 		if(action.equals("addFriend")) {
 			relationshipManager.addFriend(username, request.getRemoteUser());
 			mv.setViewName("redirect:/relationship.html?mode=friends");
+			
 		} else if(action.equals("addNeighborhood")) {
 			relationshipManager.addNeighborhood(username, request.getRemoteUser());
 			mv.setViewName("redirect:/relationship.html?mode=neighborhoods");
-		} else if(action.equals("deleteRelationship")) {
-			relationshipManager.deleteRelation(username, request.getRemoteUser());
-		} else if(action.equals("moveRelationship")) {
+			
+		} else if(action.equals("deleteFriend")) {
+			relationshipManager.deleteFriend(username, request.getRemoteUser());
+			
+		} else if(action.equals("deleteNeighborhood")) {
+			relationshipManager.deleteNeighborhood(username, request.getRemoteUser());
+			
+		} else if(action.equals("moveToFriends")) {
 			relationshipManager.moveRelation(username, request.getRemoteUser());
+			mv.setViewName("redirect:/relationship.html?mode=friends");
+			
+		} else if(action.equals("moveToNeighborhoods")) {
+			relationshipManager.moveRelation(username, request.getRemoteUser());
+			mv.setViewName("redirect:/relationship.html?mode=neighborhoods");
 		}
 		
 		return mv;

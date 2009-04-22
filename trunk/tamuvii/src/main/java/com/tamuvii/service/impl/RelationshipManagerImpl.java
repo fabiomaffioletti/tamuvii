@@ -2,6 +2,8 @@ package com.tamuvii.service.impl;
 
 import java.util.List;
 
+import com.tamuvii.model.UserToUserExample;
+import com.tamuvii.model.UserToUserExample.Criteria;
 import com.tamuvii.pojo.UserNeighbor;
 import com.tamuvii.service.RelationshipManager;
 import com.tamuvii.service.UserToUserManager;
@@ -46,13 +48,23 @@ public class RelationshipManagerImpl implements RelationshipManager {
 		}
 	}
 
-	public void deleteRelation(String username, String remoteUser) {
-		userToUserManager.deleteRelation(username, remoteUser);
+	public void deleteFriend(String username, String remoteUser) {
+		if(areFriends(remoteUser, username)) {
+			userToUserManager.deleteRelation(username, remoteUser);
+		}
+	}
+	
+	public void deleteNeighborhood(String username, String remoteUser) {
+		if(areNeighborhoods(remoteUser, username)) {
+			userToUserManager.deleteRelation(username, remoteUser);
+		}
 	}
 
 	public void moveRelation(String username, String remoteUser) {
-		if(areRelated(remoteUser, username)) {
-			//TODO modifica della tabella
+		if(areFriends(remoteUser, username)) {
+			userToUserManager.moveRelation(username, remoteUser, 0);
+		} else if(areNeighborhoods(remoteUser, username)) {
+			userToUserManager.moveRelation(username, remoteUser, 1);
 		}
 	}
 

@@ -17,17 +17,17 @@
 	<c:choose>
 		<c:when test="${areFriends}">
 			è un tuo amico<br/>
-			da implementare: vicinizza<br/>
-			da implementare: rimuovi dalle amicizie
+			<a href="/relationshipManagement.html?action=moveToNeighborhoods&username=${username}">Cambia a vicino</a> <br/><br/>
+			<a href="/relationshipManagement.html?action=deleteFriend&username=${username}">Cancella come amico</a> <br/>
 		</c:when>
 		<c:when test="${areNeighborhoods}">
 			è un tuo vicino<br/>
-			da implementare: amicizza<br/>
-			da implementare: rimuovi dalla vicinanza
+			<a href="/relationshipManagement.html?action=moveToFriends&username=${username}">Cambia a amico</a> <br/><br/>
+			<a href="/relationshipManagement.html?action=deleteNeighborhood&username=${username}">Cancella come vicino</a> <br/>
 		</c:when>
 		<c:otherwise>
-			da implementare: <a href="/relationshipManagement.html?action=addFriend&username=${username}">Aggiungi come amico</a> <br/>
-			da implementare: <a href="/relationshipManagement.html?action=addNeighborhood&username=${username}">Aggiungi come vicino</a> <br/>
+			<a href="/relationshipManagement.html?action=addFriend&username=${username}">Aggiungi come amico</a> <br/>
+			<a href="/relationshipManagement.html?action=addNeighborhood&username=${username}">Aggiungi come vicino</a> <br/>
 		</c:otherwise>
 	</c:choose>
 </c:if>

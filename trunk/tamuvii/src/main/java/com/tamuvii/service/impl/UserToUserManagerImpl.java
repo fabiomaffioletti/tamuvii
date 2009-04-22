@@ -82,7 +82,11 @@ public class UserToUserManagerImpl implements UserToUserManager {
 	}
 	
 	public void moveRelation(String username, String remoteUser, int value) {
-		//TODO!!! move relation
+		UserToUser userToUser = new UserToUser();
+		userToUser.setFirst(remoteUser);
+		userToUser.setSecond(username);
+		userToUser.setFriend(value);
+		userToUserDao.updateByPrimaryKeySelective(userToUser);
 	}
 
 }

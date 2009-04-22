@@ -18,7 +18,9 @@ public interface RelationshipManager {
 	
 	public void addNeighborhood(String username, String  remoteUser);
 	
-	public void deleteRelation(String username, String  remoteUser);
+	public void deleteFriend(String username, String  remoteUser);
+	
+	public void deleteNeighborhood(String username, String remoteUser);
 	
 	public void moveRelation(String username, String  remoteUser);
 	

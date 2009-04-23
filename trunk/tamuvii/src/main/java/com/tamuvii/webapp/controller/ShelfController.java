@@ -31,8 +31,7 @@ public class ShelfController implements Controller {
 		String username = "";
 		if(request.getParameter("username") == null)
 			if(request.getRemoteUser() == null) {
-				//TODO aggiungere il messaggio di errore
-				mv.setViewName("genericErrorView");
+				mv.setViewName("redirect:mainMenu.html");
 				return mv;
 			}
 			else {

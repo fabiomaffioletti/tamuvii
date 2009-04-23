@@ -87,4 +87,9 @@
     	<property name="dataSource" ref="dataSource"/>
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
+    
+    <bean id="messageDao" class="com.tamuvii.dao.impl.MessageDAOImpl">
+    	<property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
 </beans>

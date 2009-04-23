@@ -68,6 +68,22 @@
         <result property="address.country" column="country"/>
         <result property="imageLink" column="imageLink"/>
    </resultMap>
+   
+   <resultMap id="groupedUserMessageListItem" class="com.tamuvii.pojo.MessageUserItem">
+        <result property="message.message" column="message"/>
+        <result property="message.sender" column="sender"/>
+        <result property="message.receiver" column="receiver"/>
+        <result property="message.messagetext" column="messagetext"/>
+        <result property="message.dateadded" column="dateadded"/>
+		<result property="user.id" column="id"/>
+        <result property="user.username" column="username"/>
+		<result property="user.email" column="email"/>
+        <result property="user.website" column="website"/>
+        <result property="user.address.city" column="city"/>
+        <result property="user.address.country" column="country"/>
+        <result property="user.imageLink" column="imageLink"/>
+        <result property="numMessages" column="numMessages"/>
+   </resultMap>
 
 
   <select id="getShelfByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
@@ -270,7 +286,29 @@
 		
 		where 			uu.first = #username#
 		and 			uu.friend = 0
-  </select>	
+  </select>
+  
+  <select id="getGroupedMessagesByUser" resultMap="groupedUserMessageListItem" parameterClass="java.lang.String" >
+  		select			m.message, 
+						m.sender,
+						m.receiver,
+						m.message_text as messagetext,
+						m.date_added as dateadded,
+						u.id,
+						u.username, 
+						u.email,
+						u.website,
+						u.city,
+						u.country,
+						u.image as imageLink,
+						count(m.message) as numMessages
+
+		from			message m inner join app_user u
+						on m.receiver = u.username
+		
+		where			m.sender = #username#
+		group by		m.receiver
+  </select>
   
   
 </sqlMap>

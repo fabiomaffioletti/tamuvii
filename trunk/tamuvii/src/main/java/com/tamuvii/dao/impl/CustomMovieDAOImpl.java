@@ -6,6 +6,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.pojo.DetailedReview;
+import com.tamuvii.pojo.MessageUserItem;
 import com.tamuvii.pojo.MovieUser;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
@@ -83,6 +84,11 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 	@SuppressWarnings("unchecked")
 	public List<UserNeighbor> getUserNeighborhoods(String username) {
 		return getSqlMapClientTemplate().queryForList("custom_movie.getUserNeighborhoods", username);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<MessageUserItem> getGroupedMessagesByUser(String username) {
+		return getSqlMapClientTemplate().queryForList("custom_movie.getGroupedMessagesByUser", username);
 	}
 
 }

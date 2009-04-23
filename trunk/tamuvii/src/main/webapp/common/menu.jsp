@@ -11,6 +11,7 @@
     <menu:displayMenu name="WishlistMenu"/>
     <menu:displayMenu name="FriendsMenu"/>
     <menu:displayMenu name="NeighborhoodsMenu"/>
+    <menu:displayMenu name="MessageMenu"/>
     <menu:displayMenu name="Logout"/>
 </ul>
 </menu:useMenuDisplayer>

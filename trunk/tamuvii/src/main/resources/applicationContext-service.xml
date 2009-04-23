@@ -145,5 +145,9 @@
 	<bean id="relationshipManager" class="com.tamuvii.service.impl.RelationshipManagerImpl">
 		<property name="userToUserManager" ref="userToUserManager" />
 	</bean>
+	
+	<bean id="messageManager" class="com.tamuvii.service.impl.MessageManagerImpl">
+		<property name="customMovieDao" ref="customMovieDao" />
+	</bean>
 	    
 </beans>

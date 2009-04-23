@@ -85,6 +85,7 @@
                 /wishlistManagement.html=wishlistManagementController
                 /socialMovie.html=socialMovieController
                 /personalMovie.html=personalMovieFormController
+                /personalMessages.html=messageController
                 
                 /directorDetail.html=directorDetailController
                 /reviewDiscussion.html=discussionFormController
@@ -171,6 +172,10 @@
     
     <bean id="relationshipManagementController" class="com.tamuvii.webapp.controller.RelationshipManagementController">
     	<property name="relationshipManager" ref="relationshipManager" />
+    </bean>
+    
+    <bean id="messageController" class="com.tamuvii.webapp.controller.MessageController">
+    	<property name="messageManager" ref="messageManager" />
     </bean>
     
 </beans>

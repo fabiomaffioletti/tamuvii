@@ -51,7 +51,7 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <table tableName="user_to_user" domainObjectName="UserToUser" >
+    <table tableName="message" domainObjectName="Message" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table>

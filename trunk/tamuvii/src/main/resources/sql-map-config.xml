@@ -17,5 +17,6 @@
     <sqlMap resource="sqlmaps/director_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/opinion_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/user_to_user_SqlMap.xml"/>
+    <sqlMap resource="sqlmaps/app_user_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/message_SqlMap.xml"/>
 </sqlMapConfig>

@@ -11,6 +11,7 @@ import com.tamuvii.pojo.SearchMovieFilter;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.UserNeighbor;
+import com.tamuvii.pojo.queryfilter.MessageUserFilter;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
 
 public interface CustomMovieDAO {
@@ -42,5 +43,11 @@ public interface CustomMovieDAO {
 	public List<UserNeighbor> getUserNeighborhoods(String username);
 	
 	public List<MessageUserItem> getGroupedMessagesByUser(String username);
+
+	public List<MessageUserItem> getAllMessagesByUser(String username);
+
+	public List<MessageUserItem> getConversationWithUser(MessageUserFilter messageUserFilter);
+
+	public UserNeighbor getUserPublicInfo(String username);
 	
 }

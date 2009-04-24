@@ -10,4 +10,6 @@ public interface MessageManager {
 	
 	public List<MessageUserItem> getAllMessagesByUser(String username);
 	
+	public List<MessageUserItem>  getConversationWithUser(String remoteUser, String username);
+	
 }

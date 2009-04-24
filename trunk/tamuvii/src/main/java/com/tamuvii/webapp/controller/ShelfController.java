@@ -10,13 +10,18 @@ import org.springframework.web.servlet.mvc.Controller;
 
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.ShelfItem;
+import com.tamuvii.service.AppUserManager;
 import com.tamuvii.service.MovieManager;
 import com.tamuvii.service.RelationshipManager;
 
 public class ShelfController implements Controller {
 	private MovieManager movieManager = null;
+	private AppUserManager appUserManager = null;
 	private RelationshipManager relationshipManager = null;
 
+	public void setAppUserManager(AppUserManager appUserManager) {
+		this.appUserManager = appUserManager;
+	}
 	public void setRelationshipManager(RelationshipManager relationshipManager) {
 		this.relationshipManager = relationshipManager;
 	}
@@ -49,9 +54,18 @@ public class ShelfController implements Controller {
 			}
 		}
 			
+		// Aggiunge i film della videoteca
 		List<ShelfItem> shelfItems = movieManager.getShelfByUsername(username);
 		mv.addObject("shelfItems", shelfItems);
+		
+		// Aggiunge le informazioni del profilo
+		mv.addObject("userPublicInfo", appUserManager.getUserPublicInfo(username));
 		mv.addObject("username", username);
+		
+		// Aggiunge gli amici e i vicini
+		mv.addObject("friends", relationshipManager.getUserFriends(username));
+		mv.addObject("neighborhoods", relationshipManager.getUserNeighborhoods(username));
+		
 		mv.setViewName("shelf");
 		return mv;
 	}

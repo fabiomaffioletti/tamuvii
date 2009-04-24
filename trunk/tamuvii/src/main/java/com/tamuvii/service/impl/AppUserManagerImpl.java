@@ -4,14 +4,19 @@ import java.io.File;
 import java.util.List;
 
 import com.tamuvii.dao.AppUserDAO;
+import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.model.AppUser;
 import com.tamuvii.model.AppUserExample;
+import com.tamuvii.pojo.UserNeighbor;
 import com.tamuvii.service.AppUserManager;
 
 public class AppUserManagerImpl implements AppUserManager {
-
+	private CustomMovieDAO customMovieDao = null;
 	private AppUserDAO appUserDao = null;
-	
+
+	public void setCustomMovieDao(CustomMovieDAO customMovieDao) {
+		this.customMovieDao = customMovieDao;
+	}
 	public void setAppUserDao(AppUserDAO appUserDAO) {
 		this.appUserDao = appUserDAO;
 	}
@@ -62,6 +67,13 @@ public class AppUserManagerImpl implements AppUserManager {
 		    if (!success)
 		      throw new IllegalArgumentException("Delete: deletion failed");
 		  }
+	}
+
+	
+	
+	
+	public UserNeighbor getUserPublicInfo(String username) {
+		return customMovieDao.getUserPublicInfo(username);
 	}
 
 }

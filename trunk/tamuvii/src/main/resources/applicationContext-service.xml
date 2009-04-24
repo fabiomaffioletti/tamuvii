@@ -148,6 +148,7 @@
 	
 	<bean id="appUserManager" class="com.tamuvii.service.impl.AppUserManagerImpl">
 		<property name="appUserDao" ref="appUserDao" />
+		<property name="customMovieDao" ref="customMovieDao" />
 	</bean>
 	
 	<bean id="messageManager" class="com.tamuvii.service.impl.MessageManagerImpl">

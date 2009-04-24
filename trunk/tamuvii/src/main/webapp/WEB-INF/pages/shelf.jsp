@@ -13,6 +13,81 @@
 <br/>
 <br/>
 
+<img style="cursor: pointer; border: 2px solid #ccc;" src="${userPublicInfo.imageLink}" onclick="Effect.toggle('publicInfo', 'slide',{ duration: 0.2 }); return false;" />
+<div id="publicInfo" style="width:200px; background-color:yellow;display:none;">
+  <div>
+    <table>
+		<tr>
+			<td>Username</td>
+			<td>${userPublicInfo.username}</td>
+		</tr>
+		<tr>
+			<td>Website</td>
+			<td>${userPublicInfo.website}</td>
+		</tr>
+	</table>
+  </div>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<c:if test="${not empty username && username != pageContext.request.remoteUser}">
+
+<a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Spedisci Messaggio</a>
+	<div id="sendMessage" style="width:180px;display:none;">
+		<form:form name="sendMessageForm" action="/message.html" method="POST">
+			<textarea name="messagetext" cols="20" rows="5"></textarea>
+			<input type="hidden" name="receiver" value="${username}" />
+			<input type="submit" name="sendMessage" value="Spedisci" />
+			<a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Annulla</a>
+		</form:form>  
+	</div>
+</c:if>
+
+<br/>
+<br/>
+<br/>
+<c:if test="${fn:length(friends) > 0}">
+	<a href="#" onclick="Effect.toggle('friends', 'slide',{ duration: 0.2 }); return false;">Friends</a>
+	<div id="friends" style="width:200px;">
+	  <div>
+		<display:table name="friends" cellspacing="0" cellpadding="0" defaultsort="1" id="friend" length="5" class="table" export="false">
+			<display:column property="id" escapeXml="true" sortable="true" titleKey="id" />
+			<display:column escapeXml="false" sortable="false" titleKey="immagine">
+				<img src="${friend.imageLink}" height="20px" width="20px;"/>
+			</display:column>
+		    <display:column escapeXml="false" sortable="true" titleKey="username">
+		    	<a href="/shelf.html?username=${friend.username}">${friend.username}</a> 
+		    </display:column>
+	</display:table>  
+	  </div>
+	</div>
+	<br/>
+	<br/>
+</c:if>
+
+<c:if test="${fn:length(neighborhoods) > 0}">
+	<a href="#" onclick="Effect.toggle('neighborhoods', 'slide',{ duration: 0.2 }); return false;">Vicini</a>
+	<div id="neighborhoods" style="width:200px;">
+	  <div>
+		<display:table name="neighborhoods" cellspacing="0" cellpadding="0" defaultsort="1" id="neighborhood" length="5" class="table" export="false">
+			<display:column property="id" escapeXml="true" sortable="true" titleKey="id" />
+			<display:column escapeXml="false" sortable="false" titleKey="immagine">
+				<img src="${neighborhood.imageLink}" height="20px" width="20px;"/>
+			</display:column>
+		    <display:column escapeXml="false" sortable="true" titleKey="username">
+		    	<a href="/shelf.html?username=${neighborhood.username}">${neighborhood.username}</a> 
+		    </display:column>
+	</display:table>  
+	  </div>
+	</div>
+	<br/>
+	<br/>
+</c:if>
+
 <c:choose>
 	<c:when test="${not empty username && username != pageContext.request.remoteUser}">
 		<c:choose>

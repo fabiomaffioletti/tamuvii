@@ -4,7 +4,6 @@ public class MessageUserFilter {
 	
 	private String remoteUser;
 	private String username;
-	private boolean conversation;
 	
 	public String getRemoteUser() {
 		return remoteUser;
@@ -17,12 +16,6 @@ public class MessageUserFilter {
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public boolean isConversation() {
-		return conversation;
-	}
-	public void setConversation(boolean conversation) {
-		this.conversation = conversation;
 	}
 
 }

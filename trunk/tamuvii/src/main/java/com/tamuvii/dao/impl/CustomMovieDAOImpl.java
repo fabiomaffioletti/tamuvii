@@ -14,6 +14,7 @@ import com.tamuvii.pojo.SearchMovieFilter;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.UserNeighbor;
+import com.tamuvii.pojo.queryfilter.MessageUserFilter;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
 
 public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements CustomMovieDAO {
@@ -89,6 +90,20 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 	@SuppressWarnings("unchecked")
 	public List<MessageUserItem> getGroupedMessagesByUser(String username) {
 		return getSqlMapClientTemplate().queryForList("custom_movie.getGroupedMessagesByUser", username);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<MessageUserItem> getAllMessagesByUser(String username) {
+		return getSqlMapClientTemplate().queryForList("custom_movie.getAllMessagesByUser", username);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<MessageUserItem> getConversationWithUser(MessageUserFilter messageUserFilter) {
+		return getSqlMapClientTemplate().queryForList("custom_movie.getConversationWithUser", messageUserFilter);
+	}
+
+	public UserNeighbor getUserPublicInfo(String username) {
+		return (UserNeighbor) getSqlMapClientTemplate().queryForObject("custom_movie.getUserPublicInfo", username);
 	}
 
 }

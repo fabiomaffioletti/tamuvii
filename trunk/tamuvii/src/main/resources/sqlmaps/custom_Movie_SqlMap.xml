@@ -310,5 +310,64 @@
 		group by		m.receiver
   </select>
   
+  <select id="getAllMessagesByUser" resultMap="groupedUserMessageListItem" parameterClass="java.lang.String" >
+  		select			m.message, 
+						m.sender,
+						m.receiver,
+						m.message_text as messagetext,
+						m.date_added as dateadded,
+						u.id,
+						u.username, 
+						u.email,
+						u.website,
+						u.city,
+						u.country,
+						u.image as imageLink,
+						count(m.message) as numMessages
+
+		from			message m inner join app_user u
+						on m.receiver = u.username
+		
+		where			m.sender = #username# or m.receiver = #username#
+		group by		m.receiver
+  </select>
+  
+  <select id="getConversationWithUser" resultMap="groupedUserMessageListItem" parameterClass="com.tamuvii.pojo.queryfilter.MessageUserFilter" >
+  		select			m.message, 
+						m.sender,
+						m.receiver,
+						m.message_text as messagetext,
+						m.date_added as dateadded,
+						u.id,
+						u.username, 
+						u.email,
+						u.website,
+						u.city,
+						u.country,
+						u.image as imageLink,
+						count(m.message) as numMessages
+
+		from			message m inner join app_user u
+						on m.receiver = u.username
+		
+		where			(m.sender = #remoteUser# and m.receiver = #username#) 
+						or (m.receiver = #remoteUser# and m.sender = #username#)
+						
+		group by		m.receiver
+  </select>
+  
+  <select id="getUserPublicInfo" resultMap="userNeighbor" parameterClass="java.lang.String" >
+		select 			u.id,
+					 	u.username, 
+						u.email,
+						u.website,
+						u.city,
+						u.country,
+						u.image as imageLink
+			
+		from 			app_user u
+		
+		where 			u.username = #username#  
+  </select>
   
 </sqlMap>

@@ -38,7 +38,7 @@
 
 <a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Spedisci Messaggio</a>
 	<div id="sendMessage" style="width:180px;display:none;">
-		<form:form name="sendMessageForm" action="/message.html" method="POST">
+		<form:form name="sendMessageForm" action="/sendMessage.html" method="POST">
 			<textarea name="messagetext" cols="20" rows="5"></textarea>
 			<input type="hidden" name="receiver" value="${username}" />
 			<input type="submit" name="sendMessage" value="Spedisci" />

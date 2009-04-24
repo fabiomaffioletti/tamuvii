@@ -92,6 +92,9 @@
                 /opinion.html=opinionController
                 /searchSocialMovies.html=searchSocialMovieController
                 
+                <!-- Messages -->
+                /sendMessage.html=messageManagementController
+                
                 <!-- Relationship -->
                 /relationship.html=relationshipController
                 /relationshipManagement.html=relationshipManagementController
@@ -176,6 +179,10 @@
     </bean>
     
     <bean id="messageController" class="com.tamuvii.webapp.controller.MessageController">
+    	<property name="messageManager" ref="messageManager" />
+    </bean>
+    
+    <bean id="messageManagementController" class="com.tamuvii.webapp.controller.MessageManagementController">
     	<property name="messageManager" ref="messageManager" />
     </bean>
     

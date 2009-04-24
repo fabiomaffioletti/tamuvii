@@ -153,6 +153,7 @@
 	
 	<bean id="messageManager" class="com.tamuvii.service.impl.MessageManagerImpl">
 		<property name="customMovieDao" ref="customMovieDao" />
+		<property name="messageDao" ref="messageDao" />
 	</bean>
 	    
 </beans>

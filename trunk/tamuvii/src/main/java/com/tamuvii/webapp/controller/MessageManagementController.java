@@ -8,7 +8,7 @@ import org.springframework.web.servlet.mvc.Controller;
 
 import com.tamuvii.service.MessageManager;
 
-public class MessageController implements Controller {
+public class MessageManagementController implements Controller {
 	private MessageManager messageManager = null;
 	
 	public void setMessageManager(MessageManager messageManager) {
@@ -20,14 +20,18 @@ public class MessageController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("groupedMessages", messageManager.getGroupedMessagesByUser(request.getRemoteUser()));
+		String receiver = request.getParameter("receiver") == null ? null : request.getParameter("receiver");
+		String sender = request.getRemoteUser();
+		String messagetext = request.getParameter("messagetext") == null ? null : request.getParameter("messagetext");
 		
-		if(request.getParameter("username") == null)
-			mv.addObject("allMessages", messageManager.getAllMessagesByUser(request.getRemoteUser()));
-		else // TODO Mettere a posto questa query
-			mv.addObject("allMessages", messageManager.getConversationWithUser(request.getRemoteUser(), request.getParameter("username")));
+		if(messagetext == null || messagetext.equals("")) {
+			mv.addObject("result", "ko");
+		} else {
+			messageManager.sendPersonalMessage(sender, receiver, messagetext);
+			mv.addObject("result", "ok");
+		}
 		
-		mv.setViewName("personalMessages");
+		mv.setViewName("sendMessageResult");
 		return mv;
 	}
 

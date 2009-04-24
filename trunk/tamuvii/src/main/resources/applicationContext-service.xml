@@ -146,6 +146,10 @@
 		<property name="userToUserManager" ref="userToUserManager" />
 	</bean>
 	
+	<bean id="appUserManager" class="com.tamuvii.service.impl.AppUserManagerImpl">
+		<property name="appUserDao" ref="appUserDao" />
+	</bean>
+	
 	<bean id="messageManager" class="com.tamuvii.service.impl.MessageManagerImpl">
 		<property name="customMovieDao" ref="customMovieDao" />
 	</bean>

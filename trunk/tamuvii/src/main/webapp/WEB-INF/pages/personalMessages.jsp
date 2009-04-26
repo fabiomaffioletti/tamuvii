@@ -25,7 +25,15 @@ Messaggi:
 <c:if test="${conversation}">
 	<br/>
 	<br/>
-	Rispondi // DA IMPLEMENTARE
+	<a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Rispondi</a>
+	<div id="sendMessage" style="width:180px;display:none;">
+		<form:form name="sendMessageForm" action="/sendMessage.html?returnView=personalMessages" method="POST">
+			<textarea id="messagetext" name="messagetext" cols="20" rows="5"></textarea>
+			<input type="hidden" id="receiver" name="receiver" value="${username}" />
+			<input type="submit" name="sendMessage" value="Spedisci" />
+			<a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Annulla</a>
+		</form:form>
+	</div>
 </c:if>
 <br/>
 <br/>

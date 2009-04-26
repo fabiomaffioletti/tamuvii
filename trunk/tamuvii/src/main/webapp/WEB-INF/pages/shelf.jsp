@@ -13,8 +13,25 @@
 <br/>
 <br/>
 
+<script>
+	function sendMessage() {
+		var receiver = $('receiver').value;
+		var messagetext = $('messagetext').value;
+		new Ajax.Request('/sendMessage.html?ajax=true&receiver='+receiver+'&messagetext='+messagetext, {
+			  method: 'post',
+			  onSuccess: function(response) {
+			    var notice = $('messagetext');
+			    notice.value = response.responseText;
+			}
+		});
+	}
+</script>
+
+<br/>
+<br/>
+
 <img style="cursor: pointer; border: 2px solid #ccc;" src="${userPublicInfo.imageLink}" onclick="Effect.toggle('publicInfo', 'slide',{ duration: 0.2 }); return false;" />
-<div id="publicInfo" style="width:200px; background-color:yellow;display:none;">
+<div id="publicInfo" style="width:200px; background-color:#ccc;display:none;">
   <div>
     <table>
 		<tr>
@@ -38,12 +55,10 @@
 
 <a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Spedisci Messaggio</a>
 	<div id="sendMessage" style="width:180px;display:none;">
-		<form:form name="sendMessageForm" action="/sendMessage.html" method="POST">
-			<textarea name="messagetext" cols="20" rows="5"></textarea>
-			<input type="hidden" name="receiver" value="${username}" />
-			<input type="submit" name="sendMessage" value="Spedisci" />
+			<textarea id="messagetext" name="messagetext" cols="20" rows="5"></textarea>
+			<input type="hidden" id="receiver" name="receiver" value="${username}" />
+			<input type="button" name="sendMessage" value="Spedisci" onclick="sendMessage()" />
 			<a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Annulla</a>
-		</form:form>  
 	</div>
 </c:if>
 

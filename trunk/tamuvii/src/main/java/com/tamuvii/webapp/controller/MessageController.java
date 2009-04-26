@@ -26,6 +26,7 @@ public class MessageController implements Controller {
 			mv.addObject("allMessages", messageManager.getInMessagesByUser(request.getRemoteUser()));
 		else {
 			mv.addObject("allMessages", messageManager.getConversationWithUser(request.getRemoteUser(), request.getParameter("username")));
+			mv.addObject("username", request.getParameter("username"));
 			mv.addObject("conversation", true);
 		}
 		

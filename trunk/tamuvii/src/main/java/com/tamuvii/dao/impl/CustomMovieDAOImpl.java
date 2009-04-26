@@ -93,8 +93,8 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<MessageUserItem> getAllMessagesByUser(String username) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getAllMessagesByUser", username);
+	public List<MessageUserItem> getInMessagesByUser(String username) {
+		return getSqlMapClientTemplate().queryForList("custom_movie.getInMessagesByUser", username);
 	}
 
 	@SuppressWarnings("unchecked")

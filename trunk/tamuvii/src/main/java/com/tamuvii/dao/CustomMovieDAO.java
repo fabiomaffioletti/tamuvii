@@ -44,7 +44,7 @@ public interface CustomMovieDAO {
 	
 	public List<MessageUserItem> getGroupedMessagesByUser(String username);
 
-	public List<MessageUserItem> getAllMessagesByUser(String username);
+	public List<MessageUserItem> getInMessagesByUser(String username);
 
 	public List<MessageUserItem> getConversationWithUser(MessageUserFilter messageUserFilter);
 

@@ -310,7 +310,7 @@
 		group by		m.receiver
   </select>
   
-  <select id="getAllMessagesByUser" resultMap="groupedUserMessageListItem" parameterClass="java.lang.String" >
+  <select id="getInMessagesByUser" resultMap="groupedUserMessageListItem" parameterClass="java.lang.String" >
   		select			m.message, 
 						m.sender,
 						m.receiver,
@@ -326,9 +326,10 @@
 						0 as numMessages
 
 		from			message m inner join app_user u
-						on m.receiver = u.username
+						on m.sender = u.username
 		
-		where			m.sender = #username# or m.receiver = #username#
+		where			m.receiver = #username#
+		order by		dateadded		desc
   </select>
   
   <select id="getConversationWithUser" resultMap="groupedUserMessageListItem" parameterClass="com.tamuvii.pojo.queryfilter.MessageUserFilter" >
@@ -344,15 +345,13 @@
 						u.city,
 						u.country,
 						u.image as imageLink,
-						count(m.message) as numMessages
+						0 as numMessages
 
 		from			message m inner join app_user u
-						on m.receiver = u.username
+						on m.sender = u.username
 		
-		where			(m.sender = #remoteUser# and m.receiver = #username#) 
-						or (m.receiver = #remoteUser# and m.sender = #username#)
-						
-		group by		m.receiver
+		where			(m.sender = #remoteUser# and m.receiver = #username#) or (m.receiver = #remoteUser# and m.sender = #username#)
+		order by		dateadded		desc
   </select>
   
   <select id="getUserPublicInfo" resultMap="userNeighbor" parameterClass="java.lang.String" >

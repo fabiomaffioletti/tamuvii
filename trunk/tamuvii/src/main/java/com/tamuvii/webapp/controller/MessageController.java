@@ -23,9 +23,11 @@ public class MessageController implements Controller {
 		mv.addObject("groupedMessages", messageManager.getGroupedMessagesByUser(request.getRemoteUser()));
 		
 		if(request.getParameter("username") == null)
-			mv.addObject("allMessages", messageManager.getAllMessagesByUser(request.getRemoteUser()));
-		else // TODO Mettere a posto questa query
+			mv.addObject("allMessages", messageManager.getInMessagesByUser(request.getRemoteUser()));
+		else {
 			mv.addObject("allMessages", messageManager.getConversationWithUser(request.getRemoteUser(), request.getParameter("username")));
+			mv.addObject("conversation", true);
+		}
 		
 		mv.setViewName("personalMessages");
 		return mv;

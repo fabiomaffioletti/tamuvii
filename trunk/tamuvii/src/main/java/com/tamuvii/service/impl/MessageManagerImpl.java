@@ -27,8 +27,8 @@ public class MessageManagerImpl implements MessageManager {
 		return customMovieDao.getGroupedMessagesByUser(username);
 	}
 
-	public List<MessageUserItem> getAllMessagesByUser(String username) {
-		return customMovieDao.getAllMessagesByUser(username);
+	public List<MessageUserItem> getInMessagesByUser(String username) {
+		return customMovieDao.getInMessagesByUser(username);
 	}
 
 	public List<MessageUserItem> getConversationWithUser(String remoteUser, String username) {

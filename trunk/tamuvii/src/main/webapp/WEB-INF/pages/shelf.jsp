@@ -36,6 +36,8 @@
 <br/>
 <br/>
 
+<div id="sx" style="background-color: #ccc; width: 150px; float:left; border: 1px solid gray;">
+
 <img style="cursor: pointer; border: 2px solid #ccc;" src="${userPublicInfo.imageLink}" onclick="Effect.toggle('publicInfo', 'slide',{ duration: 0.2 }); return false;" />
 <div id="publicInfo" style="width:200px; background-color:#ccc;display:none;">
   <div>
@@ -46,7 +48,7 @@
 		</tr>
 		<tr>
 			<td>Website</td>
-			<td>${userPublicInfo.website}</td>
+			<td><a href="${userPublicInfo.website}" target="_blank">${userPublicInfo.websiteTitle}</a></td>
 		</tr>
 	</table>
   </div>
@@ -76,7 +78,6 @@
 	<div id="friends" style="width:200px;">
 	  <div>
 		<display:table name="friends" cellspacing="0" cellpadding="0" defaultsort="1" id="friend" length="5" class="table" export="false">
-			<display:column property="id" escapeXml="true" sortable="true" titleKey="id" />
 			<display:column escapeXml="false" sortable="false" titleKey="immagine">
 				<img src="${friend.imageLink}" height="20px" width="20px;"/>
 			</display:column>
@@ -95,7 +96,6 @@
 	<div id="neighborhoods" style="width:200px;">
 	  <div>
 		<display:table name="neighborhoods" cellspacing="0" cellpadding="0" defaultsort="1" id="neighborhood" length="5" class="table" export="false">
-			<display:column property="id" escapeXml="true" sortable="true" titleKey="id" />
 			<display:column escapeXml="false" sortable="false" titleKey="immagine">
 				<img src="${neighborhood.imageLink}" height="20px" width="20px;"/>
 			</display:column>
@@ -136,7 +136,9 @@
 	</c:when>
 </c:choose>
 
+</div>
 
+<div id="main" style="float:left; width: 200px;">
 <display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="25" class="table" export="true">
     <display:column property="movie" escapeXml="true" sortable="true" titleKey="movie.movie" />
     <display:column escapeXml="false" sortable="true" titleKey="movie.originaltitle">
@@ -186,9 +188,10 @@
 	    </c:when>
     </c:choose>
     
-    
 </display:table>
 
 <script type="text/javascript">
     highlightTableRows("shelfItems");
 </script>
+
+</div>

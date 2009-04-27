@@ -38,7 +38,7 @@ public class TamuviiSubjectAbs implements TamuviiSubject{
 		log.debug("Start notify listeners of scanpass event: "+e.getType());
 		for (TamuviiListener listener : listeners) {
 			log.debug("send event "+e.getType()+" to "+listener.getClass().getName());
-			listener.onAmadeusEvent(e);
+			listener.onTamuviiEvent(e);
 		}
 		
 	}

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface TamuviiListener {
 	
-	public void onAmadeusEvent(TamuviiEvent event) throws Exception;
+	public void onTamuviiEvent(TamuviiEvent event) throws Exception;
 	
 	/**
 	 * Set the events managed by the lister as a comma delimited list of

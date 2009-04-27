@@ -40,7 +40,7 @@ public abstract class TamuviiListenerAbs implements TamuviiListener {
 		log.debug("Finished setting events list..");
 	}
 
-	public void onAmadeusEvent(TamuviiEvent event) throws Exception {
+	public void onTamuviiEvent(TamuviiEvent event) throws Exception {
 		if(isManagedEvent(event)){
 			this.onManagedEvent(event);
 		}

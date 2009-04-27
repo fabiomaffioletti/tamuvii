@@ -51,10 +51,10 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <table tableName="message" domainObjectName="Message" >
+    <!-- table tableName="message" domainObjectName="Message" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table>
+    </table-->
     
     <!-- table tableName="review" domainObjectName="Review" >
       <property name="useActualColumnNames" value="false"/>
@@ -80,6 +80,16 @@
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
+    
+    <table tableName="app_user" domainObjectName="AppUser" >
+      <property name="useActualColumnNames" value="false"/>
+	  <columnRenamingRule searchString="_" replaceString="" />
+    </table>
+    
+    <table tableName="config" domainObjectName="Config" >
+      <property name="useActualColumnNames" value="false"/>
+	  <columnRenamingRule searchString="_" replaceString="" />
+    </table>
     
   </ibatorContext>
 </ibatorConfiguration>

@@ -64,6 +64,7 @@
         <result property="username" column="username"/>
 		<result property="email" column="email"/>
         <result property="website" column="website"/>
+        <result property="websiteTitle" column="websiteTitle"/>
         <result property="address.city" column="city"/>
         <result property="address.country" column="country"/>
         <result property="imageLink" column="imageLink"/>
@@ -79,6 +80,7 @@
         <result property="user.username" column="username"/>
 		<result property="user.email" column="email"/>
         <result property="user.website" column="website"/>
+        <result property="user.websiteTitle" column="websiteTitle"/>
         <result property="user.address.city" column="city"/>
         <result property="user.address.country" column="country"/>
         <result property="user.imageLink" column="imageLink"/>
@@ -261,6 +263,7 @@
 					 	u.username, 
 						u.email,
 						u.website,
+						u.website_title as websiteTitle,
 						u.city,
 						u.country,
 						u.image as imageLink
@@ -277,6 +280,7 @@
 					 	u.username, 
 						u.email,
 						u.website,
+						u.website_title as websiteTitle,
 						u.city,
 						u.country,
 						u.image as imageLink
@@ -298,6 +302,7 @@
 						u.username, 
 						u.email,
 						u.website,
+						u.website_title as websiteTitle,
 						u.city,
 						u.country,
 						u.image as imageLink,
@@ -320,6 +325,7 @@
 						u.username, 
 						u.email,
 						u.website,
+						u.website_title as websiteTitle,
 						u.city,
 						u.country,
 						u.image as imageLink,
@@ -342,6 +348,7 @@
 						u.username, 
 						u.email,
 						u.website,
+						u.website_title as websiteTitle,
 						u.city,
 						u.country,
 						u.image as imageLink,
@@ -359,6 +366,7 @@
 					 	u.username, 
 						u.email,
 						u.website,
+						u.website_title as websiteTitle,
 						u.city,
 						u.country,
 						u.image as imageLink

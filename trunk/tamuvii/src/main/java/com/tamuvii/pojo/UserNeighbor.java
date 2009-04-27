@@ -8,6 +8,7 @@ public class UserNeighbor {
     private String username;                   
     private String email;                      
     private String website;
+    private String websiteTitle;
 	private Address address = new Address();
 	private String imageLink;
     
@@ -22,6 +23,12 @@ public class UserNeighbor {
 	}
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+	public String getWebsiteTitle() {
+		return websiteTitle;
+	}
+	public void setWebsiteTitle(String websiteTitle) {
+		this.websiteTitle = websiteTitle;
 	}
 	public Long getId() {
 		return id;

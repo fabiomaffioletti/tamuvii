@@ -22,8 +22,14 @@
 			  onSuccess: function(response) {
 			    var notice = $('messagetext');
 			    notice.value = response.responseText;
+			    setTimeout("endEffect()", 2000);
 			}
 		});
+	}
+
+	function endEffect() {
+		$('messagetext').value = "";
+		Effect.BlindUp('sendMessage');
 	}
 </script>
 

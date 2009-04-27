@@ -78,4 +78,7 @@ public class Constants {
      * The name of the CSS Theme setting.
      */
     public static final String CSS_THEME = "csstheme";
+    
+    public static final String MESSAGES_KEY = "successMessages";
+	public static final String ERRORS_KEY = "errors";
 }

@@ -36,10 +36,11 @@
 <br/>
 <br/>
 
-<div id="sx" style="background-color: #ccc; width: 200px; float:left; border: 1px solid gray; margin-right: 20px;">
+<div id="sx" style="width: 200px; float:left; border: 1px solid gray; margin-right: 20px;">
 
+<center>
 <img style="cursor: pointer; border: 2px solid #ccc;" src="${userPublicInfo.imageLink}" onclick="Effect.toggle('publicInfo', 'slide',{ duration: 0.2 }); return false;" />
-<div id="publicInfo" style="width:150px; background-color:#ccc;display:none;">
+<div id="publicInfo" style="width:150px; display:none;">
   <div>
     <table>
 		<tr>
@@ -53,6 +54,7 @@
 	</table>
   </div>
 </div>
+</center>
 
 <br/>
 <br/>
@@ -68,11 +70,10 @@
 			<input type="button" name="sendMessage" value="Spedisci" onclick="sendMessage()" />
 			<a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Annulla</a>
 	</div>
+<br/>
+<br/>
 </c:if>
 
-<br/>
-<br/>
-<br/>
 <c:if test="${fn:length(friends) > 0}">
 	<a href="#" onclick="Effect.toggle('friends', 'slide',{ duration: 0.2 }); return false;">Friends</a>
 	<div id="friends" style="width:200px;">
@@ -140,7 +141,6 @@
 
 <div id="cont" style="float: left; width: 700px;">
 <display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="25" class="table" export="true">
-    <display:column property="movie" escapeXml="true" sortable="true" titleKey="movie.movie" />
     <display:column escapeXml="false" sortable="true" titleKey="movie.originaltitle">
     	<a href="/socialMovie.html?movie=${shelfItems.movie}">${shelfItems.originalTitle}</a>
     </display:column>

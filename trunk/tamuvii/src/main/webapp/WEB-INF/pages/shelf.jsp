@@ -36,10 +36,10 @@
 <br/>
 <br/>
 
-<div id="sx" style="background-color: #ccc; width: 150px; float:left; border: 1px solid gray;">
+<div id="sx" style="background-color: #ccc; width: 200px; float:left; border: 1px solid gray; margin-right: 20px;">
 
 <img style="cursor: pointer; border: 2px solid #ccc;" src="${userPublicInfo.imageLink}" onclick="Effect.toggle('publicInfo', 'slide',{ duration: 0.2 }); return false;" />
-<div id="publicInfo" style="width:200px; background-color:#ccc;display:none;">
+<div id="publicInfo" style="width:150px; background-color:#ccc;display:none;">
   <div>
     <table>
 		<tr>
@@ -62,7 +62,7 @@
 <c:if test="${not empty username && username != pageContext.request.remoteUser}">
 
 <a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Spedisci Messaggio</a>
-	<div id="sendMessage" style="width:180px;display:none;">
+	<div id="sendMessage" style="width:200px;display:none;">
 			<textarea id="messagetext" name="messagetext" cols="20" rows="5"></textarea>
 			<input type="hidden" id="receiver" name="receiver" value="${username}" />
 			<input type="button" name="sendMessage" value="Spedisci" onclick="sendMessage()" />
@@ -138,7 +138,7 @@
 
 </div>
 
-<div id="main" style="float:left; width: 200px;">
+<div id="cont" style="float: left; width: 700px;">
 <display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="25" class="table" export="true">
     <display:column property="movie" escapeXml="true" sortable="true" titleKey="movie.movie" />
     <display:column escapeXml="false" sortable="true" titleKey="movie.originaltitle">

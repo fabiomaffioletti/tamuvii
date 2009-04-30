@@ -26,7 +26,3 @@ Hai cercato: ${filter}
     <display:column property="numReviews" escapeXml="true" sortable="true" titleKey="movie.numreviews" />
     <display:column property="avgMark" escapeXml="true" sortable="true" titleKey="movie.avgMark" />
 </display:table>
-
-<script type="text/javascript">
-    highlightTableRows("resultMovie");
-</script>

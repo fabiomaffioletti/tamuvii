@@ -13,7 +13,3 @@
     <display:column property="director" escapeXml="true" sortable="true" titleKey="movie.director" />
     <display:column property="releasedate" format="{0,date,yyyy}" escapeXml="false" sortable="true" titleKey="movie.releasedate" />
 </display:table>
-
-<script type="text/javascript">
-    highlightTableRows("movies");
-</script>

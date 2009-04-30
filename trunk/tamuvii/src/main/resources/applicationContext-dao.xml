@@ -97,4 +97,9 @@
     	<property name="dataSource" ref="dataSource"/>
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
+    
+    <bean id="userReviewVoteDao" class="com.tamuvii.dao.impl.UserReviewVoteDAOImpl">
+    	<property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
 </beans>

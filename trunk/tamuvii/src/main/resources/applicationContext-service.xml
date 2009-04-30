@@ -156,6 +156,11 @@
 		<property name="messageDao" ref="messageDao" />
 	</bean>
 	
+	<bean id="userReviewVoteManager" class="com.tamuvii.service.impl.UserReviewVoteManagerImpl">
+		<property name="userReviewVoteDao" ref="userReviewVoteDao" />
+		<property name="reviewDao" ref="reviewDao" />
+	</bean>
+	
 	
 	<!-- EVENT DISPATCHER
 	<bean id="loggerListener" class="it.vidiemme.amadeusecommerce.eventdispatcher.listener.LoggerListener">

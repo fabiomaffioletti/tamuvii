@@ -60,8 +60,12 @@ Reviews:
 		<a href="/shelf.html?username=${review.username}">${review.username}</a>
 	</display:column>
 	<display:column property="dateinserted" escapeXml="true" sortable="true" titleKey="dateinserted" />
-	<display:column property="ok" escapeXml="true" sortable="true" titleKey="ok" />
-	<display:column property="ko" escapeXml="true" sortable="true" titleKey="ko" />
+	<display:column escapeXml="false" sortable="false" titleKey="ok">
+		<a href="#" onclick="voteOk('${review.review}')" id="ok_${review.review}">${review.ok}</a>
+	</display:column>
+	<display:column escapeXml="false" sortable="false" titleKey="ko">
+		<a href="#" onclick="voteKo('${review.review}')" id="ko_${review.review}">${review.ko}</a>
+	</display:column>
 	<display:column escapeXml="false" sortable="false" title="actions">
 		<a href="/reviewDiscussion.html?review=${review.review}">${review.numOpinions}</a>
 	</display:column>
@@ -82,6 +86,24 @@ Totale Users:
 	<display:column property="mark" escapeXml="true" sortable="true" titleKey="mark" />
 </display:table>
 
-<script type="text/javascript">
-    highlightTableRows("review");
+<script>
+	function voteOk(review) {
+		new Ajax.Request('/voteReview.html?ajax=true&type=ok&review='+review, {
+			  method: 'post',
+			  onSuccess: function(response) {
+			    var oks = $('ok_'+review);
+			    oks.innerHTML = response.responseText;
+			}
+		});
+	}
+
+	function voteKo(review) {
+		new Ajax.Request('/voteReview.html?ajax=true&type=ko&review='+review, {
+			  method: 'post',
+			  onSuccess: function(response) {
+			    var kos = $('ko_'+review);
+			    kos.innerHTML = response.responseText;
+			}
+		});
+	}
 </script>

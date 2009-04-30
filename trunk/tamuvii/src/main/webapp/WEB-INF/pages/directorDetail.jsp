@@ -14,7 +14,3 @@ ${directorDetail.director.name} ${directorDetail.director.surname}
     	<a href="/socialMovie.html?movie=${directorMovie.movie}">${directorMovie.originaltitle}</a>
     </display:column>
 </display:table>
-
-<script type="text/javascript">
-    highlightTableRows("directorMovies");
-</script>

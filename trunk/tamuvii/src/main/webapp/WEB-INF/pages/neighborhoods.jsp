@@ -15,7 +15,3 @@
     	<a href="/shelf.html?username=${neighborhood.username}">${neighborhood.username}</a> 
     </display:column>
 </display:table>
-
-<script type="text/javascript">
-    highlightTableRows("neighborhood");
-</script>

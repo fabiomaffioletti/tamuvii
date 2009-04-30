@@ -2,16 +2,8 @@
 
 <head>
     <title><fmt:message key="shelf.pagetitle"/></title>
-    <meta name="heading" content="<fmt:message key='shelf.headingtitle'/>"/>
     <meta name="menu" content="AdminMenu"/>
 </head>
-
-<form:form name="searchSocialMovieForm" action="/searchSocialMovies.html" method="POST">
-	<input type="text" name="filter" />
-	<input type="submit" name="doSearch" value="Search" />
-</form:form>
-<br/>
-<br/>
 
 <script>
 	function sendMessage() {
@@ -32,9 +24,6 @@
 		Effect.BlindUp('sendMessage');
 	}
 </script>
-
-<br/>
-<br/>
 
 <div id="sx" style="width: 200px; float:left; border: 1px solid gray; margin-right: 20px;">
 
@@ -140,7 +129,16 @@
 </div>
 
 <div id="cont" style="float: left; width: 700px;">
-<display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="25" class="table" export="true">
+
+<div id="searchBar" style="float:right;">
+	<form:form name="searchSocialMovieForm" action="/searchSocialMovies.html" method="POST">
+		<input type="text" name="filter" />
+		<input type="submit" name="doSearch" value="Search" />
+	</form:form>
+	<br/>
+</div>
+
+<display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="16" class="table" export="true">
     <display:column escapeXml="false" sortable="true" titleKey="movie.originaltitle">
     	<a href="/socialMovie.html?movie=${shelfItems.movie}">${shelfItems.originalTitle}</a>
     </display:column>
@@ -149,8 +147,6 @@
     	<a href="/directorDetail.html?director=${shelfItems.directorId}">${shelfItems.director}</a>
     </display:column>
     <display:column property="releaseDate" format="{0,date,yyyy}" escapeXml="false" sortable="true" titleKey="movie.releasedate" />
-    <display:column property="dateAdded" escapeXml="true" sortable="true" titleKey="movie.dateAdded" />
-    <display:column property="dateViewed" escapeXml="true" sortable="true" titleKey="movie.dateViewed" />
     <display:column property="mark" escapeXml="true" sortable="true" titleKey="movie.mark" />
     
     <c:choose>
@@ -189,9 +185,5 @@
     </c:choose>
     
 </display:table>
-
-<script type="text/javascript">
-    highlightTableRows("shelfItems");
-</script>
 
 </div>

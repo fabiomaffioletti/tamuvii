@@ -88,9 +88,13 @@
                 /personalMessages.html=messageController
                 
                 /directorDetail.html=directorDetailController
-                /reviewDiscussion.html=discussionFormController
                 /opinion.html=opinionController
                 /searchSocialMovies.html=searchSocialMovieController
+                
+                <!-- Review -->
+                /voteReview.html=userReviewVoteController
+                /voteReview.html=userReviewVoteController
+                /reviewDiscussion.html=discussionFormController
                 
                 <!-- Messages -->
                 /sendMessage.html=messageManagementController
@@ -184,6 +188,10 @@
     
     <bean id="messageManagementController" class="com.tamuvii.webapp.controller.MessageManagementController">
     	<property name="messageManager" ref="messageManager" />
+    </bean>
+    
+    <bean id="userReviewVoteController" class="com.tamuvii.webapp.controller.UserReviewVoteController">
+    	<property name="userReviewVoteManager" ref="userReviewVoteManager" />
     </bean>
     
 </beans>

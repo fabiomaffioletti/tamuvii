@@ -15,7 +15,3 @@
     	<a href="/shelf.html?username=${friend.username}">${friend.username}</a> 
     </display:column>
 </display:table>
-
-<script type="text/javascript">
-    highlightTableRows("friend");
-</script>

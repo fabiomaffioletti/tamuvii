@@ -9,8 +9,7 @@
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="ShelfMenu"/>
     <menu:displayMenu name="WishlistMenu"/>
-    <menu:displayMenu name="FriendsMenu"/>
-    <menu:displayMenu name="NeighborhoodsMenu"/>
+    <menu:displayMenu name="RelationshipMenu"/>
     <menu:displayMenu name="MessageMenu"/>
     <menu:displayMenu name="Logout"/>
 </ul>

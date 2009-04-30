@@ -15,10 +15,15 @@
             <Item name="Clickstream" title="menu.clickstream" page="/admin/clickstreams.jsp"/>
             <Item name="MoviesList" title="menu.movieslist" page="/be_moviesList.html"/>
         </Menu>
+        
         <Menu name="ShelfMenu" title="menu.shelf" page="/shelf.html" roles="ROLE_ADMIN,ROLE_USER" />
         <Menu name="WishlistMenu" title="menu.wishlist" page="/wishlist.html" roles="ROLE_ADMIN,ROLE_USER" />
-        <Menu name="FriendsMenu" title="menu.friends" page="/relationship.html?mode=friends" roles="ROLE_ADMIN,ROLE_USER" />
-        <Menu name="NeighborhoodsMenu" title="menu.neighborhoods" page="/relationship.html?mode=neighborhoods" roles="ROLE_ADMIN,ROLE_USER" />
+        
+        <Menu name="RelationshipMenu" title="menu.relationship" roles="ROLE_ADMIN,ROLE_USER" width="120" page="/relationship.html?mode=friends">
+			<Item name="FriendsMenu" title="menu.friends" page="/relationship.html?mode=friends" roles="ROLE_ADMIN,ROLE_USER" />
+	        <Item name="NeighborhoodsMenu" title="menu.neighborhoods" page="/relationship.html?mode=neighborhoods" roles="ROLE_ADMIN,ROLE_USER" />        	
+        </Menu>
+        
         <Menu name="MessageMenu" title="menu.message" page="/personalMessages.html" roles="ROLE_ADMIN,ROLE_USER" />
         <Menu name="Logout" title="user.logout" page="/logout.jsp" roles="ROLE_ADMIN,ROLE_USER"/>
     </Menus>

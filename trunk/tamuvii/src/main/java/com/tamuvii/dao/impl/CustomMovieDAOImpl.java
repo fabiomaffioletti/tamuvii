@@ -105,5 +105,5 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 	public UserNeighbor getUserPublicInfo(String username) {
 		return (UserNeighbor) getSqlMapClientTemplate().queryForObject("custom_movie.getUserPublicInfo", username);
 	}
-
+	
 }

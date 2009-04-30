@@ -29,7 +29,3 @@
     	<a href="/wishlistManagement.html?action=delete&movie=${wishedItem.movie}">Delete from wishlist</a>
     </display:column>
 </display:table>
-
-<script type="text/javascript">
-    highlightTableRows("wishedItem");
-</script>

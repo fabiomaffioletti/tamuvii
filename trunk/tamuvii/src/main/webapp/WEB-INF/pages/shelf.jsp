@@ -28,13 +28,12 @@
 <div id="sx">
 <center>
 <img style="cursor: pointer; border: 2px solid #ccc;" src="${userPublicInfo.imageLink}" onclick="Effect.toggle('publicInfo', 'slide',{ duration: 0.2 }); return false;" />
-<div id="publicInfo" style="width:150px; display:none;">
+<div id="publicInfo" style="width:100%; display:none;">
+	<div style="font-size: 20px; margin-top: 5px;">
+		${userPublicInfo.username}
+	</div>
   <div>
     <table>
-		<tr>
-			<td>Username</td>
-			<td>${userPublicInfo.username}</td>
-		</tr>
 		<tr>
 			<td>Website</td>
 			<td><a href="${userPublicInfo.website}" target="_blank">${userPublicInfo.websiteTitle}</a></td>
@@ -52,7 +51,7 @@
 <c:if test="${not empty username && username != pageContext.request.remoteUser}">
 
 <a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Spedisci Messaggio</a>
-	<div id="sendMessage" style="width:200px;display:none;">
+	<div id="sendMessage" style="width:100%;display:none;">
 			<textarea id="messagetext" name="messagetext" cols="20" rows="5"></textarea>
 			<input type="hidden" id="receiver" name="receiver" value="${username}" />
 			<input type="button" name="sendMessage" value="Spedisci" onclick="sendMessage()" />
@@ -138,10 +137,12 @@
 </div>
 
 <display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="16" class="table" export="true">
+	<display:column escapeXml="false" sortable="false" titleKey="movie.image">
+		<img src="/images/placeholder_movie.jpg" height="100px" style="border:1px solid gray;" />
+	</display:column>
     <display:column escapeXml="false" sortable="true" titleKey="movie.originaltitle">
-    	<a href="/socialMovie.html?movie=${shelfItems.movie}">${shelfItems.originalTitle}</a>
-    </display:column>
-    <display:column escapeXml="false" sortable="true" titleKey="director.surname">
+    	<a href="/socialMovie.html?movie=${shelfItems.movie}"><b>${shelfItems.originalTitle}</b></a>
+    	<br/>
     	<a href="/directorDetail.html?director=${shelfItems.directorId}">${shelfItems.director}</a>
     </display:column>
     <display:column property="mark" escapeXml="true" sortable="true" titleKey="movie.mark" />

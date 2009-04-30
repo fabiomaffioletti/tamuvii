@@ -130,6 +130,8 @@
     
     <bean id="wishlistController" class="com.tamuvii.webapp.controller.WishlistController">
     	<property name="movieManager" ref="movieManager" />
+    	<property name="appUserManager" ref="appUserManager" />
+    	<property name="relationshipManager" ref="relationshipManager" />
     </bean>
     
     <bean id="socialMovieController" class="com.tamuvii.webapp.controller.SocialMovieController">

@@ -97,11 +97,28 @@
 	<br/>
 </c:if>
 
+<div id="follow">
+	<c:if test="${not empty username && username != pageContext.request.remoteUser}">
+		<c:choose>
+			<c:when test="${areFriends}">
+				<c:set var="type" value="è un tuo amico" />
+			</c:when>
+			<c:when test="${areNeighborhoods}">
+				<c:set var="type" value="è un tuo vicino" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="type" value="follow" />
+			</c:otherwise>
+		</c:choose>
+		<a href="#" id="follow" onclick="Effect.toggle('relationship', 'slide',{ duration: 0.2 }); return false;"><b><c:out value="${type}" /></b></a>
+	</c:if>
+</div>
+
+<div id="relationship" style="display:none;">
 <c:choose>
 	<c:when test="${not empty username && username != pageContext.request.remoteUser}">
 		<c:choose>
 			<c:when test="${areFriends}">
-				è un tuo amico<br/>
 				<a href="/relationshipManagement.html?action=moveToNeighborhoods&username=${username}">Cambia a vicino</a>
 				<br/>
 				<a href="/relationshipManagement.html?action=deleteFriend&username=${username}">Cancella come amico</a>
@@ -109,7 +126,6 @@
 				<br/>
 			</c:when>
 			<c:when test="${areNeighborhoods}">
-				è un tuo vicino<br/>
 				<a href="/relationshipManagement.html?action=moveToFriends&username=${username}">Cambia a amico</a> <br/>
 				<a href="/relationshipManagement.html?action=deleteNeighborhood&username=${username}">Cancella come vicino</a> <br/>
 			</c:when>
@@ -123,6 +139,7 @@
 		<a href="/relationship.html?mode=neighborhoods&username=${username}">Vedi i suoi vicini</a>
 	</c:when>
 </c:choose>
+</div>
 
 </div>
 
@@ -137,24 +154,34 @@
 </div>
 
 <display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="16" class="table" export="true">
-	<display:column escapeXml="false" sortable="false" titleKey="movie.image">
-		<img src="/images/placeholder_movie.jpg" height="100px" style="border:1px solid gray;" />
+	<display:column escapeXml="false" sortable="false" style="border: none;">
+		<img src="/images/placeholder_movie.jpg" height="70px" style="border:1px solid gray;" />
 	</display:column>
-    <display:column escapeXml="false" sortable="true" titleKey="movie.originaltitle">
+    <display:column escapeXml="false" sortable="true" style="border: none;">
     	<a href="/socialMovie.html?movie=${shelfItems.movie}"><b>${shelfItems.originalTitle}</b></a>
     	<br/>
     	<a href="/directorDetail.html?director=${shelfItems.directorId}">${shelfItems.director}</a>
+    	<c:if test="${not empty shelfItems.dateViewed}">
+    		<br/>
+    	 	Visto il: <fmt:formatDate value="${shelfItems.dateViewed}" />  
+    	</c:if>
+    	<div style="margin-top: 5px;">
+	    	<c:if test="${shelfItems.mark > 0}">
+		    	<c:forEach begin="1" end="${shelfItems.mark}">
+					<img src="/images/sun.png" height="11px" />	    		
+		    	</c:forEach>
+	    	</c:if>
+    	</div>
     </display:column>
-    <display:column property="mark" escapeXml="true" sortable="true" titleKey="movie.mark" />
     
     <c:choose>
 	    <c:when test="${empty username || username == pageContext.request.remoteUser}">
-		    <display:column title="modify">
+		    <display:column style="border: none;">
 		    	<a href="/personalMovie.html?movie=${shelfItems.movie}">modify</a>
 		    </display:column>
 	    </c:when>
 	    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
-	    	<display:column title="actions">
+	    	<display:column style="border: none;">
 	    		<c:set var="isInPersonalMovies" value="0" />
 	    		<c:set var="isWished" value="0" />
 		    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">

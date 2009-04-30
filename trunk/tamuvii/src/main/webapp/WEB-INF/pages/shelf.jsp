@@ -25,8 +25,7 @@
 	}
 </script>
 
-<div id="sx" style="width: 200px; float:left; border: 1px solid gray; margin-right: 20px;">
-
+<div id="sx">
 <center>
 <img style="cursor: pointer; border: 2px solid #ccc;" src="${userPublicInfo.imageLink}" onclick="Effect.toggle('publicInfo', 'slide',{ duration: 0.2 }); return false;" />
 <div id="publicInfo" style="width:150px; display:none;">
@@ -67,7 +66,7 @@
 	<a href="#" onclick="Effect.toggle('friends', 'slide',{ duration: 0.2 }); return false;">Friends</a>
 	<div id="friends" style="width:200px;">
 	  <div>
-		<display:table name="friends" cellspacing="0" cellpadding="0" defaultsort="1" id="friend" length="5" class="table" export="false">
+		<display:table name="friends" cellspacing="0" cellpadding="0" defaultsort="1" requestURI="" id="friend" length="5" class="table" export="false">
 			<display:column escapeXml="false" sortable="false" titleKey="immagine">
 				<img src="${friend.imageLink}" height="20px" width="20px;"/>
 			</display:column>
@@ -85,7 +84,7 @@
 	<a href="#" onclick="Effect.toggle('neighborhoods', 'slide',{ duration: 0.2 }); return false;">Vicini</a>
 	<div id="neighborhoods" style="width:200px;">
 	  <div>
-		<display:table name="neighborhoods" cellspacing="0" cellpadding="0" defaultsort="1" id="neighborhood" length="5" class="table" export="false">
+		<display:table name="neighborhoods" cellspacing="0" cellpadding="0" defaultsort="1" requestURI="" id="neighborhood" pagesize="1" length="5" class="table" export="false">
 			<display:column escapeXml="false" sortable="false" titleKey="immagine">
 				<img src="${neighborhood.imageLink}" height="20px" width="20px;"/>
 			</display:column>
@@ -128,9 +127,9 @@
 
 </div>
 
-<div id="cont" style="float: left; width: 700px;">
+<div id="cont">
 
-<div id="searchBar" style="float:right;">
+<div id="searchBar">
 	<form:form name="searchSocialMovieForm" action="/searchSocialMovies.html" method="POST">
 		<input type="text" name="filter" />
 		<input type="submit" name="doSearch" value="Search" />
@@ -142,11 +141,9 @@
     <display:column escapeXml="false" sortable="true" titleKey="movie.originaltitle">
     	<a href="/socialMovie.html?movie=${shelfItems.movie}">${shelfItems.originalTitle}</a>
     </display:column>
-    <display:column property="duration" escapeXml="true" sortable="true" titleKey="movie.duration" />
     <display:column escapeXml="false" sortable="true" titleKey="director.surname">
     	<a href="/directorDetail.html?director=${shelfItems.directorId}">${shelfItems.director}</a>
     </display:column>
-    <display:column property="releaseDate" format="{0,date,yyyy}" escapeXml="false" sortable="true" titleKey="movie.releasedate" />
     <display:column property="mark" escapeXml="true" sortable="true" titleKey="movie.mark" />
     
     <c:choose>

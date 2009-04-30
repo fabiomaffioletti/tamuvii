@@ -2,29 +2,27 @@
 
 <head>
     <title><fmt:message key="messages.title"/></title>
-    <meta name="heading" content="<fmt:message key='messages.heading'/>"/>
     <meta name="menu" content="AdminMenu"/>
 </head>
 
-Questi gli utenti con cui hai scambiato messaggi
+<div id="sx">
+	<display:table name="groupedMessages" cellspacing="0" cellpadding="0" defaultsort="1" id="groupedMessage" class="table" export="false">
+	    <display:column escapeXml="false" sortable="true" titleKey="u">
+			<a href="/shelf.html?username=${groupedMessage.user.username}">${groupedMessage.user.username}</a>
+		</display:column>
+	    <display:column escapeXml="false" sortable="false" titleKey="i">
+			<img src="${groupedMessage.user.imageLink}" height="20px" width="20px;"/>
+		</display:column>
+	    <display:column property="numMessages" escapeXml="true" sortable="true" titleKey="n"/>
+	    <display:column escapeXml="false" sortable="false" titleKey="a">
+			<a href="/personalMessages.html?username=${groupedMessage.user.username}">Apri</a>
+		</display:column>
+	</display:table>
+</div>
 
-<display:table name="groupedMessages" cellspacing="0" cellpadding="0" defaultsort="1" id="groupedMessage" pagesize="25" class="table" export="false">
-    <display:column escapeXml="false" sortable="true" titleKey="username">
-		<a href="/shelf.html?username=${groupedMessage.user.username}">${groupedMessage.user.username}</a>
-	</display:column>
-    <display:column escapeXml="false" sortable="false" titleKey="immagine">
-		<img src="${groupedMessage.user.imageLink}" height="20px" width="20px;"/>
-	</display:column>
-    <display:column property="numMessages" escapeXml="true" sortable="true" titleKey="numMessages"/>
-    <display:column escapeXml="false" sortable="false" titleKey="actions">
-		<a href="/personalMessages.html?username=${groupedMessage.user.username}">Apri</a>
-	</display:column>
-</display:table>
+<div id="cont">
 
-Messaggi:
 <c:if test="${conversation}">
-	<br/>
-	<br/>
 	<a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Rispondi</a>
 	<div id="sendMessage" style="width:180px;display:none;">
 		<form:form name="sendMessageForm" action="/sendMessage.html?returnView=personalMessages" method="POST">
@@ -34,9 +32,9 @@ Messaggi:
 			<a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Annulla</a>
 		</form:form>
 	</div>
+	<br/>
+	<br/>
 </c:if>
-<br/>
-<br/>
 
 <display:table name="allMessages" cellspacing="0" cellpadding="0" id="myMessage" pagesize="25" class="table" export="false">
     <display:column property="message.message" escapeXml="true" sortable="true" titleKey="id"/>
@@ -54,3 +52,5 @@ Messaggi:
 		</display:column>
 	</c:if>
 </display:table>
+
+</div>

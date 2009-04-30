@@ -58,7 +58,7 @@ public class DiscussionFormController extends BaseFormController {
 	
 	public ModelAndView processFormSubmission(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
 		if (request.getParameter("cancel") != null) {
-			return new ModelAndView(getCancelView());
+			return new ModelAndView("redirect:/socialMovie.html?movie="+request.getParameter("movie"));
 		}
 
 		return super.processFormSubmission(request, response, command, errors);

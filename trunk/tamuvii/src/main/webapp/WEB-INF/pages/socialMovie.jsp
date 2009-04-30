@@ -60,6 +60,8 @@ Reviews:
 		<a href="/shelf.html?username=${review.username}">${review.username}</a>
 	</display:column>
 	<display:column property="dateinserted" escapeXml="true" sortable="true" titleKey="dateinserted" />
+	<display:column property="ok" escapeXml="true" sortable="true" titleKey="ok" />
+	<display:column property="ko" escapeXml="true" sortable="true" titleKey="ko" />
 	<display:column escapeXml="false" sortable="false" title="actions">
 		<a href="/reviewDiscussion.html?review=${review.review}">${review.numOpinions}</a>
 	</display:column>

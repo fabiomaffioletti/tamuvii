@@ -81,12 +81,22 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <table tableName="app_user" domainObjectName="AppUser" >
+    <!-- table tableName="app_user" domainObjectName="AppUser" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table>
+    </table-->
     
-    <table tableName="config" domainObjectName="Config" >
+    <!-- table tableName="config" domainObjectName="Config" >
+      <property name="useActualColumnNames" value="false"/>
+	  <columnRenamingRule searchString="_" replaceString="" />
+    </table-->
+    
+    <!-- table tableName="review" domainObjectName="Review" >
+      <property name="useActualColumnNames" value="false"/>
+	  <columnRenamingRule searchString="_" replaceString="" />
+    </table-->
+    
+    <table tableName="user_review_vote" domainObjectName="Vote" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table>

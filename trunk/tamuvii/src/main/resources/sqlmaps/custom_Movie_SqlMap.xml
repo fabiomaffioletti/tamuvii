@@ -43,7 +43,10 @@
     <result column="movie" jdbcType="INTEGER" property="movie" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="review_text" jdbcType="VARCHAR" property="reviewtext" />
+    <result column="ok" jdbcType="INTEGER" property="ok" />
+    <result column="ko" jdbcType="INTEGER" property="ko" />
     <result column="date_inserted" jdbcType="TIMESTAMP" property="dateinserted" />
+    
     <result column="numOpinions" property="numOpinions" jdbcType="INTEGER" />
   </resultMap>
   
@@ -174,6 +177,8 @@
   							r.movie,
   							r.title,
   							r.review_text,
+  							r.ok as ok,
+  							r.ko as ko,
   							r.date_inserted,
 							count(o.opinion) as numOpinions
 

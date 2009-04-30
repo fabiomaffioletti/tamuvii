@@ -35,6 +35,7 @@ Text: ${discussion.review.reviewtext}
 
 Insert new opinion:
 <form:form name="reviewDiscussionForm" commandName="opinion" method="POST">
+	<input type="hidden" name="movie" value="${discussion.review.movie}" />
 	<form:textarea path="opiniontext"/>
 	<br/>
 

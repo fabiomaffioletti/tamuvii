@@ -576,5 +576,125 @@ public class ReviewExample {
 					"dateinserted");
 			return this;
 		}
+
+		public Criteria andOkIsNull() {
+			addCriterion("ok is null");
+			return this;
+		}
+
+		public Criteria andOkIsNotNull() {
+			addCriterion("ok is not null");
+			return this;
+		}
+
+		public Criteria andOkEqualTo(Integer value) {
+			addCriterion("ok =", value, "ok");
+			return this;
+		}
+
+		public Criteria andOkNotEqualTo(Integer value) {
+			addCriterion("ok <>", value, "ok");
+			return this;
+		}
+
+		public Criteria andOkGreaterThan(Integer value) {
+			addCriterion("ok >", value, "ok");
+			return this;
+		}
+
+		public Criteria andOkGreaterThanOrEqualTo(Integer value) {
+			addCriterion("ok >=", value, "ok");
+			return this;
+		}
+
+		public Criteria andOkLessThan(Integer value) {
+			addCriterion("ok <", value, "ok");
+			return this;
+		}
+
+		public Criteria andOkLessThanOrEqualTo(Integer value) {
+			addCriterion("ok <=", value, "ok");
+			return this;
+		}
+
+		public Criteria andOkIn(List values) {
+			addCriterion("ok in", values, "ok");
+			return this;
+		}
+
+		public Criteria andOkNotIn(List values) {
+			addCriterion("ok not in", values, "ok");
+			return this;
+		}
+
+		public Criteria andOkBetween(Integer value1, Integer value2) {
+			addCriterion("ok between", value1, value2, "ok");
+			return this;
+		}
+
+		public Criteria andOkNotBetween(Integer value1, Integer value2) {
+			addCriterion("ok not between", value1, value2, "ok");
+			return this;
+		}
+
+		public Criteria andKoIsNull() {
+			addCriterion("ko is null");
+			return this;
+		}
+
+		public Criteria andKoIsNotNull() {
+			addCriterion("ko is not null");
+			return this;
+		}
+
+		public Criteria andKoEqualTo(Integer value) {
+			addCriterion("ko =", value, "ko");
+			return this;
+		}
+
+		public Criteria andKoNotEqualTo(Integer value) {
+			addCriterion("ko <>", value, "ko");
+			return this;
+		}
+
+		public Criteria andKoGreaterThan(Integer value) {
+			addCriterion("ko >", value, "ko");
+			return this;
+		}
+
+		public Criteria andKoGreaterThanOrEqualTo(Integer value) {
+			addCriterion("ko >=", value, "ko");
+			return this;
+		}
+
+		public Criteria andKoLessThan(Integer value) {
+			addCriterion("ko <", value, "ko");
+			return this;
+		}
+
+		public Criteria andKoLessThanOrEqualTo(Integer value) {
+			addCriterion("ko <=", value, "ko");
+			return this;
+		}
+
+		public Criteria andKoIn(List values) {
+			addCriterion("ko in", values, "ko");
+			return this;
+		}
+
+		public Criteria andKoNotIn(List values) {
+			addCriterion("ko not in", values, "ko");
+			return this;
+		}
+
+		public Criteria andKoBetween(Integer value1, Integer value2) {
+			addCriterion("ko between", value1, value2, "ko");
+			return this;
+		}
+
+		public Criteria andKoNotBetween(Integer value1, Integer value2) {
+			addCriterion("ko not between", value1, value2, "ko");
+			return this;
+		}
 	}
 }

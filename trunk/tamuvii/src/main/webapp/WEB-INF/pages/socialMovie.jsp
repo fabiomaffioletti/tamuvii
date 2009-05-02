@@ -2,18 +2,10 @@
 
 <head>
     <title><fmt:message key="socialMovie.title"/></title>
-    <meta name="heading" content="<fmt:message key='socialMovie.heading'/>"/>
     <meta name="menu" content="AdminMenu"/>
 </head>
 
-Hai cercato: ${filter}
-
-<form:form name="searchSocialMovieForm" action="/searchSocialMovies.html" method="POST">
-	<input type="text" name="filter" />
-	<input type="submit" name="doSearch" value="Search" />
-</form:form>
-<br/>
-<br/>
+<div id="sx">
 
 <c:choose>
 	<c:when test="${!presentInShelf && !presentInWishlist}">
@@ -32,8 +24,9 @@ Hai cercato: ${filter}
 
 <br/>
 <br/>
-MovieId: ${socialMovie.movie}
-<br/>
+<center>
+<img src="/images/placeholder_movie.jpg" width="150px;">
+</center>
 OriginalTitle: ${socialMovie.originalTitle}
 <br/>
 Duration: ${socialMovie.duration} min
@@ -47,27 +40,38 @@ Num. Reviews: ${socialMovie.numReviews}
 Avg Mark: ${socialMovie.avgMark}
 <br/>
 
-<br/>
-<br/>
+</div>
 
-Reviews:
-<br/>
+<div id="cont">
+
+<div id="searchBar">
+	<form:form name="searchSocialMovieForm" action="/searchSocialMovies.html" method="POST">
+		<input type="text" name="filter" />
+		<input type="submit" name="doSearch" value="Search" />
+	</form:form>
+	<br/>
+</div>
+
 <display:table name="${socialMovie.detailedReviews}" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="review" pagesize="25" class="table" export="false">
-	<display:column property="review" escapeXml="true" sortable="true" titleKey="review" />
-	<display:column property="title" escapeXml="true" sortable="true" titleKey="title" />
-	<display:column property="reviewtext" escapeXml="true" sortable="true" titleKey="text" />
-	<display:column escapeXml="false" sortable="true" titleKey="username">
-		<a href="/shelf.html?username=${review.username}">${review.username}</a>
-	</display:column>
-	<display:column property="dateinserted" escapeXml="true" sortable="true" titleKey="dateinserted" />
-	<display:column escapeXml="false" sortable="false" titleKey="ok">
-		<a href="#" onclick="voteOk('${review.review}')" id="ok_${review.review}">${review.ok}</a>
-	</display:column>
-	<display:column escapeXml="false" sortable="false" titleKey="ko">
-		<a href="#" onclick="voteKo('${review.review}')" id="ko_${review.review}">${review.ko}</a>
-	</display:column>
-	<display:column escapeXml="false" sortable="false" title="actions">
-		<a href="/reviewDiscussion.html?review=${review.review}">${review.numOpinions}</a>
+	<display:column>
+		<div style="border-bottom: 1px dotted #ccc; margin-bottom: 5px; padding-bottom: 5px; height: 20px;">
+			<div style="float:left; margin-top: 3px;">
+				<span style="font-weight: bold; font-size: 14px;">${review.title}</span>		
+			</div>
+			<div style="float:right;">
+				<img src="/images/emotes-ok.png" style="cursor: pointer;" onclick="voteOk('${review.review}')"> <span id="ok_${review.review}">${review.ok} </span>
+				<img src="/images/emotes-ko.png" style="cursor: pointer;" onclick="voteKo('${review.review}')"> <span id="ko_${review.review}">${review.ko} </span>
+			</div>
+		</div>
+		${review.reviewtext}
+		<div style="border-top: 1px dotted #ccc; margin-top: 5px; padding-bottom: 10px;">
+			<div style="float: left;">
+				<a href="/shelf.html?username=${review.username}">${review.username}</a>, <i>${review.dateinserted}</i>
+			</div>
+			<div style="float: right;">
+				<a href="/reviewDiscussion.html?review=${review.review}">${review.numOpinions} commenti</a>
+			</div>
+		</div>
 	</display:column>
 </display:table>
 
@@ -76,7 +80,6 @@ Totale Users:
 <c:out value="${fn:length(socialMovie.movieUsers)}" />
 
 <display:table name="${socialMovie.movieUsers}" cellspacing="0" cellpadding="0" id="movieUser" pagesize="25" class="table" export="false">
-	<display:column property="movieUser" escapeXml="true" sortable="true" titleKey="id" />
 	<display:column escapeXml="false" sortable="false" titleKey="immagine">
 		<img src="${movieUser.imageLink}" height="20px" width="20px;"/>
 	</display:column>
@@ -85,6 +88,8 @@ Totale Users:
 	</display:column>
 	<display:column property="mark" escapeXml="true" sortable="true" titleKey="mark" />
 </display:table>
+
+</div>
 
 <script>
 	function voteOk(review) {

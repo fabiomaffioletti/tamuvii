@@ -99,9 +99,13 @@ Totale Users:
 		new Ajax.Request('/voteReview.html?ajax=true&type=ok&review='+review, {
 			  method: 'post',
 			  onSuccess: function(response) {
-			  if(response.responseText == '-1') {
+			  if(response.responseText == -1) {
 				var message = $('message_'+review);
-				message.innerHTML = response.responseText;
+				message.innerHTML = "Hai già votato per questa review... TODO!! Da internazionalizzare";
+				Effect.BlindDown(message, { duration: 0.2 });
+			  } else if(response.responseText == -2) {
+				var message = $('message_'+review);
+				message.innerHTML = "Non si può votare la review che hai fatto tu... TODO!! da internazionalizzare";
 				Effect.BlindDown(message, { duration: 0.2 });
 			  } else {
 			    var oks = $('ok_'+review);
@@ -115,8 +119,18 @@ Totale Users:
 		new Ajax.Request('/voteReview.html?ajax=true&type=ko&review='+review, {
 			  method: 'post',
 			  onSuccess: function(response) {
+			  if(response.responseText == -1) {
+				var message = $('message_'+review);
+				message.innerHTML = "Hai già votato per questa review... TODO!! Da internazionalizzare";
+				Effect.BlindDown(message, { duration: 0.2 });
+			  } else if(response.responseText == -2) {
+				var message = $('message_'+review);
+				message.innerHTML = "Non si può votare la review che hai fatto tu... TODO!! da internazionalizzare";
+				Effect.BlindDown(message, { duration: 0.2 });
+			  } else {
 			    var kos = $('ko_'+review);
 			    kos.innerHTML = response.responseText;
+			  }
 			}
 		});
 	}

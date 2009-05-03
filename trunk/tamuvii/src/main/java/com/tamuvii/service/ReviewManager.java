@@ -22,5 +22,9 @@ public interface ReviewManager {
 	public Review getPersonalMovieReview(PersonalMovieFilterMap personalMovieFilterMap);
 	
 	public void updatePersonalMovieReviewData(PersonalMovie personalMovie, String username) throws Exception;
+
+	public void updateReviewById(Review r);
+	
+	public boolean isReviewOwner(String username, Integer review);
 	
 }

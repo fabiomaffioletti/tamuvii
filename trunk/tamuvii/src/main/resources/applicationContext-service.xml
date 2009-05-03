@@ -158,7 +158,7 @@
 	
 	<bean id="userReviewVoteManager" class="com.tamuvii.service.impl.UserReviewVoteManagerImpl">
 		<property name="userReviewVoteDao" ref="userReviewVoteDao" />
-		<property name="reviewDao" ref="reviewDao" />
+		<property name="reviewManager" ref="reviewManager" />
 	</bean>
 	
 	

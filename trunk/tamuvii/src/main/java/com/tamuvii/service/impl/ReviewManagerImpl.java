@@ -108,4 +108,16 @@ public class ReviewManagerImpl implements ReviewManager {
 		reviewDao.deleteByExample(reviewExample);
 	}
 
+	public void updateReviewById(Review r) {
+		reviewDao.updateByPrimaryKey(r);	
+	}
+
+	public boolean isReviewOwner(String username, Integer review) {
+		ReviewExample reviewExample = new ReviewExample();
+		Criteria reviewCriteria = reviewExample.createCriteria();
+		reviewCriteria.andUsernameEqualTo(username);
+		reviewCriteria.andReviewEqualTo(review);
+		return reviewDao.selectByExample(reviewExample) != null;
+	}
+
 }

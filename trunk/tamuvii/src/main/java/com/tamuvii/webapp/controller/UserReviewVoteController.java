@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.tamuvii.service.UserReviewVoteManager;
+import com.tamuvii.util.TamuviiConstants;
 
 public class UserReviewVoteController implements Controller {
 	private UserReviewVoteManager userReviewVoteManager = null;
@@ -25,12 +26,14 @@ public class UserReviewVoteController implements Controller {
 		String type = request.getParameter("type") == null ? null : request.getParameter("type");
 		int result = 0;
 		
-		if(type.equals("ok"))
+		if(type.equals("ok")) {
 			result = userReviewVoteManager.voteOk(username, review);
-		else if(type.equals("ko"))
+		} else if(type.equals("ko")) {
 			result = userReviewVoteManager.voteKo(username, review);
-			
+		}
+		
 		mv.addObject("result", result);
+		
 		mv.setViewName("aj_voteReviewResult");
 		return mv;
 	}

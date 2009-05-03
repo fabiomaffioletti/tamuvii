@@ -54,6 +54,9 @@ Avg Mark: ${socialMovie.avgMark}
 
 <display:table name="${socialMovie.detailedReviews}" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="review" pagesize="25" class="table" export="false">
 	<display:column>
+		<div id="message_${review.review}" style="background-color: yellow; width: 100%; border: 1px solid red; margin-bottom: 5px; display:none;">
+			ciao
+		</div>
 		<div style="border-bottom: 1px dotted #ccc; margin-bottom: 5px; padding-bottom: 5px; height: 20px;">
 			<div style="float:left; margin-top: 3px;">
 				<span style="font-weight: bold; font-size: 14px;">${review.title}</span>		
@@ -96,8 +99,14 @@ Totale Users:
 		new Ajax.Request('/voteReview.html?ajax=true&type=ok&review='+review, {
 			  method: 'post',
 			  onSuccess: function(response) {
+			  if(response.responseText == '-1') {
+				var message = $('message_'+review);
+				message.innerHTML = response.responseText;
+				Effect.BlindDown(message, { duration: 0.2 });
+			  } else {
 			    var oks = $('ok_'+review);
 			    oks.innerHTML = response.responseText;
+			  }
 			}
 		});
 	}

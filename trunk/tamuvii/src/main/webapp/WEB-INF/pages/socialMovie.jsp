@@ -39,6 +39,27 @@ Num. Reviews: ${socialMovie.numReviews}
 <br/>
 Avg Mark: ${socialMovie.avgMark}
 <br/>
+<br/>
+<br/>
+
+Totale Users:
+<c:out value="${fn:length(socialMovie.movieUsers)}" />
+
+<display:table name="${socialMovie.movieUsers}" cellspacing="0" cellpadding="0" id="movieUser" pagesize="25" class="table" export="false">
+	<display:column escapeXml="false" sortable="false" titleKey="i">
+		<img src="${movieUser.imageLink}" height="20px" width="20px;"/>
+	</display:column>
+	<display:column escapeXml="false" sortable="true" titleKey="u">
+		<a href="/shelf.html?username=${movieUser.username}">${movieUser.username}</a>
+	</display:column>
+	<display:column escapeXml="false" sortable="false" titleKey="m">
+		<c:if test="${movieUser.mark > 0}">
+	    	<c:forEach begin="1" end="${movieUser.mark}">
+				<img src="/images/sun.png" height="11px" />	    		
+	    	</c:forEach>
+    	</c:if>
+	</display:column>
+</display:table>
 
 </div>
 
@@ -76,20 +97,6 @@ Avg Mark: ${socialMovie.avgMark}
 			</div>
 		</div>
 	</display:column>
-</display:table>
-
-<br/>
-Totale Users:
-<c:out value="${fn:length(socialMovie.movieUsers)}" />
-
-<display:table name="${socialMovie.movieUsers}" cellspacing="0" cellpadding="0" id="movieUser" pagesize="25" class="table" export="false">
-	<display:column escapeXml="false" sortable="false" titleKey="immagine">
-		<img src="${movieUser.imageLink}" height="20px" width="20px;"/>
-	</display:column>
-	<display:column escapeXml="false" sortable="true" titleKey="username">
-		<a href="/shelf.html?username=${movieUser.username}">${movieUser.username}</a>
-	</display:column>
-	<display:column property="mark" escapeXml="true" sortable="true" titleKey="mark" />
 </display:table>
 
 </div>

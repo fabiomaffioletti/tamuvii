@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="custom_message" >
+  
+   <resultMap id="userMessageListItem" class="com.tamuvii.pojo.MessageUserItem">
+        <result property="message.message" column="message"/>
+        <result property="message.sender" column="sender"/>
+        <result property="message.receiver" column="receiver"/>
+        <result property="message.messagetext" column="messagetext"/>
+        <result property="message.dateadded" column="dateadded"/>
+		<result property="user.id" column="id"/>
+        <result property="user.username" column="username"/>
+		<result property="user.email" column="email"/>
+        <result property="user.website" column="website"/>
+        <result property="user.websiteTitle" column="websiteTitle"/>
+        <result property="user.address.city" column="city"/>
+        <result property="user.address.country" column="country"/>
+        <result property="user.imageLink" column="imageLink"/>
+        <result property="numMessages" column="numMessages"/>
+   </resultMap>
+
+  <select id="getGroupedMessagesByUser" resultMap="userMessageListItem" parameterClass="java.lang.String" >
+  		select			m.message, 
+						m.sender,
+						m.receiver,
+						m.message_text as messagetext,
+						m.date_added as dateadded,
+						u.id,
+						u.username, 
+						u.email,
+						u.website,
+						u.website_title as websiteTitle,
+						u.city,
+						u.country,
+						u.image as imageLink,
+						count(m.message) as numMessages
+
+		from			message m inner join app_user u
+						on m.receiver = u.username
+		
+		where			m.sender = #username#
+		group by		m.receiver
+  </select>
+  
+  <select id="getInMessagesByUser" resultMap="userMessageListItem" parameterClass="java.lang.String" >
+  		select			m.message, 
+						m.sender,
+						m.receiver,
+						m.message_text as messagetext,
+						m.date_added as dateadded,
+						u.id,
+						u.username, 
+						u.email,
+						u.website,
+						u.website_title as websiteTitle,
+						u.city,
+						u.country,
+						u.image as imageLink,
+						0 as numMessages
+
+		from			message m inner join app_user u
+						on m.sender = u.username
+		
+		where			m.receiver = #username#
+		order by		dateadded		desc
+  </select>
+  
+  <select id="getConversationWithUser" resultMap="userMessageListItem" parameterClass="com.tamuvii.pojo.queryfilter.MessageUserFilter" >
+  		select			m.message, 
+						m.sender,
+						m.receiver,
+						m.message_text as messagetext,
+						m.date_added as dateadded,
+						u.id,
+						u.username, 
+						u.email,
+						u.website,
+						u.website_title as websiteTitle,
+						u.city,
+						u.country,
+						u.image as imageLink,
+						0 as numMessages
+
+		from			message m inner join app_user u
+						on m.sender = u.username
+		
+		where			(m.sender = #remoteUser# and m.receiver = #username#) or (m.receiver = #remoteUser# and m.sender = #username#)
+		order by		dateadded		desc
+  </select>
+  
+</sqlMap>

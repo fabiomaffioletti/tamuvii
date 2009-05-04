@@ -113,11 +113,11 @@ public class ReviewManagerImpl implements ReviewManager {
 	}
 
 	public boolean isReviewOwner(String username, Integer review) {
-		ReviewExample reviewExample = new ReviewExample();
-		Criteria reviewCriteria = reviewExample.createCriteria();
-		reviewCriteria.andUsernameEqualTo(username);
-		reviewCriteria.andReviewEqualTo(review);
-		return reviewDao.selectByExample(reviewExample) != null;
+		Review r = reviewDao.selectByPrimaryKey(review);
+		if(r.getUsername().equals(username))
+			return true;
+		else
+			return false;
 	}
 
 }

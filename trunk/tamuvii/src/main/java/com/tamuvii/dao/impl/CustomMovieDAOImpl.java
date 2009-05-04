@@ -87,21 +87,6 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 		return getSqlMapClientTemplate().queryForList("custom_movie.getUserNeighborhoods", username);
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<MessageUserItem> getGroupedMessagesByUser(String username) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getGroupedMessagesByUser", username);
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<MessageUserItem> getInMessagesByUser(String username) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getInMessagesByUser", username);
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<MessageUserItem> getConversationWithUser(MessageUserFilter messageUserFilter) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getConversationWithUser", messageUserFilter);
-	}
-
 	public UserNeighbor getUserPublicInfo(String username) {
 		return (UserNeighbor) getSqlMapClientTemplate().queryForObject("custom_movie.getUserPublicInfo", username);
 	}

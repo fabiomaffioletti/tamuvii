@@ -20,4 +20,5 @@
     <sqlMap resource="sqlmaps/app_user_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/message_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/user_review_vote_SqlMap.xml"/>
+    <sqlMap resource="sqlmaps/custom_Message_SqlMap.xml"/>
 </sqlMapConfig>

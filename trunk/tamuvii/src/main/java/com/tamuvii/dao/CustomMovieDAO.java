@@ -42,12 +42,6 @@ public interface CustomMovieDAO {
 	
 	public List<UserNeighbor> getUserNeighborhoods(String username);
 	
-	public List<MessageUserItem> getGroupedMessagesByUser(String username);
-
-	public List<MessageUserItem> getInMessagesByUser(String username);
-
-	public List<MessageUserItem> getConversationWithUser(MessageUserFilter messageUserFilter);
-
 	public UserNeighbor getUserPublicInfo(String username);
 	
 }

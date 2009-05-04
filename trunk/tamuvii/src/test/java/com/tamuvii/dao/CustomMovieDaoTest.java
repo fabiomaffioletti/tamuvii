@@ -1,14 +1,16 @@
 package com.tamuvii.dao;
 
 public class CustomMovieDaoTest extends BaseDaoTestCase {
-	private CustomMovieDAO customMovieDao = null;
+	private CustomMessageDAO customMessageDao = null;
 
-	public void setCustomMovieDao(CustomMovieDAO customMovieDao) {
-		this.customMovieDao = customMovieDao;
+	public void setCustomMessageDao(CustomMessageDAO customMessageDao) {
+		this.customMessageDao = customMessageDao;
 	}
-	
+
+
+
 	public void testGroupedMessagesByUser() {
-		assertNotNull(customMovieDao.getGroupedMessagesByUser("user"));
+		assertNotNull(customMessageDao.getGroupedMessagesByUser("user"));
 	}
 	
 }

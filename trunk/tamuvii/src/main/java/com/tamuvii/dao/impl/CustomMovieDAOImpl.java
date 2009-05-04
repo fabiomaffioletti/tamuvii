@@ -6,31 +6,18 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.pojo.DetailedReview;
-import com.tamuvii.pojo.MessageUserItem;
 import com.tamuvii.pojo.MovieUser;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.SearchMovieFilter;
-import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.UserNeighbor;
-import com.tamuvii.pojo.queryfilter.MessageUserFilter;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
 
 public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements CustomMovieDAO {
 	
 	public CustomMovieDAOImpl() {
 		super();
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<ShelfItem> getShelfByUsername(String username) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getShelfByUsername", username);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<ShelfItem> getWishedMoviesByUsername(String username) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getWishedMoviesByUsername", username);
 	}
 
 	public SocialMovie getSocialMovieDetails(Integer movie) {

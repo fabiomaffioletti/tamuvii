@@ -3,22 +3,15 @@ package com.tamuvii.dao;
 import java.util.List;
 
 import com.tamuvii.pojo.DetailedReview;
-import com.tamuvii.pojo.MessageUserItem;
 import com.tamuvii.pojo.MovieUser;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.SearchMovieFilter;
-import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.UserNeighbor;
-import com.tamuvii.pojo.queryfilter.MessageUserFilter;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
 
 public interface CustomMovieDAO {
-	
-	public List<ShelfItem> getShelfByUsername(String username);
-	
-	public List<ShelfItem> getWishedMoviesByUsername(String username);
 	
 	public SocialMovie getSocialMovieDetails(Integer movie);
 	

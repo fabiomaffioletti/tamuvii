@@ -109,6 +109,7 @@
     <!-- Add new Managers here -->
     <bean id="movieManager" class="com.tamuvii.service.impl.MovieManagerImpl">
     	<property name="customMovieDao" ref="customMovieDao" />
+    	<property name="customShelfDao" ref="customShelfDao" />
     	<property name="reviewManager" ref="reviewManager" />
     	<property name="movieDao" ref="movieDao" />
     	<property name="userToMovieManager" ref="userToMovieManager" />

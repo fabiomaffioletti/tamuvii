@@ -63,6 +63,11 @@
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
     
+    <bean id="customShelfDao" class="com.tamuvii.dao.impl.CustomShelfDAOImpl">
+    	<property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    
     <bean id="reviewDao" class="com.tamuvii.dao.impl.ReviewDAOImpl">
     	<property name="dataSource" ref="dataSource"/>
         <property name="sqlMapClient" ref="sqlMapClient"/>

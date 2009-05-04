@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.tamuvii.dao.CustomMovieDAO;
+import com.tamuvii.dao.CustomShelfDAO;
 import com.tamuvii.dao.MovieDAO;
 import com.tamuvii.model.Movie;
 import com.tamuvii.model.MovieExample;
@@ -25,10 +26,15 @@ import com.tamuvii.service.UserToMovieManager;
 
 public class MovieManagerImpl implements MovieManager {
 	private CustomMovieDAO customMovieDao = null;
+	private CustomShelfDAO customShelfDao = null;
 	private ReviewManager reviewManager = null;
 	private MovieDAO movieDao = null;
 	private UserToMovieManager userToMovieManager = null;
+
 	
+	public void setCustomShelfDao(CustomShelfDAO customShelfDao) {
+		this.customShelfDao = customShelfDao;
+	}
 	public void setUserToMovieManager(UserToMovieManager userToMovieManager) {
 		this.userToMovieManager = userToMovieManager;
 	}
@@ -44,11 +50,11 @@ public class MovieManagerImpl implements MovieManager {
 
 
 	public List<ShelfItem> getShelfByUsername(String username) {
-		return customMovieDao.getShelfByUsername(username);
+		return customShelfDao.getShelfByUsername(username);
 	}
 	
 	public List<ShelfItem> getWishedMoviesByUsername(String username) {
-		return customMovieDao.getWishedMoviesByUsername(username);
+		return customShelfDao.getWishedMoviesByUsername(username);
 	}
 
 

@@ -2,18 +2,6 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="custom_movie" >
 
-  <resultMap id="shelfItemMap" class="com.tamuvii.pojo.ShelfItem" >
-    <result column="movie" property="movie" jdbcType="INTEGER" />
-    <result column="duration" property="duration" jdbcType="VARCHAR" />
-    <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
-    <result column="directorId" property="directorId" jdbcType="INTEGER" />
-    <result column="director" property="director" jdbcType="VARCHAR" />
-    <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
-    <result column="date_added" property="dateAdded" jdbcType="TIMESTAMP" />
-    <result column="date_viewed" property="dateViewed" jdbcType="TIMESTAMP" />
-    <result column="mark" property="mark" jdbcType="INTEGER" />
-  </resultMap>
-
   <resultMap id="socialMovieMap" class="com.tamuvii.pojo.SocialMovie" >
     <result column="movie" property="movie" jdbcType="INTEGER" />
     <result column="duration" property="duration" jdbcType="VARCHAR" />
@@ -72,47 +60,6 @@
         <result property="imageLink" column="imageLink"/>
    </resultMap>
    
-  <select id="getShelfByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
-		select				m.movie, 
-							m.duration, 
-							m.original_title,
-							d.director as directorId, 
-							CONCAT(d.name, " ", d.surname) as director, 
-							m.release_date, 
-							um.date_added, 
-							um.date_viewed, 
-							um.mark
-							
-		from 				user_to_movie um			inner join movie m
-							on um.movie = m.movie 		inner join director d
-							on d.director = m.director 	inner join app_user u
-							on u.username = um.username
-							
-		where				u.username = #username#
-		and					um.wished = '0'
-		
-  </select>
-  
-  <select id="getWishedMoviesByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
-		select				m.movie, 
-							m.duration, 
-							m.original_title,
-							d.director as directorId, 
-							CONCAT(d.name, " ", d.surname) as director, 
-							m.release_date, 
-							um.date_added, 
-							um.date_viewed, 
-							um.mark
-							
-		from 				user_to_movie um			inner join movie m
-							on um.movie = m.movie 		inner join director d
-							on d.director = m.director 	inner join app_user u
-							on u.username = um.username
-							
-		where				u.username = #username#
-		and					um.wished = '1'
-		
-  </select>
   
   <select id="getSocialMovieDetails" resultMap="socialMovieMap" parameterClass="java.lang.Integer">
   		select				m.movie, 

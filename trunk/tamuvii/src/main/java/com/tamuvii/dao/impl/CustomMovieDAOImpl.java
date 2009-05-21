@@ -8,7 +8,6 @@ import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.MovieUser;
 import com.tamuvii.pojo.PersonalMovie;
-import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.SearchMovieFilter;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.UserNeighbor;
@@ -44,26 +43,6 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 		return getSqlMapClientTemplate().queryForList("custom_movie.searchSocialMovies", searchMovieFilter);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<Integer> getPersonalMoviesIds(String username) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getPersonalMoviesIds", username);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Integer> getShelfMoviesIds(String username) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getShelfMoviesIds", username);
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<Integer> getWishedMoviesIds(String username) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getWishedMoviesIds", username);
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<PersonalMovieIdAndWishedFlag> getPersonalMoviesIdsAndWishedFlags(String username) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getPersonalMoviesIdsAndWishedFlags", username);
-	}
-
 	@SuppressWarnings("unchecked")
 	public List<UserNeighbor> getUserFriends(String username) {
 		return getSqlMapClientTemplate().queryForList("custom_movie.getUserFriends", username);

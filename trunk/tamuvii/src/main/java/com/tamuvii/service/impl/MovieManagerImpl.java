@@ -133,16 +133,16 @@ public class MovieManagerImpl implements MovieManager {
 	
 	
 	public List<Integer> getPersonalMoviesIds(String username) {
-		return customMovieDao.getPersonalMoviesIds(username);
+		return customShelfDao.getPersonalMoviesIds(username);
 	}
 	
 	public List<Integer> getWishedMoviesIds(String username) {
-		return customMovieDao.getWishedMoviesIds(username);
+		return customShelfDao.getWishedMoviesIds(username);
 	}
 	
 	public List<PersonalMovieIdAndWishedFlag> getPersonalMoviesIdsAndWishedFlags(
 			String username) {
-		return customMovieDao.getPersonalMoviesIdsAndWishedFlags(username);
+		return customShelfDao.getPersonalMoviesIdsAndWishedFlags(username);
 	}
 	
 	

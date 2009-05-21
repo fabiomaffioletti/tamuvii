@@ -23,14 +23,6 @@ public interface CustomMovieDAO {
 	
 	public List<SocialMovie> searchSocialMovie(SearchMovieFilter searchMovieFilter);
 	
-	public List<Integer> getPersonalMoviesIds(String username);
-	
-	public List<Integer> getShelfMoviesIds(String username);
-	
-	public List<Integer> getWishedMoviesIds(String username);
-	
-	public List<PersonalMovieIdAndWishedFlag> getPersonalMoviesIdsAndWishedFlags(String username);
-	
 	public List<UserNeighbor> getUserFriends(String username);
 	
 	public List<UserNeighbor> getUserNeighborhoods(String username);

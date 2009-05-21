@@ -44,11 +44,6 @@
         <result property="imageLink" jdbcType="VARCHAR" column="imageLink"/>
   </resultMap>
   
-  <resultMap id="personalMovieIdAndWishedFlag" class="com.tamuvii.pojo.PersonalMovieIdAndWishedFlag" >
-	    <result column="movie" property="movie" jdbcType="INTEGER" />
-	    <result column="wished" property="wished" jdbcType="VARCHAR" />
-  </resultMap>
-  
   <resultMap id="userNeighbor" class="com.tamuvii.pojo.UserNeighbor">
         <result property="id" column="id"/>
         <result property="username" column="username"/>
@@ -162,34 +157,6 @@
 							
 		group by m.movie
   </select>
-  
-  <select id="getPersonalMoviesIds" resultClass="java.lang.Integer" parameterClass="java.lang.String" >
-  		select			um.movie
-		from			user_to_movie um
-		where			um.username = #username#
-  </select>
-  
-  <select id="getShelfMoviesIds" resultClass="java.lang.Integer" parameterClass="java.lang.String" >
-  		select			um.movie
-		from			user_to_movie um
-		where			um.username = #username#
-		and				um.wished = '0'
-  </select>
-  
-  <select id="getWishedMoviesIds" resultClass="java.lang.Integer" parameterClass="java.lang.String" >
-  		select			um.movie
-		from			user_to_movie um
-		where			um.username = #username#
-		and				um.wished = '1'
-  </select>
-  
-  <select id="getPersonalMoviesIdsAndWishedFlags" resultMap="personalMovieIdAndWishedFlag" parameterClass="java.lang.String" >
-  		select			um.movie,
-  						um.wished
-		from			user_to_movie um
-		where			um.username = #username#
-  </select>
-  
   
   <select id="getUserFriends" resultMap="userNeighbor" parameterClass="java.lang.String" >
 		select 			u.id,

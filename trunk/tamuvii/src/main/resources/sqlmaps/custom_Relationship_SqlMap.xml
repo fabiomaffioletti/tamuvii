@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="custom_relationship" >
+
+  <resultMap id="userNeighbor" class="com.tamuvii.pojo.UserNeighbor">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+		<result property="email" column="email"/>
+        <result property="website" column="website"/>
+        <result property="websiteTitle" column="websiteTitle"/>
+        <result property="address.city" column="city"/>
+        <result property="address.country" column="country"/>
+        <result property="imageLink" column="imageLink"/>
+   </resultMap>
+   
+   <select id="getUserPublicInfo" resultMap="userNeighbor" parameterClass="java.lang.String" >
+		select 			u.id,
+					 	u.username, 
+						u.email,
+						u.website,
+						u.website_title as websiteTitle,
+						u.city,
+						u.country,
+						u.image as imageLink
+			
+		from 			app_user u
+		
+		where 			u.username = #username#  
+  </select>
+   
+  <select id="getUserFriends" resultMap="userNeighbor" parameterClass="java.lang.String" >
+		select 			u.id,
+					 	u.username, 
+						u.email,
+						u.website,
+						u.website_title as websiteTitle,
+						u.city,
+						u.country,
+						u.image as imageLink
+			
+		from 			user_to_user uu 		inner join 		app_user u
+						on uu.second = u.username
+		
+		where 			uu.first = #username#
+		and 			uu.friend = 1
+  </select>
+  
+  <select id="getUserNeighborhoods" resultMap="userNeighbor" parameterClass="java.lang.String" >
+		select 			u.id,
+					 	u.username, 
+						u.email,
+						u.website,
+						u.website_title as websiteTitle,
+						u.city,
+						u.country,
+						u.image as imageLink
+			
+		from 			user_to_user uu 		inner join 		app_user u
+						on uu.second = u.username
+		
+		where 			uu.first = #username#
+		and 			uu.friend = 0
+  </select>
+  
+</sqlMap>

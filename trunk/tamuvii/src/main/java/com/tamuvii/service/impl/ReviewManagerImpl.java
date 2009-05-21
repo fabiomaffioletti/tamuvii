@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import com.tamuvii.dao.CustomMovieDAO;
+import com.tamuvii.dao.CustomReviewDAO;
 import com.tamuvii.dao.ReviewDAO;
 import com.tamuvii.model.Review;
 import com.tamuvii.model.ReviewExample;
@@ -17,12 +17,11 @@ import com.tamuvii.service.ReviewManager;
 
 public class ReviewManagerImpl implements ReviewManager {
 	private ReviewDAO reviewDao = null;
-	private CustomMovieDAO customMovieDao = null;
+	private CustomReviewDAO customReviewDao = null;
 	
-	public void setCustomMovieDao(CustomMovieDAO customMovieDao) {
-		this.customMovieDao = customMovieDao;
+	public void setCustomReviewDao(CustomReviewDAO customReviewDao) {
+		this.customReviewDao = customReviewDao;
 	}
-
 	public void setReviewDao(ReviewDAO reviewDao) {
 		this.reviewDao = reviewDao;
 	}
@@ -47,7 +46,7 @@ public class ReviewManagerImpl implements ReviewManager {
 	}
 	
 	public List<DetailedReview> getDetailedReviewsByMovie(Integer movie) {
-		return customMovieDao.getDetailedReviewsByMovie(movie);
+		return customReviewDao.getDetailedReviewsByMovie(movie);
 	}
 
 

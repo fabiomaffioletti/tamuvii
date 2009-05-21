@@ -3,6 +3,7 @@ package com.tamuvii.service.impl;
 import java.util.List;
 
 import com.tamuvii.dao.CustomMovieDAO;
+import com.tamuvii.dao.CustomRelationshipDAO;
 import com.tamuvii.dao.UserToUserDAO;
 import com.tamuvii.model.UserToUser;
 import com.tamuvii.model.UserToUserExample;
@@ -12,24 +13,22 @@ import com.tamuvii.pojo.UserNeighbor;
 import com.tamuvii.service.UserToUserManager;
 
 public class UserToUserManagerImpl implements UserToUserManager {
-	private CustomMovieDAO customMovieDao = null;
+	private CustomRelationshipDAO customRelationshipDao = null;
 	private UserToUserDAO userToUserDao = null;
 	
 	public void setUserToUserDao(UserToUserDAO userToUserDao) {
 		this.userToUserDao = userToUserDao;
 	}
-	public void setCustomMovieDao(CustomMovieDAO customMovieDao) {
-		this.customMovieDao = customMovieDao;
+	public void setCustomRelationshipDao(CustomRelationshipDAO customRelationshipDao) {
+		this.customRelationshipDao = customRelationshipDao;
+	
 	}
-
-	
-	
 	public List<UserNeighbor> getUserFriends(String username) {
-		return customMovieDao.getUserFriends(username);
+		return customRelationshipDao.getUserFriends(username);
 	}
 
 	public List<UserNeighbor> getUserNeighborhoods(String username) {
-		return customMovieDao.getUserNeighborhoods(username);
+		return customRelationshipDao.getUserNeighborhoods(username);
 	}
 	
 	public boolean areFriends(String first, String second) {

@@ -23,10 +23,4 @@ public interface CustomMovieDAO {
 	
 	public List<SocialMovie> searchSocialMovie(SearchMovieFilter searchMovieFilter);
 	
-	public List<UserNeighbor> getUserFriends(String username);
-	
-	public List<UserNeighbor> getUserNeighborhoods(String username);
-	
-	public UserNeighbor getUserPublicInfo(String username);
-	
 }

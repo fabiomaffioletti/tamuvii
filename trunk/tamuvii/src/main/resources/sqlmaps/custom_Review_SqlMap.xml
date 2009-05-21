@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="custom_review" >
+
+  <resultMap id="detailedReviewMap" class="com.tamuvii.pojo.DetailedReview" >
+    <result column="review" jdbcType="INTEGER" property="review" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="movie" jdbcType="INTEGER" property="movie" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="review_text" jdbcType="VARCHAR" property="reviewtext" />
+    <result column="ok" jdbcType="INTEGER" property="ok" />
+    <result column="ko" jdbcType="INTEGER" property="ko" />
+    <result column="date_inserted" jdbcType="TIMESTAMP" property="dateinserted" />
+    <result column="numOpinions" property="numOpinions" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <select id="getDetailedReviewsByMovie" resultMap="detailedReviewMap" parameterClass="java.lang.Integer">
+  		select				r.review,
+  							r.username,
+  							r.movie,
+  							r.title,
+  							r.review_text,
+  							r.ok as ok,
+  							r.ko as ko,
+  							r.date_inserted,
+							count(o.opinion) as numOpinions
+
+		from				review r		left join		opinion o
+						on	r.review = o.review
+		
+		where				r.movie = #movie#
+		group by			r.review
+  </select>
+    
+</sqlMap>

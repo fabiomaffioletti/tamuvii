@@ -25,18 +25,6 @@
     <result column="mark" property="mark" jdbcType="INTEGER" />
   </resultMap>
   
-  <resultMap id="detailedReviewMap" class="com.tamuvii.pojo.DetailedReview" >
-    <result column="review" jdbcType="INTEGER" property="review" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="movie" jdbcType="INTEGER" property="movie" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="review_text" jdbcType="VARCHAR" property="reviewtext" />
-    <result column="ok" jdbcType="INTEGER" property="ok" />
-    <result column="ko" jdbcType="INTEGER" property="ko" />
-    <result column="date_inserted" jdbcType="TIMESTAMP" property="dateinserted" />
-    <result column="numOpinions" property="numOpinions" jdbcType="INTEGER" />
-  </resultMap>
-  
   <resultMap id="movieUser" class="com.tamuvii.pojo.MovieUser">
         <result property="movieUser" jdbcType="INTEGER" column="movieUser"/>
         <result property="username" jdbcType="VARCHAR" column="username"/>
@@ -44,17 +32,6 @@
         <result property="imageLink" jdbcType="VARCHAR" column="imageLink"/>
   </resultMap>
   
-  <resultMap id="userNeighbor" class="com.tamuvii.pojo.UserNeighbor">
-        <result property="id" column="id"/>
-        <result property="username" column="username"/>
-		<result property="email" column="email"/>
-        <result property="website" column="website"/>
-        <result property="websiteTitle" column="websiteTitle"/>
-        <result property="address.city" column="city"/>
-        <result property="address.country" column="country"/>
-        <result property="imageLink" column="imageLink"/>
-   </resultMap>
-   
   
   <select id="getSocialMovieDetails" resultMap="socialMovieMap" parameterClass="java.lang.Integer">
   		select				m.movie, 
@@ -91,25 +68,6 @@
 							on u.username = um.username 			
 							
 		where m.movie = #movie# and u.username = #username#
-  </select>
-  
-  
-  <select id="getDetailedReviewsByMovie" resultMap="detailedReviewMap" parameterClass="java.lang.Integer">
-  		select				r.review,
-  							r.username,
-  							r.movie,
-  							r.title,
-  							r.review_text,
-  							r.ok as ok,
-  							r.ko as ko,
-  							r.date_inserted,
-							count(o.opinion) as numOpinions
-
-		from				review r		left join		opinion o
-						on	r.review = o.review
-		
-		where				r.movie = #movie#
-		group by			r.review
   </select>
   
   <select id="getUsersByMovie" resultMap="movieUser" parameterClass="java.lang.Integer">
@@ -156,55 +114,6 @@
 	    </dynamic>								
 							
 		group by m.movie
-  </select>
-  
-  <select id="getUserFriends" resultMap="userNeighbor" parameterClass="java.lang.String" >
-		select 			u.id,
-					 	u.username, 
-						u.email,
-						u.website,
-						u.website_title as websiteTitle,
-						u.city,
-						u.country,
-						u.image as imageLink
-			
-		from 			user_to_user uu 		inner join 		app_user u
-						on uu.second = u.username
-		
-		where 			uu.first = #username#
-		and 			uu.friend = 1
-  </select>
-  
-  <select id="getUserNeighborhoods" resultMap="userNeighbor" parameterClass="java.lang.String" >
-		select 			u.id,
-					 	u.username, 
-						u.email,
-						u.website,
-						u.website_title as websiteTitle,
-						u.city,
-						u.country,
-						u.image as imageLink
-			
-		from 			user_to_user uu 		inner join 		app_user u
-						on uu.second = u.username
-		
-		where 			uu.first = #username#
-		and 			uu.friend = 0
-  </select>
-  
-  <select id="getUserPublicInfo" resultMap="userNeighbor" parameterClass="java.lang.String" >
-		select 			u.id,
-					 	u.username, 
-						u.email,
-						u.website,
-						u.website_title as websiteTitle,
-						u.city,
-						u.country,
-						u.image as imageLink
-			
-		from 			app_user u
-		
-		where 			u.username = #username#  
   </select>
   
 </sqlMap>

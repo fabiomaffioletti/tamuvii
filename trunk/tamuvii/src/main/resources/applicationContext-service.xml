@@ -122,7 +122,7 @@
     
     <bean id="reviewManager" class="com.tamuvii.service.impl.ReviewManagerImpl">
     	<property name="reviewDao" ref="reviewDao" />
-    	<property name="customMovieDao" ref="customMovieDao" />
+    	<property name="customReviewDao" ref="customReviewDao" />
     </bean>
     
     <bean id="opinionManager" class="com.tamuvii.service.impl.OpinionManagerImpl">
@@ -139,7 +139,7 @@
 	</bean>
 	
 	<bean id="userToUserManager" class="com.tamuvii.service.impl.UserToUserManagerImpl">
-		<property name="customMovieDao" ref="customMovieDao" />
+		<property name="customRelationshipDao" ref="customRelationshipDao" />
 		<property name="userToUserDao" ref="userToUserDao" />
 	</bean>
 	
@@ -149,7 +149,7 @@
 	
 	<bean id="appUserManager" class="com.tamuvii.service.impl.AppUserManagerImpl">
 		<property name="appUserDao" ref="appUserDao" />
-		<property name="customMovieDao" ref="customMovieDao" />
+		<property name="customRelationshipDao" ref="customRelationshipDao" />
 	</bean>
 	
 	<bean id="messageManager" class="com.tamuvii.service.impl.MessageManagerImpl">

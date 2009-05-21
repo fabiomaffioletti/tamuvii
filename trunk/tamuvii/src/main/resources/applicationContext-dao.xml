@@ -68,6 +68,16 @@
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
     
+    <bean id="customReviewDao" class="com.tamuvii.dao.impl.CustomReviewDAOImpl">
+    	<property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    
+    <bean id="customRelationshipDao" class="com.tamuvii.dao.impl.CustomRelationshipDAOImpl">
+    	<property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    
     <bean id="reviewDao" class="com.tamuvii.dao.impl.ReviewDAOImpl">
     	<property name="dataSource" ref="dataSource"/>
         <property name="sqlMapClient" ref="sqlMapClient"/>

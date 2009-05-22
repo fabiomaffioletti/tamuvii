@@ -51,6 +51,28 @@
 		where m.movie = #movie#
   </select>
   
+  <!-- getSocialMovieDetails con il filtro sul locale scelto dall'utente e il numero di utenti che hanno il film
+  
+  		select				m.movie, 
+							m.duration, 
+							m.original_title,
+							d.director as directorId, 
+							CONCAT(d.name, " ", d.surname) as director, 
+							m.release_date,
+							count(distinct r.review) as numReviews,
+							avg(um.mark) as avgMark,
+							count(distinct au.id) as numUsers
+														
+		from 				movie m												inner join 		user_to_movie um 
+							on um.movie = m.movie 								inner join 		app_user au
+							on au.username = um.username						left join 		review r
+							on m.movie = r.movie and au.username = r.username	inner join 		director d
+							on m.director = d.director	
+							
+		where m.movie = -18 and au.country = 'IT'
+  
+   -->
+  
   <select id="getPersonalMovieDetails" resultMap="personalMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap">
   		select				m.movie, 
 							m.duration, 

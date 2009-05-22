@@ -80,7 +80,7 @@
 </c:if>
 
 <c:if test="${fn:length(neighborhoods) > 0}">
-	<a href="#" onclick="Effect.toggle('neighborhoods', 'slide',{ duration: 0.2 }); return false;">Vicini</a>
+	<a href="#" onclick="">Vicini</a>
 	<div id="neighborhoods" style="width:200px;">
 	  <div>
 		<display:table name="neighborhoods" cellspacing="0" cellpadding="0" defaultsort="1" requestURI="" id="neighborhood" pagesize="1" length="5" class="table" export="false">
@@ -154,34 +154,118 @@
 </div>
 
 <display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="16" class="table" export="true">
-	<display:column escapeXml="false" sortable="false" style="border: none;">
-		<img src="/images/placeholder_movie.jpg" height="70px" style="border:1px solid gray;" />
+	<!-- Image -->
+	<display:column escapeXml="false" sortable="false" style="padding-right:20px; width: 10%; vertical-align: top;">
+		<c:choose>
+			<c:when test="${not empty shelfItems.localizedImage}">
+				<img src="${shelfItems.localizedImage}" height="110px" style="border:1px solid gray; vertical-align: top;" />
+			</c:when>
+			<c:otherwise>
+				<img src="${shelfItems.originalImage}" height="110px" style="border:1px solid gray; vertical-align: top;" />
+			</c:otherwise>
+		</c:choose>
+		
 	</display:column>
-    <display:column escapeXml="false" sortable="true" style="border: none;">
-    	<a href="/socialMovie.html?movie=${shelfItems.movie}"><b>${shelfItems.originalTitle}</b></a>
-    	<br/>
-    	<a href="/directorDetail.html?director=${shelfItems.directorId}">${shelfItems.director}</a>
-    	<c:if test="${not empty shelfItems.dateViewed}">
-    		<br/>
-    	 	Visto il: <fmt:formatDate value="${shelfItems.dateViewed}" />  
-    	</c:if>
-    	<div style="margin-top: 5px;">
+	
+    <display:column escapeXml="false" sortable="true" style="padding-left: 20px; padding-right: 20px; border: none; width: 70%;" >
+		<!-- Title -->
+    	<div style="margin-bottom: 5px;">
+	    	<c:choose>
+	    		<c:when test="${empty shelfItems.localizedTitle}">
+		    		<a href="/socialMovie.html?movie=${shelfItems.movie}"><b>${shelfItems.originalTitle}</b></a> (${shelfItems.numUsers}) 
+		    		<c:if test="${not empty shelfItems.originalPlot || not empty shelfItems.localizedPlot}">
+		    			<a href="#" onclick="Effect.toggle('plot_${shelfItems.movie}', 'slide',{ duration: 0.2 }); return false;" style="vertical-align: middle;"><img src="/images/plot.png" height="11px" /></a>
+		    		</c:if>
+		    		<c:if test="${not empty shelfItems.review}">
+		    			<a href="#" onclick="Effect.toggle('review_${shelfItems.review}', 'slide',{ duration: 0.2 }); return false;" style="vertical-align: middle;"><img src="/images/view_review.png" height="11px" /></a>
+		    		</c:if>
+		    	</c:when>
+		    	<c:otherwise>
+		    		<a href="/socialMovie.html?movie=${shelfItems.movie}"><b>${shelfItems.localizedTitle}</b></a> (${shelfItems.numUsers})
+		    		<c:if test="${not empty shelfItems.originalPlot || not empty shelfItems.localizedPlot}">
+		    			<a href="#" onclick="Effect.toggle('plot_${shelfItems.movie}', 'slide',{ duration: 0.2 }); return false;" style="vertical-align: middle;" ><img src="/images/plot.png" height="11px" /></a>
+		    		</c:if>
+		    		<c:if test="${not empty shelfItems.review}">
+		    			<a href="#" onclick="Effect.toggle('review_${shelfItems.review}', 'slide',{ duration: 0.2 }); return false;" style="vertical-align: middle;"><img src="/images/view_review.png" height="11px" /></a>
+		    		</c:if>
+		    		<br/>
+		    		<c:if test="${shelfItems.originalTitle != shelfItems.localizedTitle}">
+			    		<i>Titolo originale: ${shelfItems.originalTitle}</i>
+			    	</c:if>
+		    	</c:otherwise>
+	    	</c:choose>
+	    </div>
+    	
+    	<!-- Director -->
+    	<div style="margin-bottom: 3px;">
+    		di <a href="/directorDetail.html?director=${shelfItems.directorId}">${shelfItems.director}</a>
+    	</div>
+    	
+		<!-- Date viewed -->
+    	<div style="margin-bottom: 3px;">
+	    	<c:if test="${not empty shelfItems.dateViewed}">
+	    	 	Visto il: <fmt:formatDate value="${shelfItems.dateViewed}" />  
+	    	</c:if>
+	   	</div>
+	
+    	<!-- Mark -->
+    	<div style="margin-bottom:3px;">
 	    	<c:if test="${shelfItems.mark > 0}">
 		    	<c:forEach begin="1" end="${shelfItems.mark}">
 					<img src="/images/sun.png" height="11px" />	    		
 		    	</c:forEach>
 	    	</c:if>
+	    </div>
+    	
+    	
+    	<!-- Plot -->
+    	<div id="plot_${shelfItems.movie}" style="display:none; border:1px dotted #ccc; text-align: justify; padding: 3px; margin-top: 10px;">
+    		<div style="float:left; margin-bottom: 2px;">
+    			<b>Trama:</b>
+    		</div>
+    		<div style="float:right; margin-bottom: 2px;">
+    			<span style="text-align: right;"><img src="/images/close.png" onclick="Effect.toggle('plot_${shelfItems.movie}', 'slide',{ duration: 0.2 }); return false;" style="cursor: pointer; border: none;" height="11px" /></span>
+    		</div>
+    		
+    		<div style="clear: both;">
+		    	<c:choose>
+		    		<c:when test="${empty shelfItems.localizedPlot}">
+			    		${shelfItems.originalPlot}
+			    	</c:when>
+			    	<c:otherwise>
+			    		${shelfItems.localizedPlot}
+			    	</c:otherwise>
+		    	</c:choose>
+		    </div>
     	</div>
+    	
+    	<div id="review_${shelfItems.review}" style="display:none; border:1px dotted #ccc; text-align: justify; padding: 3px; margin-top: 10px;">
+    		<div style="float:left; margin-bottom: 2px;">
+    			<b>${shelfItems.reviewTitle}:</b>
+    		</div>
+    		<div style="float:right; margin-bottom: 2px;">
+    			<span style="text-align: right;">
+    				<a href="/reviewDiscussion.html?review=${shelfItems.review}"><img src="/images/discuss.png" style="cursor: pointer; border: none;" height="11px" /></a>
+    				<img src="/images/close.png" onclick="Effect.toggle('review_${shelfItems.review}', 'slide',{ duration: 0.2 }); return false;" style="cursor: pointer; border: none;" height="11px" />
+    			</span>
+    		</div>
+    		
+    		<div style="clear: both;">
+	    		${shelfItems.reviewText}
+		    </div>
+    	</div>
+    	
     </display:column>
     
+    <!-- Actions -->
     <c:choose>
 	    <c:when test="${empty username || username == pageContext.request.remoteUser}">
-		    <display:column style="border: none;">
+		    <display:column style="border: none; width: 20%; vertical-align: top;">
 		    	<a href="/personalMovie.html?movie=${shelfItems.movie}">modify</a>
 		    </display:column>
 	    </c:when>
 	    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
-	    	<display:column style="border: none;">
+	    	<display:column style="border: none; width: 20%; vertical-align: top;">
 	    		<c:set var="isInPersonalMovies" value="0" />
 	    		<c:set var="isWished" value="0" />
 		    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">

@@ -6,12 +6,21 @@
     <result column="movie" property="movie" jdbcType="INTEGER" />
     <result column="duration" property="duration" jdbcType="VARCHAR" />
     <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
+    <result column="original_plot" property="originalPlot" jdbcType="VARCHAR" />
+    <result column="original_image" property="originalImage" jdbcType="VARCHAR" />
+    <result column="localized_title" property="localizedTitle" jdbcType="VARCHAR" />
+    <result column="localized_plot" property="localizedPlot" jdbcType="VARCHAR" />
+    <result column="localized_image" property="localizedImage" jdbcType="VARCHAR" />
     <result column="directorId" property="directorId" jdbcType="INTEGER" />
     <result column="director" property="director" jdbcType="VARCHAR" />
     <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
     <result column="date_added" property="dateAdded" jdbcType="TIMESTAMP" />
     <result column="date_viewed" property="dateViewed" jdbcType="TIMESTAMP" />
     <result column="mark" property="mark" jdbcType="INTEGER" />
+    <result column="numUsers" property="numUsers" jdbcType="INTEGER" />
+    <result column="review" property="review" jdbcType="INTEGER" />
+    <result column="title" property="reviewTitle" jdbcType="VARCHAR" />
+    <result column="review_text" property="reviewText" jdbcType="VARCHAR" />
   </resultMap>
   
   <resultMap id="personalMovieIdAndWishedFlag" class="com.tamuvii.pojo.PersonalMovieIdAndWishedFlag" >
@@ -20,7 +29,7 @@
   </resultMap>
 
   
-  <select id="getShelfByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
+  <!-- select id="getShelfByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
 		select				m.movie, 
 							m.duration, 
 							m.original_title,
@@ -38,6 +47,43 @@
 							
 		where				u.username = #username#
 		and					um.wished = '0'
+  </select-->
+  
+  <!-- 
+  
+  Query di selezione shelf con filtro sul locale e numero di utenti corrispondenti per ogni film -->
+  
+  <select id="getShelfByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
+  		select				m.movie, 
+							m.duration, 
+							m.original_title,
+							m.original_plot,
+							m.original_image,
+							loc.localized_title,
+							loc.localized_plot,
+							loc.localized_image,
+							d.director as directorId, 
+							CONCAT(d.name, " ", d.surname) as director, 
+							m.release_date, 
+							um.date_added, 
+							um.date_viewed, 
+							um.mark,
+							(select count(*) from user_to_movie um2 inner join app_user au on au.username = um2.username where um2.movie = m.movie and au.country = 'IT') as numUsers,
+							r.review,
+							r.title,
+							r.review_text
+							
+		from 				user_to_movie um			inner join movie m
+							on um.movie = m.movie 		inner join director d
+							on d.director = m.director 	inner join app_user u
+							on u.username = um.username left join localized_data loc
+							on loc.movie = m.movie 		left join review r
+							on r.movie = um.movie and r.username = #username#
+							
+		where				u.username = #username#
+		and					um.wished = '0'
+
+		group by um.movie
   </select>
   
   

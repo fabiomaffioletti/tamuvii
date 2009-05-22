@@ -153,7 +153,7 @@
 	<br/>
 </div>
 
-<display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="16" class="table" export="true">
+<display:table name="shelfItems" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="shelfItems" pagesize="10" class="table" export="true">
 	<!-- Image -->
 	<display:column escapeXml="false" sortable="false" style="padding-right:20px; width: 10%; vertical-align: top;">
 		<c:choose>
@@ -167,7 +167,7 @@
 		
 	</display:column>
 	
-    <display:column escapeXml="false" sortable="true" style="padding-left: 20px; padding-right: 20px; border: none; width: 70%;" >
+    <display:column escapeXml="false" sortable="true" style="padding-left: 20px; padding-right: 20px; border: none; width: 65%;" >
 		<!-- Title -->
     	<div style="margin-bottom: 5px;">
 	    	<c:choose>
@@ -260,35 +260,38 @@
     <!-- Actions -->
     <c:choose>
 	    <c:when test="${empty username || username == pageContext.request.remoteUser}">
-		    <display:column style="border: none; width: 20%; vertical-align: top;">
+		    <display:column style="border: none; width: 25%; vertical-align: top;">
 		    	<a href="/personalMovie.html?movie=${shelfItems.movie}">modify</a>
 		    </display:column>
 	    </c:when>
 	    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
-	    	<display:column style="border: none; width: 20%; vertical-align: top;">
-	    		<c:set var="isInPersonalMovies" value="0" />
-	    		<c:set var="isWished" value="0" />
-		    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">
-		    		<c:if test="${personalMovieId.movie == shelfItems.movie}">
-		    			<c:set var="isInPersonalMovies" value="1" />
-		    			<c:if test="${personalMovieId.wished == 1}">
-		    				<c:set var="isWished" value="1" />
-		    			</c:if>
-		    		</c:if>
-		    	</c:forEach>
-		    	
-		    	<c:choose>
-			    	<c:when test="${isInPersonalMovies == 0}">
-			    		<a href="/shelfManagement.html?action=add&movie=${shelfItems.movie}">add</a>
-			    		<a href="/wishlistManagement.html?action=wish&movie=${shelfItems.movie}">wish</a>
-			    	</c:when>
-			    	<c:otherwise>
-			    		Film gi&agrave; presente in
-			    		<c:if test="${isWished == 0}"> libreria </c:if>
-			    		<c:if test="${isWished == 1}"> wishlist </c:if>
-			    	</c:otherwise>
-		    	</c:choose>
-		    	
+	    	<display:column style="border: none; width: 25%; vertical-align: top;">
+	    		<img src="/images/ciack.png" style="cursor: pointer; margin-bottom: 10px;" onclick="Effect.Appear('actions_${shelfItems.movie}', { duration: 1.0 });" />
+	    		<div id="actions_${shelfItems.movie}" style="display:none;">
+		    		<c:set var="isInPersonalMovies" value="0" />
+		    		<c:set var="isWished" value="0" />
+			    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">
+			    		<c:if test="${personalMovieId.movie == shelfItems.movie}">
+			    			<c:set var="isInPersonalMovies" value="1" />
+			    			<c:if test="${personalMovieId.wished == 1}">
+			    				<c:set var="isWished" value="1" />
+			    			</c:if>
+			    		</c:if>
+			    	</c:forEach>
+			    	
+			    	<c:choose>
+				    	<c:when test="${isInPersonalMovies == 0}">
+				    		<img src="/images/record.png" style="cursor: pointer; vertical-align: middle;" height="11px" /> <a href="/shelfManagement.html?action=add&movie=${shelfItems.movie}">Aggiungi alla videoteca</a>
+				    		<br/>
+				    		<img src="/images/play.png" style="cursor: pointer; vertical-align: middle;" height="11px" /> <a href="/wishlistManagement.html?action=wish&movie=${shelfItems.movie}">Aggiungi alla wishlist</a>
+				    	</c:when>
+				    	<c:otherwise>
+				    		Film gi&agrave; presente in
+				    		<c:if test="${isWished == 0}"> libreria </c:if>
+				    		<c:if test="${isWished == 1}"> wishlist </c:if>
+				    	</c:otherwise>
+			    	</c:choose>
+		    	</div>
 	    	</display:column>
 	    </c:when>
     </c:choose>

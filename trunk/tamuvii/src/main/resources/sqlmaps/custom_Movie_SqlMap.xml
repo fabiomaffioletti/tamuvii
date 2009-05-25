@@ -110,11 +110,10 @@
 							on um.movie = m.movie 		inner join director d
 							on d.director = m.director 	inner join app_user u
 							on u.username = um.username left join localized_data loc
-							on loc.movie = m.movie			
+							on loc.movie = m.movie and loc.locale LIKE '%u.country%' <!-- Occhio a questa ultima istruzione, anche per le altre query!!! -->		
 							
 		where m.movie = #movie# 
 		and u.username = #username#
-		and loc.locale = 'it_IT'
   </select>
   
   <select id="getUsersByMovie" resultMap="movieUser" parameterClass="java.lang.Integer">

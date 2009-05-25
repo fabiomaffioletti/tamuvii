@@ -9,13 +9,16 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
+import com.tamuvii.pojo.ShelfDirectorReport;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.service.AppUserManager;
 import com.tamuvii.service.MovieManager;
 import com.tamuvii.service.RelationshipManager;
+import com.tamuvii.service.ShelfManager;
 
 public class ShelfController implements Controller {
 	private MovieManager movieManager = null;
+	private ShelfManager shelfManager = null;
 	private AppUserManager appUserManager = null;
 	private RelationshipManager relationshipManager = null;
 
@@ -28,8 +31,11 @@ public class ShelfController implements Controller {
 	public void setMovieManager(MovieManager movieManager) {
 		this.movieManager = movieManager;
 	}
-
-
+	public void setShelfManager(ShelfManager shelfManager) {
+		this.shelfManager = shelfManager;
+	}
+	
+	
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
@@ -57,6 +63,10 @@ public class ShelfController implements Controller {
 		// Aggiunge i film della videoteca
 		List<ShelfItem> shelfItems = movieManager.getShelfByUsername(username);
 		mv.addObject("shelfItems", shelfItems);
+		
+		// Aggiunge il report sui registi
+		List<ShelfDirectorReport> shelfDirectorReport = shelfManager.getShelfDirectorReport(username);
+		mv.addObject("shelfDirectorReport", shelfDirectorReport);
 		
 		// Aggiunge le informazioni del profilo
 		mv.addObject("userPublicInfo", appUserManager.getUserPublicInfo(username));

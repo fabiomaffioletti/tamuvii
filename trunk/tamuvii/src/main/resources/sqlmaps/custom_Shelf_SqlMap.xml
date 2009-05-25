@@ -27,27 +27,16 @@
 	    <result column="movie" property="movie" jdbcType="INTEGER" />
 	    <result column="wished" property="wished" jdbcType="VARCHAR" />
   </resultMap>
-
   
-  <!-- select id="getShelfByUsername" resultMap="shelfItemMap" parameterClass="java.lang.String" >
-		select				m.movie, 
-							m.duration, 
-							m.original_title,
-							d.director as directorId, 
-							CONCAT(d.name, " ", d.surname) as director, 
-							m.release_date, 
-							um.date_added, 
-							um.date_viewed, 
-							um.mark
-							
-		from 				user_to_movie um			inner join movie m
-							on um.movie = m.movie 		inner join director d
-							on d.director = m.director 	inner join app_user u
-							on u.username = um.username
-							
-		where				u.username = #username#
-		and					um.wished = '0'
-  </select-->
+  <resultMap id="shelfDirectorReport" class="com.tamuvii.pojo.ShelfDirectorReport" >
+	    <result column="director" property="director" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="surname" property="surname" jdbcType="VARCHAR" />
+	    <result column="aka" property="aka" jdbcType="VARCHAR" />
+	    <result column="numMovies" property="numMovies" jdbcType="INTEGER" />
+  </resultMap>
+  
+
   
   <!-- 
   
@@ -91,17 +80,28 @@
 		select				m.movie, 
 							m.duration, 
 							m.original_title,
+							m.original_plot,
+							m.original_image,
+							loc.localized_title,
+							loc.localized_plot,
+							loc.localized_image,
 							d.director as directorId, 
 							CONCAT(d.name, " ", d.surname) as director, 
 							m.release_date, 
 							um.date_added, 
 							um.date_viewed, 
-							um.mark
+							um.mark,
+							(select count(*) from user_to_movie um2 inner join app_user au on au.username = um2.username where um2.movie = m.movie and au.country = 'IT') as numUsers,
+							r.review,
+							r.title,
+							r.review_text
 							
 		from 				user_to_movie um			inner join movie m
 							on um.movie = m.movie 		inner join director d
 							on d.director = m.director 	inner join app_user u
-							on u.username = um.username
+							on u.username = um.username left join localized_data loc
+							on loc.movie = m.movie 		left join review r
+							on r.movie = um.movie and r.username = #username#
 							
 		where				u.username = #username#
 		and					um.wished = '1'
@@ -132,6 +132,23 @@
   						um.wished
 		from			user_to_movie um
 		where			um.username = #username#
+  </select>
+
+
+	<select id="getShelfDirectorReport" resultMap="shelfDirectorReport"	parameterClass="java.lang.String">
+		select 			d.director,
+						d.name,
+						d.surname,
+						d.aka,
+						count(distinct um.movie) as numMovies
+
+		from 			user_to_movie um 		inner join 		movie m
+						on um.movie = m.movie 	inner join 		director d
+						on m.director = d.director
+
+		where um.username = #username#
+
+		group by m.director
   </select>
   
 </sqlMap>

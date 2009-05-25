@@ -2,34 +2,63 @@
 
 <head>
     <title><fmt:message key="userList.title"/></title>
-    <meta name="heading" content="<fmt:message key='userList.heading'/>"/>
     <meta name="menu" content="AdminMenu"/>
 </head>
 
-TITOLO: ${personalMovie.originalTitle}
+<div id="sx">
+<center>
+	<c:choose>
+		<c:when test="${not empty personalMovie.localizedImage}">
+			<img src="${personalMovie.localizedImage}" width="150px;" style="border: 1px dotted #ccc;">
+		</c:when>
+		<c:otherwise>
+			<img src="${personalMovie.originalImage}" width="150px;">		
+		</c:otherwise>
+	</c:choose>
+</center>
+Localized Title: ${personalMovie.localizedTitle}
 <br/>
+Original Title: ${personalMovie.originalTitle}
+<br/>
+Duration: ${personalMovie.duration} min
+<br/>
+Director: <a href="/directorDetail.html?director=${personalMovie.directorId}">${personalMovie.director}</a>
+<br/>
+Release date: ${personalMovie.releaseDate}
 
 
-<form:form name="personalMovieForm" commandName="personalMovie" method="POST">
+</div>
 
-	voto: 	<form:select path="mark">
-				<form:option value="0">0</form:option>
-				<form:option value="1">1</form:option>
-				<form:option value="2">2</form:option>
-				<form:option value="3">3</form:option>
-				<form:option value="4">4</form:option>
-				<form:option value="5">5</form:option>
-			</form:select> 
-	<br/>
+<div id="cont">
+	<div id="searchBar">
+		<form:form name="searchpersonalMovieForm" action="/searchSocialMovies.html" method="POST">
+			<input type="text" name="filter" />
+			<input type="submit" name="doSearch" value="Search" />
+		</form:form>
+		<br/>
+	</div>
 	
-	review title: <form:input path="review.title"/>
-	<br/>
+	<form:form name="personalMovieForm" commandName="personalMovie" method="POST">
 	
-	review text: <form:input path="review.reviewtext"/>
-	<br/>
-	
-	<input type="submit" name="update" value="salva" />
-	<input type="submit" name="cancel" value="annulla" />
-	<input type="submit" name="delete" value="elimina" />
-	
-</form:form>
+		voto: 	<form:select path="mark">
+					<form:option value="0">0</form:option>
+					<form:option value="1">1</form:option>
+					<form:option value="2">2</form:option>
+					<form:option value="3">3</form:option>
+					<form:option value="4">4</form:option>
+					<form:option value="5">5</form:option>
+				</form:select> 
+		<br/>
+		
+		review title: <form:input path="review.title"/>
+		<br/>
+		
+		review text: <form:input path="review.reviewtext"/>
+		<br/>
+		
+		<input type="submit" name="update" value="salva" />
+		<input type="submit" name="cancel" value="annulla" />
+		<input type="submit" name="delete" value="elimina" />
+		
+	</form:form>
+</div>

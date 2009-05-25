@@ -96,7 +96,7 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <table tableName="user_review_vote" domainObjectName="UserReviewVote" >
+    <table tableName="movie" domainObjectName="Movie" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table>

@@ -6,6 +6,11 @@
     <result column="movie" property="movie" jdbcType="INTEGER" />
     <result column="duration" property="duration" jdbcType="VARCHAR" />
     <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
+    <result column="original_plot" property="originalPlot" jdbcType="VARCHAR" />
+    <result column="original_image" property="originalImage" jdbcType="VARCHAR" />
+    <result column="localized_title" property="localizedTitle" jdbcType="VARCHAR" />
+    <result column="localized_plot" property="localizedPlot" jdbcType="VARCHAR" />
+    <result column="localized_image" property="localizedImage" jdbcType="VARCHAR" />
     <result column="directorId" property="directorId" jdbcType="INTEGER" />
     <result column="director" property="director" jdbcType="VARCHAR" />
     <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
@@ -17,6 +22,11 @@
     <result column="movie" property="movie" jdbcType="INTEGER" />
     <result column="duration" property="duration" jdbcType="VARCHAR" />
     <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
+    <result column="original_plot" property="originalPlot" jdbcType="VARCHAR" />
+    <result column="original_image" property="originalImage" jdbcType="VARCHAR" />
+    <result column="localized_title" property="localizedTitle" jdbcType="VARCHAR" />
+    <result column="localized_plot" property="localizedPlot" jdbcType="VARCHAR" />
+    <result column="localized_image" property="localizedImage" jdbcType="VARCHAR" />
     <result column="directorId" property="directorId" jdbcType="INTEGER" />
     <result column="director" property="director" jdbcType="VARCHAR" />
     <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
@@ -37,6 +47,11 @@
   		select				m.movie, 
 							m.duration, 
 							m.original_title,
+							m.original_plot,
+							m.original_image,
+							loc.localized_title,
+							loc.localized_plot,
+							loc.localized_image,
 							d.director as directorId, 
 							CONCAT(d.name, " ", d.surname) as director, 
 							m.release_date,
@@ -46,9 +61,11 @@
 		from 				movie m 					left join review r
 							on	m.movie = r.movie 		inner join director d
 							on m.director = d.director	inner join user_to_movie um 
-							on um.movie = m.movie
+							on um.movie = m.movie 		left join localized_data loc
+							on loc.movie = m.movie
 							
 		where m.movie = #movie#
+		and loc.locale = 'it_IT'
   </select>
   
   <!-- getSocialMovieDetails con il filtro sul locale scelto dall'utente e il numero di utenti che hanno il film
@@ -77,6 +94,11 @@
   		select				m.movie, 
 							m.duration, 
 							m.original_title,
+							m.original_plot,
+							m.original_image,
+							loc.localized_title,
+							loc.localized_plot,
+							loc.localized_image,
 							d.director as directorId, 
 							CONCAT(d.name, " ", d.surname) as director, 
 							m.release_date, 
@@ -87,9 +109,12 @@
 		from 				user_to_movie um			inner join movie m
 							on um.movie = m.movie 		inner join director d
 							on d.director = m.director 	inner join app_user u
-							on u.username = um.username 			
+							on u.username = um.username left join localized_data loc
+							on loc.movie = m.movie			
 							
-		where m.movie = #movie# and u.username = #username#
+		where m.movie = #movie# 
+		and u.username = #username#
+		and loc.locale = 'it_IT'
   </select>
   
   <select id="getUsersByMovie" resultMap="movieUser" parameterClass="java.lang.Integer">
@@ -110,6 +135,11 @@
 		select				m.movie, 
 							m.duration, 
 							m.original_title,
+							m.original_plot,
+							m.original_image,
+							loc.localized_title,
+							loc.localized_plot,
+							loc.localized_image,
 							d.director as directorId, 
 							CONCAT(d.name, " ", d.surname) as director, 
 							m.release_date,
@@ -119,7 +149,8 @@
 		from 				movie m 					left join review r
 							on	m.movie = r.movie 		inner join director d
 							on m.director = d.director	inner join user_to_movie um 
-							on um.movie = m.movie
+							on um.movie = m.movie 		left join localized_data loc
+							on loc.movie = m.movie
 							
 		<dynamic prepend="WHERE">
 	         <isNotNull property="filter" prepend="and">
@@ -127,12 +158,15 @@
                        (
                        m.original_title like #filter[]#
                        or
+                       loc.localized_title like #filter[]#
+                       or
                        d.surname like #filter[]#
                        or
                        d.name like #filter[]#
                        )
                   </iterate>
 	        </isNotNull>
+	        and loc.locale = 'it_IT'
 	    </dynamic>								
 							
 		group by m.movie

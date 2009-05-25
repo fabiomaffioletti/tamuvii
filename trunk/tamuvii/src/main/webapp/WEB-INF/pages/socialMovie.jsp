@@ -25,8 +25,17 @@
 <br/>
 <br/>
 <center>
-<img src="/images/placeholder_movie.jpg" width="150px;">
+	<c:choose>
+		<c:when test="${not empty socialMovie.localizedImage}">
+			<img src="${socialMovie.localizedImage}" width="150px;" style="border: 1px dotted #ccc;">
+		</c:when>
+		<c:otherwise>
+			<img src="${socialMovie.originalImage}" width="150px;">		
+		</c:otherwise>
+	</c:choose>
 </center>
+LocalizedTitle: ${socialMovie.localizedTitle}
+<br/>
 OriginalTitle: ${socialMovie.originalTitle}
 <br/>
 Duration: ${socialMovie.duration} min

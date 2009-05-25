@@ -124,6 +124,7 @@
     
     <bean id="shelfController" class="com.tamuvii.webapp.controller.ShelfController">
     	<property name="movieManager" ref="movieManager" />
+    	<property name="shelfManager" ref="shelfManager" />
     	<property name="appUserManager" ref="appUserManager" />
     	<property name="relationshipManager" ref="relationshipManager" />
     </bean>

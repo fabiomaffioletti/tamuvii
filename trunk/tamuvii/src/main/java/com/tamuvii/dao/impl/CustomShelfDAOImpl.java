@@ -6,6 +6,7 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.tamuvii.dao.CustomShelfDAO;
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
+import com.tamuvii.pojo.ShelfDirectorReport;
 import com.tamuvii.pojo.ShelfItem;
 
 public class CustomShelfDAOImpl extends SqlMapClientDaoSupport implements CustomShelfDAO {
@@ -42,6 +43,11 @@ public class CustomShelfDAOImpl extends SqlMapClientDaoSupport implements Custom
 	@SuppressWarnings("unchecked")
 	public List<PersonalMovieIdAndWishedFlag> getPersonalMoviesIdsAndWishedFlags(String username) {
 		return getSqlMapClientTemplate().queryForList("custom_shelf.getPersonalMoviesIdsAndWishedFlags", username);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<ShelfDirectorReport> getShelfDirectorReport(String username) {
+		return getSqlMapClientTemplate().queryForList("custom_shelf.getShelfDirectorReport", username);
 	}
 
 }

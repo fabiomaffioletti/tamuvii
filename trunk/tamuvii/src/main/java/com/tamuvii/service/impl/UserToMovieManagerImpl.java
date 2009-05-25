@@ -7,7 +7,6 @@ import com.tamuvii.model.UserToMovie;
 import com.tamuvii.model.UserToMovieExample;
 import com.tamuvii.model.UserToMovieKey;
 import com.tamuvii.model.UserToMovieExample.Criteria;
-import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.service.UserToMovieManager;
 
 public class UserToMovieManagerImpl implements UserToMovieManager {

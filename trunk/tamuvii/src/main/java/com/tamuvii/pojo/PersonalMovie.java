@@ -9,6 +9,11 @@ public class PersonalMovie {
 	private Integer movie;
 	private String duration;
 	private String originalTitle;
+	private String originalPlot;
+	private String localizedTitle;
+	private String localizedPlot;
+	private String originalImage;
+	private String localizedImage;
 	private Integer directorId;
 	private String director;
 	private Date releaseDate;
@@ -21,6 +26,37 @@ public class PersonalMovie {
 		review = new Review();
 	}
 	
+	
+	public String getOriginalPlot() {
+		return originalPlot;
+	}
+	public void setOriginalPlot(String originalPlot) {
+		this.originalPlot = originalPlot;
+	}
+	public String getLocalizedTitle() {
+		return localizedTitle;
+	}
+	public void setLocalizedTitle(String localizedTitle) {
+		this.localizedTitle = localizedTitle;
+	}
+	public String getLocalizedPlot() {
+		return localizedPlot;
+	}
+	public void setLocalizedPlot(String localizedPlot) {
+		this.localizedPlot = localizedPlot;
+	}
+	public String getOriginalImage() {
+		return originalImage;
+	}
+	public void setOriginalImage(String originalImage) {
+		this.originalImage = originalImage;
+	}
+	public String getLocalizedImage() {
+		return localizedImage;
+	}
+	public void setLocalizedImage(String localizedImage) {
+		this.localizedImage = localizedImage;
+	}
 	public Integer getMovie() {
 		return movie;
 	}

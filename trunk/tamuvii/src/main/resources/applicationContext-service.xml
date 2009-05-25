@@ -162,6 +162,10 @@
 		<property name="reviewManager" ref="reviewManager" />
 	</bean>
 	
+	<bean id="shelfManager" class="com.tamuvii.service.impl.ShelfManagerImpl">
+		<property name="customShelfDao" ref="customShelfDao" />
+	</bean>
+	
 	
 	<!-- EVENT DISPATCHER
 	<bean id="loggerListener" class="it.vidiemme.amadeusecommerce.eventdispatcher.listener.LoggerListener">

@@ -61,6 +61,14 @@
 <br/>
 </c:if>
 
+<display:table name="shelfDirectorReport" cellspacing="0" cellpadding="0" defaultsort="1" requestURI="" pagesize="2" id="directorReportItem" class="table" export="false">
+	<display:column escapeXml="false" sortable="true" title="Regista">
+		<a href="">${directorReportItem.name} ${directorReportItem.surname}</a>
+	</display:column>
+	<display:column property="numMovies" escapeXml="true" sortable="true" />
+</display:table>
+
+
 <c:if test="${fn:length(friends) > 0}">
 	<a href="#" onclick="Effect.toggle('friends', 'slide',{ duration: 0.2 }); return false;">Friends</a>
 	<div id="friends" style="width:200px;">
@@ -266,8 +274,6 @@
 	    </c:when>
 	    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
 	    	<display:column style="border: none; width: 25%; vertical-align: top;">
-	    		<img src="/images/ciack.png" style="cursor: pointer; margin-bottom: 10px;" onclick="Effect.Appear('actions_${shelfItems.movie}', { duration: 1.0 });" />
-	    		<div id="actions_${shelfItems.movie}" style="display:none;">
 		    		<c:set var="isInPersonalMovies" value="0" />
 		    		<c:set var="isWished" value="0" />
 			    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">
@@ -281,9 +287,19 @@
 			    	
 			    	<c:choose>
 				    	<c:when test="${isInPersonalMovies == 0}">
-				    		<img src="/images/record.png" style="cursor: pointer; vertical-align: middle;" height="11px" /> <a href="/shelfManagement.html?action=add&movie=${shelfItems.movie}">Aggiungi alla videoteca</a>
-				    		<br/>
-				    		<img src="/images/play.png" style="cursor: pointer; vertical-align: middle;" height="11px" /> <a href="/wishlistManagement.html?action=wish&movie=${shelfItems.movie}">Aggiungi alla wishlist</a>
+				    		<div id="options">
+				    			<span style="float: left;">
+				    				<img src="/images/ciack.png" style="margin-bottom: 10px;" />
+				    			</span>
+				    			<span style="float:left;">
+				    				Opzioni
+				    			</span>
+				    		</div>
+				    		<div id="actions_${shelfItems.movie}" style="clear: both;">
+					    		<img src="/images/record.png" style="cursor: pointer; vertical-align: middle;" height="11px" /> <a href="/shelfManagement.html?action=add&movie=${shelfItems.movie}">Aggiungi alla videoteca</a>
+					    		<br/>
+					    		<img src="/images/play.png" style="cursor: pointer; vertical-align: middle;" height="11px" /> <a href="/wishlistManagement.html?action=wish&movie=${shelfItems.movie}">Aggiungi alla wishlist</a>
+				    		</div>
 				    	</c:when>
 				    	<c:otherwise>
 				    		Film gi&agrave; presente in
@@ -291,7 +307,6 @@
 				    		<c:if test="${isWished == 1}"> wishlist </c:if>
 				    	</c:otherwise>
 			    	</c:choose>
-		    	</div>
 	    	</display:column>
 	    </c:when>
     </c:choose>

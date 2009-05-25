@@ -105,6 +105,9 @@
                 
                 <!-- Backend mappings -->
                 /be_moviesList.html=movieListController
+                
+                
+                /jsonShelfDirectorReport.html=jsonController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -195,6 +198,10 @@
     
     <bean id="userReviewVoteController" class="com.tamuvii.webapp.controller.UserReviewVoteController">
     	<property name="userReviewVoteManager" ref="userReviewVoteManager" />
+    </bean>
+    
+    <bean id="jsonController" class="com.tamuvii.webapp.controller.JSONController">
+    	<property name="shelfManager" ref="shelfManager" />
     </bean>
     
 </beans>

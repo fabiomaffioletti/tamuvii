@@ -64,10 +64,6 @@ public class ShelfController implements Controller {
 		List<ShelfItem> shelfItems = movieManager.getShelfByUsername(username);
 		mv.addObject("shelfItems", shelfItems);
 		
-		// Aggiunge il report sui registi
-		List<ShelfDirectorReport> shelfDirectorReport = shelfManager.getShelfDirectorReport(username);
-		mv.addObject("shelfDirectorReport", shelfDirectorReport);
-		
 		// Aggiunge le informazioni del profilo
 		mv.addObject("userPublicInfo", appUserManager.getUserPublicInfo(username));
 		mv.addObject("username", username);

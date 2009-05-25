@@ -135,7 +135,7 @@
   </select>
 
 
-	<select id="getShelfDirectorReport" resultMap="shelfDirectorReport"	parameterClass="java.lang.String">
+	<select id="getShelfDirectorReport" resultMap="shelfDirectorReport"	parameterClass="com.tamuvii.pojo.queryfilter.ShelfDirectorReportFilter">
 		select 			d.director,
 						d.name,
 						d.surname,
@@ -149,6 +149,20 @@
 		where um.username = #username#
 
 		group by m.director
+		
+		order by numMovies desc
+		
+		limit #from#, #to#
+  </select>
+  
+  <select id="getShelfDirectorReportCount" resultClass="java.lang.Integer" parameterClass="java.lang.String" >
+  		select 			count(distinct d.director)
+
+		from 			user_to_movie um 		inner join 		movie m
+						on um.movie = m.movie 	inner join 		director d
+						on m.director = d.director
+
+		where um.username = #username#
   </select>
   
 </sqlMap>

@@ -23,6 +23,68 @@
 		$('messagetext').value = "";
 		Effect.BlindUp('sendMessage');
 	}
+
+	function jsonShelfDirectorReport(p) {
+		var u = "${userPublicInfo.username}";
+		new Ajax.Request('/jsonShelfDirectorReport.html?ajax=true', {
+			  method: 'post',
+			  parameters: {page: p, username: u },
+			  onSuccess: function(response) {
+				var JSONobj = response.responseText.evalJSON();
+				buildShelfDirectorReportTable(JSONobj);
+				
+				if(!JSONobj.last) {
+					var next = new Element('a', {href: '#', onclick: 'jsonShelfDirectorReport('+(p+1)+')' }).update("Next");
+					$('directorReportTable').insert(next);
+				}
+				if(p > 0) {
+					var prev = new Element('a', {href: '#', onclick: 'jsonShelfDirectorReport('+(p-1)+')' }).update("Prev");
+					$('directorReportTable').insert(prev);
+				}
+			}
+		});
+	}
+
+	function buildShelfDirectorReportTable(JSONobj) {
+		var ex = $('directorReportTable');
+		if(ex != null) {
+			ex.remove();
+		}
+
+		var table = Builder.node('table', {
+			  width: '100%',
+			  cellpadding: '0',
+			  cellspacing: '0',
+			  border: '0',
+			  id: 'directorReportTable'
+			});
+		
+		var tbody = Builder.node('tbody');
+		tr = Builder.node('tr');
+		td = Builder.node('td', 'Regista');
+		tr.appendChild(td);
+		td = Builder.node('td', '');
+		tr.appendChild(td);
+		tbody.appendChild(tr);
+
+		for (var i = 0; i < JSONobj.itemList.length; i++)
+		{
+			var item = JSONobj.itemList[i];
+			tr = Builder.node('tr');
+			td = Builder.node('td', item.name + ' ' + item.surname);
+			tr.appendChild(td);
+			td = Builder.node('td', item.numMovies);
+			tr.appendChild(td);
+			tbody.appendChild(tr);
+		}
+				
+		table.appendChild(tbody);
+		//$('jsonShelfDirectorReport').insert(table);
+		$('jsr').insert(table);
+	}
+
+	jsonShelfDirectorReport(0);
+
 </script>
 
 <div id="sx">
@@ -61,13 +123,15 @@
 <br/>
 </c:if>
 
-<display:table name="shelfDirectorReport" cellspacing="0" cellpadding="0" defaultsort="1" requestURI="" pagesize="2" id="directorReportItem" class="table" export="false">
-	<display:column escapeXml="false" sortable="true" title="Regista">
-		<a href="">${directorReportItem.name} ${directorReportItem.surname}</a>
-	</display:column>
-	<display:column property="numMovies" escapeXml="true" sortable="true" />
-</display:table>
 
+<br/><br/><br/>
+
+<div id="jsonShelfDirectorReport" style="height: 100px; border: 1px solid #ccc;">
+	<div id="jsr">
+	</div>
+</div>
+
+<br/><br/><br/>
 
 <c:if test="${fn:length(friends) > 0}">
 	<a href="#" onclick="Effect.toggle('friends', 'slide',{ duration: 0.2 }); return false;">Friends</a>

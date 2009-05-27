@@ -1,0 +1,495 @@
+<html>
+<body>
+
+<style>
+	body {
+/* 		background-color:#EEEEEE; */
+		background: url(background.gif) 50%;
+	}
+
+	#wrapper {
+		background-color:white;
+		width: 750px;
+		font-family: Trebuchet Ms;
+		height:100%;
+		
+		/* border: 1px solid #373737; */
+		vertical-align: top;
+		margin-right: 5px;
+
+	}
+	
+	#first_menu {
+		height: 22px;
+		background-color: #0063af;
+		color: #ebecec;
+		text-align: right;
+		padding-right: 10px;
+		font-size: 12px;
+		line-height: 22px;
+	}
+	#first_menu a {
+		color: #ebecec;
+		text-decoration: none;
+	}
+	#first_menu a:hover {
+		text-decoration: underline;
+	}
+	
+	#sx {
+		width: 200px;
+		float: left;
+		margin-left:10px;
+	}
+	
+	#content {
+		width: 510px;
+		float:left;
+		margin-left: 30px;
+	}
+	
+	#neighbor {
+		width: 100%;
+	}
+	
+	#neighbor_title {
+		float: left;
+		font-size: 13px;
+		font-weight: bold;
+	}
+	
+	#neighbor_more {
+		float: right;
+		font-size: 11px;
+	}
+	
+	#neighbor_table {
+		margin-top: 5px;
+		width: 100%;
+		line-height: 25px;
+		border-collapse:collapse;
+		clear: both;
+	}
+	
+	#neighbor_table tr td {
+		border-bottom: 1px dotted #ebecec;
+		padding-bottom: 5px;
+		padding-top: 5px;
+	}
+	
+	#neighbor tr:hover td {
+		background-color: #ebecec;
+		cursor: pointer;
+	}
+	
+	
+	#friendship {
+		width: 100%;
+		margin-bottom: 40px;
+	}
+	
+	#friendship_title {
+		float: left;
+		font-size: 13px;
+		font-weight: bold;
+	}
+	
+	#friendship_more {
+		float: right;
+		font-size: 11px;
+	}
+	
+	#friendship_table {
+		margin-top: 5px;
+		width: 100%;
+		line-height: 25px;
+		border-collapse:collapse;
+		clear: both;
+	}
+	
+	#friendship_table tr td {
+		border-bottom: 1px dotted #ebecec;
+		padding-bottom: 5px;
+		padding-top: 5px;
+	}
+	
+	#friendship tr:hover td {
+		background-color: #ebecec;
+		cursor: pointer;
+	}
+	
+	td.image {
+		width: 30px;
+		text-align: center;
+	}
+	
+	td.username {
+		padding-left: 5px;
+		font-size: 13px;
+	}
+	
+	.user_info {
+		font-style: italic;
+		font-size: 10px;
+	}
+	
+	.user_image {
+		height: 25px;
+		width: 25px;
+		border: 1px solid gray;
+	}
+	
+	.square {
+		height: 40px;
+		width: 40px;
+	}
+	
+	
+	
+	#header {
+		height: 40px;
+		background-color: #ebecec;
+		line-height: 40px;
+		border-bottom: 1px solid #d1d3d4;
+	}
+	
+	#logo {
+		height: inherit;
+		float: left;
+		margin-left: 10px;
+		width: 80px;
+		line-height: inherit;
+		font-size: 24px;
+	}
+	
+	#main_menu {
+		height: inherit;
+		float: right;
+		line-height: inherit;
+		margin-right: 10px;
+		font-size: 13px;
+	}
+	
+	#spanner {
+		height: 60px;
+		line-height: 60px;
+		border-bottom: 1px solid gray;
+		margin-top: 20px;
+	}
+	
+	#user_profile {
+		width: 200px;
+		height: inherit;
+		padding-left: 10px;
+		float:left;
+	}
+	
+	#sub_menu {
+		width: 500px;
+		height: inherit;
+		float:left;
+		margin-left: 30px;
+		margin-right: 10px;
+		text-align: right;
+		font-size: 13px;
+	}
+	
+	#sub_menu a {
+		text-decoration: none;
+	}
+	#sub_menu a:hover {
+		text-decoration: underline;
+	}
+	
+	#spanner .profile_image {
+		height: 48px;
+		width: 48px;
+		border: 1px solid gray;
+		background-color: red;
+		float:left;
+	}
+	#spanner .profile_details {
+		font-size: 24px;
+		float:left;
+	}
+	#spanner .profile_sub_details {
+		font-size: 12px;
+	}
+	
+	#content_head {
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+	}
+	
+	#content_head .total_movies {
+		width: 80px;
+		height: inherit;
+		line-height: inherit;
+		float: left;
+		margin-left: 20px;
+		font-size: 12px;
+		background-color: #0063af;
+		color: #ebecec;
+		font-weight: bold;
+		padding-left: 5px;
+		padding-right: 5px;
+		text-align: center;
+	}
+	
+	#content_head .search_bar {
+		width: 220px;
+		line-height: inherit;
+		height: inherit;
+		float: right;
+	}
+	
+	#content_sub_head {
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+		clear: both;
+		border-top: 1px solid #d1d3d4;
+		border-bottom: 1px solid #d1d3d4;
+		background-color: #ebecec;
+		font-size: 13px;
+		font-weight: bold;
+	}
+	
+	#content_sub_head .title {
+		margin-left: 10px;
+	}
+	
+	#content_movies {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
+	#content .movie_image {
+		width: 80px;
+		padding: 5px;
+		border: 1px solid #ebecec;
+	}
+	
+	#movie_table {
+		width: 100%;
+		border-collapse:collapse;
+		clear: both;
+	}
+	
+	#movie_table tr td {
+		border-bottom: 1px solid #ebecec;
+		padding-bottom: 10px;
+		padding-top: 10px;
+	}
+	
+	.td_movie_image {
+		width: 110px;
+	}
+	
+	.td_movie_data {
+		width: 270px;
+		vertical-align:top;
+	}
+	
+	.movie_title {
+		width: 100%;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	
+	.movie_localized_title {
+		width: 100%;
+		font-size: 11px;
+		font-style: italic;
+		color: #be4856;
+	}
+	
+	.movie_date_viewed {
+		width: 100%;
+		font-size: 11px;
+		color: #dd9d9d;
+	}
+	
+	.td_actions {
+		padding-left: 10px;
+		vertical-align:top;
+	}
+	
+	.td_actions a {
+		font-size: 13px;
+		font-weight: bold;
+		color: #364f86;
+		text-decoration: none;
+	}
+	.td_actions a:hover {
+		text-decoration: underline;
+	}
+	
+
+	#colors{
+		 /* clear:both; */
+		/* width:100%; */
+	}
+	
+</style>
+
+
+<center>
+
+	<table>
+		<tr>
+			<td>
+				<div class="square" style="background-color: #364f86"/>
+			</td>
+			<td>
+				<div class="square" style="background-color: #0aa594"/>
+			</td>
+			<td>
+				<div class="square" style="background-color: #0063af"/>
+			</td>
+			<td>
+				<div class="square" style="background-color: #45c5e5"/>
+			</td>
+			<td>
+				<div class="square" style="background-color: #be4856"/>
+			</td>
+			<td>
+				<div class="square" style="background-color: #dd9d9d"/>
+			</td>
+			<td>
+				<div class="square" style="background-color: #ebecec"/>
+			</td>
+			<td>
+				<div class="square" style="background-color: #d1d3d4"/>
+			</td>
+		</tr>
+	</table>
+
+
+
+
+<div id="wrapper">
+
+
+
+<div id="first_menu">
+	<a href="#">Iscriviti</a> | <a href="#">Aiuto</a> | <a href="#">Entra</a>
+</div>
+
+<div id="header">
+	<div id="logo">
+		taMuvii
+	</div>
+	<div id="main_menu">
+		<b>Crea la tua videoteca!</b> | Entra
+	</div>
+</div>
+
+<div id="spanner">
+	<div id="user_profile">
+		<img src="placeholder_user.jpg" class="profile_image" />
+		Fubbyo
+	</div>
+	<div id="sub_menu">
+		<b>Videoteca</b> | <a href="#">Lista dei desideri</a> | <a href="#">Statistiche</a>
+	</div>
+</div>
+
+<div id="sx">
+
+	<div id="friendship">
+		<div id="friendship_title">Amici</div>
+		<div id="friendship_more"><a href="#">Altri</a></div>
+		<table id="friendship_table">
+			<tr>
+				<td class="image"><img class="user_image" src="placeholder_user.jpg" /></td>
+				<td class="username"><a href="#">fabio maffioletti</a></td>
+			</tr>
+			<tr>
+				<td class="image"><img class="user_image" src="placeholder_user.jpg" /></td>
+				<td class="username"><a href="#">flavio ricci</a></td>
+			</tr>
+			<tr>
+				<td class="image"><img class="user_image" src="placeholder_user.jpg" /></td>
+				<td class="username"><a href="#">irene rubino</a></td>
+			</tr>
+			<tr>
+				<td class="image"><img class="user_image" src="placeholder_user.jpg" /></td>
+				<td class="username"><a href="#">andrea buscemi</a></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div id="neighbor">
+		<div id="neighbor_title">Vicini</div>
+		<div id="neighbor_more"><a href="#">Altri</a></div>
+		<table id="neighbor_table">
+			<tr>
+				<td class="image"><img class="user_image" src="placeholder_user.jpg" /></td>
+				<td class="username"><a href="#">fabio maffioletti</a></td>
+			</tr>
+			<tr>
+				<td class="image"><img class="user_image" src="placeholder_user.jpg" /></td>
+				<td class="username"><a href="#">flavio ricci</a></td>
+			</tr>
+			<tr>
+				<td class="image"><img class="user_image" src="placeholder_user.jpg" /></td>
+				<td class="username"><a href="#">irene rubino</a></td>
+			</tr>
+			<tr>
+				<td class="image"><img class="user_image" src="placeholder_user.jpg" /></td>
+				<td class="username"><a href="#">andrea buscemi</a></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div id="content">
+	<div id="content_head">
+		<div class="total_movies">Film: 124</div>
+		<div class="search_bar">
+			<input type="text" value="testo di ricerca" />
+			<input type="submit" value="cerca" />
+		</div>
+	</div>
+	
+	<div id="content_sub_head">
+		<div class="title">Tutti i film</div>
+	</div>
+	
+	<div id="content_movies">
+		<table id="movie_table">
+			<tr>
+				<td class="td_movie_image"><img src="placeholder_movie.jpg" class="movie_image"/></td>
+				<td class="td_movie_data">
+					<div class="movie_title">Titolo</div>
+					<div class="movie_localized_title">Titolo originale</div>
+					<div class="movie_date_viewed">Visto il 22/05/2009</div>
+				</td>
+				<td class="td_actions"><a href="#">Azioni</a></td>
+			</tr>
+			<tr>
+				<td class="td_movie_image"><img src="placeholder_movie.jpg" class="movie_image"/></td>
+				<td class="td_movie_data"><span class="movie_title">Titolo</span></td>
+				<td class="td_actions"><a href="#">Azioni</a></td>
+			</tr>
+			<tr>
+				<td class="td_movie_image"><img src="placeholder_movie.jpg" class="movie_image"/></td>
+				<td class="td_movie_data"><span class="movie_title">Titolo</span></td>
+				<td class="td_actions"><a href="#">Azioni</a></td>
+			</tr>
+			<tr>
+				<td class="td_movie_image"><img src="placeholder_movie.jpg" class="movie_image"/></td>
+				<td class="td_movie_data"><span class="movie_title">Titolo</span></td>
+				<td class="td_actions"><a href="#">Azioni</a></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+</div>
+
+</body>
+</html>

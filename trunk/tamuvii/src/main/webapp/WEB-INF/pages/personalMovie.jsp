@@ -2,7 +2,6 @@
 
 <head>
     <title><fmt:message key="userList.title"/></title>
-    <meta name="menu" content="AdminMenu"/>
 </head>
 
 <div id="sx">
@@ -55,10 +54,27 @@ Release date: ${personalMovie.releaseDate}
 		
 		review text: <form:input path="review.reviewtext"/>
 		<br/>
+
+		anno: <br/> Occhio che questa cosa non funziona ancora...	
+		<select name="year_viewed">
+			<c:forEach var="year" items="${years}">
+				<c:choose>
+					<c:when test="${fn:substring(dateViewed,0,fn:indexOf(dateViewed, '-'))}">
+						<option value="${year}" selected="selected">${year}</option>				
+					</c:when>
+					<c:otherwise>
+						<option value="${year}">${year}</option>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		</select>
 		
+		
+		<br/><br/><br/>
 		<input type="submit" name="update" value="salva" />
 		<input type="submit" name="cancel" value="annulla" />
 		<input type="submit" name="delete" value="elimina" />
 		
 	</form:form>
 </div>
+

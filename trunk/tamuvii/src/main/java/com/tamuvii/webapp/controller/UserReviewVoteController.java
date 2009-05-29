@@ -7,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.tamuvii.service.UserReviewVoteManager;
-import com.tamuvii.util.TamuviiConstants;
 
 public class UserReviewVoteController implements Controller {
 	private UserReviewVoteManager userReviewVoteManager = null;

@@ -19,9 +19,15 @@ public class SocialMovie {
 	private Integer numReviews;
 	private List<DetailedReview> detailedReviews;
 	private Float avgMark;
+	private Integer numMarks;
 	private List<MovieUser> movieUsers;
 	
-	
+	public Integer getNumMarks() {
+		return numMarks;
+	}
+	public void setNumMarks(Integer numMarks) {
+		this.numMarks = numMarks;
+	}
 	public String getOriginalPlot() {
 		return originalPlot;
 	}

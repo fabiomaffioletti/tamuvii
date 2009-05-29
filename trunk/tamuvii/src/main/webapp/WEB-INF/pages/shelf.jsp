@@ -2,7 +2,45 @@
 
 <head>
     <title><fmt:message key="shelf.pagetitle"/></title>
-    <meta name="menu" content="AdminMenu"/>
+    <script type="text/javascript" src="/dwr/engine.js"></script>
+    <script type="text/javascript" src="/dwr/util.js"></script>
+    <script type="text/javascript" src="/dwr/interface/ShelfManager.js"> </script>
+    
+    
+    <style>
+    	.sdrli:hover {
+    		background-color: yellow;
+    		cursor: pointer;
+    	}
+    	
+    	.sdrli {
+    		height:20px;
+    		width:100%; 
+    		border-bottom:1px dotted #ccc;
+   		}
+   		
+   		.fli:hover {
+    		background-color: yellow;
+    		cursor: pointer;
+    	}
+    	
+    	.fli {
+    		height:20px;
+    		width:100%; 
+    		border-bottom:1px dotted #ccc;
+   		}
+   		
+   		.nli:hover {
+    		background-color: yellow;
+    		cursor: pointer;
+    	}
+    	
+    	.nli {
+    		height:20px;
+    		width:100%; 
+    		border-bottom:1px dotted #ccc;
+   		}
+    </style>
 </head>
 
 <script>
@@ -24,67 +62,115 @@
 		Effect.BlindUp('sendMessage');
 	}
 
-	function jsonShelfDirectorReport(p) {
-		var u = "${userPublicInfo.username}";
-		new Ajax.Request('/jsonShelfDirectorReport.html?ajax=true', {
-			  method: 'post',
-			  parameters: {page: p, username: u },
-			  onSuccess: function(response) {
-				var JSONobj = response.responseText.evalJSON();
-				buildShelfDirectorReportTable(JSONobj);
-				
-				if(!JSONobj.last) {
-					var next = new Element('a', {href: '#', onclick: 'jsonShelfDirectorReport('+(p+1)+')' }).update("Next");
-					$('directorReportTable').insert(next);
-				}
-				if(p > 0) {
-					var prev = new Element('a', {href: '#', onclick: 'jsonShelfDirectorReport('+(p-1)+')' }).update("Prev");
-					$('directorReportTable').insert(prev);
-				}
-			}
+
+	//////// FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////
+	// Ordina per cognome
+	function orderShelfDirectorReportBySurname(username) {
+		ShelfManager.getShelfDirectorReport(username, null, null, "surname", function(str) {
+			refreshShelfDirectorReportList(str);
 		});
 	}
-
-	function buildShelfDirectorReportTable(JSONobj) {
-		var ex = $('directorReportTable');
-		if(ex != null) {
-			ex.remove();
+	// Ordina per numero di film
+	function orderShelfDirectorReportByNumMovies(username) {
+		ShelfManager.getShelfDirectorReport(username, null, null, null, function(str) {
+			refreshShelfDirectorReportList(str);
+		});
+	}
+	// Aggiorna la ul
+	function refreshShelfDirectorReportList(str) {
+		dwr.util.removeAllOptions('sdrul');
+		for(var x=0; x<str.length; x++) {
+			var li = Builder.node('li', {
+											className: "sdrli",
+											onclick: "document.location.href='/directorDetail.html?director="+str[x].director+"'"
+										}, 
+					         str[x].name + ' ' + str[x].surname + ' (' + str[x].numMovies + ')')
+			$('sdrul').insert(li);
 		}
+	}
+	//////// FINE FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////
 
-		var table = Builder.node('table', {
-			  width: '100%',
-			  cellpadding: '0',
-			  cellspacing: '0',
-			  border: '0',
-			  id: 'directorReportTable'
-			});
+	
+	// Variabili globali per ShelfDirectorReport
+	var indexSDR;
+	var totSDR;
+	var recordsPerRowSDR; 
+	var pagesSDR;
+	var heightSDR;
+
+	// Variabili globali per Friends
+	var indexF;
+	var totF;
+	var recordsPerRowF; 
+	var pagesF;
+	var heightF;
+
+	// Variabili globali per Neighborhoods
+	var indexN;
+	var totN;
+	var recordsPerRowN; 
+	var pagesN;
+	var heightN;
+	
+	Event.observe(window, 'load', function(event) {
+		// Inizializzo la parte relativa allo ShelfDirectorReport
+		indexSDR = 0;
+		totSDR = ${fn:length(shelfDirectorReportList)};
+		recordsPerPageSDR = 4;
+		pagesSDR = Math.ceil(totSDR/recordsPerPageSDR);
+
+		// Inizializzo la parte relativa a Friends
+		indexF = 0;
+		totF = ${fn:length(friends)};
+		recordsPerPageF = 1;
+		pagesF = Math.ceil(totF/recordsPerPageF);
+
+		// Inizializzo la parte relativa a Neighborhoods
+		indexN = 0;
+		totN = ${fn:length(neighborhoods)};
+		recordsPerPageN = 1;
+		pagesN = Math.ceil(totN/recordsPerPageN);
 		
-		var tbody = Builder.node('tbody');
-		tr = Builder.node('tr');
-		td = Builder.node('td', 'Regista');
-		tr.appendChild(td);
-		td = Builder.node('td', '');
-		tr.appendChild(td);
-		tbody.appendChild(tr);
+		// Controllo il numero di pagine per lo ShelfDirectorReport		
+	    if(pagesSDR > 1) {
+    		$('downSDR').setStyle({ display: 'block' });
+	    }
+	 	// Controllo il numero di pagine per friends
+	    if(pagesF > 1) {
+    		$('downF').setStyle({ display: 'block' });
+	    }
+	 	// Controllo il numero di pagine per neighborhoods		
+	    if(pagesN > 1) {
+    		$('downN').setStyle({ display: 'block' });
+	    }
+	});
 
-		for (var i = 0; i < JSONobj.itemList.length; i++)
-		{
-			var item = JSONobj.itemList[i];
-			tr = Builder.node('tr');
-			td = Builder.node('td', item.name + ' ' + item.surname);
-			tr.appendChild(td);
-			td = Builder.node('td', item.numMovies);
-			tr.appendChild(td);
-			tbody.appendChild(tr);
+	//////// FUNZIONI GENERICHE PER LO SCROLLING //////// 
+	function doup(index, step, container, h, down, up) {
+		index = index-step;
+		if(!$(down).visible()) {
+			$(down).setStyle({ display: 'block' });
 		}
-				
-		table.appendChild(tbody);
-		//$('jsonShelfDirectorReport').insert(table);
-		$('jsr').insert(table);
+		if(index == 0) {
+			$(up).setStyle({ display: 'none' });
+		}
+		new Effect.Move($(container),{x: 0, y: step*h, duration: 0.3}); return index;
 	}
 
-	jsonShelfDirectorReport(0);
-
+	function dodown(index, pages, step, container, h, down, up) {
+		index = index+step;
+		if(!$(up).visible()) {
+			$(up).setStyle({ display: 'block' });
+		}
+		if(index == (pages-1)) {
+			$(down).setStyle({ display: 'none' });
+		} else {
+			$(down).setStyle({ display: 'block' });
+		}
+		new Effect.Move($(container),{x: 0, y: step*-h, duration: 0.3}); return index;
+	}
+	//////// FINE FUNZIONI GENERICHE PER LO SCROLLING ////////
+	
 </script>
 
 <div id="sx">
@@ -123,51 +209,71 @@
 <br/>
 </c:if>
 
-
 <br/><br/><br/>
 
-<div id="jsonShelfDirectorReport" style="height: 100px; border: 1px solid #ccc;">
-	<div id="jsr">
+Report registi
+<br/>
+<a href="#" onclick="orderShelfDirectorReportBySurname('${userPublicInfo.username}');">surname order</a>
+<br/>
+<a href="#" onclick="orderShelfDirectorReportByNumMovies('${userPublicInfo.username}');">numMovies order</a>
+<br/>
+<div id="shelfDirectorReport" style="height: 84px; width:100%; overflow:hidden;">
+	<div id="shelfDirectorReportContent">
+		<ul id="sdrul" style="margin:0px;list-style:none;padding:0;line-height: 20px;">
+			<c:forEach var="shelfDirectorReportItem" items="${shelfDirectorReportList}">
+				<li class="sdrli" onclick="document.location.href='/directorDetail.html?director=${shelfDirectorReportItem.director}'">${shelfDirectorReportItem.name} ${shelfDirectorReportItem.surname} (${shelfDirectorReportItem.numMovies})</li>
+			</c:forEach>
+		</ul>
 	</div>
+</div>
+<div style="width:100%;">
+	<a href="#" id="upSDR" style="display:none;float:left;" onclick="indexSDR = doup(indexSDR, 1, 'shelfDirectorReportContent', $('shelfDirectorReport').getHeight(), 'downSDR', 'upSDR')">prev</a>
+	<a href="#" id="downSDR" style="float:right;" onclick="indexSDR = dodown(indexSDR, pagesSDR, 1, 'shelfDirectorReportContent', $('shelfDirectorReport').getHeight(), 'downSDR', 'upSDR')">next</a>
 </div>
 
 <br/><br/><br/>
 
-<c:if test="${fn:length(friends) > 0}">
-	<a href="#" onclick="Effect.toggle('friends', 'slide',{ duration: 0.2 }); return false;">Friends</a>
-	<div id="friends" style="width:200px;">
-	  <div>
-		<display:table name="friends" cellspacing="0" cellpadding="0" defaultsort="1" requestURI="" id="friend" length="5" class="table" export="false">
-			<display:column escapeXml="false" sortable="false" titleKey="immagine">
-				<img src="${friend.imageLink}" height="20px" width="20px;"/>
-			</display:column>
-		    <display:column escapeXml="false" sortable="true" titleKey="username">
-		    	<a href="/shelf.html?username=${friend.username}">${friend.username}</a> 
-		    </display:column>
-	</display:table>  
-	  </div>
-	</div>
-	<br/>
-	<br/>
-</c:if>
+	<c:if test="${fn:length(friends) > 0}">
+		<a href="#" onclick="Effect.toggle('friends', 'slide',{ duration: 0.2 }); return false;">Friends</a>
+		<div id="friends" style="height: 21px; width:100%; overflow:hidden;">
+			<div id="friendsContent">
+				<ul id="ful" style="margin:0px;list-style:none;padding:0;line-height: 20px;">
+					<c:forEach var="friend" items="${friends}">
+						<li class="fli" onclick="document.location.href='/shelf.html?username=${friend.username}'"><img src="${friend.imageLink}" height="20px" width="20px;"/> ${friend.username}</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+		<div style="width:100%;">
+			<a href="#" id="upF" style="display:none;float:left;" onclick="indexF = doup(indexF, 1, 'friendsContent', $('friends').getHeight(), 'downF', 'upF')">prev</a>
+			<a href="#" id="downF" style="float:right;" onclick="indexF = dodown(indexF, pagesF, 1, 'friendsContent', $('friends').getHeight(), 'downF', 'upF')">next</a>
+		</div>
+	</c:if>
 
-<c:if test="${fn:length(neighborhoods) > 0}">
-	<a href="#" onclick="">Vicini</a>
-	<div id="neighborhoods" style="width:200px;">
-	  <div>
-		<display:table name="neighborhoods" cellspacing="0" cellpadding="0" defaultsort="1" requestURI="" id="neighborhood" pagesize="1" length="5" class="table" export="false">
-			<display:column escapeXml="false" sortable="false" titleKey="immagine">
-				<img src="${neighborhood.imageLink}" height="20px" width="20px;"/>
-			</display:column>
-		    <display:column escapeXml="false" sortable="true" titleKey="username">
-		    	<a href="/shelf.html?username=${neighborhood.username}">${neighborhood.username}</a> 
-		    </display:column>
-	</display:table>  
-	  </div>
-	</div>
-	<br/>
-	<br/>
-</c:if>
+<br/><br/><br/>
+
+<c:choose>
+	<c:when test="${fn:length(neighborhoods) > 0}">
+		<a href="#">Vicini</a>
+		<div id="neighborhoods" style="height: 21px; width:100%; overflow:hidden;">
+			<div id="neighborhoodsContent">
+				<ul id="nul" style="margin:0px;list-style:none;padding:0;line-height: 20px;">
+					<c:forEach var="neighborhood" items="${neighborhoods}">
+						<li class="nli" onclick="document.location.href='/shelf.html?username=${neighborhood.username}'"><img src="${neighborhood.imageLink}" height="20px" width="20px;"/> ${neighborhood.username}</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+		<div style="width:100%;">
+			<a href="#" id="upN" style="display:none;float:left;" onclick="indexN = doup(indexN, 1, 'neighborhoodsContent', $('neighborhoods').getHeight(), 'downN', 'upN')">prev</a>
+			<a href="#" id="downN" style="float:right;" onclick="indexN = dodown(indexN, pagesN, 1, 'neighborhoodsContent', $('neighborhoods').getHeight(), 'downN', 'upN')">next</a>
+		</div>
+	</c:when>
+	<c:otherwise>
+		<div id="neighborhoods" style="display:none;">
+		</div>
+	</c:otherwise>
+</c:choose>
 
 <div id="follow">
 	<c:if test="${not empty username && username != pageContext.request.remoteUser}">
@@ -378,3 +484,7 @@
 </display:table>
 
 </div>
+
+<script>
+	
+</script>

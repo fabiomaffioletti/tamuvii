@@ -146,13 +146,22 @@
 						on um.movie = m.movie 	inner join 		director d
 						on m.director = d.director
 
-		where um.username = #username#
+		where			um.username = #username# 
+		and				um.wished = '0'
 
 		group by m.director
 		
-		order by numMovies desc
+		<isNull property="orderAttribute">
+			order by numMovies desc
+		</isNull>
+		<isNotNull property="orderAttribute">
+			order by $orderAttribute$ desc
+		</isNotNull>
 		
-		limit #from#, #to#
+		
+		<isNotNull property="from">
+			limit #from#, #to#
+		</isNotNull>
   </select>
   
   <select id="getShelfDirectorReportCount" resultClass="java.lang.Integer" parameterClass="java.lang.String" >
@@ -162,7 +171,8 @@
 						on um.movie = m.movie 	inner join 		director d
 						on m.director = d.director
 
-		where um.username = #username#
+		where 			um.username = #username#
+		and				um.wished = '0'
   </select>
   
 </sqlMap>

@@ -2,8 +2,6 @@ package com.tamuvii.dao;
 
 import java.util.List;
 
-import org.json.JSONException;
-
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.ShelfDirectorReport;
 import com.tamuvii.pojo.ShelfItem;
@@ -24,7 +22,5 @@ public interface CustomShelfDAO {
 	public List<PersonalMovieIdAndWishedFlag> getPersonalMoviesIdsAndWishedFlags(String username);
 	
 	public List<ShelfDirectorReport> getShelfDirectorReport(ShelfDirectorReportFilter sdrf);
-	
-	public String JSONShelfDirectorReport(String username, Integer x, Integer y) throws JSONException;
 	
 }

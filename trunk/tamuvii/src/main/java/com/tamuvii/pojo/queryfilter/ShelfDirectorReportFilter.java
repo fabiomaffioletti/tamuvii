@@ -5,8 +5,15 @@ public class ShelfDirectorReportFilter {
 	private String username;
 	private Integer from;
 	private Integer to;
+	private String orderAttribute;
 	
 	
+	public String getOrderAttribute() {
+		return orderAttribute;
+	}
+	public void setOrderAttribute(String orderAttribute) {
+		this.orderAttribute = orderAttribute;
+	}
 	public String getUsername() {
 		return username;
 	}

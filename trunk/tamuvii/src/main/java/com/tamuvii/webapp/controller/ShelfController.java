@@ -9,12 +9,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
-import com.tamuvii.pojo.ShelfDirectorReport;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.service.AppUserManager;
 import com.tamuvii.service.MovieManager;
 import com.tamuvii.service.RelationshipManager;
 import com.tamuvii.service.ShelfManager;
+import com.tamuvii.util.TamuviiConstants;
 
 public class ShelfController implements Controller {
 	private MovieManager movieManager = null;
@@ -63,6 +63,9 @@ public class ShelfController implements Controller {
 		// Aggiunge i film della videoteca
 		List<ShelfItem> shelfItems = movieManager.getShelfByUsername(username);
 		mv.addObject("shelfItems", shelfItems);
+		
+		// Aggiunge il report sui registi
+		mv.addObject("shelfDirectorReportList", shelfManager.getShelfDirectorReport(username, null, null, TamuviiConstants.SHELF_DIRECTOR_REPORT_DEFAULT_ORDER_ATTRIBUTE));
 		
 		// Aggiunge le informazioni del profilo
 		mv.addObject("userPublicInfo", appUserManager.getUserPublicInfo(username));

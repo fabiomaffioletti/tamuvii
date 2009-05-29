@@ -3,11 +3,21 @@
     "http://getahead.ltd.uk/dwr/dwr20.dtd">
 <dwr>
     <allow>
-        <create creator="spring" javascript="UserManager">
+        
+        <!-- create creator="spring" javascript="UserManager">
             <param name="class" value="com.tamuvii.service.UserManager"/>
             <param name="beanName" value="userManager"/>
             <include method="getUsers"/>
+        </create-->
+        
+        <create creator="spring" javascript="ShelfManager">
+            <param name="class" value="com.tamuvii.service.ShelfManager"/>
+            <param name="beanName" value="shelfManager"/>
+            <include method="getShelfDirectorReport"/>
         </create>
-        <convert converter="bean" match="com.tamuvii.model.User"/>
+        <convert converter="bean" match="com.tamuvii.pojo.ShelfDirectorReport"/>
+        
+        <!-- convert converter="bean" match="com.tamuvii.model.User"/-->
+        
     </allow>
 </dwr>

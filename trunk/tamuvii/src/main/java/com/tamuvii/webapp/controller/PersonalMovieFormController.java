@@ -1,6 +1,9 @@
 package com.tamuvii.webapp.controller;
 
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.service.MovieManager;
+import com.tamuvii.util.Utilities;
 
 public class PersonalMovieFormController extends BaseFormController {
 	private MovieManager movieManager = null;
@@ -23,6 +27,12 @@ public class PersonalMovieFormController extends BaseFormController {
         setCommandName("personalMovie");
         setCommandClass(PersonalMovie.class);
     }
+	
+	protected Map referenceData(HttpServletRequest request) throws Exception {
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("years", Utilities.getYears(Calendar.getInstance().get(Calendar.YEAR)));
+		return data;
+	}
 	
 	protected Object formBackingObject(HttpServletRequest request) throws Exception {
 

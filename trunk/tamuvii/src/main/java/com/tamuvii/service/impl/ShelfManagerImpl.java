@@ -2,8 +2,6 @@ package com.tamuvii.service.impl;
 
 import java.util.List;
 
-import org.json.JSONException;
-
 import com.tamuvii.dao.CustomShelfDAO;
 import com.tamuvii.pojo.ShelfDirectorReport;
 import com.tamuvii.pojo.queryfilter.ShelfDirectorReportFilter;
@@ -17,16 +15,14 @@ public class ShelfManagerImpl implements ShelfManager {
 	}
 
 
-	public List<ShelfDirectorReport> getShelfDirectorReport(String username) {
+	public List<ShelfDirectorReport> getShelfDirectorReport(String username, Integer from, Integer to, String orderAttribute) {
 		ShelfDirectorReportFilter sdrf = new ShelfDirectorReportFilter();
 		sdrf.setUsername(username);
+		sdrf.setFrom(from);
+		sdrf.setTo(to);
+		sdrf.setOrderAttribute(orderAttribute);
 		
 		return customShelfDao.getShelfDirectorReport(sdrf);
-	}
-
-
-	public String getJSONShelfDirectorReport(String username, Integer x, Integer y) throws JSONException {
-		return customShelfDao.JSONShelfDirectorReport(username, x, y);
 	}
 
 }

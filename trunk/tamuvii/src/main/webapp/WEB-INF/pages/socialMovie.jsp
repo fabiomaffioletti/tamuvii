@@ -46,7 +46,7 @@ Release date: ${socialMovie.releaseDate}
 <br/>
 Num. Reviews: ${socialMovie.numReviews}
 <br/>
-Avg Mark: ${socialMovie.avgMark}
+Avg Mark: ${socialMovie.avgMark} (${socialMovie.numMarks})
 <br/>
 <br/>
 <br/>

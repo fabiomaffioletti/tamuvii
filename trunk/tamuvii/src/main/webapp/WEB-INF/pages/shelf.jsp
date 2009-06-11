@@ -66,9 +66,13 @@
 	//////// FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////
 	// Ordina per cognome
 	function orderShelfDirectorReportBySurname(username) {
+		new Effect.Opacity('shelfDirectorReport', { from: 1, to: 0.5 });
+		
 		ShelfManager.getShelfDirectorReport(username, null, null, "surname", function(str) {
 			refreshShelfDirectorReportList(str);
 		});
+
+		new Effect.Opacity('shelfDirectorReport', { from: 0.5, to: 1 });
 	}
 	// Ordina per numero di film
 	function orderShelfDirectorReportByNumMovies(username) {
@@ -217,7 +221,7 @@ Report registi
 <br/>
 <a href="#" onclick="orderShelfDirectorReportByNumMovies('${userPublicInfo.username}');">numMovies order</a>
 <br/>
-<div id="shelfDirectorReport" style="height: 84px; width:100%; overflow:hidden;">
+<div id="shelfDirectorReport" style="height: 84px; width:100%; overflow:hidden; position: relative;">
 	<div id="shelfDirectorReportContent">
 		<ul id="sdrul" style="margin:0px;list-style:none;padding:0;line-height: 20px;">
 			<c:forEach var="shelfDirectorReportItem" items="${shelfDirectorReportList}">
@@ -235,7 +239,7 @@ Report registi
 
 	<c:if test="${fn:length(friends) > 0}">
 		<a href="#" onclick="Effect.toggle('friends', 'slide',{ duration: 0.2 }); return false;">Friends</a>
-		<div id="friends" style="height: 21px; width:100%; overflow:hidden;">
+		<div id="friends" style="height: 21px; width:100%; overflow:hidden; position: relative;">
 			<div id="friendsContent">
 				<ul id="ful" style="margin:0px;list-style:none;padding:0;line-height: 20px;">
 					<c:forEach var="friend" items="${friends}">
@@ -255,7 +259,7 @@ Report registi
 <c:choose>
 	<c:when test="${fn:length(neighborhoods) > 0}">
 		<a href="#">Vicini</a>
-		<div id="neighborhoods" style="height: 21px; width:100%; overflow:hidden;">
+		<div id="neighborhoods" style="height: 21px; width:100%; overflow:hidden; position: relative;">
 			<div id="neighborhoodsContent">
 				<ul id="nul" style="margin:0px;list-style:none;padding:0;line-height: 20px;">
 					<c:forEach var="neighborhood" items="${neighborhoods}">

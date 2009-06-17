@@ -142,7 +142,7 @@ Totale Users:
 			<div id="movie_users_list_content">
 				<ul class="person_list">
 					<c:forEach var="movieUser" items="${socialMovie.movieUsers}">
-						<li>
+						<li onclick="document.location.href='/shelf.html?username=${movieUser.username}'">
 							<div class="person_list_info_container">
 								<div class="container">
 									<img src="${movieUser.imageLink}" width="30" height="30" class="major" />
@@ -205,13 +205,19 @@ Totale Users:
 					<div style="margin-top: 5px;">
 						<div class="person_list_info_container">
 							<div class="container">
-								<img src="flickr.jpg" width="30" height="30" class="major" />
-								<img class="minor" src="frame_30.png" alt="">
+								<img src="${review.image}" width="30" height="30" class="major" />
+								<img class="minor" src="/images/frame_30.png" alt="">
 							</div>
 							<div class="person_list_info">
-								<b>${review.username}</b>
+								<b>${review.username}</b>, <span class="light_text_italic font11">${review.dateinserted}</span>
 								<br/>
-								<span class="light_text_italic font11">${review.dateinserted}</span>
+								<c:if test="${review.mark > 0}">
+									<span class="first_mark_image">
+								    	<c:forEach begin="1" end="${review.mark}">
+											<img src="/images/sun.png"/>	    		
+								    	</c:forEach>
+							    	</span>
+						    	</c:if>
 							</div>
 						</div>
 						<div style="float: right;">

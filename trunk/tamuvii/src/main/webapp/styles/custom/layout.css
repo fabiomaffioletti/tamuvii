@@ -30,6 +30,9 @@ input {
 .font12 {
 	font-size: 12px;
 }
+.font11 {
+	font-size: 11px;
+}
 
 #main {
 	float:right;

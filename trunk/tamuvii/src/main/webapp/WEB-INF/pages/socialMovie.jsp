@@ -289,7 +289,7 @@ Totale Users:
 	Event.observe(window, 'load', function(event) {
 		indexMovieUsers = 0;
 		totMovieUsers = ${fn:length(socialMovie.movieUsers)};
-		recordsPerPageMovieUsers = 2;
+		recordsPerPageMovieUsers = 5;
 		pagesMovieUsers = Math.ceil(totMovieUsers/recordsPerPageMovieUsers);
 		
 		if(totMovieUsers < recordsPerPageMovieUsers) {

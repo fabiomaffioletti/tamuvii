@@ -5,6 +5,7 @@
     <meta name="menu" content="AdminMenu"/>
 </head>
 
+<%-- 
 <div id="sx">
 
 <c:choose>
@@ -71,44 +72,158 @@ Totale Users:
 </display:table>
 
 </div>
+--%>
 
-<div id="cont">
+<div id="sidebar">
+	<div id="social_movie_options">
+		<c:choose>
+			<c:when test="${!presentInShelf && !presentInWishlist}">
+				<span class="bold_text">Non hai questo film, se vuoi puoi:</span>
+				<ul id="social_movie_options_list">
+					<li><a href="/shelfManagement.html?action=add&movie=${socialMovie.movie}">Aggiungerlo alla tua videoteca</a></li>
+					<li><span class="light_text_italic">oppure</span></li>
+					<li><a href="/wishlistManagement.html?action=wish&movie=${socialMovie.movie}">Aggiungerlo alla tua wishlist</a></li>
+				</ul>
+			</c:when>
+			<c:when test="${!presentInShelf && presentInWishlist}">
+				<span class="bold_text">Questo film è nella tua wishlist, puoi:</span>
+				<ul id="social_movie_options_list">
+					<li><a href="/shelfManagement.html?action=move&movie=${socialMovie.movie}">Spostarlo nella tua videoteca</a></li>
+					<li><span class="light_text_italic">oppure</span></li>
+					<li><a href="/shelfManagement.html?action=delete&movie=${socialMovie.movie}">Eliminarlo dalla tua wishlist (verificare!)</a></li>
+				</ul>
+			</c:when>
+			<c:otherwise>
+				<span class="bold_text">Questo film è nella tua videoteca</span>
+				<ul id="social_movie_options_list">
+					<li><a href="/shelfManagement.html?action=delete&movie=${socialMovie.movie}">Eliminalo</a></li>
+				</ul>
+			</c:otherwise>
+		</c:choose>
+	</div>
+	
+		
 
-<div id="searchBar">
-	<form:form name="searchSocialMovieForm" action="/searchSocialMovies.html" method="POST">
-		<input type="text" name="filter" />
-		<input type="submit" name="doSearch" value="Search" />
-	</form:form>
-	<br/>
+	<div id="movie_details">
+		<ul>
+			<li>
+				<c:choose>
+					<c:when test="${not empty socialMovie.localizedImage}">
+						<img class="movie_details_image" src="${socialMovie.localizedImage}" />
+					</c:when>
+					<c:otherwise>
+						<img class="movie_details_image" src="${socialMovie.originalImage}" />
+					</c:otherwise>
+				</c:choose>
+			</li>
+			<li class="title">${socialMovie.localizedTitle}</li>
+			<li><span class="light_text_italic">Titolo originale: ${socialMovie.originalTitle}</span></li>
+			<li>di <a href="/directorDetail.html?director=${socialMovie.directorId}">${socialMovie.director}</a></li>
+			<li>Durata: ${socialMovie.duration} min</li>
+			<li>Data di rilascio: ${socialMovie.releaseDate}</li>
+		</ul>
+	</div>
+	<div id="social_movie_details_container">
+		<div id="social_movie_details">
+			<ul>
+				<li>Totale recensioni: ${socialMovie.numReviews}</li>
+				<li>Totale voti: ${socialMovie.numMarks}</li>
+				<li>Voto medio: ${socialMovie.avgMark}</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div id="movie_users">
+		<div class="relationship_title">
+			<div style="float:left">Utenti</div>
+			<div style="float:right"><span id="movie_users_view_all" style="display:none;">vedi tutti </span><a href="#" onmouseover="displayElement('movie_users_view_all')" onmouseout="hideElement('movie_users_view_all')">(9)</a></div>
+		</div>
+		<div id="movie_users_list_container">
+			<div id="movie_users_list_content">
+				<ul class="person_list">
+					<c:forEach var="movieUser" items="${socialMovie.movieUsers}">
+						<li>
+							<div class="person_list_info_container">
+								<div class="container">
+									<img src="${movieUser.imageLink}" width="30" height="30" class="major" />
+									<img class="minor" src="/images/frame_30.png" alt="">
+								</div>
+								<div class="person_list_info">
+									<b>${movieUser.username}</b>
+									<br/>
+									<c:if test="${movieUser.mark > 0}">
+										<span class="first_mark_image">
+									    	<c:forEach begin="1" end="${movieUser.mark}">
+												<img src="/images/sun.png"/>	    		
+									    	</c:forEach>
+								    	</span>
+							    	</c:if>
+								</div>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+		<div class="relationship_navigation" style="width:100%;">
+			<a href="#" id="upMovieUsers" style="display:none;float:left;" onclick="indexMovieUsers = doup(indexMovieUsers, 1, 'movie_users_list_content', $('movie_users_list_container').getHeight(), 'downMovieUsers', 'upMovieUsers'); return false;"><img class="relationship_navigation_image" src="bw.png"/></a>
+			<div style="float:left; margin-left: 47px;">
+				<span class="light_text_italic font12">Ordina: </span>
+				<select>
+					<option value="1">A-Z</option>
+					<option value="2"># Film</option>
+				</select>
+			</div>
+			<a href="#" id="downMovieUsers" style="float:right;display:none;" onclick="indexMovieUsers = dodown(indexMovieUsers, pagesMovieUsers, 1, 'movie_users_list_content', $('movie_users_list_container').getHeight(), 'downMovieUsers', 'upMovieUsers'); return false;"><img class="relationship_navigation_image" src="ff.png"/></a>
+		</div>
+	</div>
 </div>
 
-<display:table name="${socialMovie.detailedReviews}" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="review" pagesize="25" class="table" export="false">
-	<display:column>
-		<div id="message_${review.review}" style="background-color: yellow; width: 100%; border: 1px solid red; margin-bottom: 5px; display:none;">
-			ciao
-		</div>
-		<div style="border-bottom: 1px dotted #ccc; margin-bottom: 5px; padding-bottom: 5px; height: 20px;">
-			<div style="float:left; margin-top: 3px;">
-				<span style="font-weight: bold; font-size: 14px;">${review.title}</span>		
-			</div>
-			<div style="float:right;">
-				<img src="/images/emotes-ok.png" style="cursor: pointer;" onclick="voteOk('${review.review}')"> <span id="ok_${review.review}">${review.ok} </span>
-				<img src="/images/emotes-ko.png" style="cursor: pointer;" onclick="voteKo('${review.review}')"> <span id="ko_${review.review}">${review.ko} </span>
-			</div>
-		</div>
-		${review.reviewtext}
-		<div style="border-top: 1px dotted #ccc; margin-top: 5px; padding-bottom: 10px;">
-			<div style="float: left;">
-				<a href="/shelf.html?username=${review.username}">${review.username}</a>, <i>${review.dateinserted}</i>
-			</div>
-			<div style="float: right;">
-				<a href="/reviewDiscussion.html?review=${review.review}">${review.numOpinions} commenti</a>
-			</div>
-		</div>
-	</display:column>
-</display:table>
 
+<div id="main">
+	<div id="review_container">
+		<ul>
+			<c:forEach var="review" items="${socialMovie.detailedReviews}">
+				<li>
+					<div class="review_title_container">
+						<div class="review_title">
+							<span class="review_title_span">${review.title}</span>		
+						</div>
+						<div class="vote_options_container">
+							<img src="/images/emotes-ok.png" onclick="voteOk('${review.review}')"> <span id="ok_${review.review}">${review.ok} </span>
+							<img src="/images/emotes-ko.png" onclick="voteKo('${review.review}')"> <span id="ko_${review.review}">${review.ko} </span>
+						</div>
+					</div>
+					<div class="vote_error_message_container">
+						<div id="message_${review.review}" class="vote_error_message" style="display:none;">
+							<img src="/images/error.png" /> Error
+						</div>
+					</div>
+					<div class="review_text">
+						${review.reviewtext}
+					</div>
+					<div style="margin-top: 5px;">
+						<div class="person_list_info_container">
+							<div class="container">
+								<img src="flickr.jpg" width="30" height="30" class="major" />
+								<img class="minor" src="frame_30.png" alt="">
+							</div>
+							<div class="person_list_info">
+								<b>${review.username}</b>
+								<br/>
+								<span class="light_text_italic font11">${review.dateinserted}</span>
+							</div>
+						</div>
+						<div style="float: right;">
+							<a href="/reviewDiscussion.html?review=${review.review}">${review.numOpinions}</a>
+						</div>
+					</div>
+				</li>
+			</c:forEach>
+		</ul>
+	</div>
 </div>
+
 
 <script>
 	function voteOk(review) {

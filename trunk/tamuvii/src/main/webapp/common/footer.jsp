@@ -1,5 +1,6 @@
 <%@ include file="/common/taglibs.jsp" %>
 
+<%--
     <div id="divider"><div></div></div>
     <span class="left"><fmt:message key="webapp.version"/> |
         <span id="validators">
@@ -13,3 +14,26 @@
     <span class="right">
         &copy; <fmt:message key="copyright.year"/> <a href="<fmt:message key="company.url"/>"><fmt:message key="company.name"/></a>
     </span>
+ --%>
+
+
+<div id="footer_content">
+	<div style="float:left">
+		<fmt:message key="webapp.version"/>
+	</div>
+	
+	<div style="float:right">
+	    Copyright &copy; <fmt:message key="copyright.year"/> Tutti i diritti riservati.
+	</div>
+	
+	<div id="footer_links">
+		<ul>
+			<li>
+				<a href="#">Aiuto</a> | <a href="#">Informazioni su taMuvii</a> | <a href="#">Blog di taMuvii</a>
+			</li>
+			<li>
+				<a href="#">Scrivici</a> | <a href="#">Invita</a>
+			</li>
+		</ul>
+	</div>
+</div>

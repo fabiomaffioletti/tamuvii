@@ -1,0 +1,73 @@
+body, html {
+	margin:0;
+	padding:0;
+	color:#000;
+	background:url(/images/stripe.png) #a7a09a;
+	font-family: arial,helvetica,clean,sans-serif;
+}
+
+input {
+	font-family: arial,helvetica,clean,sans-serif;
+	font-size: 12px;
+}
+	
+#wrap {
+	width:750px;
+	margin:0 auto;
+	background-color: #fff;
+}
+#header {
+	background:#fff;
+	height: auto;
+	border-bottom: 1px solid #aaa;
+	padding: 20px;	
+}
+#header img {
+	height: 43px;
+	width: 211px;
+}
+
+.font12 {
+	font-size: 12px;
+}
+
+#main {
+	float:right;
+	width:480px;
+	padding:10px;
+	background:#fff;
+	height: 100%;
+}
+h2 {
+	margin:0 0 1em;
+}
+#footer {
+	clear:both;
+	border-top: 1px solid #aaa;
+	background:#fff;
+}
+#footer a {
+	color: blue;
+	font-size: 12px;
+	text-decoration: none;
+}
+#footer a:hover {
+	text-decoration: underline;
+}
+#footer_content {
+	font-size: 12px;
+	padding: 10px;
+}
+#footer_links {
+	clear:both;
+	padding-top: 20px;
+}
+#footer_links ul {
+	list-style:none;
+	padding:0; 
+	margin:0;
+}
+
+* html #footer {
+	height:1px;
+}

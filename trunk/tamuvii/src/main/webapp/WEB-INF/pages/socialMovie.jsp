@@ -136,7 +136,7 @@ Totale Users:
 	<div id="movie_users">
 		<div class="relationship_title">
 			<div style="float:left">Utenti</div>
-			<div style="float:right"><span id="movie_users_view_all" style="display:none;">vedi tutti </span><a href="#" onmouseover="displayElement('movie_users_view_all')" onmouseout="hideElement('movie_users_view_all')">(9)</a></div>
+			<div style="float:right"><span id="movie_users_view_all" style="display:none;">vedi tutti </span><a href="#" onmouseover="displayElement('movie_users_view_all')" onmouseout="hideElement('movie_users_view_all')">(${fn:length(socialMovie.movieUsers)})</a></div>
 		</div>
 		<div id="movie_users_list_container">
 			<div id="movie_users_list_content">
@@ -166,7 +166,7 @@ Totale Users:
 			</div>
 		</div>
 		<div class="relationship_navigation" style="width:100%;">
-			<a href="#" id="upMovieUsers" style="display:none;float:left;" onclick="indexMovieUsers = doup(indexMovieUsers, 1, 'movie_users_list_content', $('movie_users_list_container').getHeight(), 'downMovieUsers', 'upMovieUsers'); return false;"><img class="relationship_navigation_image" src="bw.png"/></a>
+			<a href="#" id="upMovieUsers" style="display:none;float:left;" onclick="indexMovieUsers = doup(indexMovieUsers, 1, 'movie_users_list_content', $('movie_users_list_container').getHeight(), 'downMovieUsers', 'upMovieUsers'); return false;"><img class="relationship_navigation_image" src="/images/bw.png"/></a>
 			<div style="float:left; margin-left: 47px;">
 				<span class="light_text_italic font12">Ordina: </span>
 				<select>
@@ -174,7 +174,7 @@ Totale Users:
 					<option value="2"># Film</option>
 				</select>
 			</div>
-			<a href="#" id="downMovieUsers" style="float:right;display:none;" onclick="indexMovieUsers = dodown(indexMovieUsers, pagesMovieUsers, 1, 'movie_users_list_content', $('movie_users_list_container').getHeight(), 'downMovieUsers', 'upMovieUsers'); return false;"><img class="relationship_navigation_image" src="ff.png"/></a>
+			<a href="#" id="downMovieUsers" style="float:right;display:none;" onclick="indexMovieUsers = dodown(indexMovieUsers, pagesMovieUsers, 1, 'movie_users_list_content', $('movie_users_list_container').getHeight(), 'downMovieUsers', 'upMovieUsers'); return false;"><img class="relationship_navigation_image" src="/images/ff.png"/></a>
 		</div>
 	</div>
 </div>
@@ -265,4 +265,72 @@ Totale Users:
 			}
 		});
 	}
+</script>
+
+
+<script>
+	function displayElement(id) {
+		$(id).appear({ duration: 0.2 });
+		return false;
+	}
+	function hideElement(id) {
+		$(id).fade({ duration: 0.2 });
+		return false;
+	}
+</script>
+
+<script>
+	var indexMovieUsers;
+	var totMovieUsers;
+	var recordsPerRowMovieUsers; 
+	var pagesMovieUsers;
+	var heightMovieUsers;
+	
+	Event.observe(window, 'load', function(event) {
+		indexMovieUsers = 0;
+		totMovieUsers = ${fn:length(socialMovie.movieUsers)};
+		recordsPerPageMovieUsers = 2;
+		pagesMovieUsers = Math.ceil(totMovieUsers/recordsPerPageMovieUsers);
+		
+		if(totMovieUsers < recordsPerPageMovieUsers) {
+			$('movie_users_list_container').setStyle({
+				height: (totMovieUsers*35 + totMovieUsers*5 + totMovieUsers*1) + "px"
+			});
+		} else {
+			$('movie_users_list_container').setStyle({
+				height: (recordsPerPageMovieUsers*35 + recordsPerPageMovieUsers*5 + recordsPerPageMovieUsers*1) + "px"
+			});
+		}
+		
+		if(pagesMovieUsers > 1) {
+    		$('downMovieUsers').setStyle({ display: 'block' });
+	    }
+	});
+
+	//////// FUNZIONI GENERICHE PER LO SCROLLING //////// 
+	function doup(index, step, container, h, down, up) {
+		index = index-step;
+		if(!$(down).visible()) {
+			$(down).setStyle({ display: 'block' });
+		}
+		if(index == 0) {
+			$(up).setStyle({ display: 'none' });
+		}
+		new Effect.Move($(container),{x: 0, y: step*h, duration: 0.3}); return index;
+	}
+
+	function dodown(index, pages, step, container, h, down, up) {
+		index = index+step;
+		if(!$(up).visible()) {
+			$(up).setStyle({ display: 'block' });
+		}
+		if(index == (pages-1)) {
+			$(down).setStyle({ display: 'none' });
+		} else {
+			$(down).setStyle({ display: 'block' });
+		}
+		new Effect.Move($(container),{x: 0, y: step*-h, duration: 0.3}); return index;
+	}
+	//////// FINE FUNZIONI GENERICHE PER LO SCROLLING ////////
+	
 </script>

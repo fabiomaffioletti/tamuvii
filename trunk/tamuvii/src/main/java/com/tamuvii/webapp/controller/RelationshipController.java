@@ -34,6 +34,7 @@ public class RelationshipController implements Controller {
 		}
 		
 		if(mode.equals("friends")) {
+			//FIXME La sottoquery tira fuori solo parte dei dati della select... lazy loading? come mai???
 			mv.addObject("friends", relationshipManager.getUserFriends(username));
 			mv.setViewName("friends");
 		} else {

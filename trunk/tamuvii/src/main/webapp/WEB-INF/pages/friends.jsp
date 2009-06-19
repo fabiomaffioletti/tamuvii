@@ -328,18 +328,18 @@
 								<li class="title">
 									Ultimi film aggiunti
 								</li>
-								<li class="movie_title">
-									<a href="#">Persepolis</a>
-								</li>
-								<li class="movie_title">
-									<a href="#">Persepolis</a>
-								</li>
-								<li class="movie_title">
-									<a href="#">Persepolis</a>
-								</li>
-								<li class="movie_title">
-									<a href="#">Persepolis</a>
-								</li>
+								<c:forEach var="item" items="${contact.lastMovies}">
+									<li class="movie_title">
+										<c:choose>
+											<c:when test="${not empty item.localizedTitle}">
+												<a href="/socialMovie.html?movie=${item.movie}">${item.movie}</a>
+											</c:when>
+											<c:otherwise>
+												<a href="/socialMovie.html?movie=${item.movie}">${item.movie}</a>
+											</c:otherwise>
+										</c:choose>
+									</li>
+								</c:forEach>
 							</ul>
 						</li>
 					</div>

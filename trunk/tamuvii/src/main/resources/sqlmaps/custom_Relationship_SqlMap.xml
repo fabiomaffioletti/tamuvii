@@ -12,6 +12,7 @@
         <result property="address.country" column="country"/>
         <result property="imageLink" column="imageLink"/>
         <result property="dateAdded" column="date_added"/>
+        <result property="lastMovies" column="username" select="custom_relationship.getLastSeenMoviesByUser"/>
    </resultMap>
    
    <select id="getUserPublicInfo" resultMap="userNeighbor" parameterClass="java.lang.String" >
@@ -23,7 +24,8 @@
 						u.city,
 						u.country,
 						u.image as imageLink,
-						null as date_added
+						null as date_added,
+						null as lastMovies
 			
 		from 			app_user u
 		
@@ -64,6 +66,42 @@
 		
 		where 			uu.first = #username#
 		and 			uu.friend = 0
+  </select>
+  
+  <select id="getLastSeenMoviesByUser" parameterClass="java.lang.String" resultClass="com.tamuvii.pojo.ShelfItem">
+  		select				m.movie, 
+							m.duration, 
+							m.original_title,
+							m.original_plot,
+							m.original_image,
+							loc.localized_title,
+							loc.localized_plot,
+							loc.localized_image,
+							d.director as directorId, 
+							CONCAT(d.name, " ", d.surname) as director, 
+							m.release_date, 
+							um.date_added, 
+							um.date_viewed, 
+							um.mark,
+							(select count(*) from user_to_movie um2 inner join app_user au on au.username = um2.username where um2.movie = m.movie and au.country = 'IT') as numUsers,
+							r.review,
+							r.title,
+							r.review_text
+							
+		from 				user_to_movie um			inner join movie m
+							on um.movie = m.movie 		inner join director d
+							on d.director = m.director 	inner join app_user u
+							on u.username = um.username left join localized_data loc
+							on loc.movie = m.movie 		left join review r
+							on r.movie = um.movie and r.username = #username#
+							
+		where				u.username = #username#
+		and					um.wished = '0'
+
+		group by um.movie
+		order by um.date_viewed desc
+
+		limit 0,5
   </select>
   
 </sqlMap>

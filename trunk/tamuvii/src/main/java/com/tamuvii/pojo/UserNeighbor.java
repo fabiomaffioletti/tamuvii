@@ -1,6 +1,7 @@
 package com.tamuvii.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 import com.tamuvii.model.Address;
 
@@ -14,8 +15,15 @@ public class UserNeighbor {
 	private Address address = new Address();
 	private String imageLink;
 	private Date dateAdded;
+	private List<ShelfItem> lastMovies;
     
-    public Date getDateAdded() {
+    public List<ShelfItem> getLastMovies() {
+		return lastMovies;
+	}
+	public void setLastMovies(List<ShelfItem> lastMovies) {
+		this.lastMovies = lastMovies;
+	}
+	public Date getDateAdded() {
 		return dateAdded;
 	}
 	public void setDateAdded(Date dateAdded) {

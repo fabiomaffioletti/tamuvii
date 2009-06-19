@@ -518,7 +518,7 @@
 	
 	function endEffect() {
 		$('messagetext').value = "";
-		Effect.BlindUp('sendMessage');
+		Effect.BlindUp('send_message');
 	}
 </script>
 

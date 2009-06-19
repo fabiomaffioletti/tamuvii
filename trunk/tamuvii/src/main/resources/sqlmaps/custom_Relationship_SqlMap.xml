@@ -11,6 +11,7 @@
         <result property="address.city" column="city"/>
         <result property="address.country" column="country"/>
         <result property="imageLink" column="imageLink"/>
+        <result property="dateAdded" column="date_added"/>
    </resultMap>
    
    <select id="getUserPublicInfo" resultMap="userNeighbor" parameterClass="java.lang.String" >
@@ -21,7 +22,8 @@
 						u.website_title as websiteTitle,
 						u.city,
 						u.country,
-						u.image as imageLink
+						u.image as imageLink,
+						null as date_added
 			
 		from 			app_user u
 		
@@ -36,7 +38,8 @@
 						u.website_title as websiteTitle,
 						u.city,
 						u.country,
-						u.image as imageLink
+						u.image as imageLink,
+						uu.date_added
 			
 		from 			user_to_user uu 		inner join 		app_user u
 						on uu.second = u.username
@@ -53,7 +56,8 @@
 						u.website_title as websiteTitle,
 						u.city,
 						u.country,
-						u.image as imageLink
+						u.image as imageLink,
+						uu.date_added
 			
 		from 			user_to_user uu 		inner join 		app_user u
 						on uu.second = u.username

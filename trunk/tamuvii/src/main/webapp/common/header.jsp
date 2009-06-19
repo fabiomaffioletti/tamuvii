@@ -14,4 +14,5 @@
 <appfuse:constants scope="request"/>
 --%>
 
+<fmt:message var="df" key="date.format" scope="session"/>
 <img src="/images/logo.png"/>

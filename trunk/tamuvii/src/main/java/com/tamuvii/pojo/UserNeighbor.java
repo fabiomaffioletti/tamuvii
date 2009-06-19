@@ -1,5 +1,7 @@
 package com.tamuvii.pojo;
 
+import java.util.Date;
+
 import com.tamuvii.model.Address;
 
 public class UserNeighbor {
@@ -11,8 +13,15 @@ public class UserNeighbor {
     private String websiteTitle;
 	private Address address = new Address();
 	private String imageLink;
+	private Date dateAdded;
     
-    public String getImageLink() {
+    public Date getDateAdded() {
+		return dateAdded;
+	}
+	public void setDateAdded(Date dateAdded) {
+		this.dateAdded = dateAdded;
+	}
+	public String getImageLink() {
 		return imageLink;
 	}
 	public void setImageLink(String imageLink) {

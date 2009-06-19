@@ -66,7 +66,7 @@
 						
 						
 						<c:if test="${not empty shelfItem.dateViewed}">
-					    	<div class="date_viewed">Visto il: <fmt:formatDate value="${shelfItem.dateViewed}" /></div> 
+					    	<div class="date_viewed">Visto il: <fmt:formatDate pattern="${df}" value="${shelfItem.dateViewed}" /></div> 
 					    </c:if>
 				    	
 						

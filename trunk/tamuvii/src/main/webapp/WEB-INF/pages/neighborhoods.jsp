@@ -308,7 +308,7 @@
 							<div id="user_profile_info" style="margin-bottom: 10px;">
 								<a href="/shelf.html?username=${contact.username}"" style="font-size: 14px; color: black; font-weight: bold;">${contact.username}</a>
 								<br/>
-								<span class="light_text_italic font11">Vicino dal 28/10/2008</span>
+								<span class="light_text_italic font11">Vicino dal <fmt:formatDate pattern="${df}" value="${contact.dateAdded}" /></span>
 								<br/>
 								<a href="#" id="viewContactOtherInfoLink_${contact.id}" onclick="viewContactOtherInfo('${contact.id}', this.id)">Vedi altre informazioni</a>
 							</div>

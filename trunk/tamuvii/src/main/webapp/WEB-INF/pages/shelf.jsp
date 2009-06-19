@@ -504,7 +504,7 @@
 
 <script>
 	function sendMessage() {
-		var receiver = $('receiver').value;
+		var receiver = "${username}";
 		var messagetext = $('messagetext').value;
 		new Ajax.Request('/sendMessage.html?ajax=true&receiver='+receiver+'&messagetext='+messagetext, {
 			  method: 'post',

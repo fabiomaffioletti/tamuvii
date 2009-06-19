@@ -13,5 +13,6 @@ public interface MessageManager {
 	public List<MessageUserItem>  getConversationWithUser(String remoteUser, String username);
 	
 	public void sendPersonalMessage(String remoteUser, String receiver, String messagetext);
+	public boolean sendPersonalMessageDWR(String remoteUser, String receiver, String messagetext);
 	
 }

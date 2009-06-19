@@ -17,6 +17,10 @@
 	float:left;
 }
 
+textarea {
+	font-family: arial,helvetica,clean,sans-serif;
+	font-size: 12px;
+}
 
 /*
 	Rounded corners image 30px

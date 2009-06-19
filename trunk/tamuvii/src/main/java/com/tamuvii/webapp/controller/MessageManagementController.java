@@ -31,6 +31,8 @@ public class MessageManagementController implements Controller {
 			mv.addObject("result", "ok");
 		}
 		
+		
+		
 		String returnView = request.getParameter("returnView") == null ? null : request.getParameter("returnView");
 		if(returnView != null && !returnView.equals("") && returnView.equals("personalMessages"))
 			mv.setViewName("redirect:/personalMessages.html?username="+receiver);

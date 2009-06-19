@@ -48,5 +48,19 @@ public class MessageManagerImpl implements MessageManager {
 		message.setMessagetext(messagetext);
 		messageDao.insertSelective(message);
 	}
+	
+	public boolean sendPersonalMessageDWR(String remoteUser, String receiver, String messagetext) {
+		try {
+			Message message = new Message();
+			message.setDateadded(Calendar.getInstance().getTime());
+			message.setSender(remoteUser);
+			message.setReceiver(receiver);
+			message.setMessagetext(messagetext);
+			messageDao.insertSelective(message);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 }

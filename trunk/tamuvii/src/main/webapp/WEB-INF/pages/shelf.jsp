@@ -5,6 +5,7 @@
     <script type="text/javascript" src="/dwr/engine.js"></script>
     <script type="text/javascript" src="/dwr/util.js"></script>
     <script type="text/javascript" src="/dwr/interface/ShelfManager.js"> </script>
+    <script type="text/javascript" src="/dwr/interface/MessageManager.js"> </script>
 </head>
 
 <div id="main">
@@ -226,7 +227,7 @@
 						</c:choose>
 					</c:when>
 				</c:choose>
-				<div style="float: left;"><a href="#" onclick="Effect.toggle('relationship', 'slide',{ duration: 0.2 }); return false;">Chiudi</a></div>
+				<div style="float: left;"><a href="#" onclick="Effect.Fade('relationship', { duration: 0.4 }); return false;">Chiudi</a></div>
 			</div>
 		</div>
 	</div>
@@ -238,7 +239,7 @@
 					<div style="font-size: 12px; color: black;">La compatibilit&agrave; con questo utente &egrave;:</div>
 					<div id="compatibility_value">94%</div>
 				</div>
-				<div style="float: left;"><a href="#" onclick="Effect.toggle('compatibility', 'slide',{ duration: 0.2 }); return false;">Chiudi</a></div>
+				<div style="float: left;"><a href="#" onclick="Effect.Fade('compatibility', { duration: 0.4 }); return false;">Chiudi</a></div>
 				<div style="float: right;"><a href="#">Dettagli</a></div>
 			</div>
 		</div>
@@ -249,7 +250,7 @@
 			<div id="send_message" style="width:100%; display:none;">
 				<textarea id="messagetext" name="messagetext" style="width: 98%" rows="5"></textarea>
 				<span style="float: right;"><input type="button" name="sendMessage" value="Spedisci" onclick="sendMessage()" /></span>
-				<span style="float: left;"><a href="#" onclick="Effect.toggle('send_message', 'slide',{ duration: 0.2 }); return false;">Annulla</a></span>
+				<span style="float: left;"><a href="#" onclick="cancelSendingMessage(); return false;">Annulla</a></span>
 			</div>
 		</div>
 	</div>
@@ -296,7 +297,14 @@
 	<div id="friends">
 		<div class="relationship_title">
 			<div style="float:left">Amici</div>
-			<div style="float:right"><span id="friends_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=friends" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
+			<c:choose>
+				<c:when test="${not empty username && username != pageContext.request.remoteUser}">
+					<div style="float:right"><span id="friends_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=friends&username=${username}" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
+				</c:when>
+				<c:otherwise>
+					<div style="float:right"><span id="friends_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=friends" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div id="friends_list_container">	
 			<div id="friends_list_content">
@@ -329,7 +337,14 @@
 	<div id="neighbors">
 		<div class="relationship_title">
 			<div style="float:left">Vicini</div>
-			<div style="float:right"><span id="neighbors_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=neighborhoods" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
+			<c:choose>
+				<c:when test="${not empty username && username != pageContext.request.remoteUser}">
+					<div style="float:right"><span id="neighbors_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=neighborhoods&username=${username}" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
+				</c:when>
+				<c:otherwise>
+					<div style="float:right"><span id="neighbors_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=neighborhoods" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div id="neighbors_list_container">	
 			<div id="neighbors_list_content">
@@ -370,9 +385,14 @@
 	}
 	
 	function chooseOption(id) {
-		new Effect.toggle(id, 'slide', { duration: 0.2 });
+		if($(id).visible()) {
+			new Effect.Fade(id, { duration: 0.4 });
+		} else {
+			new Effect.Appear(id, { duration: 0.4 });
+		}
 		return false;
 	}
+	
 	function displayOptionHint(hint) {
 		$('option_hint').innerHTML = hint;		
 		return false;
@@ -503,23 +523,32 @@
 </script>
 
 <script>
+	function cancelSendingMessage() {
+		$('messagetext').value = "";
+		new Effect.Fade('send_message', { duration: 0.4 });
+		return false;
+	}
 	function sendMessage() {
+		var sender = "${pageContext.request.remoteUser}";
 		var receiver = "${username}";
 		var messagetext = $('messagetext').value;
-		new Ajax.Request('/sendMessage.html?ajax=true&receiver='+receiver+'&messagetext='+messagetext, {
-			  method: 'post',
-			  onSuccess: function(response) {
-			    var notice = $('messagetext');
-			    notice.value = response.responseText;
-			    setTimeout("endEffect()", 2000);
+		MessageManager.sendPersonalMessageDWR(sender, receiver, messagetext, function(str){
+			if(str == true) {
+				$('messagetext').value = "<fmt:message key='tamuvii.message.success'/>" + receiver;
+				new Effect.Highlight('messagetext', {startcolor: '#4F8CC9',	restorecolor: true, afterFinish: function(e) {
+					setTimeout("endSendingMessage()", 3000);
+				}});
+			} else {
+				$('messagetext').value = "<fmt:message key='tamuvii.message.error'/>";
+				new Effect.Highlight('messagetext', {startcolor: '#FFB98C',	restorecolor: true});
 			}
 		});
 	}
-	
-	function endEffect() {
+	function endSendingMessage() {
 		$('messagetext').value = "";
-		Effect.BlindUp('send_message');
+		Effect.Fade('send_message');
 	}
+	
 </script>
 
 <script>

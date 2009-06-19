@@ -15,8 +15,14 @@
             <param name="beanName" value="shelfManager"/>
             <include method="getShelfDirectorReport"/>
         </create>
-        <convert converter="bean" match="com.tamuvii.pojo.ShelfDirectorReport"/>
         
+        <create creator="spring" javascript="MessageManager">
+            <param name="class" value="com.tamuvii.service.MessageManager"/>
+            <param name="beanName" value="messageManager"/>
+            <include method="sendPersonalMessageDWR"/>
+        </create>
+        
+        <convert converter="bean" match="com.tamuvii.pojo.ShelfDirectorReport"/>
         <!-- convert converter="bean" match="com.tamuvii.model.User"/-->
         
     </allow>

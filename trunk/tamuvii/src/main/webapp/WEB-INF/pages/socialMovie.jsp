@@ -120,7 +120,7 @@ Totale Users:
 			<li><span class="light_text_italic">Titolo originale: ${socialMovie.originalTitle}</span></li>
 			<li>di <a href="/directorDetail.html?director=${socialMovie.directorId}">${socialMovie.director}</a></li>
 			<li>Durata: ${socialMovie.duration} min</li>
-			<li>Data di rilascio: ${socialMovie.releaseDate}</li>
+			<li>Data di rilascio: <fmt:formatDate pattern="${df}" value="${socialMovie.releaseDate}" /></li>
 		</ul>
 	</div>
 	<div id="social_movie_details_container">
@@ -209,7 +209,7 @@ Totale Users:
 								<img class="minor" src="/images/frame_30.png" alt="">
 							</div>
 							<div class="person_list_info">
-								<b>${review.username}</b>, <span class="light_text_italic font11">${review.dateinserted}</span>
+								<b>${review.username}</b>, <span class="light_text_italic font11"><fmt:formatDate pattern="${df}" value="${review.dateinserted}" /></span>
 								<br/>
 								<c:if test="${review.mark > 0}">
 									<span class="first_mark_image">

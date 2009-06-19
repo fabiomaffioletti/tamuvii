@@ -295,3 +295,29 @@
 	font-weight: normal;
 	color: blue;
 }
+
+
+/*
+	Simils
+*/
+#simils_list_container {
+	width:100%; 
+	overflow:hidden; 
+	position: relative;
+}
+#simils {
+	margin-bottom: 55px;
+}
+#simils a {
+	color: blue;
+	font-weight: normal;
+	font-size: 12px;
+	text-decoration: none;
+}
+#simils a:hover {
+	text-decoration: underline;
+}
+#simils_view_all {
+	font-weight: normal;
+	color: blue;
+}

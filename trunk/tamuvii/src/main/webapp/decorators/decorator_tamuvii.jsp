@@ -13,6 +13,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/movies.css'/>" />
         <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/socialMovie.css'/>" />
         <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/options.css'/>" />
+        <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/contacts.css'/>" />
 
         <script type="text/javascript" src="<c:url value='/scripts/prototype.js'/>"></script>
         <script type="text/javascript" src="<c:url value='/scripts/scriptaculous.js'/>"></script>

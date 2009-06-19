@@ -296,7 +296,7 @@
 	<div id="friends">
 		<div class="relationship_title">
 			<div style="float:left">Amici</div>
-			<div style="float:right"><span id="friends_view_all" style="display:none;">vedi tutti </span><a href="#" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
+			<div style="float:right"><span id="friends_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=friends" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
 		</div>
 		<div id="friends_list_container">	
 			<div id="friends_list_content">
@@ -329,7 +329,7 @@
 	<div id="neighbors">
 		<div class="relationship_title">
 			<div style="float:left">Vicini</div>
-			<div style="float:right"><span id="neighbors_view_all" style="display:none;">vedi tutti </span><a href="#" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
+			<div style="float:right"><span id="neighbors_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=neighborhoods" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
 		</div>
 		<div id="neighbors_list_container">	
 			<div id="neighbors_list_content">

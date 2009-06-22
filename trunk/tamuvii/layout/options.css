@@ -1,0 +1,23 @@
+#options {
+	font-size: 12px;
+	height: 30px;
+	border-bottom: 1px dashed #ccc;
+}
+#order_div {
+	float:left;
+}
+#search_div {
+	float:right;
+}
+#order_div select {
+	margin-left: 5px;
+	font-size: 12px;
+}
+#searchbox_text {
+	margin-left: 5px;
+	font-size: 12px;
+	width: 150px;
+}
+#searchbox_button {
+	vertical-align: middle;
+}

@@ -1,0 +1,74 @@
+#contacts_container {
+	width: 100%;
+}
+#contacts_container a {
+	color:blue;
+	text-decoration: none;
+	font-size: 11px;
+}
+#contacts_container a:hover {
+	text-decoration: underline;
+}
+#contacts_container ul {
+	margin:0; 
+	padding: 0; 
+	list-style:none;
+}
+
+
+#contacts_container .latest_movies_added {
+	float:left; 
+	width: 229px;
+}
+
+.latest_movies_added_li {
+	padding: 10px; 
+	border-top: 1px solid #ccc; 
+	min-height: 50px;
+}
+.latest_movies_added ul {
+	list-style:none; 
+	margin: 0; 
+	padding: 0;
+}
+.latest_movies_added li.title {
+	font-weight: bold; 
+	width: 100%; 
+	padding:3px; 
+	background-color: #eee; 
+	font-size: 11px; 
+	border-bottom: 1px dotted #ccc; 
+	border-top: 1px solid #aaa;
+}
+.latest_movies_added li.movie_title {
+	width: 100%; 
+	padding: 3px; 
+	border-bottom: 1px dotted #ccc;
+}
+
+.contact_info_sx_alto {
+	float:left; 
+	width: 250px;
+}
+.contact_info_sx_alto li {
+	float:left;
+	display: inline;
+	padding: 10px; 
+	border-top: 1px solid #ccc; 
+	width: 230px; 
+	min-height: 50px;
+}
+
+.contacts_separator {	
+	clear:both; 
+	height: 1px; 
+	border-bottom: 1px dashed #ccc;
+}
+
+.contact_info_container {
+	clear:both; 
+	text-align: justify;
+}
+.contacts_spacer {
+	margin-bottom: 10px;
+}

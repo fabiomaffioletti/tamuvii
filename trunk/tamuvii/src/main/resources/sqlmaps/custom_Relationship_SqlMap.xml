@@ -15,6 +15,7 @@
         <result property="lastMovies" column="username" select="custom_relationship.getLastSeenMoviesByUser"/>
    </resultMap>
    
+   
    <select id="getUserPublicInfo" resultMap="userNeighbor" parameterClass="java.lang.String" >
 		select 			u.id,
 					 	u.username, 
@@ -68,7 +69,7 @@
 		and 			uu.friend = 0
   </select>
   
-  <select id="getLastSeenMoviesByUser" parameterClass="java.lang.String" resultClass="com.tamuvii.pojo.ShelfItem">
+  <select id="getLastSeenMoviesByUser" parameterClass="java.lang.String" resultMap="custom_shelf.shelfItemMap">
   		select				m.movie, 
 							m.duration, 
 							m.original_title,

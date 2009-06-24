@@ -332,10 +332,10 @@
 									<li class="movie_title">
 										<c:choose>
 											<c:when test="${not empty item.localizedTitle}">
-												<a href="/socialMovie.html?movie=${item.movie}">${item.movie}</a>
+												<a href="/socialMovie.html?movie=${item.movie}">${item.localizedTitle}</a>
 											</c:when>
 											<c:otherwise>
-												<a href="/socialMovie.html?movie=${item.movie}">${item.movie}</a>
+												<a href="/socialMovie.html?movie=${item.movie}">${item.originalTitle}</a>
 											</c:otherwise>
 										</c:choose>
 									</li>

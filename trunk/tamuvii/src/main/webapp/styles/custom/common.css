@@ -112,8 +112,9 @@ textarea {
     div#nav {
         font-size: 11px;
         border-bottom: 1px solid #ccc;
-        height: 22px;
+        height: 24px;
         margin-bottom: 10px;
+        background-color: #BE2525;
     }
     * html div#nav {
         /* hide ie/mac \*/
@@ -144,11 +145,19 @@ textarea {
     div#nav li.last {
         border-right: none;
     }
+    
+    
     div#nav a,
     div#nav a:link,
     div#nav a:active,
     div#nav a:visited {
-        display: inline-block;
+    	background: #BE2525;
+    	/* background: url(opaque.png); */
+    	/*
+    	opacity:0.4;
+    	filter:alpha(opacity=40);
+    	*/
+    	display: inline-block;
         /* hide from ie/mac \*/
         display: block;
         /* end hide */
@@ -156,11 +165,15 @@ textarea {
         text-decoration: none;
         margin: 0;
         padding: 2px 10px;
-        color: #4f8cc9;
+        /* color: #4f8cc9; */
+        color: white;
     }
     div#nav a:hover {
         text-decoration: none;
-        background-color: #ebf5fc;
+        /* background-color: #ebf5fc; */
+        /* background-color: #9B3131; */
+        background-color: #7B2323;
+        color: white;
     }
     div#nav a.current {
         display: inline-block;
@@ -168,7 +181,7 @@ textarea {
         display: block;
         /* end hide */
         color: #4f8cc9;
-        background: #d7e9f5;
+        background: #d7e9f5; 
         font-size: 11px !important;
     }
     div#nav a.current,
@@ -183,19 +196,24 @@ textarea {
     div#nav .pad {
        padding-left: 10px;
     }
-/* END NAV */
+    
+    
+    /* END NAV */
 
 /* DROP DOWN MENUS */
+/* menu a tendina */
     ul#primary-nav, ul#primary-nav ul {
         margin: 0;
         padding: 0;
         background: #fff; /* IE6 Bug */
         font-size: 100%;
     }
+    /* menu principali senza sottomenu */
         ul#primary-nav li {
             position: relative;
             list-style: none;
         }
+        	/* menu a tendina (comprensivi anche di sottomenu) */
             ul#primary-nav li a {
                 display: block;
                 text-decoration: none;
@@ -211,12 +229,14 @@ textarea {
             * html ul#primary-nav ul li { width: 149px; }
         /* End */
 
+			/* sottomenu */
             ul#primary-nav ul {
                 position: absolute;
                 display: none;
                 left: 0px; /* Set 1px less than menu width */
                 top: 22px;
             }
+            
                 ul#primary-nav ul li {
                     border: 1px solid silver;
                     border-bottom: 0;
@@ -226,6 +246,7 @@ textarea {
                         margin-left: 149px;
                         margin-top: -23px;
                     }
+                    /* ultimo elemento del menu a tendina */
                     ul#primary-nav ul li.last {
                         border-bottom: 1px solid silver;
                         border-right: 1px solid silver;
@@ -241,8 +262,8 @@ textarea {
                         ul#primary-nav li.over ul,
                         ul#primary-nav li li.over ul,
                         ul#primary-nav li li li.over ul { display: block; } /* The magic */
-                        ul#primary-nav li.menubar { background: transparent url(../../images/arrow.gif) right center no-repeat; z-index: 10}
+                        ul#primary-nav li.menubar { z-index: 10}
                         ul#primary-nav li:hover,
                         ul#primary-nav li.over { background-color: #fff }
-                        ul#primary-nav li a:hover { color: #E2144A; }
+                        ul#primary-nav li a:hover { color: white; }
 /* END DROP DOWN MENUS */

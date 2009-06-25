@@ -2,6 +2,9 @@
 
 <head>
     <title><fmt:message key="Messaggi"/></title>
+    <script type="text/javascript" src="/dwr/engine.js"></script>
+    <script type="text/javascript" src="/dwr/util.js"></script>
+    <script type="text/javascript" src="/dwr/interface/MessageManager.js"> </script>
 </head>
 
 <div id="sidebar">
@@ -46,15 +49,15 @@
 	<div id="messages_list_container" style="font-size: 12px;">
 		<c:if test="${conversation}">
 			<div id="message_reply_conversation" class="message_reply_textarea" style="display:none;">
-				<textarea></textarea>
+				<textarea id="message_textarea_conversation"></textarea>
 				<a href="#" onclick="hideElement('message_reply_conversation'); displayElement('reply_conversation_link'); return false;" style="float:left;">Annulla</a>
-				<input type="submit" value="Invia" />
+				<input type="button" value="Spedisci" onclick="sendConversationMessage()" />
 			</div>
 			<div id="reply_conversation_link" style="display:block;">
 				<a href="#" onclick="displayElement('message_reply_conversation'); hideElement('reply_conversation_link'); return false;">Invia una risposta</a>
 			</div>
 		</c:if>
-		<ul>
+		<ul id="personal_messages_list">
 			<c:forEach var="message" items="${allMessages}">
 				<li>
 					<div id="message_reply_${message.message.message}" class="message_reply_textarea" style="display:none;">
@@ -149,47 +152,26 @@
 </script>
 
 
-
-
-
-
-
-
-<%--
-
-<div id="cont">
-
-<c:if test="${conversation}">
-	<a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Rispondi</a>
-	<div id="sendMessage" style="width:180px;display:none;">
-		<form:form name="sendMessageForm" action="/sendMessage.html?returnView=personalMessages" method="POST">
-			<textarea id="messagetext" name="messagetext" cols="20" rows="5"></textarea>
-			<input type="hidden" id="receiver" name="receiver" value="${username}" />
-			<input type="submit" name="sendMessage" value="Spedisci" />
-			<a href="#" onclick="Effect.toggle('sendMessage', 'slide',{ duration: 0.2 }); return false;">Annulla</a>
-		</form:form>
-	</div>
-	<br/>
-	<br/>
-</c:if>
-
-<display:table name="allMessages" cellspacing="0" cellpadding="0" id="myMessage" pagesize="25" class="table" export="false">
-    <display:column property="message.message" escapeXml="true" sortable="true" titleKey="id"/>
-    <display:column property="message.messagetext" escapeXml="true" sortable="true" titleKey="testo"/>
-    <display:column property="message.dateadded" escapeXml="true" sortable="true" titleKey="data"/>
-    <display:column escapeXml="false" sortable="true" titleKey="username">
-		<a href="/shelf.html?username=${myMessage.user.username}">${myMessage.user.username}</a>
-	</display:column>
-    <display:column escapeXml="false" sortable="false" titleKey="immagine">
-		<img src="${myMessage.user.imageLink}" height="20px" width="20px;"/>
-	</display:column>
-	<c:if test="${!conversation}">	
-		<display:column escapeXml="false" sortable="false" titleKey="actions">
-			<a href="/personalMessages.html?username=${myMessage.user.username}">Apri</a>
-		</display:column>
-	</c:if>
-</display:table>
-
-</div>
-
---%>
+<script>
+	function sendConversationMessage() {
+		var sender = "${pageContext.request.remoteUser}";
+		var receiver = "${username}";
+		var messagetext = $('message_textarea_conversation').value;
+		MessageManager.sendPersonalMessageDWR(sender, receiver, messagetext, function(str){
+			if(str == true) {
+				$('message_textarea_conversation').value = "<fmt:message key='tamuvii.message.success'/>" + receiver;
+				new Effect.Highlight('message_textarea_conversation', {startcolor: '#4F8CC9',	restorecolor: true, afterFinish: function(e) {
+					var li = Builder.node('li');
+					var fromto = Builder.node('div', { className: 'fromto' });
+					fromto.innerHTML = "<div class=\"person_list_info_container\"><div class=\"container\"><img src=\"${message.user.imageLink}\" width=\"30\" height=\"30\" class=\"major\" /><img class=\"minor\" src=\"/images/frame_30.png\"></div><div class=\"person_list_info\">da<br/><b>"+sender+"</b></div></div>";
+					li.insert(fromto);
+					$('personal_messages_list').insert({"top":li });					
+					setTimeout("endSendingMessage()", 3000);
+				}});
+			} else {
+				$('message_textarea_conversation').value = "<fmt:message key='tamuvii.message.error'/>";
+				new Effect.Highlight('message_textarea_conversation', {startcolor: '#FFB98C',	restorecolor: true});
+			}
+		});
+	}
+</script>

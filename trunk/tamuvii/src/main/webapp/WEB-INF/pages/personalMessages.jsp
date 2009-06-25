@@ -23,7 +23,7 @@
 								<div class="person_list_info">
 									<span class="pal_user"><a href="/shelf.html?username=${groupedMessage.user.username}">${groupedMessage.user.username}</a></span>
 									<br/>
-									<span class="numMessages"><a href="">${groupedMessage.numMessages} messaggi</a></span>
+									<span class="numMessages"><a href="/personalMessages.html?username=${groupedMessage.user.username}">${groupedMessage.numMessages} messaggi</a></span>
 								</div>
 							</div>
 						</li>
@@ -76,16 +76,25 @@
 								<b>${message.receiver.username}</b>
 							</div>
 						</div>
-						<div style="clear:both; float:right;">
-							<a href="#" id="viewOptionsLink_${message.message.message}" onclick="viewOptions('${message.message.message}', this.id)" style="font-size: 11px;">Opzioni</a>
-						</div>
-						<div id="options_${message.message.message}" style="border: 1px dotted #ccc; clear:both; padding: 10px; display:none;">
-							<a href="">Apri conversazione</a>
-							<br/>
-							<span class="light_text_italic">oppure</span>
-							<br/>
-							<a href="#" onclick="displayElement('message_reply_${message.message.message}'); return false;">Rispondi</a>
-						</div>
+						<c:if test="${!conversation}">
+							<div style="clear:both; float:right;">
+								<a href="#" id="viewOptionsLink_${message.message.message}" onclick="viewOptions('${message.message.message}', this.id)" style="font-size: 11px;">Opzioni</a>
+							</div>
+							<div id="options_${message.message.message}" style="border: 1px dotted #ccc; clear:both; padding: 10px; display:none;">
+								<c:choose>
+									<c:when test="${message.user.username == pageContext.request.remoteUser}">
+										<a href="/personalMessages.html?username=${message.receiver.username}">Apri conversazione</a>									
+									</c:when>
+									<c:otherwise>
+										<a href="/personalMessages.html?username=${message.user.username}">Apri conversazione</a>
+									</c:otherwise>
+								</c:choose>
+								<br/>
+								<span class="light_text_italic">oppure</span>
+								<br/>
+								<a href="#" onclick="displayElement('message_reply_${message.message.message}'); return false;">Rispondi</a>
+							</div>
+						</c:if>
 						<br/>
 					</div>
 					<div class="last_message_text">

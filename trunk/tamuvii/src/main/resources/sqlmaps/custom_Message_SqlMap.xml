@@ -94,6 +94,38 @@
 		limit 0, 10
   </select>
   
+  <select id="getConversationWithUser" resultMap="userMessageListItem" parameterClass="com.tamuvii.pojo.queryfilter.MessageUserFilter" >
+  		select			m.message, 
+						m.sender,
+						m.receiver,
+						m.message_text as messagetext,
+						m.date_added as dateadded,
+						au.id as idUser,
+						au.username as usernameUser, 
+						au.email as emailUser,
+						au.website as websiteUser,
+						au.website_title as websiteTitleUser,
+						au.city as cityUser,
+						au.country as countryUser,
+						au.image as imageLinkUser,
+						au2.id as idReceiver,
+						au2.username as usernameReceiver, 
+						au2.email as emailReceiver,
+						au2.website as websiteReceiver,
+						au2.website_title as websiteTitleReceiver,
+						au2.city as cityReceiver,
+						au2.country as countryReceiver,
+						au2.image as imageLinkReceiver,
+						0 as numMessages
+						
+		from			message m inner join app_user au
+						on m.sender = au.username inner join app_user au2
+						on m.receiver = au2.username
+		
+		where			(m.sender = #remoteUser# and m.receiver = #username#) or (m.receiver = #remoteUser# and m.sender = #username#)
+		order by		dateadded		desc
+  </select>
+  
   <!-- select id="getConversationWithUser" resultMap="userMessageListItem" parameterClass="com.tamuvii.pojo.queryfilter.MessageUserFilter" >
   		select			m.message, 
 						m.sender,

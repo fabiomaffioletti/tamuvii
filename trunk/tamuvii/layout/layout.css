@@ -10,6 +10,10 @@ input {
 	font-family: arial,helvetica,clean,sans-serif;
 	font-size: 12px;
 }
+select {
+	font-family: arial,helvetica,clean,sans-serif;
+	font-size: 12px;
+}
 	
 #wrap {
 	width:750px;

@@ -2,7 +2,6 @@
 
 <head>
     <title><fmt:message key="socialMovie.title"/></title>
-    <meta name="menu" content="AdminMenu"/>
 </head>
 
 <%-- 
@@ -208,8 +207,8 @@ Totale Users:
 								<img src="${review.image}" width="30" height="30" class="major" />
 								<img class="minor" src="/images/frame_30.png" alt="">
 							</div>
-							<div class="person_list_info">
-								<b>${review.username}</b>, <span class="light_text_italic font11"><fmt:formatDate pattern="${df}" value="${review.dateinserted}" /></span>
+							<div class="person_list_info" id="abc">
+								<b><a href="/shelf.html?username=${review.username}">${review.username}</a></b>, <span class="light_text_italic font11"><fmt:formatDate pattern="${df}" value="${review.dateinserted}" /></span>
 								<br/>
 								<c:if test="${review.mark > 0}">
 									<span class="first_mark_image">
@@ -221,7 +220,7 @@ Totale Users:
 							</div>
 						</div>
 						<div style="float: right;">
-							<a href="/reviewDiscussion.html?review=${review.review}">${review.numOpinions}</a>
+							<a href="/reviewDiscussion.html?review=${review.review}">Vedi tutti i commenti (${review.numOpinions})</a>
 						</div>
 					</div>
 				</li>

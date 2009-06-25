@@ -1,0 +1,49 @@
+#displayed_mark img {
+	vertical-align: middle;
+}
+#personal_movie_general_info {
+	font-size: 12px;
+	height: 180px;
+}
+#personal_movie_general_info_title {
+	width: 100%;
+	font-size: 15px;
+	border: 1px dashed #ccc; 
+	margin-bottom: 10px; 
+	font-weight:bold;
+	background-color: #eee;
+}
+#personal_movie_general_info_mark {
+	width: 100%;
+}
+#personal_movie_general_info_mark select {
+	width: 200px;
+}
+
+#personal_movie_general_info_date_viewed {
+	clear:both; 
+	margin-top: 20px;
+}
+#personal_movie_general_info_date_viewed ul {
+	list-style:none; 
+	margin:0; 
+	padding:0;
+}
+#personal_movie_general_info_date_viewed li {
+	display: inline;
+	float:left;
+	padding-right: 20px;
+	margin: 0;
+}
+
+#personal_movie_review_info {
+	font-size: 12px;
+	min-height: 180px;
+}
+
+#personal_movie_review_info textarea {
+	font-family: arial,helvetica,clean,sans-serif;
+	font-size: 12px;
+	width: 478px; 
+	height: 180px;
+}

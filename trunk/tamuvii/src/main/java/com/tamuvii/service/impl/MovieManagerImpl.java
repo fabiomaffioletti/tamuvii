@@ -97,7 +97,9 @@ public class MovieManagerImpl implements MovieManager {
 	public void updatePersonalMovieDetails(PersonalMovie personalMovie, String username) throws Exception {
 		UserToMovie userToMovie = new UserToMovie();
 		userToMovie.setUsername(username);
-		BeanUtils.copyProperties(userToMovie, personalMovie);
+		userToMovie.setDateviewed(personalMovie.getDateViewed());
+		userToMovie.setMark(personalMovie.getMark());
+		userToMovie.setMovie(personalMovie.getMovie());
 		userToMovieManager.updatePersonalMovieDetails(userToMovie);
 		reviewManager.updatePersonalMovieReviewData(personalMovie, username);
 	}

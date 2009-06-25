@@ -12,6 +12,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/layout.css'/>" />
         <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/movies.css'/>" />
         <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/socialMovie.css'/>" />
+        <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/personalMovie.css'/>" />
         <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/options.css'/>" />
         <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/contacts.css'/>" />
 

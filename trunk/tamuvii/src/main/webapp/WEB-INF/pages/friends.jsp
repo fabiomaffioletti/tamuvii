@@ -316,6 +316,8 @@
 							<div id="contact_info_container_${contact.id}" class="contact_info_container" style="display:none;">
 								<span class="light_text_italic font12">Maschio, 27 anni, Italy</span>
 								<br/>
+								<span class="light_text_italic font12">Finora ha visto ${contact.totMovies} film</span>
+								<br/>
 								<span class="font12">Sito web: <a href="${contact.website}" target="_blank">${contact.websiteTitle}</a></span>
 								<br/>
 								<span class="font12">Citazione preferita: </span><span class="light_text_italic font12">Mi piace il mio iPod Touch, iPod Touch, iPod Touch - Mi piace il mio iPod Touch, iPod Touch, iPod Touch</span>

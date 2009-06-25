@@ -166,7 +166,7 @@
 			<div id="user_profile_info" style="margin-bottom: 10px;">
 				<b>${userPublicInfo.username}</b>
 				<br/>
-				<span class="light_text_italic font12">12 film</span>
+				<span class="light_text_italic font12">${userPublicInfo.totMovies} film</span>
 				<br/>
 				<a href="#" id="other_info_link" onclick="displayOtherInfo('other_info_container')">Vedi altre informazioni</a>
 			</div>
@@ -415,7 +415,7 @@
 	}
 	function toggleAndMove(id, title) {	
 		new Effect.toggle(id, 'slide', { duration: 0.5, afterFinish: function(effect) {
-	      new Effect.ScrollTo(title);
+	      new Effect.ScrollTo(title, { duration: 0.5 });
 	    }});
 	}
 </script>

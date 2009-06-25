@@ -13,7 +13,15 @@
         <result property="imageLink" column="imageLink"/>
         <result property="dateAdded" column="date_added"/>
         <result property="lastMovies" column="username" select="custom_relationship.getLastSeenMoviesByUser"/>
+        <result property="totMovies" column="username" select="custom_relationship.getUserMoviesCount"/>
    </resultMap>
+   
+   <select id="getUserMoviesCount" resultClass="java.lang.Integer" parameterClass="java.lang.String">
+   		select		count(*) 
+   		from		user_to_movie um 
+   		where 		um.username = #username#
+   					and um.wished = 0
+   </select>
    
    
    <select id="getUserPublicInfo" resultMap="userNeighbor" parameterClass="java.lang.String" >
@@ -97,7 +105,7 @@
 							on r.movie = um.movie and r.username = #username#
 							
 		where				u.username = #username#
-		and					um.wished = '0'
+		and					um.wished = 0
 
 		group by um.movie
 		order by um.date_viewed desc

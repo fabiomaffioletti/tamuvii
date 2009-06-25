@@ -112,7 +112,7 @@
 							on um.movie = m.movie 		inner join director d
 							on d.director = m.director 	inner join app_user u
 							on u.username = um.username left join localized_data loc
-							on loc.movie = m.movie and loc.locale LIKE '%u.country%' <!-- Occhio a questa ultima istruzione, anche per le altre query!!! -->		
+							on loc.movie = m.movie and loc.locale like concat('%', u.country, '%')		
 							
 		where m.movie = #movie# 
 		and u.username = #username#

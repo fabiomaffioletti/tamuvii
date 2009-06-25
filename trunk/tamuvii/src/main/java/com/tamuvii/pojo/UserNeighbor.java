@@ -16,8 +16,15 @@ public class UserNeighbor {
 	private String imageLink;
 	private Date dateAdded;
 	private List<ShelfItem> lastMovies;
+	private Integer totMovies;
     
-    public List<ShelfItem> getLastMovies() {
+    public Integer getTotMovies() {
+		return totMovies;
+	}
+	public void setTotMovies(Integer totMovies) {
+		this.totMovies = totMovies;
+	}
+	public List<ShelfItem> getLastMovies() {
 		return lastMovies;
 	}
 	public void setLastMovies(List<ShelfItem> lastMovies) {

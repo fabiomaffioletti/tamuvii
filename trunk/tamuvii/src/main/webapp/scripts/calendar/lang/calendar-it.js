@@ -13,11 +13,11 @@
 // full day names
 Calendar._DN = new Array
 ("Domenica",
- "Lunedì",
- "Martedì",
- "Mercoledì",
- "Giovedì",
- "Venerdì",
+ "Luned&igrave;",
+ "Marted&igrave;",
+ "Mercoled&igrave;",
+ "Gioved&igrave;",
+ "Venerd&igrave;",
  "Sabato",
  "Domenica");
 
@@ -43,6 +43,8 @@ Calendar._SDN = new Array
  "Ven",
  "Sab",
  "Dom");
+
+Calendar._FD = 1;
 
 // full month names
 Calendar._MN = new Array

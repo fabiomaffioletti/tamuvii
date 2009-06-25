@@ -101,7 +101,7 @@
 							on um.movie = m.movie 		inner join director d
 							on d.director = m.director 	inner join app_user u
 							on u.username = um.username left join localized_data loc
-							on loc.movie = m.movie 		left join review r
+							on (loc.movie = m.movie and loc.locale like concat('%', u.country, '%')) 		left join review r
 							on r.movie = um.movie and r.username = #username#
 							
 		where				u.username = #username#

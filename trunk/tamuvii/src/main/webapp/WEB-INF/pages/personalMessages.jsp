@@ -2,23 +2,141 @@
 
 <head>
     <title><fmt:message key="messages.title"/></title>
-    <meta name="menu" content="AdminMenu"/>
 </head>
 
-<div id="sx">
-	<display:table name="groupedMessages" cellspacing="0" cellpadding="0" defaultsort="1" id="groupedMessage" class="table" export="false">
-	    <display:column escapeXml="false" sortable="true" titleKey="u">
-			<a href="/shelf.html?username=${groupedMessage.user.username}">${groupedMessage.user.username}</a>
-		</display:column>
-	    <display:column escapeXml="false" sortable="false" titleKey="i">
-			<img src="${groupedMessage.user.imageLink}" height="20px" width="20px;"/>
-		</display:column>
-	    <display:column property="numMessages" escapeXml="true" sortable="true" titleKey="n"/>
-	    <display:column escapeXml="false" sortable="false" titleKey="a">
-			<a href="/personalMessages.html?username=${groupedMessage.user.username}">Apri</a>
-		</display:column>
-	</display:table>
+<div id="sidebar">
+	
+	<div id="pal">
+		<div class="relationship_title">
+			<div style="float:left">Hai scambiato messaggi con: </div>
+		</div>
+		<div id="pal_list_container">	
+			<div id="pal_list_content">
+				<ul class="person_list">
+					<c:forEach var="groupedMessage" items="${groupedMessages}">
+						<li>
+							<div class="person_list_info_container">
+								<div class="container">
+									<img src="${groupedMessage.user.imageLink}" width="30" height="30" class="major" />
+									<img class="minor" src="/images/frame_30.png" alt="">
+								</div>
+								<div class="person_list_info">
+									<span class="pal_user"><a href="/shelf.html?username=${groupedMessage.user.username}">${groupedMessage.user.username}</a></span>
+									<br/>
+									<span class="numMessages"><a href="">${groupedMessage.numMessages} messaggi</a></span>
+								</div>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+		<div class="relationship_navigation" style="width:100%;">
+			<a href="#" id="upFriends" style="display:none;float:left;" onclick="indexFriends = doup(indexFriends, 1, 'friends_list_content', $('friends_list_container').getHeight(), 'downFriends', 'upFriends'); return false;"><img class="relationship_navigation_image" src="bw.png"/></a>
+			<a href="#" id="downFriends" style="float:right;display:none;" onclick="indexFriends = dodown(indexFriends, pagesFriends, 1, 'friends_list_content', $('friends_list_container').getHeight(), 'downFriends', 'upFriends'); return false;"><img class="relationship_navigation_image" src="ff.png"/></a>
+		</div>
+	</div>
 </div>
+
+
+
+
+
+<div id="main">
+	<div id="messages_list_container" style="font-size: 12px;">
+		<ul>
+			<c:forEach var="message" items="${allMessages}">
+				<li>
+					<div id="message_reply_${message.message.message}" class="message_reply_textarea" style="display:none;">
+						<textarea></textarea>
+						<a href="#" onclick="hideElement('message_reply_${message.message.message}'); return false;" style="float:left;">Annulla</a>
+						<input type="submit" value="Invia" />
+					</div>
+					<div class="fromto">
+						<div class="person_list_info_container">
+							<div class="container">
+								<img src="${message.user.imageLink}" width="30" height="30" class="major" />
+								<img class="minor" src="/images/frame_30.png" alt="">
+							</div>
+							<div class="person_list_info">
+								da
+								<br/>
+								<b>${message.user.username}</b>
+							</div>
+						</div>
+						<br/>
+						<div class="person_list_info_container" style="clear:both;">
+							<div class="container">
+								<img src="${message.receiver.imageLink}" width="30" height="30" class="major" />
+								<img class="minor" src="/images/frame_30.png" alt="">
+							</div>
+							<div class="person_list_info">
+								a
+								<br/>
+								<b>${message.receiver.username}</b>
+							</div>
+						</div>
+						<div style="clear:both; float:right;">
+							<a href="#" id="viewOptionsLink_${message.message.message}" onclick="viewOptions('${message.message.message}', this.id)" style="font-size: 11px;">Opzioni</a>
+						</div>
+						<div id="options_${message.message.message}" style="border: 1px dotted #ccc; clear:both; padding: 10px; display:none;">
+							<a href="">Apri conversazione</a>
+							<br/>
+							<span class="light_text_italic">oppure</span>
+							<br/>
+							<a href="#" onclick="displayElement('message_reply_${message.message.message}'); return false;">Rispondi</a>
+						</div>
+						<br/>
+					</div>
+					<div class="last_message_text">
+						${message.message.messagetext}
+					</div>
+					<div class="messages_separator">
+					</div>
+				</li>
+			</c:forEach>
+		</ul>
+	</div>
+</div>
+
+
+
+
+<script>
+	function viewOptions(id, link) {
+		var id_to_display = 'options_' + id;
+		$(id_to_display).appear({ duration: 0.2 });
+		$(link).innerHTML = "Nascondi opzioni";
+		$(link).writeAttribute('onclick', "hideOptions('"+id+"', '"+link+"')");
+		return false;
+	}
+	function hideOptions(id, link) {
+		var id_to_hide = 'options_' + id;
+		$(id_to_hide).fade({ duration: 0.2 });
+		$(link).innerHTML = "Opzioni";
+		$(link).writeAttribute('onclick', "viewOptions('"+id+"', '"+link+"')");
+		return false;
+	}
+
+	function displayElement(id) {
+		$(id).appear({ duration: 0.2 });
+		return false;
+	}
+	function hideElement(id) {
+		$(id).fade({ duration: 0.2 });
+		return false;
+	}
+
+</script>
+
+
+
+
+
+
+
+
+<%--
 
 <div id="cont">
 
@@ -54,3 +172,5 @@
 </display:table>
 
 </div>
+
+--%>

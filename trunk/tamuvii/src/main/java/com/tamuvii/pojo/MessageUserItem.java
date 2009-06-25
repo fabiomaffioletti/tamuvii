@@ -6,6 +6,7 @@ public class MessageUserItem {
 	
 	private Message message;
 	private UserNeighbor user;
+	private UserNeighbor receiver;
 	private int numMessages;
 	
 	public Message getMessage() {
@@ -20,6 +21,12 @@ public class MessageUserItem {
 	public void setUser(UserNeighbor user) {
 		this.user = user;
 	}
+	public UserNeighbor getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(UserNeighbor receiver) {
+		this.receiver = receiver;
+	}
 	public int getNumMessages() {
 		return numMessages;
 	}
@@ -27,6 +34,4 @@ public class MessageUserItem {
 		this.numMessages = numMessages;
 	}
 	
-	
-
 }

@@ -1,7 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="messages.title"/></title>
+    <title><fmt:message key="Messaggi"/></title>
 </head>
 
 <div id="sidebar">
@@ -44,6 +44,16 @@
 
 <div id="main">
 	<div id="messages_list_container" style="font-size: 12px;">
+		<c:if test="${conversation}">
+			<div id="message_reply_conversation" class="message_reply_textarea" style="display:none;">
+				<textarea></textarea>
+				<a href="#" onclick="hideElement('message_reply_conversation'); displayElement('reply_conversation_link'); return false;" style="float:left;">Annulla</a>
+				<input type="submit" value="Invia" />
+			</div>
+			<div id="reply_conversation_link" style="display:block;">
+				<a href="#" onclick="displayElement('message_reply_conversation'); hideElement('reply_conversation_link'); return false;">Invia una risposta</a>
+			</div>
+		</c:if>
 		<ul>
 			<c:forEach var="message" items="${allMessages}">
 				<li>
@@ -78,7 +88,7 @@
 						</div>
 						<c:if test="${!conversation}">
 							<div style="clear:both; float:right;">
-								<a href="#" id="viewOptionsLink_${message.message.message}" onclick="viewOptions('${message.message.message}', this.id)" style="font-size: 11px;">Opzioni</a>
+								<a href="#" id="viewOptionsLink_${message.message.message}" onclick="viewOptions('${message.message.message}', this.id)" style="font-size: 11px;">Vedi opzioni</a>
 							</div>
 							<div id="options_${message.message.message}" style="border: 1px dotted #ccc; clear:both; padding: 10px; display:none;">
 								<c:choose>
@@ -122,7 +132,7 @@
 	function hideOptions(id, link) {
 		var id_to_hide = 'options_' + id;
 		$(id_to_hide).fade({ duration: 0.2 });
-		$(link).innerHTML = "Opzioni";
+		$(link).innerHTML = "Vedi opzioni";
 		$(link).writeAttribute('onclick', "viewOptions('"+id+"', '"+link+"')");
 		return false;
 	}

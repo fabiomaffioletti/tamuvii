@@ -105,6 +105,10 @@
                 
                 <!-- Backend mappings -->
                 /be_moviesList.html=movieListController
+                
+                
+                <!-- Sperimentale -->
+                /register.html=registerWizardController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -196,5 +200,39 @@
     <bean id="userReviewVoteController" class="com.tamuvii.webapp.controller.UserReviewVoteController">
     	<property name="userReviewVoteManager" ref="userReviewVoteManager" />
     </bean>
+    
+    
+    
+    <!-- Registration controller and validation beans -->
+    <bean id="registerWizardController" class="com.tamuvii.webapp.controller.RegisterWizardController">
+    	<property name="allowDirtyForward" value="false"/>
+    	<property name="userManager" ref="userManager" />
+    	<property name="roleManager" ref="roleManager" />
+    	<property name="validators">
+	        <list>
+	            <ref bean="pageValidator0"/>
+	            <ref bean="pageValidator1"/>
+	        </list>
+	    </property>
+    	<property name="pages">
+    		<list>
+    			<value>register0</value>
+    			<value>register1</value>
+    		</list>
+    	</property>
+    </bean>
+    <bean id="pageValidator0" class="org.springmodules.validation.commons.ConfigurablePageBeanValidator" parent="pageValidator">
+	    <property name="page" value="0"/>
+	</bean>
+	<bean id="pageValidator1" class="org.springmodules.validation.commons.ConfigurablePageBeanValidator" parent="pageValidator">
+	    <property name="page" value="1"/>
+	</bean>
+	<bean id="pageValidator" abstract="true">
+	    <property name="formName" value="user"/>
+	    <property name="validatorFactory" ref="validatorFactory"/>
+	</bean>
+	
+	
+    
     
 </beans>

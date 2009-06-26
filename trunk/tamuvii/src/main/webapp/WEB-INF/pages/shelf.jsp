@@ -220,8 +220,8 @@
 							</c:when>
 							<c:otherwise>
 								<ul>
-									<li onclick="document.location.href='/relationship.html?mode=friends&username=${username}'">Aggiungi come amico</li>
-									<li onclick="document.location.href='/relationship.html?mode=neighborhoods&username=${username}'">Aggiungi come vicino</li>
+									<li onclick="document.location.href='/relationshipManagement.html?action=addFriend&username=${username}'">Aggiungi come amico</li>
+									<li onclick="document.location.href='/relationshipManagement.html?action=addNeighborhood&username=${username}'">Aggiungi come vicino</li>
 								</ul>
 							</c:otherwise>
 						</c:choose>

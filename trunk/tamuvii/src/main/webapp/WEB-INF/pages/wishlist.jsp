@@ -378,23 +378,3 @@
 	}
 	//////// FINE FUNZIONI GENERICHE PER LO SCROLLING ////////
 </script>
-
-<script>
-	function sendMessage() {
-		var receiver = $('receiver').value;
-		var messagetext = $('messagetext').value;
-		new Ajax.Request('/sendMessage.html?ajax=true&receiver='+receiver+'&messagetext='+messagetext, {
-			  method: 'post',
-			  onSuccess: function(response) {
-			    var notice = $('messagetext');
-			    notice.value = response.responseText;
-			    setTimeout("endEffect()", 2000);
-			}
-		});
-	}
-	
-	function endEffect() {
-		$('messagetext').value = "";
-		Effect.BlindUp('sendMessage');
-	}
-</script>

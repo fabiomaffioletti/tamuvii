@@ -35,8 +35,8 @@
 			</div>
 		</div>
 		<div class="relationship_navigation" style="width:100%;">
-			<a href="#" id="upFriends" style="display:none;float:left;" onclick="indexFriends = doup(indexFriends, 1, 'friends_list_content', $('friends_list_container').getHeight(), 'downFriends', 'upFriends'); return false;"><img class="relationship_navigation_image" src="bw.png"/></a>
-			<a href="#" id="downFriends" style="float:right;display:none;" onclick="indexFriends = dodown(indexFriends, pagesFriends, 1, 'friends_list_content', $('friends_list_container').getHeight(), 'downFriends', 'upFriends'); return false;"><img class="relationship_navigation_image" src="ff.png"/></a>
+			<a href="#" id="upPal" style="display:none;float:left;" onclick="indexPal = doup(indexPal, 1, 'pal_list_content', $('pal_list_container').getHeight(), 'downPal', 'upPal'); return false;"><img class="relationship_navigation_image" src="/images/bw.png"/></a>
+			<a href="#" id="downPal" style="float:right;display:none;" onclick="indexPal = dodown(indexPal, pagesPal, 1, 'pal_list_content', $('pal_list_container').getHeight(), 'downPal', 'upPal'); return false;"><img class="relationship_navigation_image" src="/images/ff.png"/></a>
 		</div>
 	</div>
 </div>
@@ -48,22 +48,45 @@
 <div id="main">
 	<div id="messages_list_container" style="font-size: 12px;">
 		<c:if test="${conversation}">
-			<div id="message_reply_conversation" class="message_reply_textarea" style="display:none;">
-				<textarea id="message_textarea_conversation"></textarea>
-				<a href="#" onclick="hideElement('message_reply_conversation'); displayElement('reply_conversation_link'); return false;" style="float:left;">Annulla</a>
-				<input type="button" value="Spedisci" onclick="sendConversationMessage()" />
-			</div>
-			<div id="reply_conversation_link" style="display:block;">
-				<a href="#" onclick="displayElement('message_reply_conversation'); hideElement('reply_conversation_link'); return false;">Invia una risposta</a>
+			<div style="min-height: 100px; border-bottom: 1px solid #aaa;">
+				<c:choose>
+					<c:when test="${allMessages[0].user.username == pageContext.request.remoteUser}">
+						<c:set var="sender_image" value="${allMessages[0].user.imageLink}"></c:set>
+						<c:set var="receiver_image" value="${allMessages[0].receiver.imageLink}"></c:set>
+					</c:when>
+					<c:otherwise>
+						<c:set var="sender_image" value="${allMessages[0].receiver.imageLink}"></c:set>
+						<c:set var="receiver_image" value="${allMessages[0].user.imageLink}"></c:set>
+					</c:otherwise>
+				</c:choose>
+				<div id="conversation_message_result" style="display:none;"></div>
+				<div id="message_reply_conversation" class="message_reply_textarea" style="display:block;">
+					<textarea id="message_textarea_conversation"></textarea>
+					<a href="#" onclick="emptyTextarea('message_textarea_conversation'); return false;" style="float:left;">Cancella tutto il testo</a>
+					<input type="button" value="Spedisci" onclick="sendConversationMessage('${sender_image}', '${receiver_image}')" />
+				</div>
 			</div>
 		</c:if>
 		<ul id="personal_messages_list">
-			<c:forEach var="message" items="${allMessages}">
+			<c:forEach var="message" items="${allMessages}" varStatus="row">
 				<li>
 					<div id="message_reply_${message.message.message}" class="message_reply_textarea" style="display:none;">
-						<textarea></textarea>
-						<a href="#" onclick="hideElement('message_reply_${message.message.message}'); return false;" style="float:left;">Annulla</a>
-						<input type="submit" value="Invia" />
+						<form:form name="sendMessageForm" action="/sendMessage.html" method="post">
+							<c:choose>
+								<c:when test="${message.user.username == pageContext.request.remoteUser}">
+									<c:set var="sender" value="${message.user.username}"></c:set>
+									<c:set var="receiver" value="${message.receiver.username}"></c:set>
+								</c:when>
+								<c:otherwise>
+									<c:set var="sender" value="${message.receiver.username}"></c:set>
+									<c:set var="receiver" value="${message.user.username}"></c:set>
+								</c:otherwise>
+							</c:choose>
+							<input type="hidden" name="receiver" value="${receiver}" />
+							<textarea name="message_reply_text"></textarea>
+							<a href="#" onclick="hideElement('message_reply_${message.message.message}'); return false;" style="float:left;">Annulla</a>
+							<input type="submit" value="Invia" />
+						</form:form>
 					</div>
 					<div class="fromto">
 						<div class="person_list_info_container">
@@ -125,6 +148,10 @@
 
 
 <script>
+	function emptyTextarea(id) {
+		$(id).value = "";
+	}
+
 	function viewOptions(id, link) {
 		var id_to_display = 'options_' + id;
 		$(id_to_display).appear({ duration: 0.2 });
@@ -153,20 +180,26 @@
 
 
 <script>
-	function sendConversationMessage() {
+	function sendConversationMessage(sender_image, receiver_image) {
 		var sender = "${pageContext.request.remoteUser}";
 		var receiver = "${username}";
 		var messagetext = $('message_textarea_conversation').value;
 		MessageManager.sendPersonalMessageDWR(sender, receiver, messagetext, function(str){
 			if(str == true) {
-				$('message_textarea_conversation').value = "<fmt:message key='tamuvii.message.success'/>" + receiver;
-				new Effect.Highlight('message_textarea_conversation', {startcolor: '#4F8CC9',	restorecolor: true, afterFinish: function(e) {
+				$('conversation_message_result').innerHTML = "<fmt:message key='tamuvii.message.success'/><b>" + receiver + "</b>";
+				displayElement('conversation_message_result');
+				new Effect.Highlight('conversation_message_result', {startcolor: '#4F8CC9',	restorecolor: true, afterFinish: function(e) {
 					var li = Builder.node('li');
-					var fromto = Builder.node('div', { className: 'fromto' });
-					fromto.innerHTML = "<div class=\"person_list_info_container\"><div class=\"container\"><img src=\"${message.user.imageLink}\" width=\"30\" height=\"30\" class=\"major\" /><img class=\"minor\" src=\"/images/frame_30.png\"></div><div class=\"person_list_info\">da<br/><b>"+sender+"</b></div></div>";
+
+					var fromto = Builder.node('div', { className: 'fromto' });					
+					fromto.innerHTML = "<div class=\"person_list_info_container\"><div class=\"container\"><img src=\""+sender_image+"\" width=\"30\" height=\"30\" class=\"major\" /><img class=\"minor\" src=\"/images/frame_30.png\"></div><div class=\"person_list_info\">da<br/><b>"+sender+"</b></div></div><br/><div class=\"person_list_info_container\" style=\"clear:both;\"><div class=\"container\"><img src=\""+receiver_image+"\" width=\"30\" height=\"30\" class=\"major\" /><img class=\"minor\" src=\"/images/frame_30.png\"></div><div class=\"person_list_info\">a<br/><b>"+receiver+"</b></div></div><br/>";
+					var last_message_text = Builder.node('div', { className: 'last_message_text' });
+					last_message_text.innerHTML = messagetext;
+					var message_separator = Builder.node('div', { className: 'messages_separator' });
 					li.insert(fromto);
+					li.insert(last_message_text);
+					li.insert(message_separator);
 					$('personal_messages_list').insert({"top":li });					
-					setTimeout("endSendingMessage()", 3000);
 				}});
 			} else {
 				$('message_textarea_conversation').value = "<fmt:message key='tamuvii.message.error'/>";
@@ -174,4 +207,61 @@
 			}
 		});
 	}
+</script>
+
+
+
+<script>
+	var indexPal;
+	var totPal;
+	var recordsPerRowPal; 
+	var pagesPal;
+	var heightPal;
+	
+	Event.observe(window, 'load', function(event) {
+		indexPal = 0;
+		totPal = ${fn:length(groupedMessages)};
+		recordsPerPagePal = 2;
+		pagesPal = Math.ceil(totPal/recordsPerPagePal);
+		
+		if(totPal < recordsPerPagePal) {
+			$('pal_list_container').setStyle({
+				height: (totPal*35 + totPal*5 + totPal*1) + "px"
+			});
+		} else {
+			$('pal_list_container').setStyle({
+				height: (recordsPerPagePal*35 + recordsPerPagePal*5 + recordsPerPagePal*1) + "px"
+			});
+		}
+		
+		if(pagesPal > 1) {
+    		$('downPal').setStyle({ display: 'block' });
+	    }
+	});
+
+	//////// FUNZIONI GENERICHE PER LO SCROLLING //////// 
+	function doup(index, step, container, h, down, up) {
+		index = index-step;
+		if(!$(down).visible()) {
+			$(down).setStyle({ display: 'block' });
+		}
+		if(index == 0) {
+			$(up).setStyle({ display: 'none' });
+		}
+		new Effect.Move($(container),{x: 0, y: step*h, duration: 0.3}); return index;
+	}
+
+	function dodown(index, pages, step, container, h, down, up) {
+		index = index+step;
+		if(!$(up).visible()) {
+			$(up).setStyle({ display: 'block' });
+		}
+		if(index == (pages-1)) {
+			$(down).setStyle({ display: 'none' });
+		} else {
+			$(down).setStyle({ display: 'block' });
+		}
+		new Effect.Move($(container),{x: 0, y: step*-h, duration: 0.3}); return index;
+	}
+	//////// FINE FUNZIONI GENERICHE PER LO SCROLLING ////////
 </script>

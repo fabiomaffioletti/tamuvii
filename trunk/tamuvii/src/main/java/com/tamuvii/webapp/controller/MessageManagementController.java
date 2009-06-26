@@ -22,24 +22,11 @@ public class MessageManagementController implements Controller {
 		
 		String receiver = request.getParameter("receiver") == null ? null : request.getParameter("receiver");
 		String sender = request.getRemoteUser();
-		String messagetext = request.getParameter("messagetext") == null ? null : request.getParameter("messagetext");
+		String messageReplyText = request.getParameter("message_reply_text") == null ? null : request.getParameter("message_reply_text");
 		
-		if(messagetext == null || messagetext.equals("")) {
-			mv.addObject("result", "ko");
-		} else {
-			messageManager.sendPersonalMessage(sender, receiver, messagetext);
-			mv.addObject("result", "ok");
-		}
+		messageManager.sendPersonalMessage(sender, receiver, messageReplyText);
 		
-		
-		
-		String returnView = request.getParameter("returnView") == null ? null : request.getParameter("returnView");
-		if(returnView != null && !returnView.equals("") && returnView.equals("personalMessages"))
-			mv.setViewName("redirect:/personalMessages.html?username="+receiver);
-		else
-			mv.setViewName("aj_sendMessageResult");
-		
-		
+		mv.setViewName("redirect:/personalMessages.html?username="+receiver);
 		return mv;
 	}
 

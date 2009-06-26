@@ -50,14 +50,21 @@
 }
 
 .message_reply_textarea textarea {
-	width: 470px;
+	width: 478px;
 	font-family: arial,helvetica,clean,sans-serif;
 	font-size: 12px;
+	border: 1px dashed #ccc;
+}
+
+#conversation_message_result {
+ 	border:1px dashed #ccc; 
+ 	padding: 10px;
+ 	margin-bottom: 5px;
+ 	background-color: #eee;
 }
 
 .message_reply_textarea input {
 	float:right;
-	margin-right: 5px;
 }
 
 .messages_separator {	

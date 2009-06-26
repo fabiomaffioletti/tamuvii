@@ -1,7 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="friends.title"/></title>
+    <title><fmt:message key="Amici"/></title>
     <meta name="heading" content="<fmt:message key='friends.heading'/>"/>
 </head>
 

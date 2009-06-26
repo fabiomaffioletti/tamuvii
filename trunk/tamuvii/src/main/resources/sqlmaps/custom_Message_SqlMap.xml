@@ -61,7 +61,9 @@
   </select>
   
   <select id="getInMessagesByUser" resultMap="userMessageListItem" parameterClass="java.lang.String" >
-  		select			m.message, 
+  		select 			lastMessages.*
+  		
+  		from ( select	m.message, 
 						m.sender,
 						m.receiver,
 						m.message_text as messagetext,
@@ -89,11 +91,11 @@
 						on m.receiver = au2.username
 		
 		where			m.sender = #username# or m.receiver = #username#
-		
-		group by		m.sender, m.receiver
 		order by		dateadded desc
+		limit 0, 10		) lastMessages 
 		
-		limit 0, 10
+		group by 		lastMessages.sender, lastMessages.receiver 
+		order by 		lastMessages.dateadded desc
   </select>
   
   <select id="getConversationWithUser" resultMap="userMessageListItem" parameterClass="com.tamuvii.pojo.queryfilter.MessageUserFilter" >

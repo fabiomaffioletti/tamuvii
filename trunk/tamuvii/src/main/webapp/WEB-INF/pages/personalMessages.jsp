@@ -202,7 +202,8 @@
 					$('personal_messages_list').insert({"top":li });					
 				}});
 			} else {
-				$('message_textarea_conversation').value = "<fmt:message key='tamuvii.message.error'/>";
+				displayElement('conversation_message_result');
+				$('conversation_message_result').innerHTML = "<fmt:message key='tamuvii.message.error'/>";
 				new Effect.Highlight('message_textarea_conversation', {startcolor: '#FFB98C',	restorecolor: true});
 			}
 		});

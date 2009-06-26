@@ -1,8 +1,8 @@
 package com.tamuvii.service.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
-import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.dao.CustomRelationshipDAO;
 import com.tamuvii.dao.UserToUserDAO;
 import com.tamuvii.model.UserToUser;
@@ -62,6 +62,7 @@ public class UserToUserManagerImpl implements UserToUserManager {
 		userToUser.setFirst(remoteUser);
 		userToUser.setSecond(username);
 		userToUser.setFriend(1);
+		userToUser.setDateadded(Calendar.getInstance().getTime());
 		userToUserDao.insertSelective(userToUser);
 	}
 	
@@ -70,6 +71,7 @@ public class UserToUserManagerImpl implements UserToUserManager {
 		userToUser.setFirst(remoteUser);
 		userToUser.setSecond(username);
 		userToUser.setFriend(0);
+		userToUser.setDateadded(Calendar.getInstance().getTime());
 		userToUserDao.insertSelective(userToUser);
 	}
 	

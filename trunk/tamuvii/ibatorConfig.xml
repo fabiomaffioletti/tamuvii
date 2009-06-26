@@ -76,10 +76,10 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <!-- table tableName="user_to_movie" domainObjectName="UserToMovie" >
+    <table tableName="user_to_user" domainObjectName="UserToUser" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table-->
+    </table>
     
     <!-- table tableName="app_user" domainObjectName="AppUser" >
       <property name="useActualColumnNames" value="false"/>
@@ -96,10 +96,10 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <table tableName="movie" domainObjectName="Movie" >
+    <!-- table tableName="movie" domainObjectName="Movie" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table>
+    </table-->
     
   </ibatorContext>
 </ibatorConfiguration>

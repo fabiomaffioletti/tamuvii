@@ -191,6 +191,9 @@
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
 				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Calcola compatibilit&agrave;')" onclick="chooseOption('compatibility')"><img src="/images/calculator.png" /></a></li>
 				</c:if>
+				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
+				<li><a href="/wishlist.html?username=${username}" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Vedi la sua wishlist')"><img src="/images/wishlist.png" /></a></li>
+				</c:if>
 				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Visualizza statistiche')" onclick="chooseOption('statistics')"><img src="/images/statistics.png" /></a></li>
 			</ul>
 		</div>

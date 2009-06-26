@@ -58,12 +58,13 @@
 				    	
 						<div class="directed_by">di <a href="/directorDetail.html?director=${wishedItem.directorId}">${wishedItem.director}</a></div>
 					</li>
-					
-					<li class="movie_actions">
-						<div class="action action_title">Opzioni</div>
-						<div class="action"><a href="/wishlistManagement.html?action=move&movie=${wishedItem.movie}">Sposta nella videoteca</a></div>
-				    	<div class="action"><a href="/wishlistManagement.html?action=delete&movie=${wishedItem.movie}">Cancella dalla wishlist</a></div>
-					</li>
+					<c:if test="${empty username || username == pageContext.request.remoteUser}">
+						<li class="movie_actions">
+							<div class="action action_title">Opzioni</div>
+							<div class="action"><a href="/wishlistManagement.html?action=move&movie=${wishedItem.movie}">Sposta nella videoteca</a></div>
+					    	<div class="action"><a href="/wishlistManagement.html?action=delete&movie=${wishedItem.movie}">Cancella dalla wishlist</a></div>
+						</li>
+					</c:if>
 					
 					<li class="separator">
 					</li>

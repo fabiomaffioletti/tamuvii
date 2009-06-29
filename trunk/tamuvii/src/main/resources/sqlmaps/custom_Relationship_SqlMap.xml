@@ -12,6 +12,8 @@
         <result property="address.country" column="country"/>
         <result property="imageLink" column="imageLink"/>
         <result property="quotation" column="quotation"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
         <result property="dateAdded" column="date_added"/>
         <result property="lastMovies" column="username" select="custom_relationship.getLastSeenMoviesByUser"/>
         <result property="totMovies" column="username" select="custom_relationship.getUserMoviesCount"/>
@@ -26,6 +28,7 @@
    
    
    <select id="getUserPublicInfo" resultMap="userNeighbor" parameterClass="java.lang.String" >
+		<![CDATA[
 		select 			u.id,
 					 	u.username, 
 						u.email,
@@ -35,15 +38,19 @@
 						u.country,
 						u.image as imageLink,
 						u.quotation,
+						(YEAR(CURDATE())-YEAR(u.dob)) - (RIGHT(CURDATE(),13) < RIGHT(u.dob,13)) AS age,
+						u.sex,
 						null as date_added,
 						null as lastMovies
 			
 		from 			app_user u
 		
-		where 			u.username = #username#  
+		where 			u.username = #username#
+		]]>
   </select>
    
   <select id="getUserFriends" resultMap="userNeighbor" parameterClass="java.lang.String" >
+		<![CDATA[
 		select 			u.id,
 					 	u.username, 
 						u.email,
@@ -53,6 +60,8 @@
 						u.country,
 						u.image as imageLink,
 						u.quotation,
+						(YEAR(CURDATE())-YEAR(u.dob)) - (RIGHT(CURDATE(),13) < RIGHT(u.dob,13)) AS age,
+						u.sex,
 						uu.date_added
 			
 		from 			user_to_user uu 		inner join 		app_user u
@@ -60,9 +69,11 @@
 		
 		where 			uu.first = #username#
 		and 			uu.friend = 1
+		]]>
   </select>
   
   <select id="getUserNeighborhoods" resultMap="userNeighbor" parameterClass="java.lang.String" >
+		<![CDATA[
 		select 			u.id,
 					 	u.username, 
 						u.email,
@@ -72,6 +83,8 @@
 						u.country,
 						u.image as imageLink,
 						u.quotation,
+						(YEAR(CURDATE())-YEAR(u.dob)) - (RIGHT(CURDATE(),13) < RIGHT(u.dob,13)) AS age,
+						u.sex,
 						uu.date_added
 			
 		from 			user_to_user uu 		inner join 		app_user u
@@ -79,6 +92,7 @@
 		
 		where 			uu.first = #username#
 		and 			uu.friend = 0
+		]]>
   </select>
   
   <select id="getLastSeenMoviesByUser" parameterClass="java.lang.String" resultMap="custom_shelf.shelfItemMap">

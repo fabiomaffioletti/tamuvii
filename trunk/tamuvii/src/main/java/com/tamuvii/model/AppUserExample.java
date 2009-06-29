@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
 
 public class AppUserExample {
 
@@ -1719,6 +1720,260 @@ public class AppUserExample {
 
 		public Criteria andQuotationNotBetween(String value1, String value2) {
 			addCriterion("quotation not between", value1, value2, "quotation");
+			return this;
+		}
+
+		public Criteria andSexIsNull() {
+			addCriterion("sex is null");
+			return this;
+		}
+
+		public Criteria andSexIsNotNull() {
+			addCriterion("sex is not null");
+			return this;
+		}
+
+		public Criteria andSexEqualTo(String value) {
+			addCriterion("sex =", value, "sex");
+			return this;
+		}
+
+		public Criteria andSexNotEqualTo(String value) {
+			addCriterion("sex <>", value, "sex");
+			return this;
+		}
+
+		public Criteria andSexGreaterThan(String value) {
+			addCriterion("sex >", value, "sex");
+			return this;
+		}
+
+		public Criteria andSexGreaterThanOrEqualTo(String value) {
+			addCriterion("sex >=", value, "sex");
+			return this;
+		}
+
+		public Criteria andSexLessThan(String value) {
+			addCriterion("sex <", value, "sex");
+			return this;
+		}
+
+		public Criteria andSexLessThanOrEqualTo(String value) {
+			addCriterion("sex <=", value, "sex");
+			return this;
+		}
+
+		public Criteria andSexLike(String value) {
+			addCriterion("sex like", value, "sex");
+			return this;
+		}
+
+		public Criteria andSexNotLike(String value) {
+			addCriterion("sex not like", value, "sex");
+			return this;
+		}
+
+		public Criteria andSexIn(List values) {
+			addCriterion("sex in", values, "sex");
+			return this;
+		}
+
+		public Criteria andSexNotIn(List values) {
+			addCriterion("sex not in", values, "sex");
+			return this;
+		}
+
+		public Criteria andSexBetween(String value1, String value2) {
+			addCriterion("sex between", value1, value2, "sex");
+			return this;
+		}
+
+		public Criteria andSexNotBetween(String value1, String value2) {
+			addCriterion("sex not between", value1, value2, "sex");
+			return this;
+		}
+
+		public Criteria andDobIsNull() {
+			addCriterion("dob is null");
+			return this;
+		}
+
+		public Criteria andDobIsNotNull() {
+			addCriterion("dob is not null");
+			return this;
+		}
+
+		public Criteria andDobEqualTo(Date value) {
+			addCriterion("dob =", value, "dob");
+			return this;
+		}
+
+		public Criteria andDobNotEqualTo(Date value) {
+			addCriterion("dob <>", value, "dob");
+			return this;
+		}
+
+		public Criteria andDobGreaterThan(Date value) {
+			addCriterion("dob >", value, "dob");
+			return this;
+		}
+
+		public Criteria andDobGreaterThanOrEqualTo(Date value) {
+			addCriterion("dob >=", value, "dob");
+			return this;
+		}
+
+		public Criteria andDobLessThan(Date value) {
+			addCriterion("dob <", value, "dob");
+			return this;
+		}
+
+		public Criteria andDobLessThanOrEqualTo(Date value) {
+			addCriterion("dob <=", value, "dob");
+			return this;
+		}
+
+		public Criteria andDobIn(List values) {
+			addCriterion("dob in", values, "dob");
+			return this;
+		}
+
+		public Criteria andDobNotIn(List values) {
+			addCriterion("dob not in", values, "dob");
+			return this;
+		}
+
+		public Criteria andDobBetween(Date value1, Date value2) {
+			addCriterion("dob between", value1, value2, "dob");
+			return this;
+		}
+
+		public Criteria andDobNotBetween(Date value1, Date value2) {
+			addCriterion("dob not between", value1, value2, "dob");
+			return this;
+		}
+
+		public Criteria andDateregisteredIsNull() {
+			addCriterion("date_registered is null");
+			return this;
+		}
+
+		public Criteria andDateregisteredIsNotNull() {
+			addCriterion("date_registered is not null");
+			return this;
+		}
+
+		public Criteria andDateregisteredEqualTo(Date value) {
+			addCriterion("date_registered =", value, "dateregistered");
+			return this;
+		}
+
+		public Criteria andDateregisteredNotEqualTo(Date value) {
+			addCriterion("date_registered <>", value, "dateregistered");
+			return this;
+		}
+
+		public Criteria andDateregisteredGreaterThan(Date value) {
+			addCriterion("date_registered >", value, "dateregistered");
+			return this;
+		}
+
+		public Criteria andDateregisteredGreaterThanOrEqualTo(Date value) {
+			addCriterion("date_registered >=", value, "dateregistered");
+			return this;
+		}
+
+		public Criteria andDateregisteredLessThan(Date value) {
+			addCriterion("date_registered <", value, "dateregistered");
+			return this;
+		}
+
+		public Criteria andDateregisteredLessThanOrEqualTo(Date value) {
+			addCriterion("date_registered <=", value, "dateregistered");
+			return this;
+		}
+
+		public Criteria andDateregisteredIn(List values) {
+			addCriterion("date_registered in", values, "dateregistered");
+			return this;
+		}
+
+		public Criteria andDateregisteredNotIn(List values) {
+			addCriterion("date_registered not in", values, "dateregistered");
+			return this;
+		}
+
+		public Criteria andDateregisteredBetween(Date value1, Date value2) {
+			addCriterion("date_registered between", value1, value2,
+					"dateregistered");
+			return this;
+		}
+
+		public Criteria andDateregisteredNotBetween(Date value1, Date value2) {
+			addCriterion("date_registered not between", value1, value2,
+					"dateregistered");
+			return this;
+		}
+
+		public Criteria andDateactivatedIsNull() {
+			addCriterion("date_activated is null");
+			return this;
+		}
+
+		public Criteria andDateactivatedIsNotNull() {
+			addCriterion("date_activated is not null");
+			return this;
+		}
+
+		public Criteria andDateactivatedEqualTo(Date value) {
+			addCriterion("date_activated =", value, "dateactivated");
+			return this;
+		}
+
+		public Criteria andDateactivatedNotEqualTo(Date value) {
+			addCriterion("date_activated <>", value, "dateactivated");
+			return this;
+		}
+
+		public Criteria andDateactivatedGreaterThan(Date value) {
+			addCriterion("date_activated >", value, "dateactivated");
+			return this;
+		}
+
+		public Criteria andDateactivatedGreaterThanOrEqualTo(Date value) {
+			addCriterion("date_activated >=", value, "dateactivated");
+			return this;
+		}
+
+		public Criteria andDateactivatedLessThan(Date value) {
+			addCriterion("date_activated <", value, "dateactivated");
+			return this;
+		}
+
+		public Criteria andDateactivatedLessThanOrEqualTo(Date value) {
+			addCriterion("date_activated <=", value, "dateactivated");
+			return this;
+		}
+
+		public Criteria andDateactivatedIn(List values) {
+			addCriterion("date_activated in", values, "dateactivated");
+			return this;
+		}
+
+		public Criteria andDateactivatedNotIn(List values) {
+			addCriterion("date_activated not in", values, "dateactivated");
+			return this;
+		}
+
+		public Criteria andDateactivatedBetween(Date value1, Date value2) {
+			addCriterion("date_activated between", value1, value2,
+					"dateactivated");
+			return this;
+		}
+
+		public Criteria andDateactivatedNotBetween(Date value1, Date value2) {
+			addCriterion("date_activated not between", value1, value2,
+					"dateactivated");
 			return this;
 		}
 	}

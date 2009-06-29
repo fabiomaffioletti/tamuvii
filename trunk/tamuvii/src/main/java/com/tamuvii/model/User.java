@@ -1,16 +1,30 @@
 package com.tamuvii.model;
 
-import org.springframework.security.GrantedAuthority;
-import org.springframework.security.userdetails.UserDetails;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+import org.springframework.security.GrantedAuthority;
+import org.springframework.security.userdetails.UserDetails;
 
 /**
  * This class represents the basic "user" object in AppFuse that allows for authentication
@@ -46,6 +60,11 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private boolean credentialsExpired;
     private String image;
     private String quotation;
+    private String sex;
+    private Date dob;
+    private Date dateregistered;
+	private Date dateactivated;
+
 
     /**
      * Default constructor - creates a new instance with no values set.
@@ -307,6 +326,38 @@ public class User extends BaseObject implements Serializable, UserDetails {
 
 	public void setQuotation(String quotation) {
 		this.quotation = quotation;
+	}
+	
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public Date getDateregistered() {
+		return dateregistered;
+	}
+
+	public void setDateregistered(Date dateregistered) {
+		this.dateregistered = dateregistered;
+	}
+
+	public Date getDateactivated() {
+		return dateactivated;
+	}
+
+	public void setDateactivated(Date dateactivated) {
+		this.dateactivated = dateactivated;
 	}
 
 	/**

@@ -16,11 +16,25 @@ public class UserNeighbor {
 	private String imageLink;
 	private String quotation;
 	private Date dateAdded;
+	private String age;
+	private String sex;
 	private List<ShelfItem> lastMovies;
 	private Integer totMovies;
     
 	
-    public String getQuotation() {
+    public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
+	public String getQuotation() {
 		return quotation;
 	}
 	public void setQuotation(String quotation) {

@@ -25,6 +25,10 @@
         <result property="version" column="version"/>
         <result property="quotation" column="quotation"/>
         <result property="image" column="image"/>
+        <result property="sex" column="sex"/>
+        <result property="dob" column="dob"/>
+        <result property="dateregistered" column="date_registered"/>
+        <result property="dateactivated" column="date_activated"/>
         <result property="enabled" column="account_enabled"/>
         <result property="accountExpired" column="account_expired"/>
         <result property="accountLocked" column="account_locked"/>
@@ -37,12 +41,15 @@
         insert into
         app_user (username, password, first_name, last_name, address,
                   city, province, country, postal_code, email, phone_number,
-                  website, website_title, password_hint, version, quotation, image, account_enabled, account_expired,
+                  website, website_title, password_hint, version, quotation, image,
+                  sex, dob, date_registered, date_activated, account_enabled, account_expired,
                   account_locked, credentials_expired)
         values (#username#, #password#, #firstName#, #lastName#,
                 #address.address#, #address.city#, #address.province#,
                 #address.country#, #address.postalCode#, #email#, #phoneNumber#,
-                #website#, #websitetitle#, #passwordHint#, #version#, #quotation#, #image#, #enabled#, #accountExpired#,
+                #website#, #websitetitle#, #passwordHint#, #version#, #quotation#, #image#, 
+                #sex#, #dob#, #dateregistered#, #dateactivated#,
+                #enabled#, #accountExpired#,
                 #accountLocked#, #credentialsExpired#)
     ]]>
         <selectKey resultClass="java.lang.Long" keyProperty="id" type="post">
@@ -76,6 +83,10 @@
             version = #version#,
             quotation = #quotation#,
             image = #image#,
+            sex = #sex#,
+            dob = #dob#,
+            date_registered = #dateregistered#,
+            date_activated = #dateactivated#,
             account_enabled = #enabled#,
             account_expired = #accountExpired#,
             account_locked = #accountLocked#,

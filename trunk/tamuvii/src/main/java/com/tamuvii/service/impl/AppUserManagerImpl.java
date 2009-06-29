@@ -1,6 +1,7 @@
 package com.tamuvii.service.impl;
 
 import java.io.File;
+import java.util.Calendar;
 import java.util.List;
 
 import com.tamuvii.dao.AppUserDAO;
@@ -85,6 +86,7 @@ public class AppUserManagerImpl implements AppUserManager {
 		c.andEmailEqualTo(userEmail);
 		AppUser appUser = (AppUser) appUserDao.selectByExample(appUserExample).get(0);
 		appUser.setAccountenabled("1");
+		appUser.setDateactivated(Calendar.getInstance().getTime());
 		appUserDao.updateByPrimaryKey(appUser);
 	}
 	

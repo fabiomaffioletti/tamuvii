@@ -181,10 +181,24 @@
 		</div>
 		<div id="other_info_container" style="display: none;">
 			<div id="other_info">
-				<span class="light_text_italic font12">Maschio, 27 anni, Italy</span>
-				<br/>
-				<span class="font12">Sito web: <a href="${userPublicInfo.website}" target="_blank">${userPublicInfo.websiteTitle}</a></span>
-				<br/>
+				<span class="light_text_italic font12">
+					<c:if test="${not empty userPublicInfo.sex}">
+						<c:choose>
+							<c:when test="${userPublicInfo.sex == 'M'}">
+								Maschio,
+							</c:when>
+							<c:otherwise>
+								Femmina,
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+					<c:if test="${not empty userPublicInfo.age && userPublicInfo.age != -1}">${userPublicInfo.age} anni,</c:if> Italy
+					<br/>	
+				</span>
+				<c:if test="${not empty userPublicInfo.website}">
+					<span class="font12">Sito web: <a href="${userPublicInfo.website}" target="_blank">${userPublicInfo.websiteTitle}</a></span>
+					<br/>
+				</c:if>
 				<c:if test="${not empty userPublicInfo.quotation}">
 					<span class="font12">Citazione preferita: </span><span class="light_text_italic font12">${userPublicInfo.quotation}</span>
 				</c:if>

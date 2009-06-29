@@ -27,6 +27,10 @@
     <result column="credentials_expired" jdbcType="CHAR" property="credentialsexpired" />
     <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="quotation" jdbcType="VARCHAR" property="quotation" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="dob" jdbcType="TIMESTAMP" property="dob" />
+    <result column="date_registered" jdbcType="TIMESTAMP" property="dateregistered" />
+    <result column="date_activated" jdbcType="TIMESTAMP" property="dateactivated" />
   </resultMap>
   <sql id="ibatorgenerated_Example_Where_Clause">
     <!--
@@ -63,7 +67,8 @@
     -->
     select id, username, version, password, first_name, last_name, address, city, province, country,
       postal_code, email, phone_number, website, website_title, password_hint, account_enabled,
-      account_expired, account_locked, credentials_expired, image, quotation
+      account_expired, account_locked, credentials_expired, image, quotation, sex, dob,
+      date_registered, date_activated
     from app_user
     <isParameterPresent>
       <include refid="app_user.ibatorgenerated_Example_Where_Clause" />
@@ -78,7 +83,8 @@
     -->
     select id, username, version, password, first_name, last_name, address, city, province, country,
       postal_code, email, phone_number, website, website_title, password_hint, account_enabled,
-      account_expired, account_locked, credentials_expired, image, quotation
+      account_expired, account_locked, credentials_expired, image, quotation, sex, dob,
+      date_registered, date_activated
     from app_user
     where id = #id:INTEGER#
   </select>
@@ -102,13 +108,15 @@
     -->
     insert into app_user (id, username, version, password, first_name, last_name, address, city,
       province, country, postal_code, email, phone_number, website, website_title, password_hint,
-      account_enabled, account_expired, account_locked, credentials_expired, image, quotation)
+      account_enabled, account_expired, account_locked, credentials_expired, image, quotation, sex,
+      dob, date_registered, date_activated)
     values (#id:INTEGER#, #username:VARCHAR#, #version:INTEGER#, #password:VARCHAR#,
       #firstname:VARCHAR#, #lastname:VARCHAR#, #address:VARCHAR#, #city:VARCHAR#,
       #province:VARCHAR#, #country:VARCHAR#, #postalcode:VARCHAR#, #email:VARCHAR#,
       #phonenumber:VARCHAR#, #website:VARCHAR#, #websitetitle:VARCHAR#, #passwordhint:VARCHAR#,
       #accountenabled:CHAR#, #accountexpired:CHAR#, #accountlocked:CHAR#, #credentialsexpired:CHAR#,
-      #image:VARCHAR#, #quotation:VARCHAR#)
+      #image:VARCHAR#, #quotation:VARCHAR#, #sex:CHAR#, #dob:TIMESTAMP#, #dateregistered:TIMESTAMP#,
+      #dateactivated:TIMESTAMP#)
   </insert>
   <insert id="ibatorgenerated_insertSelective" parameterClass="com.tamuvii.model.AppUser">
     <!--
@@ -182,6 +190,18 @@
       <isNotNull prepend="," property="quotation">
         quotation
       </isNotNull>
+      <isNotNull prepend="," property="sex">
+        sex
+      </isNotNull>
+      <isNotNull prepend="," property="dob">
+        dob
+      </isNotNull>
+      <isNotNull prepend="," property="dateregistered">
+        date_registered
+      </isNotNull>
+      <isNotNull prepend="," property="dateactivated">
+        date_activated
+      </isNotNull>
       )
     </dynamic>
     values
@@ -251,6 +271,18 @@
       </isNotNull>
       <isNotNull prepend="," property="quotation">
         #quotation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sex">
+        #sex:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="dob">
+        #dob:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="dateregistered">
+        #dateregistered:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="dateactivated">
+        #dateactivated:TIMESTAMP#
       </isNotNull>
       )
     </dynamic>
@@ -334,6 +366,18 @@
       <isNotNull prepend="," property="record.quotation">
         quotation = #record.quotation:VARCHAR#
       </isNotNull>
+      <isNotNull prepend="," property="record.sex">
+        sex = #record.sex:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.dob">
+        dob = #record.dob:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.dateregistered">
+        date_registered = #record.dateregistered:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="record.dateactivated">
+        date_activated = #record.dateactivated:TIMESTAMP#
+      </isNotNull>
     </dynamic>
     <isParameterPresent>
       <include refid="app_user.ibatorgenerated_Example_Where_Clause" />
@@ -365,7 +409,11 @@
       account_locked = #record.accountlocked:CHAR#,
       credentials_expired = #record.credentialsexpired:CHAR#,
       image = #record.image:VARCHAR#,
-      quotation = #record.quotation:VARCHAR#
+      quotation = #record.quotation:VARCHAR#,
+      sex = #record.sex:CHAR#,
+      dob = #record.dob:TIMESTAMP#,
+      date_registered = #record.dateregistered:TIMESTAMP#,
+      date_activated = #record.dateactivated:TIMESTAMP#
     <isParameterPresent>
       <include refid="app_user.ibatorgenerated_Example_Where_Clause" />
     </isParameterPresent>
@@ -439,6 +487,18 @@
       <isNotNull prepend="," property="quotation">
         quotation = #quotation:VARCHAR#
       </isNotNull>
+      <isNotNull prepend="," property="sex">
+        sex = #sex:CHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="dob">
+        dob = #dob:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="dateregistered">
+        date_registered = #dateregistered:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="dateactivated">
+        date_activated = #dateactivated:TIMESTAMP#
+      </isNotNull>
     </dynamic>
     where id = #id:INTEGER#
   </update>
@@ -467,7 +527,11 @@
       account_locked = #accountlocked:CHAR#,
       credentials_expired = #credentialsexpired:CHAR#,
       image = #image:VARCHAR#,
-      quotation = #quotation:VARCHAR#
+      quotation = #quotation:VARCHAR#,
+      sex = #sex:CHAR#,
+      dob = #dob:TIMESTAMP#,
+      date_registered = #dateregistered:TIMESTAMP#,
+      date_activated = #dateactivated:TIMESTAMP#
     where id = #id:INTEGER#
   </update>
 </sqlMap>

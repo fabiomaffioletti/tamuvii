@@ -56,9 +56,10 @@
   		<field property="address.city" depends="required" page="1">
 			<arg0 key="user.address.city"/>
 		</field>
+		-->
 		<field property="address.country" depends="required" page="1">
 			<arg0 key="user.address.country"/>
-		</field> -->
+		</field>
   	</form>
   </formset>
 

@@ -97,24 +97,48 @@
 	<div id="user_profile">
 		<div id="user_profile_image">	
 			<div class="container_48">
-				<img src="${userPublicInfo.imageLink}" width="48" height="48" class="major_48" />
-				<img class="minor_48" src="/images/frame_48.png" alt="">
+				<c:choose>
+					<c:when test="${not empty userPublicInfo.imageLink}">
+						<img src="${userPublicInfo.imageLink}" width="48" height="48" class="major_48" />
+						<img class="minor_48" src="/images/frame_48.png" alt="">				
+					</c:when>
+					<c:otherwise>
+						<img src="/images/placeholder_user.jpg" width="48" height="48" class="major_48" />
+						<img class="minor_48" src="/images/frame_48.png" alt="">
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div id="user_profile_info" style="margin-bottom: 10px;">
 				<b>${userPublicInfo.username}</b>
 				<br/>
-				<span class="light_text_italic font12">12 film</span>
+				<span class="light_text_italic font12">${userPublicInfo.totMovies} film</span>
 				<br/>
 				<a href="#" id="other_info_link" onclick="displayOtherInfo('other_info_container')">Vedi altre informazioni</a>
 			</div>
 		</div>
 		<div id="other_info_container" style="display: none;">
 			<div id="other_info">
-				<span class="light_text_italic font12">Maschio, 27 anni, Italy</span>
-				<br/>
-				<span class="font12">Sito web: <a href="${userPublicInfo.website}" target="_blank">${userPublicInfo.websiteTitle}</a></span>
-				<br/>
-				<span class="font12">Citazione preferita: </span><span class="light_text_italic font12">Mi piace il mio iPod Touch</span>
+				<span class="light_text_italic font12">
+					<c:if test="${not empty userPublicInfo.sex}">
+						<c:choose>
+							<c:when test="${userPublicInfo.sex == 'M'}">
+								Maschio,
+							</c:when>
+							<c:otherwise>
+								Femmina,
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+					<c:if test="${not empty userPublicInfo.age && userPublicInfo.age != -1}">${userPublicInfo.age} anni,</c:if> Italy
+					<br/>	
+				</span>
+				<c:if test="${not empty userPublicInfo.website}">
+					<span class="font12">Sito web: <a href="${userPublicInfo.website}" target="_blank">${userPublicInfo.websiteTitle}</a></span>
+					<br/>
+				</c:if>
+				<c:if test="${not empty userPublicInfo.quotation}">
+					<span class="font12">Citazione preferita: </span><span class="light_text_italic font12">${userPublicInfo.quotation}</span>
+				</c:if>
 			</div>
 		</div>
 		<div id="user_profile_options">

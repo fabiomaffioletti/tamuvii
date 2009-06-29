@@ -17,6 +17,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/contacts.css'/>" />
         <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/messages.css'/>" />
         <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/registration.css'/>" />
+        <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/custom/login.css'/>" />
 
         <script type="text/javascript" src="<c:url value='/scripts/prototype.js'/>"></script>
         <script type="text/javascript" src="<c:url value='/scripts/scriptaculous.js'/>"></script>

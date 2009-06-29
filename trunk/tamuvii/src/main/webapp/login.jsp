@@ -2,55 +2,59 @@
 
 <head>
     <title><fmt:message key="login.title"/></title>
-    <meta name="heading" content="<fmt:message key='login.heading'/>"/>
-    <meta name="menu" content="Login"/>
-    <link rel="stylesheet" type="text/css" media="all" href="<c:url value='/styles/${appConfig["csstheme"]}/layout-1col.css'/>" />
 </head>
-<body id="login"/>
 
-<form method="post" id="loginForm" action="<c:url value='/j_security_check'/>"
-    onsubmit="saveUsername(this);return validateForm(this)">
-<fieldset style="padding-bottom: 0">
-<ul>
-<c:if test="${param.error != null}">
-    <li class="error">
-        <img src="${ctx}/images/iconWarning.gif" alt="<fmt:message key='icon.warning'/>" class="icon"/>
-        <fmt:message key="errors.password.mismatch"/>
-        <%--${sessionScope.SPRING_SECURITY_LAST_EXCEPTION_KEY.message}--%>
-    </li>
-</c:if>
-    <li>
-       <label for="j_username" class="required desc">
-            <fmt:message key="label.username"/> <span class="req">*</span>
-        </label>
-        <input type="text" class="text medium" name="j_username" id="j_username" tabindex="1" />
-    </li>
 
-    <li>
-        <label for="j_password" class="required desc">
-            <fmt:message key="label.password"/> <span class="req">*</span>
-        </label>
-        <input type="password" class="text medium" name="j_password" id="j_password" tabindex="2" />
-    </li>
+<div id="main">
+	<div id="registration_form_container">
+		<form method="post" id="loginForm" action="<c:url value='/j_security_check'/>" onsubmit="saveUsername(this);">
+			<b>Benvenuto su taMuvii!</b>
+			<br/><br/>
+			<c:if test="${param.error != null}">
+				<div id="validation0" style="border: 1px dashed #ccc; padding: 10px;">    
+			        <img src="/images/error.png" style="vertical-align: bottom; margin-right: 10px;" />
+			        Username o password non validi.
+				</div>
+			</c:if>
+			
+			<ul>
+			    <li>
+			    	<div class="td_sx" style="width: 120px;"><span class="mandatory">* </span>Username: </div>
+					<div class="td_dx"><input type="text" name="j_username" id="j_username" /></div>
+			    </li>
+			
+			    <li>
+			        <div class="td_sx" style="width: 120px;"><span class="mandatory">* </span>Password: </div>
+					<div class="td_dx"><input type="password" name="j_password" id="j_password" /></div>
+			    </li>
+				<c:if test="${appConfig['rememberMeEnabled']}">
+					<li>
+				    	<div class="td_sx" style="width: 120px;">&nbsp;</div>
+				    	<div class="td_dx"><input style="width: 20px;" type="checkbox" class="checkbox" name="_spring_security_remember_me" id="rememberMe" /><span class="light_text_italic">Memorizza username e password</span></div>
+				    </li>
+			    </c:if>
+			    <li>
+			    	<div class="td_sx" style="width: 120px;">&nbsp;</div>
+			        <div class="td_dx"><input type="submit" class="login_submit_button" name="login" value="Entra" /></div>
+			    </li>
+			</ul>
+		</form>
+	</div>
+</div>
 
-<c:if test="${appConfig['rememberMeEnabled']}">
-    <li>
-        <input type="checkbox" class="checkbox" name="_spring_security_remember_me" id="rememberMe" tabindex="3"/>
-        <label for="rememberMe" class="choice"><fmt:message key="login.rememberMe"/></label>
-    </li>
-</c:if>
-    <li>
-        <input type="submit" class="button" name="login" value="<fmt:message key='button.login'/>" tabindex="4" />
-        <p>
-            <fmt:message key="login.signup">
-                <fmt:param><c:url value="/signup.html"/></fmt:param>
-            </fmt:message>
-        </p>
-    </li>
-</ul>
-</fieldset>
-</form>
+
+<div id="sidebar">
+	<div id="tamuvii_info_login_page">
+		<ul>
+			<li>
+				<b>taMuvii</b> &egrave; il nuovo social network per gli amanti dei film. Creare la videoteca personale, esplorare quelle degli altri appassionati, discutere o semplicemente farsi nuovi amici con un interesse in comune.
+			</li>
+			<li>
+				Non ti sei ancora registrato? <a href="/register.html">Puoi farlo da qui!</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
 
 <%@ include file="/scripts/login.js"%>
-
-<p><fmt:message key="login.passwordHint"/></p>

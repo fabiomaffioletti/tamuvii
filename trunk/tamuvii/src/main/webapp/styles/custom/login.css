@@ -1,0 +1,22 @@
+#tamuvii_info_login_page {
+	font-size: 13px;
+}
+#tamuvii_info_login_page ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+#tamuvii_info_login_page li {
+	border: 1px dashed #ccc;
+	padding: 10px;
+	margin-bottom: 20px;
+	background-color: #eee;
+	text-align: justify;
+}
+
+#registration_form_container .login_submit_button {
+	border:1px solid #ccc;
+	font-weight: bold;
+	width: 240px;
+	height: 30px;
+}

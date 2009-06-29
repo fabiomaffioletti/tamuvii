@@ -192,7 +192,7 @@
 							</c:otherwise>
 						</c:choose>
 					</c:if>
-					<c:if test="${not empty userPublicInfo.age && userPublicInfo.age != -1}">${userPublicInfo.age} anni,</c:if> Italy
+					<c:if test="${not empty userPublicInfo.age && userPublicInfo.age != -1}">${userPublicInfo.age} anni,</c:if> ${userPublicInfo.address.country}
 					<br/>	
 				</span>
 				<c:if test="${not empty userPublicInfo.website}">

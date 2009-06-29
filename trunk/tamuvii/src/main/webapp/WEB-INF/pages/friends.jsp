@@ -314,8 +314,20 @@
 							</div>
 						
 							<div id="contact_info_container_${contact.id}" class="contact_info_container" style="display:none;">
-								<span class="light_text_italic font12">Maschio, 27 anni, Italy</span>
-								<br/>
+								<span class="light_text_italic font12">
+									<c:if test="${not empty contact.sex}">
+										<c:choose>
+											<c:when test="${contact.sex == 'M'}">
+												Maschio,
+											</c:when>
+											<c:otherwise>
+												Femmina,
+											</c:otherwise>
+										</c:choose>
+									</c:if>
+									<c:if test="${not empty contact.age && contact.age != -1}">${contact.age} anni,</c:if> ${contact.address.country}
+									<br/>	
+								</span>
 								<span class="light_text_italic font12">Finora ha visto ${contact.totMovies} film</span>
 								<br/>
 								<span class="font12">Sito web: <a href="${contact.website}" target="_blank">${contact.websiteTitle}</a></span>

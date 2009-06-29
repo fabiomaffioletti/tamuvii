@@ -185,7 +185,9 @@
 				<br/>
 				<span class="font12">Sito web: <a href="${userPublicInfo.website}" target="_blank">${userPublicInfo.websiteTitle}</a></span>
 				<br/>
-				<span class="font12">Citazione preferita: </span><span class="light_text_italic font12">Mi piace il mio iPod Touch</span>
+				<c:if test="${not empty userPublicInfo.quotation}">
+					<span class="font12">Citazione preferita: </span><span class="light_text_italic font12">${userPublicInfo.quotation}</span>
+				</c:if>
 			</div>
 		</div>
 		<div id="user_profile_options">

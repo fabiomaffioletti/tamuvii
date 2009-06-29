@@ -320,7 +320,9 @@
 								<br/>
 								<span class="font12">Sito web: <a href="${contact.website}" target="_blank">${contact.websiteTitle}</a></span>
 								<br/>
-								<span class="font12">Citazione preferita: </span><span class="light_text_italic font12">Mi piace il mio iPod Touch, iPod Touch, iPod Touch - Mi piace il mio iPod Touch, iPod Touch, iPod Touch</span>
+								<c:if test="${not empty contact.quotation}">
+									<span class="font12">Citazione preferita: </span><span class="light_text_italic font12">${contact.quotation}</span>
+								</c:if>
 							</div>
 						</li>
 					</div>

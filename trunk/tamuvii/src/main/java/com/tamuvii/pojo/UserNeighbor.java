@@ -14,11 +14,19 @@ public class UserNeighbor {
     private String websiteTitle;
 	private Address address = new Address();
 	private String imageLink;
+	private String quotation;
 	private Date dateAdded;
 	private List<ShelfItem> lastMovies;
 	private Integer totMovies;
     
-    public Integer getTotMovies() {
+	
+    public String getQuotation() {
+		return quotation;
+	}
+	public void setQuotation(String quotation) {
+		this.quotation = quotation;
+	}
+	public Integer getTotMovies() {
 		return totMovies;
 	}
 	public void setTotMovies(Integer totMovies) {

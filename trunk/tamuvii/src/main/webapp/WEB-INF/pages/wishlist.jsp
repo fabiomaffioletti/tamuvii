@@ -5,6 +5,7 @@
     <script type="text/javascript" src="/dwr/engine.js"></script>
     <script type="text/javascript" src="/dwr/util.js"></script>
     <script type="text/javascript" src="/dwr/interface/ShelfManager.js"> </script>
+    <script type="text/javascript" src="/dwr/interface/MessageManager.js"> </script>
 </head>
 
 <div id="main">
@@ -127,6 +128,9 @@
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
 				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Calcola compatibilit&agrave;')" onclick="chooseOption('compatibility')"><img src="/images/calculator.png" /></a></li>
 				</c:if>
+				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
+				<li><a href="/shelf.html?username=${username}" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Vedi la sua videoteca')"><img src="/images/video.png" /></a></li>
+				</c:if>
 				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Visualizza statistiche')" onclick="chooseOption('statistics')"><img src="/images/statistics.png" /></a></li>
 			</ul>
 		</div>
@@ -186,7 +190,7 @@
 			<div id="send_message" style="width:100%; display:none;">
 				<textarea id="messagetext" name="messagetext" style="width: 98%" rows="5"></textarea>
 				<span style="float: right;"><input type="button" name="sendMessage" value="Spedisci" onclick="sendMessage()" /></span>
-				<span style="float: left;"><a href="#" onclick="Effect.toggle('send_message', 'slide',{ duration: 0.2 }); return false;">Annulla</a></span>
+				<span style="float: left;"><a href="#" onclick="cancelSendingMessage(); return false;">Annulla</a></span>
 			</div>
 		</div>
 	</div>
@@ -257,6 +261,36 @@
 		</div>
 	</div>
 </div>
+
+
+<script>
+	function cancelSendingMessage() {
+		$('messagetext').value = "";
+		new Effect.Fade('send_message', { duration: 0.4 });
+		return false;
+	}
+	function sendMessage() {
+		var sender = "${pageContext.request.remoteUser}";
+		var receiver = "${username}";
+		var messagetext = $('messagetext').value;
+		MessageManager.sendPersonalMessageDWR(sender, receiver, messagetext, function(str){
+			if(str == true) {
+				$('messagetext').value = "<fmt:message key='tamuvii.message.success'/>" + receiver;
+				new Effect.Highlight('messagetext', {startcolor: '#4F8CC9',	restorecolor: true, afterFinish: function(e) {
+					setTimeout("endSendingMessage()", 3000);
+				}});
+			} else {
+				$('messagetext').value = "<fmt:message key='tamuvii.message.error'/>";
+				new Effect.Highlight('messagetext', {startcolor: '#FFB98C',	restorecolor: true});
+			}
+		});
+	}
+	function endSendingMessage() {
+		$('messagetext').value = "";
+		Effect.Fade('send_message');
+	}
+	
+</script>
 		
 <script>
 	function displayElement(id) {
@@ -269,7 +303,11 @@
 	}
 	
 	function chooseOption(id) {
-		new Effect.toggle(id, 'slide', { duration: 0.2 });
+		if($(id).visible()) {
+			new Effect.Fade(id, { duration: 0.4 });
+		} else {
+			new Effect.Appear(id, { duration: 0.4 });
+		}
 		return false;
 	}
 	function displayOptionHint(hint) {

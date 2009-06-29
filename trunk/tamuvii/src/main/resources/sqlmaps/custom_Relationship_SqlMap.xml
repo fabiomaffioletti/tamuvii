@@ -11,6 +11,7 @@
         <result property="address.city" column="city"/>
         <result property="address.country" column="country"/>
         <result property="imageLink" column="imageLink"/>
+        <result property="quotation" column="quotation"/>
         <result property="dateAdded" column="date_added"/>
         <result property="lastMovies" column="username" select="custom_relationship.getLastSeenMoviesByUser"/>
         <result property="totMovies" column="username" select="custom_relationship.getUserMoviesCount"/>
@@ -33,6 +34,7 @@
 						u.city,
 						u.country,
 						u.image as imageLink,
+						u.quotation,
 						null as date_added,
 						null as lastMovies
 			
@@ -50,6 +52,7 @@
 						u.city,
 						u.country,
 						u.image as imageLink,
+						u.quotation,
 						uu.date_added
 			
 		from 			user_to_user uu 		inner join 		app_user u
@@ -68,6 +71,7 @@
 						u.city,
 						u.country,
 						u.image as imageLink,
+						u.quotation,
 						uu.date_added
 			
 		from 			user_to_user uu 		inner join 		app_user u

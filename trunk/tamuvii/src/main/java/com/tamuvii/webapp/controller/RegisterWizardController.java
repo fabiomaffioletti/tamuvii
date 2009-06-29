@@ -64,7 +64,7 @@ public class RegisterWizardController extends AbstractWizardFormController {
             return showForm(request, response, errors);
         }
 		
-		return new ModelAndView("register2");
+		return new ModelAndView("register3");
 	}
 	
 }

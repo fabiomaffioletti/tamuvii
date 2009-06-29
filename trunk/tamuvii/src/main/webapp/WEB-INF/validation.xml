@@ -33,9 +33,32 @@
   		<field property="username" depends="required" page="0">
   			<arg0 key="user.username"/>
   		</field>
+  		<field property="email" depends="required,email" page="0">
+            <arg0 key="user.email"/>
+        </field>
+        <field property="password" depends="required,twofields" page="0">
+            <msg name="twofields" key="errors.twofields"/>
+			<arg0 key="user.password" />
+            <arg1 key="user.confirmPassword" />
+            <var>
+              <var-name>secondProperty</var-name>
+              <var-value>confirmPassword</var-value>
+            </var>
+        </field>
+        <field property="confirmPassword" depends="required" page="0">
+            <arg0 key="user.confirmPassword"/>
+        </field>
+        
+		<!-- Questi campi non sono obbligatori, metto lo stesso le regole di validazione, ma disabilitate.  		
   		<field property="firstName" depends="required" page="1">
   			<arg0 key="user.firstName"/>
   		</field>
+  		<field property="address.city" depends="required" page="1">
+			<arg0 key="user.address.city"/>
+		</field>
+		<field property="address.country" depends="required" page="1">
+			<arg0 key="user.address.country"/>
+		</field> -->
   	</form>
   </formset>
 

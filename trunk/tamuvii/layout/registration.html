@@ -11,6 +11,7 @@
    <link rel="stylesheet" href="socialMovie.css" type="text/css" />
    <link rel="stylesheet" href="options.css" type="text/css" />
    <link rel="stylesheet" href="contacts.css" type="text/css" />
+   <link rel="stylesheet" href="registration.css" type="text/css" />
    <script src="prototype.js" type="text/javascript"></script>
    <script src="scriptaculous.js" type="text/javascript"></script>
    <script src="effects.js" type="text/javascript"></script>
@@ -52,75 +53,6 @@
         text-decoration: none;
         background-color: #ebf5fc;
     }
-	
-	
-	
-	
-#registration_menu {
-	width: 100%;
-}
-
-#registration_menu ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-#registration_menu li {
-	border: 1px dashed #ccc;
-	padding: 10px;
-	margin-bottom: 10px;
-	font-size: 14px;
-	background-color: #eee;
-}
-
-#registration_form_container {
-	font-size: 13px;
-	margin-bottom: 40px;
-}
-#registration_form_container ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-#registration_form_container li {
-	padding: 10px;
-	margin-bottom: 10px;
-}
-#registration_form_container input {
-	border: 1px dashed #ccc;
-	width: 238px;
-}
-
-.td_sx {
-	float:left;
-	width: 200px;
-	margin-right: 20px;
-	font-weight: bold;
-}
-.td_dx {
-	float:left;
-}
-.mandatory {
-	color: #BE2525;
-}
-
-
-#confirmation_data_container {
-	font-size: 12px;
-	border: 1px dashed #ccc;
-	padding: 10px;
-	background-color: #eee;
-}
-#confirmation_data_container ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-#confirmation_data_container li {
-	padding: 10px;
-	margin-bottom: 10px;
-}
 
 </style>
   
@@ -142,6 +74,13 @@
 	
 	<div id="main">
 		<div id="registration_form_container">
+			<b>Benvenuto su taMuvii!</b>
+			<br/>
+			<span class="light_text_italic">Per cominciare inserisci i dati di registrazione, quelli contrassegnati con <span class="mandatory">* </span> sono obbligatori.</span>
+			<br/><br/>
+			<div id="validation0" style="border: 1px dashed #ccc; padding: 10px;">
+				<img src="error.png" style="vertical-align: bottom; margin-right: 10px;" />Ci sono errori di validazione
+			</div>
 			<ul>
 				<li>
 					<div class="td_sx"><span class="mandatory">* </span>Scegli il tuo username: </div>

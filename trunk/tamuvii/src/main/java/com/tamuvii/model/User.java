@@ -36,6 +36,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String email;                       // required; unique
     private String phoneNumber;
     private String website;
+    private String websitetitle;
     private Address address = new Address();
     private Integer version;
     private Set<Role> roles = new HashSet<Role>();
@@ -43,6 +44,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private boolean accountExpired;
     private boolean accountLocked;
     private boolean credentialsExpired;
+    private String image;
+    private String quotation;
 
     /**
      * Default constructor - creates a new instance with no values set.
@@ -282,7 +285,31 @@ public class User extends BaseObject implements Serializable, UserDetails {
         this.credentialsExpired = credentialsExpired;
     }
     
-    /**
+    public String getWebsitetitle() {
+		return websitetitle;
+	}
+
+	public void setWebsitetitle(String websitetitle) {
+		this.websitetitle = websitetitle;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getQuotation() {
+		return quotation;
+	}
+
+	public void setQuotation(String quotation) {
+		this.quotation = quotation;
+	}
+
+	/**
      * {@inheritDoc}
      */
     public boolean equals(Object o) {

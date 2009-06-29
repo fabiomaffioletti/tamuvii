@@ -26,6 +26,7 @@
     <result column="account_locked" jdbcType="CHAR" property="accountlocked" />
     <result column="credentials_expired" jdbcType="CHAR" property="credentialsexpired" />
     <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="quotation" jdbcType="VARCHAR" property="quotation" />
   </resultMap>
   <sql id="ibatorgenerated_Example_Where_Clause">
     <!--
@@ -62,7 +63,7 @@
     -->
     select id, username, version, password, first_name, last_name, address, city, province, country,
       postal_code, email, phone_number, website, website_title, password_hint, account_enabled,
-      account_expired, account_locked, credentials_expired, image
+      account_expired, account_locked, credentials_expired, image, quotation
     from app_user
     <isParameterPresent>
       <include refid="app_user.ibatorgenerated_Example_Where_Clause" />
@@ -77,7 +78,7 @@
     -->
     select id, username, version, password, first_name, last_name, address, city, province, country,
       postal_code, email, phone_number, website, website_title, password_hint, account_enabled,
-      account_expired, account_locked, credentials_expired, image
+      account_expired, account_locked, credentials_expired, image, quotation
     from app_user
     where id = #id:INTEGER#
   </select>
@@ -101,13 +102,13 @@
     -->
     insert into app_user (id, username, version, password, first_name, last_name, address, city,
       province, country, postal_code, email, phone_number, website, website_title, password_hint,
-      account_enabled, account_expired, account_locked, credentials_expired, image)
+      account_enabled, account_expired, account_locked, credentials_expired, image, quotation)
     values (#id:INTEGER#, #username:VARCHAR#, #version:INTEGER#, #password:VARCHAR#,
       #firstname:VARCHAR#, #lastname:VARCHAR#, #address:VARCHAR#, #city:VARCHAR#,
       #province:VARCHAR#, #country:VARCHAR#, #postalcode:VARCHAR#, #email:VARCHAR#,
       #phonenumber:VARCHAR#, #website:VARCHAR#, #websitetitle:VARCHAR#, #passwordhint:VARCHAR#,
       #accountenabled:CHAR#, #accountexpired:CHAR#, #accountlocked:CHAR#, #credentialsexpired:CHAR#,
-      #image:VARCHAR#)
+      #image:VARCHAR#, #quotation:VARCHAR#)
   </insert>
   <insert id="ibatorgenerated_insertSelective" parameterClass="com.tamuvii.model.AppUser">
     <!--
@@ -178,6 +179,9 @@
       <isNotNull prepend="," property="image">
         image
       </isNotNull>
+      <isNotNull prepend="," property="quotation">
+        quotation
+      </isNotNull>
       )
     </dynamic>
     values
@@ -244,6 +248,9 @@
       </isNotNull>
       <isNotNull prepend="," property="image">
         #image:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="quotation">
+        #quotation:VARCHAR#
       </isNotNull>
       )
     </dynamic>
@@ -324,6 +331,9 @@
       <isNotNull prepend="," property="record.image">
         image = #record.image:VARCHAR#
       </isNotNull>
+      <isNotNull prepend="," property="record.quotation">
+        quotation = #record.quotation:VARCHAR#
+      </isNotNull>
     </dynamic>
     <isParameterPresent>
       <include refid="app_user.ibatorgenerated_Example_Where_Clause" />
@@ -354,7 +364,8 @@
       account_expired = #record.accountexpired:CHAR#,
       account_locked = #record.accountlocked:CHAR#,
       credentials_expired = #record.credentialsexpired:CHAR#,
-      image = #record.image:VARCHAR#
+      image = #record.image:VARCHAR#,
+      quotation = #record.quotation:VARCHAR#
     <isParameterPresent>
       <include refid="app_user.ibatorgenerated_Example_Where_Clause" />
     </isParameterPresent>
@@ -425,6 +436,9 @@
       <isNotNull prepend="," property="image">
         image = #image:VARCHAR#
       </isNotNull>
+      <isNotNull prepend="," property="quotation">
+        quotation = #quotation:VARCHAR#
+      </isNotNull>
     </dynamic>
     where id = #id:INTEGER#
   </update>
@@ -452,7 +466,8 @@
       account_expired = #accountexpired:CHAR#,
       account_locked = #accountlocked:CHAR#,
       credentials_expired = #credentialsexpired:CHAR#,
-      image = #image:VARCHAR#
+      image = #image:VARCHAR#,
+      quotation = #quotation:VARCHAR#
     where id = #id:INTEGER#
   </update>
 </sqlMap>

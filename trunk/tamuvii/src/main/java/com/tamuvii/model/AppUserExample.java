@@ -1651,5 +1651,75 @@ public class AppUserExample {
 			addCriterion("image not between", value1, value2, "image");
 			return this;
 		}
+
+		public Criteria andQuotationIsNull() {
+			addCriterion("quotation is null");
+			return this;
+		}
+
+		public Criteria andQuotationIsNotNull() {
+			addCriterion("quotation is not null");
+			return this;
+		}
+
+		public Criteria andQuotationEqualTo(String value) {
+			addCriterion("quotation =", value, "quotation");
+			return this;
+		}
+
+		public Criteria andQuotationNotEqualTo(String value) {
+			addCriterion("quotation <>", value, "quotation");
+			return this;
+		}
+
+		public Criteria andQuotationGreaterThan(String value) {
+			addCriterion("quotation >", value, "quotation");
+			return this;
+		}
+
+		public Criteria andQuotationGreaterThanOrEqualTo(String value) {
+			addCriterion("quotation >=", value, "quotation");
+			return this;
+		}
+
+		public Criteria andQuotationLessThan(String value) {
+			addCriterion("quotation <", value, "quotation");
+			return this;
+		}
+
+		public Criteria andQuotationLessThanOrEqualTo(String value) {
+			addCriterion("quotation <=", value, "quotation");
+			return this;
+		}
+
+		public Criteria andQuotationLike(String value) {
+			addCriterion("quotation like", value, "quotation");
+			return this;
+		}
+
+		public Criteria andQuotationNotLike(String value) {
+			addCriterion("quotation not like", value, "quotation");
+			return this;
+		}
+
+		public Criteria andQuotationIn(List values) {
+			addCriterion("quotation in", values, "quotation");
+			return this;
+		}
+
+		public Criteria andQuotationNotIn(List values) {
+			addCriterion("quotation not in", values, "quotation");
+			return this;
+		}
+
+		public Criteria andQuotationBetween(String value1, String value2) {
+			addCriterion("quotation between", value1, value2, "quotation");
+			return this;
+		}
+
+		public Criteria andQuotationNotBetween(String value1, String value2) {
+			addCriterion("quotation not between", value1, value2, "quotation");
+			return this;
+		}
 	}
 }

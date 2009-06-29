@@ -76,15 +76,15 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <table tableName="user_to_user" domainObjectName="UserToUser" >
-      <property name="useActualColumnNames" value="false"/>
-	  <columnRenamingRule searchString="_" replaceString="" />
-    </table>
-    
-    <!-- table tableName="app_user" domainObjectName="AppUser" >
+    <!-- table tableName="user_to_user" domainObjectName="UserToUser" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
+    
+    <table tableName="app_user" domainObjectName="AppUser" >
+      <property name="useActualColumnNames" value="false"/>
+	  <columnRenamingRule searchString="_" replaceString="" />
+    </table>
     
     <!-- table tableName="config" domainObjectName="Config" >
       <property name="useActualColumnNames" value="false"/>

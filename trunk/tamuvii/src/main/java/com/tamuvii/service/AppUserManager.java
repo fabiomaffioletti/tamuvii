@@ -11,4 +11,6 @@ public interface AppUserManager {
 	
 	public UserNeighbor getUserPublicInfo(String username);
 	
+	public void enableUser(String userEmail);
+	
 }

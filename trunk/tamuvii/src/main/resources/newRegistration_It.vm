@@ -1,0 +1,12 @@
+<b>Benvenuto su taMuvii!</b>
+<br/>
+<br/>
+Abbiamo ricevuto la tua richiesta di iscrizione, ricapitoliamo qui sotto i tuoi dati di accesso al sito.
+<br/>
+<br/>
+Username: ${user.username}
+<br/>
+Password: ${user.confirmPassword}
+<br/>
+<br/>
+Per confermare la tua iscrizione clicca su <a href="${appURL}/confirmRegistration.html?e=${user.email}">questo link</a>. Se non hai richiesto tu l'iscrizione a taMuvii ignora pure questa email.

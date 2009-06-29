@@ -160,8 +160,16 @@
 	<div id="user_profile">
 		<div id="user_profile_image">	
 			<div class="container_48">
-				<img src="${userPublicInfo.imageLink}" width="48" height="48" class="major_48" />
-				<img class="minor_48" src="/images/frame_48.png" alt="">
+				<c:choose>
+					<c:when test="${not empty userPublicInfo.imageLink}">
+						<img src="${userPublicInfo.imageLink}" width="48" height="48" class="major_48" />
+						<img class="minor_48" src="/images/frame_48.png" alt="">				
+					</c:when>
+					<c:otherwise>
+						<img src="/images/placeholder_user.jpg" width="48" height="48" class="major_48" />
+						<img class="minor_48" src="/images/frame_48.png" alt="">
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div id="user_profile_info" style="margin-bottom: 10px;">
 				<b>${userPublicInfo.username}</b>

@@ -1,5 +1,6 @@
 package com.tamuvii.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -9,7 +10,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.VelocityException;
-
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
@@ -114,4 +114,32 @@ public class MailEngine {
 
         ((JavaMailSenderImpl) mailSender).send(message);
     }
+    
+    
+    
+    @SuppressWarnings("unchecked")
+	public void sendHtmlMessage(String sender, String[] recipients, String subject, String templateName, Map model) {
+		try {
+			MimeMessage message = ((JavaMailSenderImpl) mailSender).createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+			helper.setTo(recipients);
+			if (sender == null) {
+				helper.setFrom(defaultFrom);
+			} else {
+				helper.setFrom(sender);
+			}
+			helper.setSubject(subject);
+
+			model = model == null ? new HashMap() : model;
+			String htmlText = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, templateName, model);
+			helper.setText(htmlText, true);
+
+			((JavaMailSenderImpl) mailSender).send(message);
+			
+		} catch (Exception e) {
+			throw new RuntimeException("Errore durante la preparazione dell'email", e);
+		}
+	}
+    
 }

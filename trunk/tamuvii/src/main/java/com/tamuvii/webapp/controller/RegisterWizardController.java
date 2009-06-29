@@ -1,5 +1,8 @@
 package com.tamuvii.webapp.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,14 +16,26 @@ import org.springmodules.validation.commons.PageAware;
 
 import com.tamuvii.Constants;
 import com.tamuvii.model.User;
+import com.tamuvii.service.ConfigManager;
+import com.tamuvii.service.MailEngine;
 import com.tamuvii.service.RoleManager;
 import com.tamuvii.service.UserExistsException;
 import com.tamuvii.service.UserManager;
+import com.tamuvii.util.TamuviiConstants;
+import com.tamuvii.webapp.util.RequestUtil;
 
 public class RegisterWizardController extends AbstractWizardFormController {
 	private UserManager userManager;
 	private RoleManager roleManager;
+	private MailEngine mailEngine;
+	private ConfigManager configManager;
 	
+	public void setConfigManager(ConfigManager configManager) {
+		this.configManager = configManager;
+	}
+	public void setMailEngine(MailEngine mailEngine) {
+		this.mailEngine = mailEngine;
+	}
 	public void setUserManager(UserManager userManager) {
 		this.userManager = userManager;
 	}
@@ -47,6 +62,7 @@ public class RegisterWizardController extends AbstractWizardFormController {
     }
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected ModelAndView processFinish(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception {
 		User user = (User) command;
@@ -55,6 +71,22 @@ public class RegisterWizardController extends AbstractWizardFormController {
 		
 		try {
 			userManager.saveUser(user);
+			Map model = new HashMap();
+			model.put("user", user);
+			model.put("appURL", RequestUtil.getAppURL(request));
+			
+			String templateName = "";
+			String emailSubject = "";
+			try {
+				templateName = configManager.getString(TamuviiConstants.NEWREGISTRATIONEMAILTEMPLATE + user.getAddress().getCountry());
+				emailSubject = configManager.getString(TamuviiConstants.NEWREGISTRATIONEMAILSUBJECT + user.getAddress().getCountry());
+			} catch(NullPointerException npe) {
+				templateName = configManager.getString(TamuviiConstants.NEWREGISTRATIONEMAILTEMPLATE + "EN");
+				emailSubject = configManager.getString(TamuviiConstants.NEWREGISTRATIONEMAILSUBJECT + "EN");
+			}
+			
+			mailEngine.sendHtmlMessage(null, new String[]{user.getEmail()}, emailSubject, templateName, model);
+			
 		} catch (AccessDeniedException ade) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN);
             return null; 
@@ -62,6 +94,9 @@ public class RegisterWizardController extends AbstractWizardFormController {
             errors.rejectValue("username", "errors.existing.user", new Object[]{user.getUsername(), user.getEmail()}, "duplicate user");
             user.setPassword(user.getConfirmPassword());
             return showForm(request, response, errors);
+        } catch(Exception e) {
+        	// FIXME Loggare l'eccezione e tornare una view di errore
+        	e.printStackTrace();
         }
 		
 		return new ModelAndView("register3");

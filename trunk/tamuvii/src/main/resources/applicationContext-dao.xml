@@ -122,4 +122,9 @@
     	<property name="dataSource" ref="dataSource"/>
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
+    
+    <bean id="configDao" class="com.tamuvii.dao.impl.ConfigDAOImpl">
+    	<property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
 </beans>

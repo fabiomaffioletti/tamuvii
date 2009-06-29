@@ -107,8 +107,9 @@
                 /be_moviesList.html=movieListController
                 
                 
-                <!-- Sperimentale -->
+                <!-- Registrazione -->
                 /register.html=registerWizardController
+                /confirmRegistration.html=registrationConfirmationController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -208,6 +209,8 @@
     	<property name="allowDirtyForward" value="false"/>
     	<property name="userManager" ref="userManager" />
     	<property name="roleManager" ref="roleManager" />
+    	<property name="mailEngine" ref="mailEngine" />
+    	<property name="configManager" ref="configManager" />
     	<property name="validators">
 	        <list>
 	            <ref bean="pageValidator0"/>
@@ -233,7 +236,9 @@
 	    <property name="validatorFactory" ref="validatorFactory"/>
 	</bean>
 	
-	
+	<bean id="registrationConfirmationController" class="com.tamuvii.webapp.controller.RegistrationConfirmationController">
+		<property name="appUserManager" ref="appUserManager" />
+	</bean>
     
     
 </beans>

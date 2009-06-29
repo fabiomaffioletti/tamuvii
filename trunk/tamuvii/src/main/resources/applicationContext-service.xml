@@ -166,6 +166,10 @@
 		<property name="customShelfDao" ref="customShelfDao" />
 	</bean>
 	
+	<bean id="configManager" class="com.tamuvii.service.impl.ConfigManagerImpl">
+		<property name="configDao" ref="configDao" />
+	</bean>
+	
 	
 	<!-- EVENT DISPATCHER
 	<bean id="loggerListener" class="it.vidiemme.amadeusecommerce.eventdispatcher.listener.LoggerListener">

@@ -7,6 +7,7 @@ import com.tamuvii.dao.AppUserDAO;
 import com.tamuvii.dao.CustomRelationshipDAO;
 import com.tamuvii.model.AppUser;
 import com.tamuvii.model.AppUserExample;
+import com.tamuvii.model.AppUserExample.Criteria;
 import com.tamuvii.pojo.UserNeighbor;
 import com.tamuvii.service.AppUserManager;
 
@@ -75,5 +76,17 @@ public class AppUserManagerImpl implements AppUserManager {
 	public UserNeighbor getUserPublicInfo(String username) {
 		return customRelationshipDao.getUserPublicInfo(username);
 	}
+	
+	
+	
+	public void enableUser(String userEmail) {
+		AppUserExample appUserExample = new AppUserExample();
+		Criteria c = appUserExample.createCriteria();
+		c.andEmailEqualTo(userEmail);
+		AppUser appUser = (AppUser) appUserDao.selectByExample(appUserExample).get(0);
+		appUser.setAccountenabled("1");
+		appUserDao.updateByPrimaryKey(appUser);
+	}
+	
 
 }

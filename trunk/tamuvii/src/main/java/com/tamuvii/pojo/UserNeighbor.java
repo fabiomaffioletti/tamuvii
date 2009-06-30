@@ -20,9 +20,16 @@ public class UserNeighbor {
 	private String sex;
 	private List<ShelfItem> lastMovies;
 	private Integer totMovies;
+	private Integer visits;
     
 	
-    public String getSex() {
+    public Integer getVisits() {
+		return visits;
+	}
+	public void setVisits(Integer visits) {
+		this.visits = visits;
+	}
+	public String getSex() {
 		return sex;
 	}
 	public void setSex(String sex) {

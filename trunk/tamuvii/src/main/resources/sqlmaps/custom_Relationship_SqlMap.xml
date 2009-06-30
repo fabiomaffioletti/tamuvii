@@ -17,6 +17,7 @@
         <result property="dateAdded" column="date_added"/>
         <result property="lastMovies" column="username" select="custom_relationship.getLastSeenMoviesByUser"/>
         <result property="totMovies" column="username" select="custom_relationship.getUserMoviesCount"/>
+        <result property="visits" column="visits"/>
    </resultMap>
    
    <select id="getUserMoviesCount" resultClass="java.lang.Integer" parameterClass="java.lang.String">
@@ -41,7 +42,8 @@
 						(YEAR(CURDATE())-YEAR(u.dob)) - (RIGHT(CURDATE(),13) < RIGHT(u.dob,13)) AS age,
 						u.sex,
 						null as date_added,
-						null as lastMovies
+						null as lastMovies,
+						(select count(*) from visit where visited = #username#) as visits
 			
 		from 			app_user u
 		
@@ -62,7 +64,8 @@
 						u.quotation,
 						(YEAR(CURDATE())-YEAR(u.dob)) - (RIGHT(CURDATE(),13) < RIGHT(u.dob,13)) AS age,
 						u.sex,
-						uu.date_added
+						uu.date_added,
+						null as visits
 			
 		from 			user_to_user uu 		inner join 		app_user u
 						on uu.second = u.username
@@ -85,7 +88,8 @@
 						u.quotation,
 						(YEAR(CURDATE())-YEAR(u.dob)) - (RIGHT(CURDATE(),13) < RIGHT(u.dob,13)) AS age,
 						u.sex,
-						uu.date_added
+						uu.date_added,
+						null as visits
 			
 		from 			user_to_user uu 		inner join 		app_user u
 						on uu.second = u.username
@@ -129,6 +133,27 @@
 		order by um.date_viewed desc
 
 		limit 0,5
+  </select>
+  
+  <select id="getLastUserVisitors" resultMap="userNeighbor" parameterClass="java.lang.String" >
+		<![CDATA[
+		select 			u.id,
+					 	u.username, 
+						u.email,
+						u.website,
+						u.website_title as websiteTitle,
+						u.city,
+						u.country,
+						u.image as imageLink,
+						u.quotation,
+						(YEAR(CURDATE())-YEAR(u.dob)) - (RIGHT(CURDATE(),13) < RIGHT(u.dob,13)) AS age,
+						u.sex
+
+		from			app_user u inner join visit v
+						on u.username = v.visitor
+		where			v.visited = #username#
+		group by		u.username
+		]]>
   </select>
   
 </sqlMap>

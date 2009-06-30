@@ -1,7 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="wishlist.pagetitle"/></title>
+    <title><fmt:message key="shelf.pagetitle"/></title>
     <script type="text/javascript" src="/dwr/engine.js"></script>
     <script type="text/javascript" src="/dwr/util.js"></script>
     <script type="text/javascript" src="/dwr/interface/ShelfManager.js"> </script>
@@ -9,70 +9,7 @@
 </head>
 
 <div id="main">
-	<div id="options">
-		<div id="order_div">
-			<select id="order" name="">
-				<option value="0">Ordina per:</option>
-				<option value="1">priorit&agrave; (dalla pi&ugrave; alta)</option>
-				<option value="2">priorit&agrave; (dalla pi&ugrave; bassa)</option>
-				<option value="3">data inserimento (dal pi&ugrave; recente) </option>
-				<option value="4">data inserimento (dal meno recente) </option>
-			</select>
-		</div>
-	</div>
-		
-	<div id="movies">
-		<div id="movies_list_container">
-			<ul class="movie_list">
-				<c:forEach var="wishedItem" items="${wishedItems}">
-					<c:set var="displayOriginalTitle" value="n" />
-					
-					<li class="movie_image">
-						<c:choose>
-							<c:when test="${not empty wishedItem.localizedImage}">
-								<img src="${wishedItem.localizedImage}" />
-							</c:when>
-							<c:otherwise>
-								<img src="${wishedItem.originalImage}" />
-							</c:otherwise>
-						</c:choose>
-					</li>
-					
-					<li class="movie_data">
-						<div class="title" id="title_${wishedItem.movie}">
-							<c:choose>
-					    		<c:when test="${empty wishedItem.localizedTitle}">
-						    		<a href="/socialMovie.html?movie=${wishedItem.movie}"><b>${wishedItem.originalTitle}</b></a> 
-						    	</c:when>
-						    	<c:otherwise>
-						    		<a href="/socialMovie.html?movie=${wishedItem.movie}"><b>${wishedItem.localizedTitle}</b></a>
-						    		<c:set var="displayOriginalTitle" value="y" />
-						    	</c:otherwise>
-					    	</c:choose>
-						</div>
-						
-						<c:if test="${wishedItem.originalTitle != wishedItem.localizedTitle && displayOriginalTitle == 'y'}">
-				    		<div class="localized_title">
-				    			<i>Titolo originale: ${wishedItem.originalTitle}</i>
-				    		</div>
-				    	</c:if>
-				    	
-						<div class="directed_by">di <a href="/directorDetail.html?director=${wishedItem.directorId}">${wishedItem.director}</a></div>
-					</li>
-					<c:if test="${empty username || username == pageContext.request.remoteUser}">
-						<li class="movie_actions">
-							<div class="action action_title">Opzioni</div>
-							<div class="action"><a href="/wishlistManagement.html?action=move&movie=${wishedItem.movie}">Sposta nella videoteca</a></div>
-					    	<div class="action"><a href="/wishlistManagement.html?action=delete&movie=${wishedItem.movie}">Cancella dalla wishlist</a></div>
-						</li>
-					</c:if>
-					
-					<li class="separator">
-					</li>
-				</c:forEach>
-			</ul>
-		</div>
-	</div>
+	
 </div>
 
 
@@ -86,13 +23,7 @@
 
 
 
-
-
-
-
-
-
-
+	
 <div id="sidebar">
 	<div id="user_profile">
 		<div id="user_profile_image">	
@@ -129,7 +60,7 @@
 							</c:otherwise>
 						</c:choose>
 					</c:if>
-					<c:if test="${not empty userPublicInfo.age && userPublicInfo.age != -1}">${userPublicInfo.age} anni,</c:if> Italy
+					<c:if test="${not empty userPublicInfo.age && userPublicInfo.age != -1}">${userPublicInfo.age} anni,</c:if> ${userPublicInfo.address.country}
 					<br/>	
 				</span>
 				<c:if test="${not empty userPublicInfo.website}">
@@ -152,9 +83,6 @@
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
 				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Calcola compatibilit&agrave;')" onclick="chooseOption('compatibility')"><img src="/images/calculator.png" /></a></li>
 				</c:if>
-				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
-				<li><a href="/shelf.html?username=${username}" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Vedi la sua videoteca')"><img src="/images/video.png" /></a></li>
-				</c:if>
 			</ul>
 		</div>
 		<c:if test="${not empty username && username != pageContext.request.remoteUser}">
@@ -165,66 +93,55 @@
 	</div>
 	
 	
-	<div id="relationship_area">
-		<div id="relationship_container">
-			<div id="relationship" style="display:none;">
-				<c:choose>
-					<c:when test="${not empty username && username != pageContext.request.remoteUser}">
-						<c:choose>
-							<c:when test="${areFriends}">
-								<ul>
-									<li onclick="document.location.href='/relationshipManagement.html?action=moveToNeighborhoods&username=${username}'">Cambia a vicino</li>
-									<li onclick="document.location.href='/relationshipManagement.html?action=deleteFriend&username=${username}'">Cancella dagli amici</li>
-								</ul>
-							</c:when>
-							<c:when test="${areNeighborhoods}">
-								<ul>
-									<li onclick="document.location.href='/relationshipManagement.html?action=moveToFriends&username=${username}'">Cambia a amico</li>
-									<li onclick="document.location.href='/relationshipManagement.html?action=deleteNeighborhood&username=${username}'">Cancella dai vicini</li>
-								</ul>
-							</c:when>
-							<c:otherwise>
-								<ul>
-									<li onclick="document.location.href='/relationship.html?mode=friends&username=${username}'">Aggiungi come amico</li>
-									<li onclick="document.location.href='/relationship.html?mode=neighborhoods&username=${username}'">Aggiungi come vicino</li>
-								</ul>
-							</c:otherwise>
-						</c:choose>
-					</c:when>
-				</c:choose>
-				<div style="float: left;"><a href="#" onclick="Effect.toggle('relationship', 'slide',{ duration: 0.2 }); return false;">Chiudi</a></div>
+	<div id="directors">
+		<div class="relationship_title">
+			<div style="float:left">Film per regista</div>
+			<div style="float:right"><span id="directors_view_all" style="display:none;">vedi tutti </span><a href="#" onmouseover="displayElement('directors_view_all')" onmouseout="hideElement('directors_view_all')">(${fn:length(shelfDirectorReportList)})</a></div>
+		</div>
+		<div id="directors_list_container">
+			<div id="directors_list_content">
+				<ul class="person_list" id="directors_ul">
+					<c:forEach var="shelfDirectorReportItem" items="${shelfDirectorReportList}">
+						<li onclick="document.location.href='/directorDetail.html?director=${shelfDirectorReportItem.director}'">
+							<div class="person_list_info_container">
+								<div class="container">
+									<img src="/images/placeholder_user.jpg" width="30" height="30" class="major" />
+									<img class="minor" src="/images/frame_30.png" alt="">
+								</div>
+								<div class="person_list_info">
+									<span class="bold_text">${shelfDirectorReportItem.name} ${shelfDirectorReportItem.surname}</span>
+									<br/>
+									<span class="light_text_italic">${shelfDirectorReportItem.numMovies} Film</span>
+								</div>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>
 			</div>
+		</div>
+		<div class="relationship_navigation" style="width:100%;">
+			<a href="#" id="upDirectors" style="display:none;float:left;" onclick="indexDirectors = doup(indexDirectors, 1, 'directors_list_content', $('directors_list_container').getHeight(), 'downDirectors', 'upDirectors'); return false;"><img class="relationship_navigation_image" src="/images/bw.png"/></a>
+			<div style="float:left; margin-left: 53px;">
+				<span class="font12">Ordina: </span>
+				<a href="#" onclick="orderShelfDirectorReportBySurname('${userPublicInfo.username}'); return false;">A-Z</a>
+				<a href="#" onclick="orderShelfDirectorReportByNumMovies('${userPublicInfo.username}'); return false;"># Film</a>
+			</div>
+			<a href="#" id="downDirectors" style="float:right;display:none;" onclick="indexDirectors = dodown(indexDirectors, pagesDirectors, 1, 'directors_list_content', $('directors_list_container').getHeight(), 'downDirectors', 'upDirectors'); return false;"><img class="relationship_navigation_image" src="/images/ff.png"/></a>
 		</div>
 	</div>
 	
-	<div id="compatibility_area">
-		<div id="compatibility_container">
-			<div id="compatibility" style="width:100%; display:none;">
-				<div id="compatibility_message">
-					<div style="font-size: 12px; color: black;">La compatibilit&agrave; con questo utente &egrave;:</div>
-					<div id="compatibility_value">94%</div>
-				</div>
-				<div style="float: left;"><a href="#" onclick="Effect.toggle('compatibility', 'slide',{ duration: 0.2 }); return false;">Chiudi</a></div>
-				<div style="float: right;"><a href="#">Dettagli</a></div>
-			</div>
-		</div>
-	</div>
-
-	<div id="message_area">
-		<div id="send_message_container">
-			<div id="send_message" style="width:100%; display:none;">
-				<textarea id="messagetext" name="messagetext" style="width: 98%" rows="5"></textarea>
-				<span style="float: right;"><input type="button" name="sendMessage" value="Spedisci" onclick="sendMessage()" /></span>
-				<span style="float: left;"><a href="#" onclick="cancelSendingMessage(); return false;">Annulla</a></span>
-			</div>
-		</div>
-	</div>
-
 	
 	<div id="friends">
 		<div class="relationship_title">
 			<div style="float:left">Amici</div>
-			<div style="float:right"><span id="friends_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=friends" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
+			<c:choose>
+				<c:when test="${not empty username && username != pageContext.request.remoteUser}">
+					<div style="float:right"><span id="friends_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=friends&username=${username}" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
+				</c:when>
+				<c:otherwise>
+					<div style="float:right"><span id="friends_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=friends" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div id="friends_list_container">	
 			<div id="friends_list_content">
@@ -269,7 +186,14 @@
 	<div id="neighbors">
 		<div class="relationship_title">
 			<div style="float:left">Vicini</div>
-			<div style="float:right"><span id="neighbors_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=neighborhoods" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
+			<c:choose>
+				<c:when test="${not empty username && username != pageContext.request.remoteUser}">
+					<div style="float:right"><span id="neighbors_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=neighborhoods&username=${username}" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
+				</c:when>
+				<c:otherwise>
+					<div style="float:right"><span id="neighbors_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=neighborhoods" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 		<div id="neighbors_list_container">	
 			<div id="neighbors_list_content">
@@ -310,36 +234,6 @@
 		</div>
 	</div>
 </div>
-
-
-<script>
-	function cancelSendingMessage() {
-		$('messagetext').value = "";
-		new Effect.Fade('send_message', { duration: 0.4 });
-		return false;
-	}
-	function sendMessage() {
-		var sender = "${pageContext.request.remoteUser}";
-		var receiver = "${username}";
-		var messagetext = $('messagetext').value;
-		MessageManager.sendPersonalMessageDWR(sender, receiver, messagetext, function(str){
-			if(str == true) {
-				$('messagetext').value = "<fmt:message key='tamuvii.message.success'/>" + receiver;
-				new Effect.Highlight('messagetext', {startcolor: '#4F8CC9',	restorecolor: true, afterFinish: function(e) {
-					setTimeout("endSendingMessage()", 3000);
-				}});
-			} else {
-				$('messagetext').value = "<fmt:message key='tamuvii.message.error'/>";
-				new Effect.Highlight('messagetext', {startcolor: '#FFB98C',	restorecolor: true});
-			}
-		});
-	}
-	function endSendingMessage() {
-		$('messagetext').value = "";
-		Effect.Fade('send_message');
-	}
-	
-</script>
 		
 <script>
 	function displayElement(id) {
@@ -359,6 +253,7 @@
 		}
 		return false;
 	}
+	
 	function displayOptionHint(hint) {
 		$('option_hint').innerHTML = hint;		
 		return false;
@@ -381,12 +276,18 @@
 	}
 	function toggleAndMove(id, title) {	
 		new Effect.toggle(id, 'slide', { duration: 0.5, afterFinish: function(effect) {
-	      new Effect.ScrollTo(title);
+	      new Effect.ScrollTo(title, { duration: 0.5 });
 	    }});
 	}
 </script>
 
 <script>
+	var indexDirectors;
+	var totDirectors;
+	var recordsPerRowDirectors; 
+	var pagesDirectors;
+	var heightDirectors;
+	
 	var indexFriends;
 	var totFriends;
 	var recordsPerRowFriends; 
@@ -400,6 +301,10 @@
 	var heightNeighbors;
 	
 	Event.observe(window, 'load', function(event) {
+		indexDirectors = 0;
+		totDirectors = ${fn:length(shelfDirectorReportList)};
+		recordsPerPageDirectors = 5;
+		pagesDirectors = Math.ceil(totDirectors/recordsPerPageDirectors);
 		
 		indexFriends = 0;
 		totFriends = ${fn:length(friends)};
@@ -411,7 +316,15 @@
 		recordsPerPageNeighbors = 5;
 		pagesNeighbors = Math.ceil(totNeighbors/recordsPerPageNeighbors);
 		
-
+		if(totDirectors < recordsPerPageDirectors) {
+			$('directors_list_container').setStyle({
+				height: (totDirectors*35 + totDirectors*5 + totDirectors*1) + "px"
+			});
+		} else {
+			$('directors_list_container').setStyle({
+				height: (recordsPerPageDirectors*35 + recordsPerPageDirectors*5 + recordsPerPageDirectors*1) + "px"
+			});
+		}
 		if(totFriends < recordsPerPageFriends) {
 			$('friends_list_container').setStyle({
 				height: (totFriends*35 + totFriends*5 + totFriends*1) + "px"
@@ -432,6 +345,9 @@
 		}
 		
 		
+		if(pagesDirectors > 1) {
+    		$('downDirectors').setStyle({ display: 'block' });
+	    }
 	    if(pagesFriends > 1) {
     		$('downFriends').setStyle({ display: 'block' });
 	    }
@@ -465,4 +381,51 @@
 		new Effect.Move($(container),{x: 0, y: step*-h, duration: 0.3}); return index;
 	}
 	//////// FINE FUNZIONI GENERICHE PER LO SCROLLING ////////
+</script>
+
+
+<script>
+	//////// FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////
+	// Ordina per cognome
+	function orderShelfDirectorReportBySurname(username) {
+		ShelfManager.getShelfDirectorReport(username, null, null, "surname", function(str) {
+			refreshShelfDirectorReportList(str);
+		});
+	}
+	// Ordina per numero di film
+	function orderShelfDirectorReportByNumMovies(username) {
+		ShelfManager.getShelfDirectorReport(username, null, null, null, function(str) {
+			refreshShelfDirectorReportList(str);
+		});
+	}
+	// Aggiorna la ul
+	function refreshShelfDirectorReportList(str) {
+		dwr.util.removeAllOptions('directors_ul');
+		for(var x=0; x<str.length; x++) {
+			var li = Builder.node('li', { onclick: "document.location.href='/directorDetail.html?director="+str[x].director+"'" });
+			var person_list_info_container = Builder.node('div', { className: 'person_list_info_container' });
+			var container = Builder.node('div', { className: 'container' });
+			var director_image = Builder.node('img', {className: 'major', height: '30', width: '30', src: '/images/placeholder_user.jpg'});
+			var director_image_frame = Builder.node('img', {className: 'minor', src: '/images/frame_30.png'});
+
+			var div_person_list_info = Builder.node('div', { className: 'person_list_info' });
+			var span_director_name = Builder.node('span', { className: 'bold_text' }, str[x].name + ' ' + str[x].surname);
+			var span_director_numMovies = Builder.node('span', { className: 'light_text_italic' }, 'Film (' + str[x].numMovies + ')');
+			var br = Builder.node('br');
+			
+			container.insert(director_image);
+			container.insert(director_image_frame);
+
+			div_person_list_info.insert(span_director_name);
+			div_person_list_info.insert(br);
+			div_person_list_info.insert(span_director_numMovies);
+
+			person_list_info_container.insert(container);
+			person_list_info_container.insert(div_person_list_info);
+
+			li.insert(person_list_info_container);
+			$('directors_ul').insert(li);
+		}
+	}
+	//////// FINE FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////
 </script>

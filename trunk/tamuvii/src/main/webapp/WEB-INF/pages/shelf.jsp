@@ -218,12 +218,13 @@
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
 				<li><a href="/wishlist.html?username=${username}" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Vedi la sua wishlist')"><img src="/images/wishlist.png" /></a></li>
 				</c:if>
-				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Visualizza statistiche')" onclick="chooseOption('statistics')"><img src="/images/statistics.png" /></a></li>
 			</ul>
 		</div>
-		<div id="option_hint_container">
-			<div id="option_hint">Cosa vuoi fare?</div>
-		</div>
+		<c:if test="${not empty username && username != pageContext.request.remoteUser}">
+			<div id="option_hint_container">
+				<div id="option_hint">Cosa vuoi fare?</div>
+			</div>
+		</c:if>
 	</div>
 	
 	
@@ -346,7 +347,19 @@
 								<div class="person_list_info">
 									<b>${friend.username}</b>
 									<br/>
-									<span class="light_text_italic">Nessun informazione aggiunta</span>
+									<span class="light_text_italic">
+										<c:if test="${not empty friend.sex}">
+											<c:choose>
+												<c:when test="${friend.sex == 'M'}">
+													Maschio,
+												</c:when>
+												<c:otherwise>
+													Femmina,
+												</c:otherwise>
+											</c:choose>
+										</c:if>
+										<c:if test="${not empty friend.age && friend.age != -1}">${friend.age} anni,</c:if> ${friend.address.country}
+									</span>
 								</div>
 							</div>
 						</li>
@@ -386,7 +399,19 @@
 								<div class="person_list_info">
 									<b>${neighborhood.username}</b>
 									<br/>
-									<span class="light_text_italic">Nessun informazione aggiunta</span>
+									<span class="light_text_italic">
+										<c:if test="${not empty neighborhood.sex}">
+											<c:choose>
+												<c:when test="${neighborhood.sex == 'M'}">
+													Maschio,
+												</c:when>
+												<c:otherwise>
+													Femmina,
+												</c:otherwise>
+											</c:choose>
+										</c:if>
+										<c:if test="${not empty neighborhood.age && neighborhood.age != -1}">${neighborhood.age} anni,</c:if> ${neighborhood.address.country}
+									</span>
 								</div>
 							</div>
 						</li>

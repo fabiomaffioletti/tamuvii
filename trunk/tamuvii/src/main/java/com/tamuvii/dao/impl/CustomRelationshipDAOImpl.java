@@ -28,5 +28,11 @@ public class CustomRelationshipDAOImpl extends SqlMapClientDaoSupport implements
 		return (UserNeighbor) getSqlMapClientTemplate().queryForObject("custom_relationship.getUserPublicInfo", username);
 	}
 
+
+	@SuppressWarnings("unchecked")
+	public List<UserNeighbor> getLastUserVisitors(String username) {
+		return getSqlMapClientTemplate().queryForList("custom_relationship.getLastUserVisitors", username);
+	}
+
 	
 }

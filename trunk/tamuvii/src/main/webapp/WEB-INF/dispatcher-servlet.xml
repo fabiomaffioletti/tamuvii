@@ -110,6 +110,9 @@
                 <!-- Registrazione -->
                 /register.html=registerWizardController
                 /confirmRegistration.html=registrationConfirmationController
+                
+                <!-- Statistics -->
+                /statistics.html=statisticsController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -201,6 +204,13 @@
     
     <bean id="userReviewVoteController" class="com.tamuvii.webapp.controller.UserReviewVoteController">
     	<property name="userReviewVoteManager" ref="userReviewVoteManager" />
+    </bean>
+    
+    <bean id="statisticsController" class="com.tamuvii.webapp.controller.StatisticsController">
+    	<property name="appUserManager" ref="appUserManager" />
+    	<property name="shelfManager" ref="shelfManager" />
+    	<property name="relationshipManager" ref="relationshipManager" />
+    	<property name="visitManager" ref="visitManager" />
     </bean>
     
     

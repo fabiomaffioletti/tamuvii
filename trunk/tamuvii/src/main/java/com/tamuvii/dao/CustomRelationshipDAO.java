@@ -12,4 +12,6 @@ public interface CustomRelationshipDAO {
 	
 	public UserNeighbor getUserPublicInfo(String username);
 	
+	public List<UserNeighbor> getLastUserVisitors(String username);
+	
 }

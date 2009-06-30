@@ -26,4 +26,5 @@
     <sqlMap resource="sqlmaps/custom_Relationship_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/config_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/visit_SqlMap.xml"/>
+    <sqlMap resource="sqlmaps/custom_Statistics_SqlMap.xml"/>
 </sqlMapConfig>

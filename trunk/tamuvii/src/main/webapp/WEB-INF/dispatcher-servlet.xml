@@ -210,7 +210,7 @@
     	<property name="appUserManager" ref="appUserManager" />
     	<property name="shelfManager" ref="shelfManager" />
     	<property name="relationshipManager" ref="relationshipManager" />
-    	<property name="visitManager" ref="visitManager" />
+    	<property name="statisticsManager" ref="statisticsManager" />
     </bean>
     
     

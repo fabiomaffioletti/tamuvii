@@ -175,6 +175,11 @@
 		<property name="customRelationshipDao" ref="customRelationshipDao" />
 	</bean>
 	
+	<bean id="statisticsManager" class="com.tamuvii.service.impl.StatisticsManagerImpl">
+		<property name="visitManager" ref="visitManager" />
+		<property name="customStatisticsDao" ref="customStatisticsDao" />
+	</bean>
+	
 	
 	<!-- EVENT DISPATCHER
 	<bean id="loggerListener" class="it.vidiemme.amadeusecommerce.eventdispatcher.listener.LoggerListener">

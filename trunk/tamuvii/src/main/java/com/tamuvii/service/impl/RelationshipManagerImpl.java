@@ -2,8 +2,6 @@ package com.tamuvii.service.impl;
 
 import java.util.List;
 
-import com.tamuvii.model.UserToUserExample;
-import com.tamuvii.model.UserToUserExample.Criteria;
 import com.tamuvii.pojo.UserNeighbor;
 import com.tamuvii.service.RelationshipManager;
 import com.tamuvii.service.UserToUserManager;

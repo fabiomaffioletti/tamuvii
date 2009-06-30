@@ -132,6 +132,7 @@
     	<property name="shelfManager" ref="shelfManager" />
     	<property name="appUserManager" ref="appUserManager" />
     	<property name="relationshipManager" ref="relationshipManager" />
+    	<property name="visitManager" ref="visitManager" />
     </bean>
     
     <bean id="wishlistController" class="com.tamuvii.webapp.controller.WishlistController">

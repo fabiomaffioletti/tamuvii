@@ -301,7 +301,7 @@
 								<div class="person_list_info">
 									<span class="bold_text">${shelfDirectorReportItem.name} ${shelfDirectorReportItem.surname}</span>
 									<br/>
-									<span class="light_text_italic">Film (${shelfDirectorReportItem.numMovies})</span>
+									<span class="light_text_italic">${shelfDirectorReportItem.numMovies} Film</span>
 								</div>
 							</div>
 						</li>

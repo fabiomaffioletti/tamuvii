@@ -170,6 +170,10 @@
 		<property name="configDao" ref="configDao" />
 	</bean>
 	
+	<bean id="visitManager" class="com.tamuvii.service.impl.VisitManagerImpl">
+		<property name="visitDao" ref="visitDao" />
+	</bean>
+	
 	
 	<!-- EVENT DISPATCHER
 	<bean id="loggerListener" class="it.vidiemme.amadeusecommerce.eventdispatcher.listener.LoggerListener">

@@ -14,6 +14,7 @@ import com.tamuvii.service.AppUserManager;
 import com.tamuvii.service.MovieManager;
 import com.tamuvii.service.RelationshipManager;
 import com.tamuvii.service.ShelfManager;
+import com.tamuvii.service.VisitManager;
 import com.tamuvii.util.TamuviiConstants;
 
 public class ShelfController implements Controller {
@@ -21,7 +22,11 @@ public class ShelfController implements Controller {
 	private ShelfManager shelfManager = null;
 	private AppUserManager appUserManager = null;
 	private RelationshipManager relationshipManager = null;
+	private VisitManager visitManager = null;
 
+	public void setVisitManager(VisitManager visitManager) {
+		this.visitManager = visitManager;
+	}
 	public void setAppUserManager(AppUserManager appUserManager) {
 		this.appUserManager = appUserManager;
 	}
@@ -49,6 +54,7 @@ public class ShelfController implements Controller {
 				username = request.getRemoteUser();
 			}
 		else {
+			// L'utente sta visualizzando la videoteca di un altro (o di se stesso se username = remoteUser)
 			username = request.getParameter("username");
 			List<PersonalMovieIdAndWishedFlag> personalMoviesIdsAndWishedFlags = movieManager.getPersonalMoviesIdsAndWishedFlags(request.getRemoteUser());
 			mv.addObject("personalMoviesIdsAndWishedFlags", personalMoviesIdsAndWishedFlags);
@@ -58,6 +64,10 @@ public class ShelfController implements Controller {
 				boolean areNeighborhoods = relationshipManager.areNeighborhoods(request.getRemoteUser(), username);
 				mv.addObject("areNeighborhoods", areNeighborhoods);
 			}
+			
+			// Aggiungo un record alle visite solo se username != remoteUser
+			if(!username.equals(request.getRemoteUser()))
+				visitManager.addUserVisit(username, request.getRemoteUser());
 		}
 			
 		// Aggiunge i film della videoteca

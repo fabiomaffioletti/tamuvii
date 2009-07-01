@@ -90,5 +90,13 @@ public class AppUserManagerImpl implements AppUserManager {
 		appUserDao.updateByPrimaryKey(appUser);
 	}
 	
+	
+	public AppUser getUserByUsername(String username) {
+		AppUserExample appUserExample = new AppUserExample();
+		Criteria c = appUserExample.createCriteria();
+		c.andUsernameEqualTo(username);
+		return (AppUser) appUserDao.selectByExample(appUserExample).get(0);
+	}
+	
 
 }

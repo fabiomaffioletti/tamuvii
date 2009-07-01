@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.tamuvii.dao.CustomRelationshipDAO;
+import com.tamuvii.model.AppUser;
 import com.tamuvii.pojo.UserNeighbor;
 
 public class CustomRelationshipDAOImpl extends SqlMapClientDaoSupport implements CustomRelationshipDAO {
@@ -32,6 +33,12 @@ public class CustomRelationshipDAOImpl extends SqlMapClientDaoSupport implements
 	@SuppressWarnings("unchecked")
 	public List<UserNeighbor> getLastUserVisitors(String username) {
 		return getSqlMapClientTemplate().queryForList("custom_relationship.getLastUserVisitors", username);
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<UserNeighbor> getLastSubscribedUsers(AppUser appUser) {
+		return getSqlMapClientTemplate().queryForList("custom_relationship.getLastSubscribedUsers", appUser);
 	}
 
 	

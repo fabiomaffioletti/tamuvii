@@ -2,6 +2,7 @@ package com.tamuvii.dao;
 
 import java.util.List;
 
+import com.tamuvii.model.AppUser;
 import com.tamuvii.pojo.UserNeighbor;
 
 public interface CustomRelationshipDAO {
@@ -13,5 +14,7 @@ public interface CustomRelationshipDAO {
 	public UserNeighbor getUserPublicInfo(String username);
 	
 	public List<UserNeighbor> getLastUserVisitors(String username);
+	
+	public List<UserNeighbor> getLastSubscribedUsers(AppUser appUser);
 	
 }

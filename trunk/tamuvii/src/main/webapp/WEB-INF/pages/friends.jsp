@@ -302,8 +302,16 @@
 					<div class="contact_info_sx_alto">
 						<li>
 							<div class="container_48">
-								<img src="${contact.imageLink}" width="48" height="48" class="major_48" />
-								<img class="minor_48" src="/images/frame_48.png" alt="">
+								<c:choose>
+									<c:when test="${not empty contact.imageLink}">
+										<img src="${contact.imageLink}" width="48" height="48" class="major_48" />
+										<img class="minor_48" src="/images/frame_48.png" alt="">
+									</c:when>
+									<c:otherwise>
+										<img src="/images/placeholder_user.jpg" width="48" height="48" class="major_48" />
+										<img class="minor_48" src="/images/frame_48.png" alt="">
+									</c:otherwise>	
+								</c:choose>
 							</div>
 							<div id="user_profile_info" style="margin-bottom: 10px;">
 								<a href="/shelf.html?username=${contact.username}"" style="font-size: 14px; color: black; font-weight: bold;">${contact.username}</a>
@@ -330,7 +338,9 @@
 								</span>
 								<span class="light_text_italic font12">Finora ha visto ${contact.totMovies} film</span>
 								<br/>
+								<c:if test="${not empty contact.website}">
 								<span class="font12">Sito web: <a href="${contact.website}" target="_blank">${contact.websiteTitle}</a></span>
+								</c:if>
 								<br/>
 								<c:if test="${not empty contact.quotation}">
 									<span class="font12">Citazione preferita: </span><span class="light_text_italic font12">${contact.quotation}</span>

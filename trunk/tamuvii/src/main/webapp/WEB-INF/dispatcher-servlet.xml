@@ -113,6 +113,9 @@
                 
                 <!-- Statistics -->
                 /statistics.html=statisticsController
+                
+                <!-- Explore people -->
+                /explorePeople.html=explorePeopleController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -211,6 +214,10 @@
     	<property name="shelfManager" ref="shelfManager" />
     	<property name="relationshipManager" ref="relationshipManager" />
     	<property name="statisticsManager" ref="statisticsManager" />
+    </bean>
+    
+    <bean id="explorePeopleController" class="com.tamuvii.webapp.controller.ExplorePeopleController">
+    	<property name="explorePeopleManager" ref="explorePeopleManager" />
     </bean>
     
     

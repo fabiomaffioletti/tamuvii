@@ -23,7 +23,7 @@
 
 .latest_movies_added_li {
 	padding: 10px; 
-	border-top: 1px solid #ccc; 
+	border-top: 1px dashed #ccc; 
 	min-height: 50px;
 }
 .latest_movies_added ul {
@@ -54,7 +54,7 @@
 	float:left;
 	display: inline;
 	padding: 10px; 
-	border-top: 1px solid #ccc; 
+	border-top: 1px dashed #ccc; 
 	width: 230px; 
 	min-height: 50px;
 }

@@ -180,6 +180,10 @@
 		<property name="customStatisticsDao" ref="customStatisticsDao" />
 	</bean>
 	
+	<bean id="explorePeopleManager" class="com.tamuvii.service.impl.ExplorePeopleManagerImpl">
+		<property name="appUserManager" ref="appUserManager" />
+		<property name="customRelationshipDao" ref="customRelationshipDao" />
+	</bean>
 	
 	<!-- EVENT DISPATCHER
 	<bean id="loggerListener" class="it.vidiemme.amadeusecommerce.eventdispatcher.listener.LoggerListener">

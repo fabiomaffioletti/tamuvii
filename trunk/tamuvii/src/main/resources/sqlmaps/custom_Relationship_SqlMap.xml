@@ -161,4 +161,33 @@
 		]]>
   </select>
   
+  <select id="getLastSubscribedUsers" resultMap="userNeighbor" parameterClass="com.tamuvii.model.AppUser">
+  		<![CDATA[
+  		select 			u.id,
+					 	u.username, 
+						u.email,
+						u.website,
+						u.website_title as websiteTitle,
+						u.city,
+						u.country,
+						u.image as imageLink,
+						u.quotation,
+						(YEAR(CURDATE())-YEAR(u.dob)) - (RIGHT(CURDATE(),13) < RIGHT(u.dob,13)) AS age,
+						u.sex,
+						null as date_added,
+						null as lastMovies,
+						null as totMovies,
+						null as visits
+						
+
+		from			app_user u
+
+		where			u.username != #username# and u.country like concat('%', #country#, '%')
+
+		order by		u.date_activated desc
+
+		limit 0, 10
+		]]>
+  </select>
+  
 </sqlMap>

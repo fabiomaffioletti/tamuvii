@@ -5,93 +5,6 @@
     <script type="text/javascript" src="/dwr/engine.js"></script>
     <script type="text/javascript" src="/dwr/util.js"></script>
     <script type="text/javascript" src="/dwr/interface/ShelfManager.js"> </script>
-    <script type="text/javascript" src="/dwr/interface/MessageManager.js"> </script>
-    
-    <style>
-    	.statistics_section_title {
-			background-color:#EEEEEE;
-			border:1px dashed #CCCCCC;
-			font-size:15px;
-			font-weight:bold;
-			margin-bottom:10px;
-			width:100%;
-    	}
-    	.statistics_section_content {
-    		font-size: 12px;
-    	}
-    	
-    	#statistics_visits ul {
-    		list-style-image: url(/images/aquadot.jpg);
-    	}
-    	#statistics_visits li {
-    		padding: 5px;
-    	}
-    	
-    	#statistics_visits a {
-    		font-size: 12px;
-    		color: blue;
-    		text-decoration: none;
-    	}
-    	#statistics_visits a:hover {
-    		text-decoration: underline;
-    	}
-    	
-    	
-    	#statistics_last_visitors {
-    		clear: both;
-    		border: 1px dashed #ccc;
-    		height: auto;
-    		margin-bottom: 20px;
-    		width: 100%;
-    	}
-    	
-    	#statistics_last_visitors ul {
-    		list-style: none;
-    		paddin: 0;
-    		margin: 0;
-    	}
-    	#statistics_last_visitors li {
-    		float: left;
-    	}
-    	
-    	.statistics_latest_movies_added a {
-    		color: blue;
-    		font-size: 11px;
-    		text-decoration: none;
-    	}
-    	.statistics_latest_movies_added a:hover {
-    		text-decoration: underline;
-    	}
-    	
-    	.statistics_last_visitors_content {
-    		height: 55px; 
-    		clear: both; 
-    		padding: 10px;
-    	}
-    	.statistics_last_visitors_content a {
-    		text-decoration: none;
-    	}
-    	.statistics_last_visitors_content a:hover {
-    		text-decoration: underline;
-    	}
-    	.statistics_last_movie_added_item {
-    		padding: 3px;
-    	}
-    	.statistics_last_movie_added_title {
-    		background-color:#EEEEEE;
-    		border-bottom:1px dotted #CCCCCC;
-    		border-top:1px solid #AAAAAA;
-    		font-size:11px;
-    		font-weight:bold;
-    		padding:3px;
-    		width:100%;
-    	}
-    	.statistics_latest_movies_added {
-    		float: right;
-    		width: 200px;
-    	}
-    	
-    </style>
 </head>
 
 <div id="main">
@@ -113,8 +26,16 @@
 			<c:forEach var="contact" items="${statistics.lastVisitors}" varStatus="row" >
 					<div class="statistics_last_visitors_content">
 						<div class="container_48">
-							<img src="${contact.imageLink}" width="48" height="48" class="major_48" />
-							<img class="minor_48" src="/images/frame_48.png" alt="">
+							<c:choose>
+								<c:when test="${not empty contact.imageLink}">
+									<img src="${contact.imageLink}" width="48" height="48" class="major_48" />
+									<img class="minor_48" src="/images/frame_48.png" alt="">
+								</c:when>
+								<c:otherwise>
+									<img src="/images/placeholder_user.jpg" width="48" height="48" class="major_48" />
+									<img class="minor_48" src="/images/frame_48.png" alt="">
+								</c:otherwise>	
+							</c:choose>
 						</div>
 						<div id="user_profile_info" style="margin-bottom: 10px;">
 							<a href="/shelf.html?username=${contact.username}" style="font-size: 14px; color: black; font-weight: bold;">${contact.username}</a>

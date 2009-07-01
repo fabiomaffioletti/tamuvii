@@ -25,7 +25,7 @@
         <Menu name="RelationshipMenu" title="Contatti" roles="ROLE_ADMIN,ROLE_USER" width="120" page="/relationship.html?mode=friends">
 			<Item name="FriendsMenu" title="Amici" page="/relationship.html?mode=friends" roles="ROLE_ADMIN,ROLE_USER" />
 	        <Item name="NeighborhoodsMenu" title="Vicini" page="/relationship.html?mode=neighborhoods" roles="ROLE_ADMIN,ROLE_USER" />        	
-	        <Item name="ExploreContactsMenu" title="Esplora" page="#" roles="ROLE_ADMIN,ROLE_USER" />
+	        <Item name="ExploreContactsMenu" title="Esplora" page="/explorePeople.html" roles="ROLE_ADMIN,ROLE_USER" />
         </Menu>
         
         <Menu name="MessageMenu" title="Messaggi" page="/personalMessages.html" roles="ROLE_ADMIN,ROLE_USER" width="120"/>

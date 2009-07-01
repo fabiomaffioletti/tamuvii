@@ -341,8 +341,16 @@
 						<li onclick="document.location.href='/shelf.html?username=${friend.username}'">
 							<div class="person_list_info_container">
 								<div class="container">
-									<img src="${friend.imageLink}" width="30" height="30" class="major" />
-									<img class="minor" src="/images/frame_30.png" alt="">
+									<c:choose>
+										<c:when test="${not empty friend.imageLink}">
+											<img src="${friend.imageLink}" width="30" height="30" class="major" />
+											<img class="minor" src="/images/frame_30.png" alt="">		
+										</c:when>
+										<c:otherwise>
+											<img src="/images/placeholder_user.jpg" width="30" height="30" class="major" />
+											<img class="minor" src="/images/frame_30.png" alt="">
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="person_list_info">
 									<b>${friend.username}</b>
@@ -393,8 +401,16 @@
 						<li onclick="document.location.href='/shelf.html?username=${neighborhood.username}'">
 							<div class="person_list_info_container">
 								<div class="container">
-									<img src="${neighborhood.imageLink}" width="30" height="30" class="major" />
-									<img class="minor" src="/images/frame_30.png" alt="">
+									<c:choose>
+										<c:when test="${not empty neighborhood.imageLink}">
+											<img src="${neighborhood.imageLink}" width="30" height="30" class="major" />
+											<img class="minor" src="/images/frame_30.png" alt="">		
+										</c:when>
+										<c:otherwise>
+											<img src="/images/placeholder_user.jpg" width="30" height="30" class="major" />
+											<img class="minor" src="/images/frame_30.png" alt="">
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="person_list_info">
 									<b>${neighborhood.username}</b>
@@ -629,7 +645,7 @@
 
 			var div_person_list_info = Builder.node('div', { className: 'person_list_info' });
 			var span_director_name = Builder.node('span', { className: 'bold_text' }, str[x].name + ' ' + str[x].surname);
-			var span_director_numMovies = Builder.node('span', { className: 'light_text_italic' }, 'Film (' + str[x].numMovies + ')');
+			var span_director_numMovies = Builder.node('span', { className: 'light_text_italic' }, str[x].numMovies + ' Film');
 			var br = Builder.node('br');
 			
 			container.insert(director_image);

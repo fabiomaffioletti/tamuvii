@@ -74,7 +74,7 @@
 						<c:if test="${shelfItem.mark > 0}">
 					    	<div class="mark">
 						    	<c:forEach begin="1" end="${shelfItem.mark}">
-									<img src="/images/sun.png"/>	    		
+									<img src="/images/star.gif"/>
 						    	</c:forEach>
 					    	</div>
 				    	</c:if>

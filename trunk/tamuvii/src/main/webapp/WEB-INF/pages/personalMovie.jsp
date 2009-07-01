@@ -8,34 +8,6 @@
 </head>
 
 
-<%-- 
-<div id="sx">
-
-<center>
-	<c:choose>
-		<c:when test="${not empty personalMovie.localizedImage}">
-			<img src="${personalMovie.localizedImage}" width="150px;" style="border: 1px dotted #ccc;">
-		</c:when>
-		<c:otherwise>
-			<img src="${personalMovie.originalImage}" width="150px;">		
-		</c:otherwise>
-	</c:choose>
-</center>
-Localized Title: ${personalMovie.localizedTitle}
-<br/>
-Original Title: ${personalMovie.originalTitle}
-<br/>
-Duration: ${personalMovie.duration} min
-<br/>
-Director: <a href="/directorDetail.html?director=${personalMovie.directorId}">${personalMovie.director}</a>
-<br/>
-Release date: ${personalMovie.releaseDate}
-
-
-</div>
-
---%>
-
 <div id="sidebar">
 	<div id="movie_details">
 		<ul>
@@ -123,7 +95,7 @@ Release date: ${personalMovie.releaseDate}
 		var choosen_mark = $('mark').value;
 		var images = "";
 		for(i=0; i<choosen_mark; i++) {
-			images += "<img src='/images/sun.png' />";
+			images += "<img src='/images/star.gif' />";
 		}
 		$('displayed_mark').innerHTML = images;
 	}

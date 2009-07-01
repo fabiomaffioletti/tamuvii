@@ -4,75 +4,6 @@
     <title><fmt:message key="socialMovie.title"/></title>
 </head>
 
-<%-- 
-<div id="sx">
-
-<c:choose>
-	<c:when test="${!presentInShelf && !presentInWishlist}">
-		<a href="/shelfManagement.html?action=add&movie=${socialMovie.movie}">Add to shelf</a>
-		<a href="/wishlistManagement.html?action=wish&movie=${socialMovie.movie}">Add to wishlist</a>
-	</c:when>
-	<c:when test="${!presentInShelf && presentInWishlist}">
-		Questo libro è presente nella tua wishlist:
-		<a href="/shelfManagement.html?action=move&movie=${socialMovie.movie}">Move to shelf</a>
-	</c:when>
-	<c:otherwise>
-		Questo libro è presente nella tua shelf!
-		<a href="/shelfManagement.html?action=delete&movie=${socialMovie.movie}">Delete from shelf</a>
-	</c:otherwise>
-</c:choose>
-
-<br/>
-<br/>
-<center>
-	<c:choose>
-		<c:when test="${not empty socialMovie.localizedImage}">
-			<img src="${socialMovie.localizedImage}" width="150px;" style="border: 1px dotted #ccc;">
-		</c:when>
-		<c:otherwise>
-			<img src="${socialMovie.originalImage}" width="150px;">		
-		</c:otherwise>
-	</c:choose>
-</center>
-LocalizedTitle: ${socialMovie.localizedTitle}
-<br/>
-OriginalTitle: ${socialMovie.originalTitle}
-<br/>
-Duration: ${socialMovie.duration} min
-<br/>
-Director: <a href="/directorDetail.html?director=${socialMovie.directorId}">${socialMovie.director}</a>
-<br/>
-Release date: ${socialMovie.releaseDate}
-<br/>
-Num. Reviews: ${socialMovie.numReviews}
-<br/>
-Avg Mark: ${socialMovie.avgMark} (${socialMovie.numMarks})
-<br/>
-<br/>
-<br/>
-
-Totale Users:
-<c:out value="${fn:length(socialMovie.movieUsers)}" />
-
-<display:table name="${socialMovie.movieUsers}" cellspacing="0" cellpadding="0" id="movieUser" pagesize="25" class="table" export="false">
-	<display:column escapeXml="false" sortable="false" titleKey="i">
-		<img src="${movieUser.imageLink}" height="20px" width="20px;"/>
-	</display:column>
-	<display:column escapeXml="false" sortable="true" titleKey="u">
-		<a href="/shelf.html?username=${movieUser.username}">${movieUser.username}</a>
-	</display:column>
-	<display:column escapeXml="false" sortable="false" titleKey="m">
-		<c:if test="${movieUser.mark > 0}">
-	    	<c:forEach begin="1" end="${movieUser.mark}">
-				<img src="/images/sun.png" height="11px" />	    		
-	    	</c:forEach>
-    	</c:if>
-	</display:column>
-</display:table>
-
-</div>
---%>
-
 <div id="sidebar">
 	<div id="social_movie_options">
 		<c:choose>
@@ -153,7 +84,7 @@ Totale Users:
 									<c:if test="${movieUser.mark > 0}">
 										<span class="first_mark_image">
 									    	<c:forEach begin="1" end="${movieUser.mark}">
-												<img src="/images/sun.png"/>	    		
+												<img src="/images/star.gif"/>	    		
 									    	</c:forEach>
 								    	</span>
 							    	</c:if>
@@ -213,7 +144,7 @@ Totale Users:
 								<c:if test="${review.mark > 0}">
 									<span class="first_mark_image">
 								    	<c:forEach begin="1" end="${review.mark}">
-											<img src="/images/sun.png"/>	    		
+											<img src="/images/star.gif"/>	    		
 								    	</c:forEach>
 							    	</span>
 						    	</c:if>

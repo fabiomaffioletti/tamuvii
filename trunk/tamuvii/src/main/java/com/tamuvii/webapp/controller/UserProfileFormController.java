@@ -40,7 +40,7 @@ public class UserProfileFormController extends TamuviiFormController {
 			saveTamuviiSuccessMessage(request, "Ecco il tuo profilo aggiornato!");
 			
 		} catch(Exception e) {
-			//TODO Loggare l'eccezione e mandare a una vie di errore.
+			//TODO Loggare l'eccezione e mandare a una view di errore.
 			e.printStackTrace();
 		}
 		

@@ -52,6 +52,9 @@
 			<li>
 				Non ti sei ancora registrato? <a href="/register.html">Puoi farlo da qui!</a>
 			</li>
+			<li style="background-color: #FFDF8F;">
+				<b>Nota bene!</b> taMuvii &egrave; stato progettato, creato e testato solo su Firefox 3.5. Gli altri browser (sicuramente Internet Explorer) con tutta probabilità avranno problemi nella visualizzazione e nelle funzionalit&agrave; del sito. Potete scaricare la nuova versione di Firefox da <a href="http://www.mozilla-europe.org/it/firefox/" target="_blank">qui</a>. 
+			</li>
 		</ul>
 	</div>
 </div>

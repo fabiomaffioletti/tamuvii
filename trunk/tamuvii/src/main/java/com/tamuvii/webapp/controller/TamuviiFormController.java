@@ -17,6 +17,14 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 import com.tamuvii.util.TamuviiConstants;
 
 public class TamuviiFormController extends SimpleFormController {
+	private String cancelView;
+	
+	public final void setCancelView(String cancelView) {  
+        this.cancelView = cancelView;  
+    }
+    public final String getCancelView() {
+        return this.cancelView;   
+    }
 
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
 		binder.registerCustomEditor(Integer.class, null, new CustomNumberEditor(Integer.class, null, true));

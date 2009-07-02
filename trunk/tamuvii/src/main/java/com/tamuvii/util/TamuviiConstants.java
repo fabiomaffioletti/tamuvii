@@ -10,6 +10,8 @@ public class TamuviiConstants {
 	public static final Integer YEARS_RANGE = 5;
 	
 	public static final String SHELF_DIRECTOR_REPORT_DEFAULT_ORDER_ATTRIBUTE = "numMovies";
+
+	public static final String USER_PROFILE_IMAGE_UPLOAD_DIRECTORY = "/user_profile_images";
 	
 	
 	

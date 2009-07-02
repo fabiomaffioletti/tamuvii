@@ -119,6 +119,8 @@
                 
                 <!-- Preferences -->
                 /preferences.html=userProfileFormController
+                /password.html=filenameController
+                /image.html=userImageUploadController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -226,6 +228,12 @@
     <bean id="userProfileFormController" class="com.tamuvii.webapp.controller.UserProfileFormController">
     	<property name="appUserManager" ref="appUserManager" />
     	<property name="validator" ref="beanValidator" />
+    </bean>
+    
+    <bean id="userImageUploadController" class="com.tamuvii.webapp.controller.UserImageUploadController">
+		<property name="appUserManager" ref="appUserManager" />
+    	<property name="successView" value="redirect:/image.html"/>
+    	<property name="cancelView" value="redirect:/preferences.html" />
     </bean>
     
     

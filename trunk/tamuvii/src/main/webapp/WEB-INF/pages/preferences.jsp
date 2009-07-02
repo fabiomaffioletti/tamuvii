@@ -130,10 +130,10 @@
 				<b>Dati del profilo</b>
 			</li>
 			<li>
-				<a href="">Immagine personale</a>
+				<a href="/image.html">Immagine personale</a>
 			</li>
 			<li>
-				<a href="">Modifica la tua password</a>
+				<a href="/password.html">Modifica la tua password</a>
 			</li>
 		</ul>
 	</div>

@@ -111,6 +111,13 @@
 
 
 <div id="main">
+	<div style="margin-bottom: 30px;">
+		<video id="v1" width="100%" src="/movie_trailers/forest.ogg" controls>
+	    <p>Sorry, your browser does not support the &lt;video&gt; element.</p>
+	    </video>
+
+	</div>
+	
 	<div id="review_container">
 		<ul>
 			<c:forEach var="review" items="${socialMovie.detailedReviews}">

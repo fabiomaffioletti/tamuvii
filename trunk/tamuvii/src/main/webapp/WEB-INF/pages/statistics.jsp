@@ -25,18 +25,16 @@
 		<div id="statistics_last_visitors" style="display: none;">
 			<c:forEach var="contact" items="${statistics.lastVisitors}" varStatus="row" >
 					<div class="statistics_last_visitors_content">
-						<div class="container_48">
-							<c:choose>
-								<c:when test="${not empty contact.imageLink}">
-									<img src="${contact.imageLink}" width="48" height="48" class="major_48" />
-									<img class="minor_48" src="/images/frame_48.png" alt="">
-								</c:when>
-								<c:otherwise>
-									<img src="/images/placeholder_user.jpg" width="48" height="48" class="major_48" />
-									<img class="minor_48" src="/images/frame_48.png" alt="">
-								</c:otherwise>	
-							</c:choose>
-						</div>
+						<c:choose>
+							<c:when test="${not empty contact.imageLink}">
+								<div id="user_image_div" style="background-image: url(${contact.imageLink});" >
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div id="user_image_div" style="background-image: url(/images/placeholder_user_48.jpg);" >
+								</div>
+							</c:otherwise>	
+						</c:choose>
 						<div id="user_profile_info" style="margin-bottom: 10px;">
 							<a href="/shelf.html?username=${contact.username}" style="font-size: 14px; color: black; font-weight: bold;">${contact.username}</a>
 							<br/>
@@ -107,18 +105,16 @@
 <div id="sidebar">
 	<div id="user_profile">
 		<div id="user_profile_image">	
-			<div class="container_48">
-				<c:choose>
-					<c:when test="${not empty userPublicInfo.imageLink}">
-						<img src="${userPublicInfo.imageLink}" width="48" height="48" class="major_48" />
-						<img class="minor_48" src="/images/frame_48.png" alt="">				
-					</c:when>
-					<c:otherwise>
-						<img src="/images/placeholder_user.jpg" width="48" height="48" class="major_48" />
-						<img class="minor_48" src="/images/frame_48.png" alt="">
-					</c:otherwise>
-				</c:choose>
-			</div>
+			<c:choose>
+				<c:when test="${not empty userPublicInfo.imageLink}">
+					<div id="user_image_div" style="background-image: url(${userPublicInfo.imageLink});" >
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div id="user_image_div" style="background-image: url(/images/placeholder_user.jpg);" >
+					</div>
+				</c:otherwise>
+			</c:choose>
 			<div id="user_profile_info" style="margin-bottom: 10px;">
 				<b>${userPublicInfo.username}</b>
 				<br/>
@@ -490,7 +486,7 @@
 
 			var div_person_list_info = Builder.node('div', { className: 'person_list_info' });
 			var span_director_name = Builder.node('span', { className: 'bold_text' }, str[x].name + ' ' + str[x].surname);
-			var span_director_numMovies = Builder.node('span', { className: 'light_text_italic' }, 'Film (' + str[x].numMovies + ')');
+			var span_director_numMovies = Builder.node('span', { className: 'light_text_italic' }, str[x].numMovies + ' Film');
 			var br = Builder.node('br');
 			
 			container.insert(director_image);

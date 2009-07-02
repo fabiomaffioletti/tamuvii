@@ -158,19 +158,17 @@
 	
 <div id="sidebar">
 	<div id="user_profile">
-		<div id="user_profile_image">	
-			<div class="container_48">
+		<div id="user_profile_image">			
 				<c:choose>
 					<c:when test="${not empty userPublicInfo.imageLink}">
-						<img src="${userPublicInfo.imageLink}" width="48" height="48" class="major_48" />
-						<img class="minor_48" src="/images/frame_48.png" alt="">				
+						<div id="user_image_div" style="background-image: url(${userPublicInfo.imageLink});" >
+						</div>			
 					</c:when>
 					<c:otherwise>
-						<img src="/images/placeholder_user.jpg" width="48" height="48" class="major_48" />
-						<img class="minor_48" src="/images/frame_48.png" alt="">
+						<div id="user_image_div" style="background-image: url(/images/placeholder_user_48.jpg);" >
+						</div>
 					</c:otherwise>
 				</c:choose>
-			</div>
 			<div id="user_profile_info" style="margin-bottom: 10px;">
 				<b>${userPublicInfo.username}</b>
 				<br/>

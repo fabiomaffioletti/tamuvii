@@ -31,6 +31,7 @@
 	width: 85px;
 	padding: 2px;
 	border: 1px solid #666;
+	-moz-box-shadow: 3px 3px 15px #999;
 }
 .movie_list li.movie_data {
 	width: 230px;

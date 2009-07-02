@@ -116,6 +116,9 @@
                 
                 <!-- Explore people -->
                 /explorePeople.html=explorePeopleController
+                
+                <!-- Preferences -->
+                /preferences.html=userProfileFormController
             </value>
         </property>
         <property name="order" value="0"/>
@@ -218,6 +221,11 @@
     
     <bean id="explorePeopleController" class="com.tamuvii.webapp.controller.ExplorePeopleController">
     	<property name="explorePeopleManager" ref="explorePeopleManager" />
+    </bean>
+    
+    <bean id="userProfileFormController" class="com.tamuvii.webapp.controller.UserProfileFormController">
+    	<property name="appUserManager" ref="appUserManager" />
+    	<property name="validator" ref="beanValidator" />
     </bean>
     
     

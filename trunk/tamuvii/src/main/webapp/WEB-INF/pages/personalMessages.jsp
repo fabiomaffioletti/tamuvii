@@ -59,7 +59,7 @@
 						<c:set var="receiver_image" value="${allMessages[0].user.imageLink}"></c:set>
 					</c:otherwise>
 				</c:choose>
-				<div id="conversation_message_result" style="display:none;"></div>
+				<div id="conversation_message_result" class="tamuviiSuccessMessage" style="display:none;"></div>
 				<div id="message_reply_conversation" class="message_reply_textarea" style="display:block;">
 					<textarea id="message_textarea_conversation"></textarea>
 					<a href="#" onclick="emptyTextarea('message_textarea_conversation'); return false;" style="float:left;">Cancella tutto il testo</a>

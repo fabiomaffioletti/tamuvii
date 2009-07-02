@@ -19,7 +19,7 @@
         	<Item name="ShelfMenu" title="Videoteca" page="/shelf.html" roles="ROLE_ADMIN,ROLE_USER" />
         	<Item name="WishlistMenu" title="Wishlist" page="/wishlist.html" roles="ROLE_ADMIN,ROLE_USER" />
         	<Item name="StatisticsMenu" title="Statistiche" page="/statistics.html" roles="ROLE_ADMIN,ROLE_USER" />
-        	<Item name="UserMenu" title="Cambia il profilo" description="User Menu" page="/userform.html" roles="ROLE_ADMIN,ROLE_USER"/>
+        	<Item name="UserMenu" title="Cambia il profilo" page="/preferences.html" roles="ROLE_ADMIN,ROLE_USER"/>
         </Menu>
         
         <Menu name="RelationshipMenu" title="Contatti" roles="ROLE_ADMIN,ROLE_USER" width="120" page="/relationship.html?mode=friends">

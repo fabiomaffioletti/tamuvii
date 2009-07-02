@@ -16,4 +16,6 @@ public interface AppUserManager {
 	
 	public void enableUser(String userEmail);
 	
+	public void saveUser(AppUser appUser);
+	
 }

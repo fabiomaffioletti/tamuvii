@@ -56,13 +56,6 @@
 	border: 1px dashed #ccc;
 }
 
-#conversation_message_result {
- 	border:1px dashed #ccc; 
- 	padding: 10px;
- 	margin-bottom: 5px;
- 	background-color: #eee;
-}
-
 .message_reply_textarea input {
 	float:right;
 }

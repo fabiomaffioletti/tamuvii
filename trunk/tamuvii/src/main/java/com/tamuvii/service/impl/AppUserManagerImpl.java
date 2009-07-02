@@ -98,5 +98,12 @@ public class AppUserManagerImpl implements AppUserManager {
 		return (AppUser) appUserDao.selectByExample(appUserExample).get(0);
 	}
 	
+	
+	public void saveUser(AppUser appUser) {
+		if(appUser.getId() != null)
+			appUserDao.updateByPrimaryKeySelective(appUser);
+		// TODO Lanciare un'eccezione custom
+	}
+	
 
 }

@@ -85,6 +85,7 @@ public class UserImageUploadController extends TamuviiFormController {
         
         //TODO Cancellare il file precedente
         //TODO creare un nome file univoco sulla base dei millisecondi in cui è stato fatto l'upload
+        saveTamuviiSuccessMessage(request, "L'immagine è stata caricata correttamente");
         appUserManager.updateProfileImagePath(request.getRemoteUser(), TamuviiConstants.USER_PROFILE_IMAGE_UPLOAD_DIRECTORY + "/" + file.getOriginalFilename());
 
         return new ModelAndView(getSuccessView());

@@ -71,8 +71,9 @@ public class UserImageUploadController extends TamuviiFormController {
             dirPath.mkdirs();
         }
 
+        String newImageFileName = String.valueOf(System.currentTimeMillis());
         InputStream stream = file.getInputStream();
-        OutputStream bos = new FileOutputStream(uploadDir + file.getOriginalFilename());
+        OutputStream bos = new FileOutputStream(uploadDir + newImageFileName);
         int bytesRead;
         byte[] buffer = new byte[8192];
 
@@ -84,9 +85,9 @@ public class UserImageUploadController extends TamuviiFormController {
         stream.close();
         
         //TODO Cancellare il file precedente
-        //TODO creare un nome file univoco sulla base dei millisecondi in cui è stato fatto l'upload
+        
         saveTamuviiSuccessMessage(request, "L'immagine è stata caricata correttamente");
-        appUserManager.updateProfileImagePath(request.getRemoteUser(), TamuviiConstants.USER_PROFILE_IMAGE_UPLOAD_DIRECTORY + "/" + file.getOriginalFilename());
+        appUserManager.updateProfileImagePath(request.getRemoteUser(), TamuviiConstants.USER_PROFILE_IMAGE_UPLOAD_DIRECTORY + "/" + newImageFileName);
 
         return new ModelAndView(getSuccessView());
     }

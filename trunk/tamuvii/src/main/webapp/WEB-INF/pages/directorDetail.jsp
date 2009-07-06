@@ -38,43 +38,90 @@
 				<option value="4">giudizio (dal pi&ugrave; basso) </option>
 			</select>
 		</div>
-		<div id="search_div">
-			<form>
-				<input type="text" name="searchbox" id="searchbox_text" value="Cerca in questa videoteca" />
-				<input type="image" src="/images/search.png" name="doSearchShelf" id="searchbox_button" />
-			</form>
-		</div>
 	</div>
 	
 	<div id="movies">
 		<div id="movies_list_container">
 			<ul class="movie_list">
 				<c:forEach var="movie" items="${directorDetail.movies}">
+					<c:set var="displayOriginalTitle" value="n" />
+					
 					<li class="movie_image">
-						<img src="persepolis.jpg" />
+						<c:choose>
+							<c:when test="${not empty movie.localizedImage}">
+								<img src="${movie.localizedImage}" />
+							</c:when>
+							<c:otherwise>
+								<img src="${movie.originalImage}" />
+							</c:otherwise>
+						</c:choose>
 					</li>
+				
 					<li class="movie_data">
-						<div class="title" id="title_1"><a href="/socialMovie.html?movie=${directorMovie.movie}">Persepolis</a></div>
-						<div class="localized_title">Il titolo originale &egrave; Persepolis</div>
-						<div class="directed_by">di <a href="#">Vincent Paronnaud</a>, <a href="#">Marjane Satrapi</a></div>
-						<div class="date_viewed">visto il 24/05/2009</div>
-						<div class="mark"><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/></div>
+						<div class="title" id="title_${movie.movie}">
+							<c:choose>
+					    		<c:when test="${empty movie.localizedTitle}">
+						    		<a href="/socialMovie.html?movie=${movie.movie}"><b>${movie.originalTitle}</b></a> 
+						    	</c:when>
+						    	<c:otherwise>
+						    		<a href="/socialMovie.html?movie=${movie.movie}"><b>${movie.localizedTitle}</b></a>
+						    		<c:set var="displayOriginalTitle" value="y" />
+						    	</c:otherwise>
+					    	</c:choose>
+						</div>
+						<c:if test="${movie.originalTitle != movie.localizedTitle && displayOriginalTitle == 'y'}">
+				    		<div class="localized_title">
+				    			<i>Titolo originale: ${movie.originalTitle}</i>
+				    		</div>
+				    	</c:if>
+				    	<span class="font11">${movie.numReviews} recensioni</span>
+				    	<br/>
+				    	<span class="font11">${movie.numUsers} utenti</span>
+				    	<br/>
+				    	<span class="font11">Voto medio: ${movie.avgMark}</span>
+				    	
+						
+						
 					</li>
+					
 					<li class="movie_actions">
 						<div class="action action_title">Opzioni</div>
-						<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_1', 'title_1'); return false;">Vedi trama</a></div>
-						<div class="action"><a href="#" onclick="toggleAndMove('movie_review_1', 'title_1'); return false;">Vedi recensione</a></div>
-						<div class="action"><a href="#">Aggiungi a shelf</a></div>
-						<div class="action"><a href="#">Aggiungi a wishlist</a></div>
+						<c:if test="${not empty movie.originalPlot || not empty movie.localizedPlot}">
+							<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_${movie.movie}', 'title_${movie.movie}'); return false;">Vedi trama</a></div>
+						</c:if>
+				    	<c:set var="isInPersonalMovies" value="0" />
+			    		<c:set var="isWished" value="0" />
+				    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">
+				    		<c:if test="${personalMovieId.movie == movie.movie}">
+				    			<c:set var="isInPersonalMovies" value="1" />
+				    			<c:if test="${personalMovieId.wished == 1}">
+				    				<c:set var="isWished" value="1" />
+				    			</c:if>
+				    		</c:if>
+				    	</c:forEach>
+				    	<c:choose>
+	    					<c:when test="${isInPersonalMovies == 0}">
+	    						<div class="action"><a href="/shelfManagement.html?action=add&movie=${movie.movie}">Aggiungi alla videoteca</a></div>
+	    						<div class="action"><a href="/wishlistManagement.html?action=wish&movie=${movie.movie}">Aggiungi alla wishlist</a></div>
+	    					</c:when>
+	    					<c:otherwise>
+	    						<div class="action">Presente in 
+	    							<c:if test="${isWished == 0}"> videoteca</c:if>
+					    			<c:if test="${isWished == 1}"> wishlist</c:if>
+	    						</div>
+					    	</c:otherwise>
+	    				</c:choose>
 					</li>
-					<li class="movie_plot" id="movie_plot_1" style="display: none;">
+					<li class="movie_plot" id="movie_plot_${movie.movie}" style="display: none;">
 						<div class="plot_text">
-							Attraverso gli occhi di una bambina di nove anni, la precoce ed estroversa Marjane, il film ci fa vedere come le speranze di un popolo vengano distrutte quando i fondamentalisti prendono il potere, imponendo il velo alle donne e imprigionando migliaia di oppositori. Intelligente e impavida, la piccola Marjane aggira il controllo sociale dei "tutori dell'ordine" scoprendo il punk, gli ABBA e gli Iron Maiden. Ma dopo l'insensata esecuzione di suo zio, e sotto i bombardamenti della guerra Iraq/Iran, la paura diventa una realtà quotidiana con cui fare i conti. Temondo per la sua sicurezza, i genitori decidono di mandarla a studiare in Austria quando compie 14 anni. Marjane si ritrova così da sola con i problemi dell'adolescenza ed i pregiudizi di chi la identifica proprio con quel fondamentalismo religioso e quell'estremismo che l'hanno costretta a fuggire. Col tempo, riesce a farsi accettare e incontra perfino l'amore, ma dopo il liceo si ritrova nuovamente da sola e con una gran nostalgia di casa. Benché questo significhi mettersi il velo e vivere sotto una dittatura, Marjane decide di tornare in Iran per stare con la sua famiglia. Dopo un difficile periodo di adattamento, entra in un Istituto d'arte e poi si sposa, senza mai smettere di denunciare le ipocrisie di cui è testimone. A 24 anni, però, pur sentendosi profondamente iraniana, capisce di non poter più vivere in Iran. E' così che prende la drammatica decisione di lasciare il proprio paese per la Francia - piena di speranze per il proprio futuro, ma segnata in modo indelebile dal proprio passato. 
-						</div>
-					</li>
-					<li class="movie_review" id="movie_review_1" style="display: none;">
-						<div class="review_text">
-							E' già tutto stato detto nella recensione del film, Persepolis è semplicemente Meraviglioso!, io credo che chi guarda questo film debba considerarsi uno spettatore privilegiato, è un capolavoro che coinvolge, commuove, diverte insomma è un film che trasmette delle emozioni fortissime e vere ed io per questo lo ho amato! penso d non commettere un sacrilegio se lo giudico con un bel 10
+							 <c:choose>
+					    		<c:when test="${empty movie.localizedPlot}">
+						    		${movie.originalPlot}
+						    	</c:when>
+						    	<c:otherwise>
+						    		${movie.localizedPlot}
+						    	</c:otherwise>
+					    	</c:choose>
 						</div>
 					</li>
 					<li class="separator">
@@ -132,13 +179,3 @@
 	    }});
 	}
 </script>
-
-
-<%-- 
-
-<display:table name="${directorDetail.movies}" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="directorMovie" pagesize="25" class="table" export="true">
-    <display:column property="movie" escapeXml="true" sortable="true" titleKey="movie.movie" />
-    <display:column escapeXml="false" sortable="true" titleKey="movie.originaltitle">
-    	<a href="/socialMovie.html?movie=${directorMovie.movie}">${directorMovie.originaltitle}</a>
-    </display:column>
-</display:table>--%>

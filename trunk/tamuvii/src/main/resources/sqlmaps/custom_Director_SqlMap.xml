@@ -27,5 +27,32 @@
 		group by		d.director
   </select>
   
+  <select id="getDirectorDetailSocialMovieList" resultMap="custom_movie.socialMovieMap" parameterClass="java.lang.Integer">
+  		select				m.movie, 
+							m.duration, 
+							m.original_title,
+							m.original_plot,
+							m.original_image,
+							loc.localized_title,
+							loc.localized_plot,
+							loc.localized_image,
+							d.director as directorId, 
+							CONCAT(d.name, " ", d.surname) as director, 
+							m.release_date,
+							count(distinct r.review) as numReviews,
+							avg(um.mark) as avgMark,
+							count(distinct um.mark) as numMarks,
+							null as movieUsers,
+							count(distinct um.username) as numUsers
+							
+		from 				movie m 					left join review r
+							on	m.movie = r.movie 		inner join director d
+							on m.director = d.director	inner join user_to_movie um 
+							on um.movie = m.movie 		left join localized_data loc
+							on loc.movie = m.movie
+							
+		where 				d.director = #director#
+		group by			m.movie
+  </select>
 
 </sqlMap>

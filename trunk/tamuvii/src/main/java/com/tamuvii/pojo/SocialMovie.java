@@ -20,8 +20,16 @@ public class SocialMovie {
 	private List<DetailedReview> detailedReviews;
 	private Float avgMark;
 	private Integer numMarks;
+	private Integer numUsers;
 	private List<MovieUser> movieUsers;
 	
+	
+	public Integer getNumUsers() {
+		return numUsers;
+	}
+	public void setNumUsers(Integer numUsers) {
+		this.numUsers = numUsers;
+	}
 	public Integer getNumMarks() {
 		return numMarks;
 	}

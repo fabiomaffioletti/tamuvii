@@ -170,6 +170,7 @@
     
     <bean id="directorDetailController" class="com.tamuvii.webapp.controller.DirectorDetailController">
     	<property name="directorManager" ref="directorManager" />
+    	<property name="movieManager" ref="movieManager" />
     </bean>
     
     <bean id="discussionFormController" class="com.tamuvii.webapp.controller.DiscussionFormController">

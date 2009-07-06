@@ -146,7 +146,7 @@
 								<img class="minor" src="/images/frame_30.png" alt="">
 							</div>
 							<div class="person_list_info" id="abc">
-								<b><a href="/shelf.html?username=${review.username}">${review.username}</a></b>, <span class="light_text_italic font11"><fmt:formatDate pattern="${df}" value="${review.dateinserted}" /></span>
+								<b><a style="color:black;" href="/shelf.html?username=${review.username}">${review.username}</a></b>, <span class="light_text_italic font11"><fmt:formatDate pattern="${df}" value="${review.dateinserted}" /></span>
 								<br/>
 								<c:if test="${review.mark > 0}">
 									<span class="first_mark_image">

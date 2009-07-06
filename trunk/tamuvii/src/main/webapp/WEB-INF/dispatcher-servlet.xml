@@ -94,7 +94,8 @@
                 <!-- Review -->
                 /voteReview.html=userReviewVoteController
                 /voteReview.html=userReviewVoteController
-                /reviewDiscussion.html=discussionFormController
+<!--                /reviewDiscussion.html=discussionFormController-->
+				/reviewDiscussion.html=discussionController
                 
                 <!-- Messages -->
                 /sendMessage.html=messageManagementController
@@ -234,6 +235,11 @@
 		<property name="appUserManager" ref="appUserManager" />
     	<property name="successView" value="redirect:/image.html"/>
     	<property name="cancelView" value="redirect:/preferences.html" />
+    </bean>
+    
+    <bean id="discussionController" class="com.tamuvii.webapp.controller.DiscussionController">
+    	<property name="discussionManager" ref="discussionManager" />
+    	<property name="movieManager" ref="movieManager" />
     </bean>
     
     

@@ -294,7 +294,7 @@
 						<li onclick="document.location.href='/directorDetail.html?director=${shelfDirectorReportItem.director}'">
 							<div class="person_list_info_container">
 								<div class="container">
-									<img src="/images/placeholder_user.jpg" width="30" height="30" class="major" />
+									<img src="/images/placeholder_user_48.jpg" width="30" height="30" class="major" />
 									<img class="minor" src="/images/frame_30.png" alt="">
 								</div>
 								<div class="person_list_info">
@@ -345,7 +345,7 @@
 											<img class="minor" src="/images/frame_30.png" alt="">		
 										</c:when>
 										<c:otherwise>
-											<img src="/images/placeholder_user.jpg" width="30" height="30" class="major" />
+											<img src="/images/placeholder_user_48.jpg" width="30" height="30" class="major" />
 											<img class="minor" src="/images/frame_30.png" alt="">
 										</c:otherwise>
 									</c:choose>
@@ -405,7 +405,7 @@
 											<img class="minor" src="/images/frame_30.png" alt="">		
 										</c:when>
 										<c:otherwise>
-											<img src="/images/placeholder_user.jpg" width="30" height="30" class="major" />
+											<img src="/images/placeholder_user_48.jpg" width="30" height="30" class="major" />
 											<img class="minor" src="/images/frame_30.png" alt="">
 										</c:otherwise>
 									</c:choose>
@@ -638,7 +638,7 @@
 			var li = Builder.node('li', { onclick: "document.location.href='/directorDetail.html?director="+str[x].director+"'" });
 			var person_list_info_container = Builder.node('div', { className: 'person_list_info_container' });
 			var container = Builder.node('div', { className: 'container' });
-			var director_image = Builder.node('img', {className: 'major', height: '30', width: '30', src: '/images/placeholder_user.jpg'});
+			var director_image = Builder.node('img', {className: 'major', height: '30', width: '30', src: '/images/placeholder_user_48.jpg'});
 			var director_image_frame = Builder.node('img', {className: 'minor', src: '/images/frame_30.png'});
 
 			var div_person_list_info = Builder.node('div', { className: 'person_list_info' });

@@ -1,12 +1,9 @@
 package com.tamuvii.service.impl;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import com.tamuvii.dao.CustomReviewDAO;
 import com.tamuvii.model.Opinion;
-import com.tamuvii.model.Review;
 import com.tamuvii.pojo.Discussion;
 import com.tamuvii.service.DiscussionManager;
 import com.tamuvii.service.OpinionManager;
@@ -32,13 +29,8 @@ public class DiscussionManagerImpl implements DiscussionManager {
 
 	public Discussion getReviewDiscussion(Integer review) {
 		Discussion discussion = new Discussion();
-		Review discussionReview = reviewManager.getReviewById(review);
-		discussion.setReview(discussionReview);
 		discussion.setDetailedReview(customReviewDao.getDetailedReviewById(review));
-		List<Opinion> opinions = new ArrayList<Opinion>();
-		opinions = opinionManager.getOpinionsByReview(discussionReview.getReview());
 		discussion.setDetailedOpinions(opinionManager.getDetailedOpinionsByReview(review));		
-		discussion.setOpinions(opinions);
 		return discussion;
 	}
 

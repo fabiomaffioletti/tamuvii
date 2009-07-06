@@ -17,5 +17,9 @@ public class CustomReviewDAOImpl extends SqlMapClientDaoSupport implements Custo
 	public List<DetailedReview> getDetailedReviewsByMovie(Integer movie) {
 		return getSqlMapClientTemplate().queryForList("custom_review.getDetailedReviewsByMovie", movie);
 	}
+
+	public DetailedReview getDetailedReviewById(Integer review) {
+		return (DetailedReview) getSqlMapClientTemplate().queryForObject("custom_review.getDetailedReviewById", review);
+	}
 	
 }

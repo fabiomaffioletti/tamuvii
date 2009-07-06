@@ -40,6 +40,29 @@
 		group by			r.review
   </select>
   
+
+  <select id="getDetailedReviewById" resultMap="detailedReviewMap" parameterClass="java.lang.Integer">
+		select				r.review,
+  							r.username,  
+							au.image,
+							um.mark,
+  							r.movie,
+  							r.title,
+  							r.review_text,
+  							r.ok as ok,
+  							r.ko as ko,
+  							r.date_inserted,
+							count(distinct o.opinion) as numOpinions
+
+		from				review r left join opinion o
+							on	r.review = o.review
+							inner join app_user au
+							on au.username = r.username
+							inner join user_to_movie um
+							on (um.username = r.username and r.movie = um.movie)
+		
+		where				r.review = #review#
+  </select>
   
     
 </sqlMap>

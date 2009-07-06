@@ -8,4 +8,6 @@ public interface CustomReviewDAO {
 	
 	public List<DetailedReview> getDetailedReviewsByMovie(Integer movie);
 	
+	public DetailedReview getDetailedReviewById(Integer review);
+	
 }

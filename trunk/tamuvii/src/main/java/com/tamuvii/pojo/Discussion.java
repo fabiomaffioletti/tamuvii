@@ -7,10 +7,24 @@ import com.tamuvii.model.Review;
 
 public class Discussion {
 	
+	private DetailedReview detailedReview;
 	private Review review;
 	private List<Opinion> opinions;
+	private List<DetailedOpinion> detailedOpinions;
 
 	
+	public List<DetailedOpinion> getDetailedOpinions() {
+		return detailedOpinions;
+	}
+	public void setDetailedOpinions(List<DetailedOpinion> detailedOpinions) {
+		this.detailedOpinions = detailedOpinions;
+	}
+	public DetailedReview getDetailedReview() {
+		return detailedReview;
+	}
+	public void setDetailedReview(DetailedReview detailedReview) {
+		this.detailedReview = detailedReview;
+	}
 	public Review getReview() {
 		return review;
 	}

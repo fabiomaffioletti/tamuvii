@@ -1,0 +1,24 @@
+#movie_opinions_container {
+	width: 100%; 
+	font-size: 12px;
+}
+#movie_opinions_container ul {
+	list-style: none;
+	padding: 0; 
+	margin: 0;
+}
+#movie_opinions_container li {
+	border:1px dashed #ccc; 
+	margin-bottom: 10px;
+	min-height: 50px;
+}
+
+.opinion_user {
+	float:left; 
+	width: 150px; 
+	padding: 10px;
+}
+.opinion_text {
+	padding: 10px; 
+	text-align: justify;
+}

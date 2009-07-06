@@ -67,7 +67,6 @@
 							on loc.movie = m.movie
 							
 		where m.movie = #movie#
-		and loc.locale = 'it_IT'
   </select>
   
   <!-- getSocialMovieDetails con il filtro sul locale scelto dall'utente e il numero di utenti che hanno il film

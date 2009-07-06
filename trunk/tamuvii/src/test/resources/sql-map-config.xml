@@ -28,5 +28,6 @@
     <sqlMap resource="sqlmaps/visit_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/custom_Statistics_SqlMap.xml"/>
     <sqlMap resource="sqlmaps/custom_Opinion_SqlMap.xml"/>
+    <sqlMap resource="sqlmaps/custom_Director_SqlMap.xml"/>
     
 </sqlMapConfig>

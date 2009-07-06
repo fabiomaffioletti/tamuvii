@@ -71,10 +71,10 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <!-- table tableName="director" domainObjectName="Director" >
+    <table tableName="director" domainObjectName="Director" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table-->
+    </table>
     
     <!-- table tableName="user_to_user" domainObjectName="UserToUser" >
       <property name="useActualColumnNames" value="false"/>
@@ -101,10 +101,10 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <table tableName="visit" domainObjectName="Visit" >
+    <!-- table tableName="visit" domainObjectName="Visit" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table>
+    </table-->
     
   </ibatorContext>
 </ibatorConfiguration>

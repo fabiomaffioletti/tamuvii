@@ -8,8 +8,15 @@ import com.tamuvii.model.Movie;
 public class DirectorDetail {
 	
 	private Director director;
+	private Integer numMovies;
 	private List<Movie> movies;
 
+	public Integer getNumMovies() {
+		return numMovies;
+	}
+	public void setNumMovies(Integer numMovies) {
+		this.numMovies = numMovies;
+	}
 	public Director getDirector() {
 		return director;
 	}

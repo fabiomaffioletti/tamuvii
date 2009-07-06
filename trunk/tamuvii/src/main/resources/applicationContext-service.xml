@@ -117,6 +117,7 @@
     
     <bean id="directorManager" class="com.tamuvii.service.impl.DirectorManagerImpl">
     	<property name="directorDao" ref="directorDao" />
+    	<property name="customDirectorDao" ref="customDirectorDao" />
     	<property name="movieDao" ref="movieDao" />
     </bean>
     

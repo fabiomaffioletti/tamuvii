@@ -1,0 +1,511 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+   <link rel="stylesheet" href="sx.css" type="text/css" />
+   <link rel="stylesheet" href="common.css" type="text/css" />
+   <link rel="stylesheet" href="layout.css" type="text/css" />
+   <link rel="stylesheet" href="movies.css" type="text/css" />
+   <link rel="stylesheet" href="options.css" type="text/css" />
+   <script src="prototype.js" type="text/javascript"></script>
+   <script src="scriptaculous.js" type="text/javascript"></script>
+   <script src="effects.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<style type="text/css">
+	
+	#nav {
+		background:#c99;
+		font-size: 0.8em;
+		margin-bottom: 10px;
+		width: 100%;
+		height: 20px;
+	}
+	#nav ul {
+		width: 100%;
+		margin:0;
+		padding:0;
+		list-style:none;
+		line-height: 20px;
+	}
+	#nav li {
+		float: left;
+		display:inline;
+		margin:0;
+		padding:0;
+	}
+	#nav a {
+        display: inline-block;
+        font-weight: bold;
+        text-decoration: none;
+        margin: 0;
+		padding-right: 10px;
+        color: black;
+    }
+	#nav a:hover {
+        text-decoration: none;
+        background-color: #ebf5fc;
+    }
+	
+	
+	
+	
+</style>
+  
+</head>
+  
+<body>
+  
+<div id="wrap">
+	<div id="header">
+		<img src="logo.png"/>
+	</div>
+	
+	<div id="nav">
+		<ul>
+			<li><a href="#">Option 1</a></li>
+			<li><a href="#">Option 2</a></li>
+		</ul>
+	</div>
+	
+	<div id="main">
+		<div id="options">
+			<div id="order_div">
+				<select id="order" name="">
+					<option value="0">Ordina per:</option>
+					<option value="1">data visto (dal pi&ugrave; recente)</option>
+					<option value="2">data visto (dal pi&ugrave; vecchio)</option>
+					<option value="3">giudizio (dal pi&ugrave; alto) </option>
+					<option value="4">giudizio (dal pi&ugrave; basso) </option>
+				</select>
+			</div>
+			<div id="search_div">
+				<form>
+					<input type="text" name="searchbox" id="searchbox_text" value="Cerca in questa videoteca" />
+					<input type="image" src="search.png" name="doSearchShelf" id="searchbox_button" />
+				</form>
+			</div>
+		</div>
+		
+		<div id="movies">
+			<div id="movies_list_container">
+				<ul class="movie_list">
+					<li class="movie_image">
+						<img src="persepolis.jpg" />
+					</li>
+					<li class="movie_data">
+						<div class="title" id="title_1"><a href="">Persepolis</a></div>
+						<div class="localized_title">Il titolo originale &egrave; Persepolis</div>
+						<div class="directed_by">di <a href="#">Vincent Paronnaud</a>, <a href="#">Marjane Satrapi</a></div>
+						<div class="date_viewed">visto il 24/05/2009</div>
+						<div class="mark"><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/></div>
+					</li>
+					<li class="movie_actions">
+						<div class="action action_title">Opzioni</div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_1', 'title_1'); return false;">Vedi trama</a></div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_review_1', 'title_1'); return false;">Vedi recensione</a></div>
+						<div class="action"><a href="#">Aggiungi a shelf</a></div>
+						<div class="action"><a href="#">Aggiungi a wishlist</a></div>
+					</li>
+					<li class="movie_plot" id="movie_plot_1" style="display: none;">
+						<div class="plot_text">
+							Attraverso gli occhi di una bambina di nove anni, la precoce ed estroversa Marjane, il film ci fa vedere come le speranze di un popolo vengano distrutte quando i fondamentalisti prendono il potere, imponendo il velo alle donne e imprigionando migliaia di oppositori. Intelligente e impavida, la piccola Marjane aggira il controllo sociale dei "tutori dell'ordine" scoprendo il punk, gli ABBA e gli Iron Maiden. Ma dopo l'insensata esecuzione di suo zio, e sotto i bombardamenti della guerra Iraq/Iran, la paura diventa una realtà quotidiana con cui fare i conti. Temondo per la sua sicurezza, i genitori decidono di mandarla a studiare in Austria quando compie 14 anni. Marjane si ritrova così da sola con i problemi dell'adolescenza ed i pregiudizi di chi la identifica proprio con quel fondamentalismo religioso e quell'estremismo che l'hanno costretta a fuggire. Col tempo, riesce a farsi accettare e incontra perfino l'amore, ma dopo il liceo si ritrova nuovamente da sola e con una gran nostalgia di casa. Benché questo significhi mettersi il velo e vivere sotto una dittatura, Marjane decide di tornare in Iran per stare con la sua famiglia. Dopo un difficile periodo di adattamento, entra in un Istituto d'arte e poi si sposa, senza mai smettere di denunciare le ipocrisie di cui è testimone. A 24 anni, però, pur sentendosi profondamente iraniana, capisce di non poter più vivere in Iran. E' così che prende la drammatica decisione di lasciare il proprio paese per la Francia - piena di speranze per il proprio futuro, ma segnata in modo indelebile dal proprio passato. 
+						</div>
+					</li>
+					<li class="movie_review" id="movie_review_1" style="display: none;">
+						<div class="review_text">
+							E' già tutto stato detto nella recensione del film, Persepolis è semplicemente Meraviglioso!, io credo che chi guarda questo film debba considerarsi uno spettatore privilegiato, è un capolavoro che coinvolge, commuove, diverte insomma è un film che trasmette delle emozioni fortissime e vere ed io per questo lo ho amato! penso d non commettere un sacrilegio se lo giudico con un bel 10
+						</div>
+					</li>
+					<li class="separator">
+					</li>
+					
+					<li class="movie_image">
+						<img src="persepolis.jpg" />
+					</li>
+					<li class="movie_data">
+						<div class="title" id="title_2"><a href="">Persepolis</a></div>
+						<div class="localized_title">Il titolo originale &egrave; Persepolis</div>
+						<div class="directed_by">di <a href="#">Vincent Paronnaud</a>, <a href="#">Marjane Satrapi</a></div>
+						<div class="date_viewed">visto il 24/05/2009</div>
+						<div class="mark"><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/></div>
+					</li>
+					<li class="movie_actions">
+						<div class="action action_title">Opzioni</div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_2', 'title_2'); return false;">Vedi trama</a></div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_review_2', 'title_2'); return false;">Vedi recensione</a></div>
+						<div class="action"><a href="#">Aggiungi a shelf</a></div>
+						<div class="action"><a href="#">Aggiungi a wishlist</a></div>
+					</li>
+					<li class="movie_plot" id="movie_plot_2" style="display: none;">
+						<div class="plot_text">
+							Attraverso gli occhi di una bambina di nove anni, la precoce ed estroversa Marjane, il film ci fa vedere come le speranze di un popolo vengano distrutte quando i fondamentalisti prendono il potere, imponendo il velo alle donne e imprigionando migliaia di oppositori. Intelligente e impavida, la piccola Marjane aggira il controllo sociale dei "tutori dell'ordine" scoprendo il punk, gli ABBA e gli Iron Maiden. Ma dopo l'insensata esecuzione di suo zio, e sotto i bombardamenti della guerra Iraq/Iran, la paura diventa una realtà quotidiana con cui fare i conti. Temondo per la sua sicurezza, i genitori decidono di mandarla a studiare in Austria quando compie 14 anni. Marjane si ritrova così da sola con i problemi dell'adolescenza ed i pregiudizi di chi la identifica proprio con quel fondamentalismo religioso e quell'estremismo che l'hanno costretta a fuggire. Col tempo, riesce a farsi accettare e incontra perfino l'amore, ma dopo il liceo si ritrova nuovamente da sola e con una gran nostalgia di casa. Benché questo significhi mettersi il velo e vivere sotto una dittatura, Marjane decide di tornare in Iran per stare con la sua famiglia. Dopo un difficile periodo di adattamento, entra in un Istituto d'arte e poi si sposa, senza mai smettere di denunciare le ipocrisie di cui è testimone. A 24 anni, però, pur sentendosi profondamente iraniana, capisce di non poter più vivere in Iran. E' così che prende la drammatica decisione di lasciare il proprio paese per la Francia - piena di speranze per il proprio futuro, ma segnata in modo indelebile dal proprio passato. 
+						</div>
+					</li>
+					<li class="movie_review" id="movie_review_2" style="display: none;">
+						<div class="review_text">
+							E' già tutto stato detto nella recensione del film, Persepolis è semplicemente Meraviglioso!, io credo che chi guarda questo film debba considerarsi uno spettatore privilegiato, è un capolavoro che coinvolge, commuove, diverte insomma è un film che trasmette delle emozioni fortissime e vere ed io per questo lo ho amato! penso d non commettere un sacrilegio se lo giudico con un bel 10
+						</div>
+					</li>
+					<li class="separator">
+					</li>
+					
+					<li class="movie_image">
+						<img src="persepolis.jpg" />
+					</li>
+					<li class="movie_data">
+						<div class="title" id="title_3"><a href="">Persepolis</a></div>
+						<div class="localized_title">Il titolo originale &egrave; Persepolis</div>
+						<div class="directed_by">di <a href="#">Vincent Paronnaud</a>, <a href="#">Marjane Satrapi</a></div>
+						<div class="date_viewed">visto il 24/05/2009</div>
+						<div class="mark"><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/></div>
+					</li>
+					<li class="movie_actions">
+						<div class="action action_title">Opzioni</div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_3', 'title_3'); return false;">Vedi trama</a></div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_review_3', 'title_3'); return false;">Vedi recensione</a></div>
+						<div class="action"><a href="#">Aggiungi a shelf</a></div>
+						<div class="action"><a href="#">Aggiungi a wishlist</a></div>
+					</li>
+					<li class="movie_plot" id="movie_plot_3" style="display: none;">
+						<div class="plot_text">
+							Attraverso gli occhi di una bambina di nove anni, la precoce ed estroversa Marjane, il film ci fa vedere come le speranze di un popolo vengano distrutte quando i fondamentalisti prendono il potere, imponendo il velo alle donne e imprigionando migliaia di oppositori. Intelligente e impavida, la piccola Marjane aggira il controllo sociale dei "tutori dell'ordine" scoprendo il punk, gli ABBA e gli Iron Maiden. Ma dopo l'insensata esecuzione di suo zio, e sotto i bombardamenti della guerra Iraq/Iran, la paura diventa una realtà quotidiana con cui fare i conti. Temondo per la sua sicurezza, i genitori decidono di mandarla a studiare in Austria quando compie 14 anni. Marjane si ritrova così da sola con i problemi dell'adolescenza ed i pregiudizi di chi la identifica proprio con quel fondamentalismo religioso e quell'estremismo che l'hanno costretta a fuggire. Col tempo, riesce a farsi accettare e incontra perfino l'amore, ma dopo il liceo si ritrova nuovamente da sola e con una gran nostalgia di casa. Benché questo significhi mettersi il velo e vivere sotto una dittatura, Marjane decide di tornare in Iran per stare con la sua famiglia. Dopo un difficile periodo di adattamento, entra in un Istituto d'arte e poi si sposa, senza mai smettere di denunciare le ipocrisie di cui è testimone. A 24 anni, però, pur sentendosi profondamente iraniana, capisce di non poter più vivere in Iran. E' così che prende la drammatica decisione di lasciare il proprio paese per la Francia - piena di speranze per il proprio futuro, ma segnata in modo indelebile dal proprio passato. 
+						</div>
+					</li>
+					<li class="movie_review" id="movie_review_3" style="display: none;">
+						<div class="review_text">
+							E' già tutto stato detto nella recensione del film, Persepolis è semplicemente Meraviglioso!, io credo che chi guarda questo film debba considerarsi uno spettatore privilegiato, è un capolavoro che coinvolge, commuove, diverte insomma è un film che trasmette delle emozioni fortissime e vere ed io per questo lo ho amato! penso d non commettere un sacrilegio se lo giudico con un bel 10
+						</div>
+					</li>
+					<li class="separator">
+					</li>
+					
+					<li class="movie_image">
+						<img src="persepolis.jpg" />
+					</li>
+					<li class="movie_data">
+						<div class="title" id="title_4"><a href="">Persepolis</a></div>
+						<div class="localized_title">Il titolo originale &egrave; Persepolis</div>
+						<div class="directed_by">di <a href="#">Vincent Paronnaud</a>, <a href="#">Marjane Satrapi</a></div>
+						<div class="date_viewed">visto il 24/05/2009</div>
+						<div class="mark"><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/></div>
+					</li>
+					<li class="movie_actions">
+						<div class="action action_title">Opzioni</div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_4', 'title_4'); return false;">Vedi trama</a></div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_review_4', 'title_4'); return false;">Vedi recensione</a></div>
+						<div class="action"><a href="#">Aggiungi a shelf</a></div>
+						<div class="action"><a href="#">Aggiungi a wishlist</a></div>
+					</li>
+					<li class="movie_plot" id="movie_plot_4" style="display: none;">
+						<div class="plot_text">
+							Attraverso gli occhi di una bambina di nove anni, la precoce ed estroversa Marjane, il film ci fa vedere come le speranze di un popolo vengano distrutte quando i fondamentalisti prendono il potere, imponendo il velo alle donne e imprigionando migliaia di oppositori. Intelligente e impavida, la piccola Marjane aggira il controllo sociale dei "tutori dell'ordine" scoprendo il punk, gli ABBA e gli Iron Maiden. Ma dopo l'insensata esecuzione di suo zio, e sotto i bombardamenti della guerra Iraq/Iran, la paura diventa una realtà quotidiana con cui fare i conti. Temondo per la sua sicurezza, i genitori decidono di mandarla a studiare in Austria quando compie 14 anni. Marjane si ritrova così da sola con i problemi dell'adolescenza ed i pregiudizi di chi la identifica proprio con quel fondamentalismo religioso e quell'estremismo che l'hanno costretta a fuggire. Col tempo, riesce a farsi accettare e incontra perfino l'amore, ma dopo il liceo si ritrova nuovamente da sola e con una gran nostalgia di casa. Benché questo significhi mettersi il velo e vivere sotto una dittatura, Marjane decide di tornare in Iran per stare con la sua famiglia. Dopo un difficile periodo di adattamento, entra in un Istituto d'arte e poi si sposa, senza mai smettere di denunciare le ipocrisie di cui è testimone. A 24 anni, però, pur sentendosi profondamente iraniana, capisce di non poter più vivere in Iran. E' così che prende la drammatica decisione di lasciare il proprio paese per la Francia - piena di speranze per il proprio futuro, ma segnata in modo indelebile dal proprio passato. 
+						</div>
+					</li>
+					<li class="movie_review" id="movie_review_4" style="display: none;">
+						<div class="review_text">
+							E' già tutto stato detto nella recensione del film, Persepolis è semplicemente Meraviglioso!, io credo che chi guarda questo film debba considerarsi uno spettatore privilegiato, è un capolavoro che coinvolge, commuove, diverte insomma è un film che trasmette delle emozioni fortissime e vere ed io per questo lo ho amato! penso d non commettere un sacrilegio se lo giudico con un bel 10
+						</div>
+					</li>
+					<li class="separator">
+					</li>
+					
+					<li class="movie_image">
+						<img src="persepolis.jpg" />
+					</li>
+					<li class="movie_data">
+						<div class="title" id="title_5"><a href="">Persepolis</a></div>
+						<div class="localized_title">Il titolo originale &egrave; Persepolis</div>
+						<div class="directed_by">di <a href="#">Vincent Paronnaud</a>, <a href="#">Marjane Satrapi</a></div>
+						<div class="date_viewed">visto il 24/05/2009</div>
+						<div class="mark"><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/></div>
+					</li>
+					<li class="movie_actions">
+						<div class="action action_title">Opzioni</div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_5', 'title_5'); return false;">Vedi trama</a></div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_review_5', 'title_5'); return false;">Vedi recensione</a></div>
+						<div class="action"><a href="#">Aggiungi a shelf</a></div>
+						<div class="action"><a href="#">Aggiungi a wishlist</a></div>
+					</li>
+					<li class="movie_plot" id="movie_plot_5" style="display: none;">
+						<div class="plot_text">
+							Attraverso gli occhi di una bambina di nove anni, la precoce ed estroversa Marjane, il film ci fa vedere come le speranze di un popolo vengano distrutte quando i fondamentalisti prendono il potere, imponendo il velo alle donne e imprigionando migliaia di oppositori. Intelligente e impavida, la piccola Marjane aggira il controllo sociale dei "tutori dell'ordine" scoprendo il punk, gli ABBA e gli Iron Maiden. Ma dopo l'insensata esecuzione di suo zio, e sotto i bombardamenti della guerra Iraq/Iran, la paura diventa una realtà quotidiana con cui fare i conti. Temondo per la sua sicurezza, i genitori decidono di mandarla a studiare in Austria quando compie 14 anni. Marjane si ritrova così da sola con i problemi dell'adolescenza ed i pregiudizi di chi la identifica proprio con quel fondamentalismo religioso e quell'estremismo che l'hanno costretta a fuggire. Col tempo, riesce a farsi accettare e incontra perfino l'amore, ma dopo il liceo si ritrova nuovamente da sola e con una gran nostalgia di casa. Benché questo significhi mettersi il velo e vivere sotto una dittatura, Marjane decide di tornare in Iran per stare con la sua famiglia. Dopo un difficile periodo di adattamento, entra in un Istituto d'arte e poi si sposa, senza mai smettere di denunciare le ipocrisie di cui è testimone. A 24 anni, però, pur sentendosi profondamente iraniana, capisce di non poter più vivere in Iran. E' così che prende la drammatica decisione di lasciare il proprio paese per la Francia - piena di speranze per il proprio futuro, ma segnata in modo indelebile dal proprio passato. 
+						</div>
+					</li>
+					<li class="movie_review" id="movie_review_5" style="display: none;">
+						<div class="review_text">
+							E' già tutto stato detto nella recensione del film, Persepolis è semplicemente Meraviglioso!, io credo che chi guarda questo film debba considerarsi uno spettatore privilegiato, è un capolavoro che coinvolge, commuove, diverte insomma è un film che trasmette delle emozioni fortissime e vere ed io per questo lo ho amato! penso d non commettere un sacrilegio se lo giudico con un bel 10
+						</div>
+					</li>
+					<li class="separator">
+					</li>
+					
+					<li class="movie_image">
+						<img src="persepolis.jpg" />
+					</li>
+					<li class="movie_data">
+						<div class="title" id="title_6"><a href="">Persepolis</a></div>
+						<div class="localized_title">Il titolo originale &egrave; Persepolis</div>
+						<div class="directed_by">di <a href="#">Vincent Paronnaud</a>, <a href="#">Marjane Satrapi</a></div>
+						<div class="date_viewed">visto il 24/05/2009</div>
+						<div class="mark"><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/></div>
+					</li>
+					<li class="movie_actions">
+						<div class="action action_title">Opzioni</div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_6', 'title_6'); return false;">Vedi trama</a></div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_review_6', 'title_6'); return false;">Vedi recensione</a></div>
+						<div class="action"><a href="#">Aggiungi a shelf</a></div>
+						<div class="action"><a href="#">Aggiungi a wishlist</a></div>
+					</li>
+					<li class="movie_plot" id="movie_plot_6" style="display: none;">
+						<div class="plot_text">
+							Attraverso gli occhi di una bambina di nove anni, la precoce ed estroversa Marjane, il film ci fa vedere come le speranze di un popolo vengano distrutte quando i fondamentalisti prendono il potere, imponendo il velo alle donne e imprigionando migliaia di oppositori. Intelligente e impavida, la piccola Marjane aggira il controllo sociale dei "tutori dell'ordine" scoprendo il punk, gli ABBA e gli Iron Maiden. Ma dopo l'insensata esecuzione di suo zio, e sotto i bombardamenti della guerra Iraq/Iran, la paura diventa una realtà quotidiana con cui fare i conti. Temondo per la sua sicurezza, i genitori decidono di mandarla a studiare in Austria quando compie 14 anni. Marjane si ritrova così da sola con i problemi dell'adolescenza ed i pregiudizi di chi la identifica proprio con quel fondamentalismo religioso e quell'estremismo che l'hanno costretta a fuggire. Col tempo, riesce a farsi accettare e incontra perfino l'amore, ma dopo il liceo si ritrova nuovamente da sola e con una gran nostalgia di casa. Benché questo significhi mettersi il velo e vivere sotto una dittatura, Marjane decide di tornare in Iran per stare con la sua famiglia. Dopo un difficile periodo di adattamento, entra in un Istituto d'arte e poi si sposa, senza mai smettere di denunciare le ipocrisie di cui è testimone. A 24 anni, però, pur sentendosi profondamente iraniana, capisce di non poter più vivere in Iran. E' così che prende la drammatica decisione di lasciare il proprio paese per la Francia - piena di speranze per il proprio futuro, ma segnata in modo indelebile dal proprio passato. 
+						</div>
+					</li>
+					<li class="movie_review" id="movie_review_6" style="display: none;">
+						<div class="review_text">
+							E' già tutto stato detto nella recensione del film, Persepolis è semplicemente Meraviglioso!, io credo che chi guarda questo film debba considerarsi uno spettatore privilegiato, è un capolavoro che coinvolge, commuove, diverte insomma è un film che trasmette delle emozioni fortissime e vere ed io per questo lo ho amato! penso d non commettere un sacrilegio se lo giudico con un bel 10
+						</div>
+					</li>
+					<li class="separator">
+					</li>
+					
+					<li class="movie_image">
+						<img src="persepolis.jpg" />
+					</li>
+					<li class="movie_data">
+						<div class="title" id="title_7"><a href="">Persepolis</a></div>
+						<div class="localized_title">Il titolo originale &egrave; Persepolis</div>
+						<div class="directed_by">di <a href="#">Vincent Paronnaud</a>, <a href="#">Marjane Satrapi</a></div>
+						<div class="date_viewed">visto il 24/05/2009</div>
+						<div class="mark"><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/><img src="sun.png"/></div>
+					</li>
+					<li class="movie_actions">
+						<div class="action action_title">Opzioni</div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_7', 'title_7'); return false;">Vedi trama</a></div>
+						<div class="action"><a href="#" onclick="toggleAndMove('movie_review_7', 'title_7'); return false;">Vedi recensione</a></div>
+						<div class="action"><a href="#">Aggiungi a shelf</a></div>
+						<div class="action"><a href="#">Aggiungi a wishlist</a></div>
+					</li>
+					<li class="movie_plot" id="movie_plot_7" style="display: none;">
+						<div class="plot_text">
+							Attraverso gli occhi di una bambina di nove anni, la precoce ed estroversa Marjane, il film ci fa vedere come le speranze di un popolo vengano distrutte quando i fondamentalisti prendono il potere, imponendo il velo alle donne e imprigionando migliaia di oppositori. Intelligente e impavida, la piccola Marjane aggira il controllo sociale dei "tutori dell'ordine" scoprendo il punk, gli ABBA e gli Iron Maiden. Ma dopo l'insensata esecuzione di suo zio, e sotto i bombardamenti della guerra Iraq/Iran, la paura diventa una realtà quotidiana con cui fare i conti. Temondo per la sua sicurezza, i genitori decidono di mandarla a studiare in Austria quando compie 14 anni. Marjane si ritrova così da sola con i problemi dell'adolescenza ed i pregiudizi di chi la identifica proprio con quel fondamentalismo religioso e quell'estremismo che l'hanno costretta a fuggire. Col tempo, riesce a farsi accettare e incontra perfino l'amore, ma dopo il liceo si ritrova nuovamente da sola e con una gran nostalgia di casa. Benché questo significhi mettersi il velo e vivere sotto una dittatura, Marjane decide di tornare in Iran per stare con la sua famiglia. Dopo un difficile periodo di adattamento, entra in un Istituto d'arte e poi si sposa, senza mai smettere di denunciare le ipocrisie di cui è testimone. A 24 anni, però, pur sentendosi profondamente iraniana, capisce di non poter più vivere in Iran. E' così che prende la drammatica decisione di lasciare il proprio paese per la Francia - piena di speranze per il proprio futuro, ma segnata in modo indelebile dal proprio passato. 
+						</div>
+					</li>
+					<li class="movie_review" id="movie_review_7" style="display: none;">
+						<div class="review_text">
+							E' già tutto stato detto nella recensione del film, Persepolis è semplicemente Meraviglioso!, io credo che chi guarda questo film debba considerarsi uno spettatore privilegiato, è un capolavoro che coinvolge, commuove, diverte insomma è un film che trasmette delle emozioni fortissime e vere ed io per questo lo ho amato! penso d non commettere un sacrilegio se lo giudico con un bel 10
+						</div>
+					</li>
+					<li class="separator">
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div id="sidebar">
+	
+		<div id="user_profile">
+			<div id="user_profile_image">
+				<div id="user_image_div" style="background-image: url(flickr.jpg);">
+				</div>
+				<div id="user_profile_info" style="margin-bottom: 10px;">
+					<b>R. L. Zemekis</b>
+					<br/>
+					<span class="light_text_italic font12">18 film</span>
+					<br/>
+					<a href="#" id="other_info_link" onclick="displayOtherInfo('other_info_container')">Vedi altre informazioni</a>
+				</div>
+			</div>
+			<div id="other_info_container" style="display: none;">
+				<div id="other_info">
+					<span class="font12">Nome completo: <span class="light_text_italic">Robert Lee Zemekis Zemekis Zemekis</span></span>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div id="footer" style="border-top: 1px solid #aaa;">
+		<div style="font-size: 12px; padding: 10px;">
+			<div style="float:left">
+				Versione 1.0
+			</div>
+			
+			<div style="float:right">
+				Copyright &copy; <fmt:message key="copyright.year"/> Tutti i diritti riservati.
+			</div>
+			
+			<div style="clear:both; padding-top: 20px;">
+				<ul style="list-style:none; padding:0; margin:0;">
+					<li>
+						<a href="#">Aiuto</a> | <a href="#">Informazioni su taMuvii</a> | <a href="#">Blog di taMuvii</a>
+					</li>
+					<li>
+						<a href="#">Scrivici</a> | <a href="#">Invita</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<script>
+	function displayOtherInfo() {
+		$('other_info_container').appear({ duration: 0.2 });
+		$('other_info_link').innerHTML = "Nascondi altre informazioni";
+		$('other_info_link').onclick = hideOtherInfo;
+		return false;
+	}
+	function hideOtherInfo() {
+		$('other_info_container').fade({ duration: 0.2 });
+		$('other_info_link').innerHTML = "Vedi altre informazioni";
+		$('other_info_link').onclick = displayOtherInfo;
+		return false;
+	}
+	
+	
+	function displayElement(id) {
+		$(id).appear({ duration: 0.2 });
+		return false;
+	}
+	function hideElement(id) {
+		$(id).fade({ duration: 0.2 });
+		return false;
+	}
+	
+	function chooseOption(id) {
+		new Effect.toggle(id, 'slide', { duration: 0.2 });
+		return false;
+	}
+	function displayOptionHint(hint) {
+		$('option_hint').innerHTML = hint;		
+		return false;
+	}
+	function resetOptionHint() {
+		$('option_hint').innerHTML = 'Cosa vuoi fare?';		
+		return false;
+	}
+	
+	function toggleAndMove(id, title) {	
+		new Effect.toggle(id, 'slide', { duration: 0.5, afterFinish: function(effect) {
+          new Effect.ScrollTo(title);
+        }});
+	}
+</script>
+
+<script>
+	var indexDirectors;
+	var totDirectors;
+	var recordsPerRowDirectors; 
+	var pagesDirectors;
+	var heightDirectors;
+	
+	var indexFriends;
+	var totFriends;
+	var recordsPerRowFriends; 
+	var pagesFriends;
+	var heightFriends;
+	
+	var indexNeighbors;
+	var totNeighbors;
+	var recordsPerRowNeighbors; 
+	var pagesNeighbors;
+	var heightNeighbors;
+	
+	Event.observe(window, 'load', function(event) {
+		indexDirectors = 0;
+		totDirectors = 9;
+		recordsPerPageDirectors = 5;
+		pagesDirectors = Math.ceil(totDirectors/recordsPerPageDirectors);
+		
+		indexFriends = 0;
+		totFriends = 6;
+		recordsPerPageFriends = 5;
+		pagesFriends = Math.ceil(totFriends/recordsPerPageFriends);
+		
+		indexNeighbors = 0;
+		totNeighbors = 13;
+		recordsPerPageNeighbors = 5;
+		pagesNeighbors = Math.ceil(totNeighbors/recordsPerPageNeighbors);
+		
+		if(totDirectors < recordsPerPageDirectors) {
+			$('directors_list_container').setStyle({
+				height: (totDirectors*35 + totDirectors*5 + totDirectors*1) + "px"
+			});
+		} else {
+			$('directors_list_container').setStyle({
+				height: (recordsPerPageDirectors*35 + recordsPerPageDirectors*5 + recordsPerPageDirectors*1) + "px"
+			});
+		}
+		if(totFriends < recordsPerPageFriends) {
+			$('friends_list_container').setStyle({
+				height: (totFriends*35 + totFriends*5 + totFriends*1) + "px"
+			});
+		} else {
+			$('friends_list_container').setStyle({
+				height: (recordsPerPageFriends*35 + recordsPerPageFriends*5 + recordsPerPageFriends*1) + "px"
+			});
+		}
+		if(totNeighbors < recordsPerPageNeighbors) {
+			$('neighbors_list_container').setStyle({
+				height: (totNeighbors*35 + totNeighbors*5 + totNeighbors*1) + "px"
+			});
+		} else {
+			$('neighbors_list_container').setStyle({
+				height: (recordsPerPageNeighbors*35 + recordsPerPageNeighbors*5 + recordsPerPageNeighbors*1) + "px"
+			});
+		}
+		
+		
+		if(pagesDirectors > 1) {
+    		$('downDirectors').setStyle({ display: 'block' });
+	    }
+	    if(pagesFriends > 1) {
+    		$('downFriends').setStyle({ display: 'block' });
+	    }
+		if(pagesNeighbors > 1) {
+    		$('downNeighbors').setStyle({ display: 'block' });
+	    }
+	});
+
+	//////// FUNZIONI GENERICHE PER LO SCROLLING //////// 
+	function doup(index, step, container, h, down, up) {
+		index = index-step;
+		if(!$(down).visible()) {
+			$(down).setStyle({ display: 'block' });
+		}
+		if(index == 0) {
+			$(up).setStyle({ display: 'none' });
+		}
+		new Effect.Move($(container),{x: 0, y: step*h, duration: 0.3}); return index;
+	}
+
+	function dodown(index, pages, step, container, h, down, up) {
+		index = index+step;
+		if(!$(up).visible()) {
+			$(up).setStyle({ display: 'block' });
+		}
+		if(index == (pages-1)) {
+			$(down).setStyle({ display: 'none' });
+		} else {
+			$(down).setStyle({ display: 'block' });
+		}
+		new Effect.Move($(container),{x: 0, y: step*-h, duration: 0.3}); return index;
+	}
+	//////// FINE FUNZIONI GENERICHE PER LO SCROLLING ////////
+	
+</script>
+
+
+
+</body>
+</html>

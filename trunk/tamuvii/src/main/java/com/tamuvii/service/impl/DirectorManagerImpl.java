@@ -2,6 +2,7 @@ package com.tamuvii.service.impl;
 
 import java.util.List;
 
+import com.tamuvii.dao.CustomDirectorDAO;
 import com.tamuvii.dao.DirectorDAO;
 import com.tamuvii.dao.MovieDAO;
 import com.tamuvii.model.Director;
@@ -13,11 +14,14 @@ import com.tamuvii.service.DirectorManager;
 public class DirectorManagerImpl implements DirectorManager {
 	private MovieDAO movieDao = null;
 	private DirectorDAO directorDao = null;
+	private CustomDirectorDAO customDirectorDao = null;
 	
+	public void setCustomDirectorDao(CustomDirectorDAO customDirectorDao) {
+		this.customDirectorDao = customDirectorDao;
+	}
 	public void setMovieDao(MovieDAO movieDao) {
 		this.movieDao = movieDao;
 	}
-
 	public void setDirectorDao(DirectorDAO directorDao) {
 		this.directorDao = directorDao;
 	}
@@ -31,8 +35,7 @@ public class DirectorManagerImpl implements DirectorManager {
 
 	@SuppressWarnings("unchecked")
 	public DirectorDetail getDirectorDetailById(Integer director) {
-		DirectorDetail directorDetail = new DirectorDetail();
-		directorDetail.setDirector(directorDao.selectByPrimaryKey(director));
+		DirectorDetail directorDetail = customDirectorDao.getDirectorDetail(director);
 		
 		MovieExample movieExample = new MovieExample();
 		Criteria movieCriteria = movieExample.createCriteria();

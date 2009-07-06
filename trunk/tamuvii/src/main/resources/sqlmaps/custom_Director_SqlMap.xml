@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="custom_director" >
+
+  <resultMap id="detailedDirectorMap" class="com.tamuvii.pojo.DirectorDetail" >
+    <result column="director" jdbcType="INTEGER" property="director.director" />
+    <result column="name" jdbcType="VARCHAR" property="director.name" />
+    <result column="surname" jdbcType="VARCHAR" property="director.surname" />
+    <result column="aka" jdbcType="VARCHAR" property="director.aka" />
+	<result column="image" jdbcType="VARCHAR" property="director.image" />    
+	<result column="numMovies" jdbcType="INTEGER" property="numMovies" />
+  </resultMap>
+  
+  <select id="getDirectorDetail" resultMap="detailedDirectorMap" parameterClass="java.lang.Integer">
+	  	select			d.director,
+						d.name,
+						d.surname,
+						d.aka,
+						d.image,
+						count(d.director) as numMovies
+
+		from			director d inner join movie m
+						on d.director = m.director
+						
+		where			d.director = #director# 
+		
+		group by		d.director
+  </select>
+  
+
+</sqlMap>

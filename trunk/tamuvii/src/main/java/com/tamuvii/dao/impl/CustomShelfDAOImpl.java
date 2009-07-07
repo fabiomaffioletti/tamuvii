@@ -9,6 +9,7 @@ import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.ShelfDirectorReport;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.queryfilter.ShelfDirectorReportFilter;
+import com.tamuvii.pojo.queryfilter.ShelfItemFilter;
 
 public class CustomShelfDAOImpl extends SqlMapClientDaoSupport implements CustomShelfDAO {
 	
@@ -54,5 +55,11 @@ public class CustomShelfDAOImpl extends SqlMapClientDaoSupport implements Custom
 
 	public Integer getShelfDirectorReportCount(String username) {
 		return (Integer) getSqlMapClientTemplate().queryForObject("custom_shelf.getShelfDirectorReportCount", username);
+	}
+	
+
+	@SuppressWarnings("unchecked")
+	public List<ShelfItem> getShelfByFilter(ShelfItemFilter sif) {
+		return getSqlMapClientTemplate().queryForList("custom_shelf.getShelfByFilter", sif);
 	}
 }

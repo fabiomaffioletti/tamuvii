@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.tamuvii.dao.CustomShelfDAO;
 import com.tamuvii.pojo.ShelfDirectorReport;
+import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.queryfilter.ShelfDirectorReportFilter;
+import com.tamuvii.pojo.queryfilter.ShelfItemFilter;
 import com.tamuvii.service.ShelfManager;
 
 public class ShelfManagerImpl implements ShelfManager {
@@ -23,6 +25,16 @@ public class ShelfManagerImpl implements ShelfManager {
 		sdrf.setOrderAttribute(orderAttribute);
 		
 		return customShelfDao.getShelfDirectorReport(sdrf);
+	}
+
+
+	public List<ShelfItem> getShelfByFilter(String username, Integer director, String orderAttribute, String orderCriteria) {
+		ShelfItemFilter sif = new ShelfItemFilter();
+		sif.setUsername(username);
+		sif.setDirector(director);
+		sif.setOrderAttribute(orderAttribute);
+		sif.setOrderCriteria(orderCriteria);
+		return customShelfDao.getShelfByFilter(sif);
 	}
 
 }

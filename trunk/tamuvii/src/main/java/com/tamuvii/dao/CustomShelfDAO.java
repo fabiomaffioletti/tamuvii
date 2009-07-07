@@ -6,6 +6,7 @@ import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.ShelfDirectorReport;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.queryfilter.ShelfDirectorReportFilter;
+import com.tamuvii.pojo.queryfilter.ShelfItemFilter;
 
 public interface CustomShelfDAO {
 	
@@ -22,5 +23,7 @@ public interface CustomShelfDAO {
 	public List<PersonalMovieIdAndWishedFlag> getPersonalMoviesIdsAndWishedFlags(String username);
 	
 	public List<ShelfDirectorReport> getShelfDirectorReport(ShelfDirectorReportFilter sdrf);
+	
+	public List<ShelfItem> getShelfByFilter(ShelfItemFilter sif);
 	
 }

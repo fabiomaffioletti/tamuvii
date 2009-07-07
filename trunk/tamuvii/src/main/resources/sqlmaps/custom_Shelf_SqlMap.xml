@@ -175,4 +175,46 @@
 		and				um.wished = '0'
   </select>
   
+  
+  <select id="getShelfByFilter" resultMap="shelfItemMap" parameterClass="com.tamuvii.pojo.queryfilter.ShelfItemFilter" >
+  		select				m.movie, 
+							m.duration, 
+							m.original_title,
+							m.original_plot,
+							m.original_image,
+							loc.localized_title,
+							loc.localized_plot,
+							loc.localized_image,
+							d.director as directorId, 
+							CONCAT(d.name, " ", d.surname) as director, 
+							m.release_date, 
+							um.date_added, 
+							um.date_viewed, 
+							um.mark,
+							(select count(*) from user_to_movie um2 inner join app_user au on au.username = um2.username where um2.movie = m.movie and au.country = 'IT') as numUsers,
+							r.review,
+							r.title,
+							r.review_text
+							
+		from 				user_to_movie um			inner join movie m
+							on um.movie = m.movie 		inner join director d
+							on d.director = m.director 	inner join app_user u
+							on u.username = um.username left join localized_data loc
+							on (loc.movie = m.movie and loc.locale like concat('%', u.country, '%'))	left join review r
+							on r.movie = um.movie and r.username = #username#
+							
+		where				u.username = #username#
+		<isNotNull property="director" prepend="and">
+			d.director = #director#
+		</isNotNull>
+		and					um.wished = '0'
+
+		group by um.movie
+		
+		<isNotNull property="orderAttribute">
+			order by $orderAttribute$ $orderCriteria$
+		</isNotNull>
+		
+  </select>
+  
 </sqlMap>

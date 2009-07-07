@@ -20,6 +20,7 @@ import com.tamuvii.pojo.SearchMovieFilter;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
+import com.tamuvii.pojo.queryfilter.ShelfItemFilter;
 import com.tamuvii.service.MovieManager;
 import com.tamuvii.service.ReviewManager;
 import com.tamuvii.service.UserToMovieManager;

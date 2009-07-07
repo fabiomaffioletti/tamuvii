@@ -71,7 +71,7 @@ public class ShelfController implements Controller {
 		}
 			
 		// Aggiunge i film della videoteca
-		List<ShelfItem> shelfItems = movieManager.getShelfByUsername(username);
+		List<ShelfItem> shelfItems = shelfManager.getShelfByFilter(username, null, "date_viewed", TamuviiConstants.ORDER_DESC);
 		mv.addObject("shelfItems", shelfItems);
 		
 		// Aggiunge il report sui registi

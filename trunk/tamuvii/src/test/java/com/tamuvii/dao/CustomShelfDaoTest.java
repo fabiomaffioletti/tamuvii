@@ -19,6 +19,11 @@ public class CustomShelfDaoTest extends BaseDaoTestCase {
 		
 		assertNotNull(customShelfDao.getShelfDirectorReport(sdrf));
 	}
+	
+	
+	public void testGetShelfItemsByFilter() {
+		assertNotNull(customShelfDao.getShelfByFilter(null));
+	}
 
 
 

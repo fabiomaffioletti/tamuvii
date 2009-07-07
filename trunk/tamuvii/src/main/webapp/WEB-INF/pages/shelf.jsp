@@ -11,8 +11,7 @@
 <div id="main">
 	<div id="options">
 		<div id="order_div">
-			<select id="order" name="">
-				<option value="0">Ordina per:</option>
+			<select id="order" name="order" onchange="orderShelfByFilter('${userPublicInfo.username}'); return false;">
 				<option value="1">data visto (dal pi&ugrave; recente)</option>
 				<option value="2">data visto (dal pi&ugrave; vecchio)</option>
 				<option value="3">giudizio (dal pi&ugrave; alto) </option>
@@ -29,7 +28,7 @@
 		
 	<div id="movies">
 		<div id="movies_list_container">
-			<ul class="movie_list">
+			<ul id="movie_list" class="movie_list">
 				<c:forEach var="shelfItem" items="${shelfItems}">
 					<c:set var="displayOriginalTitle" value="n" />
 					
@@ -291,7 +290,7 @@
 			<div id="directors_list_content">
 				<ul class="person_list" id="directors_ul">
 					<c:forEach var="shelfDirectorReportItem" items="${shelfDirectorReportList}">
-						<li onclick="document.location.href='/directorDetail.html?director=${shelfDirectorReportItem.director}'">
+						<li onclick="filterShelf('${userPublicInfo.username}', '${shelfDirectorReportItem.director}'); return false;">
 							<div class="person_list_info_container">
 								<div class="container">
 									<img src="/images/placeholder_user_48.jpg" width="30" height="30" class="major" />
@@ -631,11 +630,15 @@
 			refreshShelfDirectorReportList(str);
 		});
 	}
+
 	// Aggiorna la ul
 	function refreshShelfDirectorReportList(str) {
 		dwr.util.removeAllOptions('directors_ul');
+		var u = "${userPublicInfo.username}";
 		for(var x=0; x<str.length; x++) {
-			var li = Builder.node('li', { onclick: "document.location.href='/directorDetail.html?director="+str[x].director+"'" });
+			var li = Builder.node('li', { onclick: "filterShelf('"+u+"', '"+str[x].director+"'); return false;"});
+
+				
 			var person_list_info_container = Builder.node('div', { className: 'person_list_info_container' });
 			var container = Builder.node('div', { className: 'container' });
 			var director_image = Builder.node('img', {className: 'major', height: '30', width: '30', src: '/images/placeholder_user_48.jpg'});
@@ -658,6 +661,186 @@
 
 			li.insert(person_list_info_container);
 			$('directors_ul').insert(li);
+		}
+	}
+	//////// FINE FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////
+</script>
+
+
+
+
+<script>
+	//////// FUNZIONI DI AGGIORNAMENTO MOVIES ////////
+	function orderShelfByFilter(username) {
+		var order = $('order').value;
+		if(order == 1) {
+			ShelfManager.getShelfByFilter(username, null, "date_viewed", "desc", function(str) {
+				refreshShelf(str);
+			});
+		}
+		if(order == 2) {
+			ShelfManager.getShelfByFilter(username, null, "date_viewed", "asc", function(str) {
+				refreshShelf(str);
+			});
+		}
+		if(order == 3) {
+			ShelfManager.getShelfByFilter(username, null, "mark", "desc", function(str) {
+				refreshShelf(str);
+			});
+		}
+		if(order == 4) {
+			ShelfManager.getShelfByFilter(username, null, "mark", "asc", function(str) {
+				refreshShelf(str);
+			});
+		}
+	}
+
+	function filterShelf(username, director) {
+		ShelfManager.getShelfByFilter(username, director, null, null, function(str) {
+			refreshShelf(str);
+		});
+	}
+
+	// Aggiorna la ul
+	function refreshShelf(str) {
+		dwr.util.removeAllOptions('movie_list');
+		for(var x=0; x<str.length; x++) {
+			var displayOriginalTitle = 'n';
+			
+			// Costruisco l'immagine giusta
+			var movie_image_li = Builder.node('li', { className: 'movie_image' });
+			if(str[x].localizedImage != null) { 
+				var image = Builder.node('img', { src: str[x].localizedImage });
+			} else {
+				var image = Builder.node('img', { src: str[x].originalImage });
+			}
+			movie_image_li.insert(image);
+
+			// Costruisco le informazioni sul film
+			var movie_data_li = Builder.node('li', { className: 'movie_data' });
+
+			// Titolo
+			var title_div = Builder.node('div', {className: 'title', id: 'title_'+str[x].movie });
+			if(str[x].localizedTitle == null) { 
+				var social_movie_link = Builder.node('a', { href: '/socialMovie.html?movie='+str[x].movie }, str[x].originalTitle);
+			} else {
+				var social_movie_link = Builder.node('a', { href: '/socialMovie.html?movie='+str[x].movie }, str[x].localizedTitle);
+				displayOriginalTitle = 'y';
+			}
+			title_div.insert(social_movie_link);
+			movie_data_li.insert(title_div);
+			
+			// Titolo originale
+			if(displayOriginalTitle == 'y' && str[x].originalTitle != str[x].localizedTitle) {
+				var localized_title_div = Builder.node('div', { className: 'localized_title' }, 'Titolo originale: ' + str[x].originalTitle);
+				movie_data_li.insert(localized_title_div);
+			}
+
+			// Regista
+			var directed_by_div = Builder.node('div', { className: 'directed_by' }, 'di ');
+			var directed_by_link = Builder.node('a', {href: '/directorDetail.html?director='+str[x].directorId }, str[x].director);
+			directed_by_div.insert(directed_by_link);
+			movie_data_li.insert(directed_by_div);
+			
+			// Data visto
+			if(str[x].dateViewed != null) {
+				var date_viewed_div = Builder.node('div', {className: 'date_viewed' }, 'Visto il: ' + formatDate(str[x].dateViewed, "${df}") );
+			}
+			movie_data_li.insert(date_viewed_div);
+			
+			// Voto
+			if(str[x].mark > 0) {
+				var mark_div = Builder.node('div', { className: 'mark'});
+				for(var m = 0; m<str[x].mark; m++) {
+					var img_mark = Builder.node('img', {src: '/images/star.gif'});
+					mark_div.insert(img_mark);
+				}
+			}
+			movie_data_li.insert(mark_div);
+
+
+			//Opzioni
+			var option_li = Builder.node('li', { className: 'movie_actions' });
+			var action_title_div = Builder.node('div', { className: 'action action_title' }, 'Opzioni');
+			$(option_li).insert(action_title_div);
+			
+			if(str[x].originalPlot != null || str[x].localizedPlot != null) {
+				var plot_action_div = Builder.node('div', { className: 'action' });
+				var plot_action_link = Builder.node('a', {href: '#', onclick: "toggleAndMove(\'movie_plot_"+str[x].movie+"\', \'title_"+str[x].movie+"\'); return false;" }, 'Vedi trama' );
+				plot_action_div.insert(plot_action_link);
+				$(option_li).insert(plot_action_div);
+			}
+			if(str[x].review != null) {
+				var review_action_div = Builder.node('div', { className: 'action' });
+				var review_action_link = Builder.node('a', {href: '#', onclick: "toggleAndMove(\'movie_review_"+str[x].movie+"\', \'title_"+str[x].movie+"\'); return false;" }, 'Vedi recensione' );
+				review_action_div.insert(review_action_link);
+				$(option_li).insert(review_action_div);
+			}
+			<c:choose>
+			    <c:when test="${empty username || username == pageContext.request.remoteUser}">
+			    	var modify_action_div = Builder.node('div', { className: 'action' });
+			    	var modify_action_link = Builder.node('a', {href: '/personalMovie.html?movie='+str[x].movie}, 'Modifica');
+			    	modify_action_div.insert(modify_action_link);
+			    	$(option_li).insert(modify_action_div);
+			    </c:when>
+			    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
+			    	var isInPersonalMovies = 0;
+			    	var isWished = 0;
+			    	
+			    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">
+			    		if(${personalMovieId.movie} == str[x].movie) { 
+			    			isInPersonalMovies = 1;
+			    			<c:if test="${personalMovieId.wished == 1}">
+			    				isWished = 1;
+			    			</c:if>
+			    		}
+			    	</c:forEach>
+			    	
+			    	if(isInPersonalMovies == 0) {
+						var add_shelf_div = Builder.node('div', { className: 'action' });
+						var add_shelf_a = Builder.node('a', { href: '/shelfManagement.html?action=add&movie='+str[x].movie }, 'Aggiundi alla videoteca');
+						add_shelf_div.insert(add_shelf_a);
+						var add_wish_div = Builder.node('div', { className: 'action' });
+						var add_wish_a = Builder.node('a', { href: '/wishlistManagement.html?action=add&movie='+str[x].movie }, 'Aggiundi alla wishlist');
+						add_wish_div.insert(add_wish_a);
+						option_li.insert(add_shelf_div);
+						option_li.insert(add_wish_div);
+				    	
+			    	} else {
+				    	var presence_div = Builder.node('div', { className: 'action' });
+				    	if(isWished == 0) {
+					    	presence_div.innerHTML = 'Presente in videoteca';	
+				    	} else {
+				    		presence_div.innerHTML = 'Presente in wishlist';
+				    	}
+				    	option_li.insert(presence_div);
+			    	}
+			    </c:when>
+		    </c:choose>
+
+			// Trama
+			var movie_plot_li = Builder.node('li', { id: 'movie_plot_'+str[x].movie, className: 'movie_plot', style: 'display:none' });
+			if(str[x].localizedPlot != null) { 
+				var plot_text_div = Builder.node('div', { className: 'plot_text' }, str[x].localizedPlot);
+			} else {
+				var plot_text_div = Builder.node('div', { className: 'plot_text' }, str[x].originalPlot);
+			}
+			movie_plot_li.insert(plot_text_div);
+
+			// Recensione
+			var review_li = Builder.node('li', {id: 'movie_review_'+str[x].movie, className: 'movie_review', style: 'display:none' });
+			var review_div = Builder.node('div', { className: 'review_text' }, str[x].reviewText);
+			review_li.insert(review_div);
+
+			// Separatore
+			var sep_li = Builder.node('li', { className: 'separator' });
+
+			$('movie_list').insert(movie_image_li);
+			$('movie_list').insert(movie_data_li);
+			$('movie_list').insert(option_li);
+			$('movie_list').insert(movie_plot_li);
+			$('movie_list').insert(review_li);
+			$('movie_list').insert(sep_li);
 		}
 	}
 	//////// FINE FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////

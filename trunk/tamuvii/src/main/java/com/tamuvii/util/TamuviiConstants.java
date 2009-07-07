@@ -13,6 +13,9 @@ public class TamuviiConstants {
 
 	public static final String USER_PROFILE_IMAGE_UPLOAD_DIRECTORY = "/user_profile_images";
 	
+	public static final String ORDER_ASC = "asc";
+	public static final String ORDER_DESC = "desc";
+	
 	
 	
 	/* CONFIG CONSTANTS */

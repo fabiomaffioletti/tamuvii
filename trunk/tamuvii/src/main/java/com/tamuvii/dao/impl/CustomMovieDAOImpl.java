@@ -8,9 +8,9 @@ import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.MovieUser;
 import com.tamuvii.pojo.PersonalMovie;
-import com.tamuvii.pojo.SearchMovieFilter;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
+import com.tamuvii.pojo.queryfilter.SocialMovieFilter;
 
 public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements CustomMovieDAO {
 	
@@ -18,8 +18,8 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 		super();
 	}
 
-	public SocialMovie getSocialMovieDetails(Integer movie) {
-		return (SocialMovie) getSqlMapClientTemplate().queryForObject("custom_movie.getSocialMovieDetails", movie);
+	public SocialMovie getSocialMovieDetails(SocialMovieFilter smf) {
+		return (SocialMovie) getSqlMapClientTemplate().queryForObject("custom_movie.getSocialMovieDetails", smf);
 	}
 
 	public PersonalMovie getPersonalMovieDetails(PersonalMovieFilterMap personalMovieFilterMap) {
@@ -33,12 +33,12 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<MovieUser> getUsersByMovie(Integer movie) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getUsersByMovie", movie);
+	public List<MovieUser> getUsersByMovie(SocialMovieFilter smf) {
+		return getSqlMapClientTemplate().queryForList("custom_movie.getUsersByMovie", smf);
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<SocialMovie> searchSocialMovie(SearchMovieFilter searchMovieFilter) {
+	public List<SocialMovie> searchSocialMovie(SocialMovieFilter searchMovieFilter) {
 		return getSqlMapClientTemplate().queryForList("custom_movie.searchSocialMovies", searchMovieFilter);
 	}
 	

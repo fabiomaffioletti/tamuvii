@@ -3,8 +3,6 @@ package com.tamuvii.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanUtils;
-
 import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.dao.CustomShelfDAO;
 import com.tamuvii.dao.MovieDAO;
@@ -16,11 +14,10 @@ import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.MovieUser;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
-import com.tamuvii.pojo.SearchMovieFilter;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
-import com.tamuvii.pojo.queryfilter.ShelfItemFilter;
+import com.tamuvii.pojo.queryfilter.SocialMovieFilter;
 import com.tamuvii.service.MovieManager;
 import com.tamuvii.service.ReviewManager;
 import com.tamuvii.service.UserToMovieManager;
@@ -59,12 +56,15 @@ public class MovieManagerImpl implements MovieManager {
 	}
 
 
-	public SocialMovie getSocialMovieDetails(Integer movie) {
-		SocialMovie socialMovie = customMovieDao.getSocialMovieDetails(movie);
+	public SocialMovie getSocialMovieDetails(Integer movie, String username) {
+		SocialMovieFilter smf = new SocialMovieFilter();
+		smf.setMovie(movie);
+		smf.setUsername(username);
+		SocialMovie socialMovie = customMovieDao.getSocialMovieDetails(smf);
 		List<DetailedReview> movieDetailedReviews = new ArrayList<DetailedReview>();
 		movieDetailedReviews = reviewManager.getDetailedReviewsByMovie(socialMovie.getMovie());
 		socialMovie.setDetailedReviews(movieDetailedReviews);
-		List<MovieUser> users = customMovieDao.getUsersByMovie(movie);
+		List<MovieUser> users = customMovieDao.getUsersByMovie(smf);
 		socialMovie.setMovieUsers(users);
 		return socialMovie;
 	}
@@ -111,7 +111,7 @@ public class MovieManagerImpl implements MovieManager {
 			splittedFilter[i] = "%" + splittedFilter[i] + "%"; 
 		}
 		
-		SearchMovieFilter searchMovieFilter = new SearchMovieFilter();
+		SocialMovieFilter searchMovieFilter = new SocialMovieFilter();
 		searchMovieFilter.setFilter(splittedFilter);
 		return customMovieDao.searchSocialMovie(searchMovieFilter);
 	}

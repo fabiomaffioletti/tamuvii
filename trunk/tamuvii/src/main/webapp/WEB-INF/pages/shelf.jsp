@@ -54,6 +54,7 @@
 						    		<c:set var="displayOriginalTitle" value="y" />
 						    	</c:otherwise>
 					    	</c:choose>
+					    	<span class="light_text_italic font11">${shelfItem.numUsers} utenti</span>
 						</div>
 						
 						<c:if test="${shelfItem.originalTitle != shelfItem.localizedTitle && displayOriginalTitle == 'y'}">
@@ -63,7 +64,6 @@
 				    	</c:if>
 				    	
 						<div class="directed_by">di <a href="/directorDetail.html?director=${shelfItem.directorId}">${shelfItem.director}</a></div>
-						
 						
 						<c:if test="${not empty shelfItem.dateViewed}">
 					    	<div class="date_viewed">Visto il: <fmt:formatDate pattern="${df}" value="${shelfItem.dateViewed}" /></div> 

@@ -31,7 +31,7 @@ public class DiscussionController implements Controller {
 		mv.addObject("discussion", discussion);
 		
 		Integer movie = discussion.getDetailedReview().getMovie();
-		SocialMovie socialMovie = movieManager.getSocialMovieDetails(movie);
+		SocialMovie socialMovie = movieManager.getSocialMovieDetails(movie, request.getRemoteUser());
 		mv.addObject("socialMovie", socialMovie);
 		
 		if(request.getRemoteUser() != null) {

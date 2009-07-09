@@ -59,6 +59,7 @@
 				<li>Totale recensioni: ${socialMovie.numReviews}</li>
 				<li>Totale voti: ${socialMovie.numMarks}</li>
 				<li>Voto medio: ${socialMovie.avgMark}</li>
+				<li><span class="light_text_italic">Totale utenti: ${socialMovie.numUsers}</span></li>
 			</ul>
 		</div>
 	</div>

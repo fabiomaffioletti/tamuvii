@@ -191,7 +191,7 @@
 							um.date_added, 
 							um.date_viewed, 
 							um.mark,
-							(select count(*) from user_to_movie um2 inner join app_user au on au.username = um2.username where um2.movie = m.movie and au.country = 'IT') as numUsers,
+							(select count(*) from user_to_movie um2 inner join app_user au on au.username = um2.username where um2.movie = m.movie and au.country = u.country) as numUsers,
 							r.review,
 							r.title,
 							r.review_text

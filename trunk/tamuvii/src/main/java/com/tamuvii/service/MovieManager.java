@@ -2,8 +2,8 @@ package com.tamuvii.service;
 
 import java.util.List;
 
-import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.model.Movie;
+import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
@@ -14,7 +14,7 @@ public interface MovieManager {
 	
 	public List<ShelfItem> getWishedMoviesByUsername(String username);
 	
-	public SocialMovie getSocialMovieDetails(Integer movie);
+	public SocialMovie getSocialMovieDetails(Integer movie, String username);
 	
 	public PersonalMovie getPersonalMovieDetails(Integer movie, String username);
 	

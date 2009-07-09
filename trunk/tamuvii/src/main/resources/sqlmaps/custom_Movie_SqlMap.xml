@@ -44,8 +44,8 @@
         <result property="imageLink" jdbcType="VARCHAR" column="imageLink"/>
   </resultMap>
   
-  
-  <select id="getSocialMovieDetails" resultMap="socialMovieMap" parameterClass="java.lang.Integer">
+  <!-- 
+  <select id="getSocialMovieDetails" resultMap="socialMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.SocialMovieFilter">
   		select				m.movie, 
 							m.duration, 
 							m.original_title,
@@ -60,38 +60,67 @@
 							count(distinct r.review) as numReviews,
 							avg(um.mark) as avgMark,
 							count(distinct um.mark) as numMarks,
-							null as numUsers
+							(select count(*) from user_to_movie um inner join app_user u on um.username = u.username where u.country like concat('%', au.country, '%') and um.movie = #movie#) as numUsers
 							
-		from 				movie m 					left join review r
-							on	m.movie = r.movie 		inner join director d
-							on m.director = d.director	inner join user_to_movie um 
-							on um.movie = m.movie 		left join localized_data loc
-							on loc.movie = m.movie
+		from 				movie m 						left join review r
+							on	m.movie = r.movie 			inner join director d
+							on m.director = d.director		inner join user_to_movie um 
+							on um.movie = m.movie 			inner join app_user au 
+							on um.username = au.username	left join localized_data loc
+							on loc.movie = m.movie			and	 	loc.locale like concat('%', au.country, '%')
 							
-		where m.movie = #movie#
+		where 				m.movie = #movie#
+							and au.username = #username#
   </select>
-  
-  <!-- getSocialMovieDetails con il filtro sul locale scelto dall'utente e il numero di utenti che hanno il film
-  
-  		select				m.movie, 
-							m.duration, 
-							m.original_title,
-							d.director as directorId, 
-							CONCAT(d.name, " ", d.surname) as director, 
-							m.release_date,
-							count(distinct r.review) as numReviews,
-							avg(um.mark) as avgMark,
-							count(distinct au.id) as numUsers
-														
-		from 				movie m												inner join 		user_to_movie um 
-							on um.movie = m.movie 								inner join 		app_user au
-							on au.username = um.username						left join 		review r
-							on m.movie = r.movie and au.username = r.username	inner join 		director d
-							on m.director = d.director	
-							
-		where m.movie = -18 and au.country = 'IT'
-  
    -->
+   
+  <select id="getSocialMovieDetails" resultMap="socialMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.SocialMovieFilter">
+  		select				abc.movie, 
+							abc.duration, 
+							abc.original_title,
+							abc.original_plot,
+							abc.original_image,
+							abc.localized_title,
+							abc.localized_plot,
+							abc.localized_image,
+							abc.director as directorId, 
+							concat(abc.name, " ", abc.surname) as director,
+							abc.release_date,
+							avg(abc.mark) as avgMark,
+							count(distinct abc.mark) as numMarks,
+							count(distinct abc.review) as numReviews,
+							count(distinct abc.username) as numUsers
+
+		from (
+					select			m.movie, 
+									m.duration, 
+									m.original_title,
+									m.original_plot,
+									m.original_image,
+									m.release_date,
+									loc.localized_title,
+									loc.localized_plot,
+									loc.localized_image,
+									d.*,
+									um.mark as mark,
+									r.review,
+									au.username
+									
+					from			movie m 							inner join 	user_to_movie um
+									on m.movie = um.movie 				inner join	app_user au	
+									on	au.username = um.username		inner join director d
+									on m.director = d.director			left join localized_data loc
+									on m.movie = loc.movie	and loc.locale like concat('%', au.country, '%')	left join review r
+									on	m.movie = r.movie	and r.username = au.username
+					
+					where			m.movie = #movie#
+									and au.country = (select u.country from app_user u where u.username = #username#)
+		
+					group by		um.username
+					
+		
+		) as abc
+  </select> 
   
   <select id="getPersonalMovieDetails" resultMap="personalMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap">
   		select				m.movie, 
@@ -119,21 +148,21 @@
 		and u.username = #username#
   </select>
   
-  <select id="getUsersByMovie" resultMap="movieUser" parameterClass="java.lang.Integer">
+  <select id="getUsersByMovie" resultMap="movieUser" parameterClass="com.tamuvii.pojo.queryfilter.SocialMovieFilter">
 		select			u.id as movieUser,
 						u.username,
 						um.mark,
 						u.image as imageLink
 					
 		from			app_user u		inner join		user_to_movie um
-						on u.username = um.username
+						on u.username = um.username		and u.country = (select au.country from app_user au where au.username =  #username#)
 						
 		where			um.movie = #movie#
 		group by 		u.username  
   </select>
   
   
-  <select id="searchSocialMovies" resultMap="socialMovieMap" parameterClass="com.tamuvii.pojo.SearchMovieFilter" >
+  <select id="searchSocialMovies" resultMap="socialMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.SocialMovieFilter" >
 		select				m.movie, 
 							m.duration, 
 							m.original_title,

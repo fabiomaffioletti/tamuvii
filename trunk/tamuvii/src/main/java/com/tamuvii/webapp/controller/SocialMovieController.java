@@ -22,7 +22,7 @@ public class SocialMovieController implements Controller {
 		
 		Integer movie = request.getParameter("movie") == null ? null : Integer.parseInt(request.getParameter("movie"));
 		
-		SocialMovie socialMovie = movieManager.getSocialMovieDetails(movie); 
+		SocialMovie socialMovie = movieManager.getSocialMovieDetails(movie, request.getRemoteUser()); 
 		
 		mv.addObject("socialMovie", socialMovie);
 		

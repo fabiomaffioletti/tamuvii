@@ -1,10 +1,18 @@
-package com.tamuvii.pojo;
+package com.tamuvii.pojo.queryfilter;
 
-public class SearchMovieFilter {
+public class SocialMovieFilter {
 	
+	private Integer movie;
 	private String username;
 	private String[] filter;
 	
+	
+	public Integer getMovie() {
+		return movie;
+	}
+	public void setMovie(Integer movie) {
+		this.movie = movie;
+	}
 	public String getUsername() {
 		return username;
 	}

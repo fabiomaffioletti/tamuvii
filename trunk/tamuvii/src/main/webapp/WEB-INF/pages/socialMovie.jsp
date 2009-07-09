@@ -27,6 +27,8 @@
 				<span class="bold_text">Questo film è nella tua videoteca</span>
 				<ul id="social_movie_options_list">
 					<li><a href="/shelfManagement.html?action=delete&movie=${socialMovie.movie}">Eliminalo</a></li>
+					<li><span class="light_text_italic">oppure</span></li>
+					<li><a href="/personalMovie.html?movie=${socialMovie.movie}">Modifica la scheda</a></li>
 				</ul>
 			</c:otherwise>
 		</c:choose>

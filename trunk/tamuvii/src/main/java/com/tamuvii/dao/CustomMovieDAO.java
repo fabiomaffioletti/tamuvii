@@ -13,7 +13,7 @@ public interface CustomMovieDAO {
 	
 	public SocialMovie getSocialMovieDetails(SocialMovieFilter smf);
 	
-	public List<DetailedReview> getDetailedReviewsByMovie(Integer movie);
+	public List<DetailedReview> getDetailedReviewsByMovie(SocialMovieFilter smf);
 	
 	public PersonalMovie getPersonalMovieDetails(PersonalMovieFilterMap personalMovieFilterMap);
 	

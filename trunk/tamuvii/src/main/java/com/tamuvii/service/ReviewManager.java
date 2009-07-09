@@ -6,6 +6,7 @@ import com.tamuvii.model.Review;
 import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
+import com.tamuvii.pojo.queryfilter.SocialMovieFilter;
 
 public interface ReviewManager {
 	
@@ -15,7 +16,7 @@ public interface ReviewManager {
 	
 	public void deleteReview(Integer movie, String username);
 	
-	public List<DetailedReview> getDetailedReviewsByMovie(Integer movie);
+	public List<DetailedReview> getDetailedReviewsByMovie(SocialMovieFilter smf);
 	
 	public List<Review> getReviewsByMovie(Integer movie);
 	

@@ -62,7 +62,7 @@ public class MovieManagerImpl implements MovieManager {
 		smf.setUsername(username);
 		SocialMovie socialMovie = customMovieDao.getSocialMovieDetails(smf);
 		List<DetailedReview> movieDetailedReviews = new ArrayList<DetailedReview>();
-		movieDetailedReviews = reviewManager.getDetailedReviewsByMovie(socialMovie.getMovie());
+		movieDetailedReviews = reviewManager.getDetailedReviewsByMovie(smf);
 		socialMovie.setDetailedReviews(movieDetailedReviews);
 		List<MovieUser> users = customMovieDao.getUsersByMovie(smf);
 		socialMovie.setMovieUsers(users);

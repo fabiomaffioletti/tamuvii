@@ -13,6 +13,7 @@ import com.tamuvii.model.ReviewExample.Criteria;
 import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
+import com.tamuvii.pojo.queryfilter.SocialMovieFilter;
 import com.tamuvii.service.ReviewManager;
 
 public class ReviewManagerImpl implements ReviewManager {
@@ -45,8 +46,8 @@ public class ReviewManagerImpl implements ReviewManager {
 		return reviewDao.selectByExample(reviewExample);
 	}
 	
-	public List<DetailedReview> getDetailedReviewsByMovie(Integer movie) {
-		return customReviewDao.getDetailedReviewsByMovie(movie);
+	public List<DetailedReview> getDetailedReviewsByMovie(SocialMovieFilter smf) {
+		return customReviewDao.getDetailedReviewsByMovie(smf);
 	}
 
 

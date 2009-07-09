@@ -28,8 +28,8 @@ public class CustomMovieDAOImpl extends SqlMapClientDaoSupport implements Custom
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<DetailedReview> getDetailedReviewsByMovie(Integer movie) {
-		return getSqlMapClientTemplate().queryForList("custom_movie.getDetailedReviewsByMovie", movie);
+	public List<DetailedReview> getDetailedReviewsByMovie(SocialMovieFilter smf) {
+		return getSqlMapClientTemplate().queryForList("custom_movie.getDetailedReviewsByMovie", smf);
 	}
 	
 	@SuppressWarnings("unchecked")

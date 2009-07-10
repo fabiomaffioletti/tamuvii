@@ -8,12 +8,12 @@
 <div id="main">
 	<div id="registration_form_container">
 		<form method="post" id="loginForm" action="<c:url value='/j_security_check'/>" onsubmit="saveUsername(this);">
-			<b>Benvenuto su taMuvii!</b>
+			<b><fmt:message key="welcome.to.tamuvii"/></b>
 			<br/><br/>
 			<c:if test="${param.error != null}">
 				<div id="validation0" style="border: 1px dashed #ccc; padding: 10px;">    
 			        <img src="/images/error.png" style="vertical-align: bottom; margin-right: 10px;" />
-			        Username o password non validi.
+			        <fmt:message key="tamuvii.login.failed"/>
 				</div>
 			</c:if>
 			
@@ -30,12 +30,12 @@
 				<c:if test="${appConfig['rememberMeEnabled']}">
 					<li>
 				    	<div class="td_sx" style="width: 120px;">&nbsp;</div>
-				    	<div class="td_dx"><input style="width: 20px;" type="checkbox" class="checkbox" name="_spring_security_remember_me" id="rememberMe" /><span class="light_text_italic">Memorizza username e password</span></div>
+				    	<div class="td_dx"><input style="width: 20px;" type="checkbox" class="checkbox" name="_spring_security_remember_me" id="rememberMe" /><span class="light_text_italic"><fmt:message key="tamuvii.remember.me" /></span></div>
 				    </li>
 			    </c:if>
 			    <li>
 			    	<div class="td_sx" style="width: 120px;">&nbsp;</div>
-			        <div class="td_dx"><input type="submit" class="login_submit_button" name="login" value="Entra" /></div>
+			        <div class="td_dx"><input type="submit" class="login_submit_button" name="login" value="<fmt:message key="b.login" />" /></div>
 			    </li>
 			</ul>
 		</form>
@@ -47,13 +47,13 @@
 	<div id="tamuvii_info_login_page">
 		<ul>
 			<li>
-				<b>taMuvii</b> &egrave; il nuovo social network per gli amanti dei film. Creare la videoteca personale, esplorare quelle degli altri appassionati, discutere o semplicemente farsi nuovi amici con un interesse in comune.
+				<fmt:message key="tamuvii.description" />
 			</li>
 			<li>
-				Non ti sei ancora registrato? <a href="/register.html">Puoi farlo da qui!</a>
+				<fmt:message key="tamuvii.register.message" />
 			</li>
 			<li style="background-color: #FFDF8F;">
-				<b>Nota bene!</b> taMuvii &egrave; stato progettato, creato e testato solo su Firefox 3.5. Gli altri browser (sicuramente Internet Explorer) con tutta probabilità avranno problemi nella visualizzazione e nelle funzionalit&agrave; del sito. Potete scaricare la nuova versione di Firefox da <a href="http://www.mozilla-europe.org/it/firefox/" target="_blank">qui</a>. 
+				<fmt:message key="tamuvii.note.firefox" /> 
 			</li>
 		</ul>
 	</div>

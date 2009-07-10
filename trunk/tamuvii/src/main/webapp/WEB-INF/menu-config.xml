@@ -4,7 +4,8 @@
         <Displayer name="Velocity" type="net.sf.navigator.displayer.VelocityMenuDisplayer"/>
     </Displayers>
     <Menus>
-        <Menu name="MainMenu" title="mainMenu.title" page="/mainMenu.html" roles="ROLE_ADMIN,ROLE_USER" width="120"/>
+        <Menu name="MainMenu" title="menu.initial.page" page="/mainMenu.html" roles="ROLE_ADMIN,ROLE_USER" width="120"/>
+        
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" width="120" page="/admin/users.html">
             <Item name="ViewUsers" title="menu.admin.users" page="/admin/users.html"/>
             <Item name="ActiveUsers" title="mainMenu.activeUsers" page="/admin/activeUsers.html"/>
@@ -15,20 +16,20 @@
             <Item name="MoviesList" title="menu.movieslist" page="/be_moviesList.html"/>
         </Menu>
         
-        <Menu name="MyMenu" title="Il mio taMuvii" roles="ROLE_ADMIN,ROLE_USER" width="120" page="/shelf.html">
-        	<Item name="ShelfMenu" title="Videoteca" page="/shelf.html" roles="ROLE_ADMIN,ROLE_USER" />
-        	<Item name="WishlistMenu" title="Wishlist" page="/wishlist.html" roles="ROLE_ADMIN,ROLE_USER" />
-        	<Item name="StatisticsMenu" title="Statistiche" page="/statistics.html" roles="ROLE_ADMIN,ROLE_USER" />
-        	<Item name="UserMenu" title="Cambia il profilo" page="/preferences.html" roles="ROLE_ADMIN,ROLE_USER"/>
+        <Menu name="MyMenu" title="menu.user" roles="ROLE_ADMIN,ROLE_USER" width="120" page="/shelf.html">
+        	<Item name="ShelfMenu" title="menu.shelf" page="/shelf.html" roles="ROLE_ADMIN,ROLE_USER" />
+        	<Item name="WishlistMenu" title="menu.wishlist" page="/wishlist.html" roles="ROLE_ADMIN,ROLE_USER" />
+        	<Item name="StatisticsMenu" title="menu.statistics" page="/statistics.html" roles="ROLE_ADMIN,ROLE_USER" />
+        	<Item name="UserMenu" title="menu.preferences" page="/preferences.html" roles="ROLE_ADMIN,ROLE_USER"/>
         </Menu>
         
-        <Menu name="RelationshipMenu" title="Contatti" roles="ROLE_ADMIN,ROLE_USER" width="120" page="/relationship.html?mode=friends">
-			<Item name="FriendsMenu" title="Amici" page="/relationship.html?mode=friends" roles="ROLE_ADMIN,ROLE_USER" />
-	        <Item name="NeighborhoodsMenu" title="Vicini" page="/relationship.html?mode=neighborhoods" roles="ROLE_ADMIN,ROLE_USER" />        	
-	        <Item name="ExploreContactsMenu" title="Esplora" page="/explorePeople.html" roles="ROLE_ADMIN,ROLE_USER" />
+        <Menu name="RelationshipMenu" title="menu.contacts" roles="ROLE_ADMIN,ROLE_USER" width="120" page="/relationship.html?mode=friends">
+			<Item name="FriendsMenu" title="menu.friends" page="/relationship.html?mode=friends" roles="ROLE_ADMIN,ROLE_USER" />
+	        <Item name="NeighborhoodsMenu" title="menu.nighbors" page="/relationship.html?mode=neighborhoods" roles="ROLE_ADMIN,ROLE_USER" />        	
+	        <Item name="ExploreContactsMenu" title="menu.explore.people" page="/explorePeople.html" roles="ROLE_ADMIN,ROLE_USER" />
         </Menu>
         
-        <Menu name="MessageMenu" title="Messaggi" page="/personalMessages.html" roles="ROLE_ADMIN,ROLE_USER" width="120"/>
-        <Menu name="Logout" title="Esci" page="/logout.jsp" roles="ROLE_ADMIN,ROLE_USER" width="120"/>
+        <Menu name="MessageMenu" title="menu.messages" page="/personalMessages.html" roles="ROLE_ADMIN,ROLE_USER" width="120"/>
+        <Menu name="Logout" title="menu.logout" page="/logout.jsp" roles="ROLE_ADMIN,ROLE_USER" width="120"/>
     </Menus>
 </MenuConfig>

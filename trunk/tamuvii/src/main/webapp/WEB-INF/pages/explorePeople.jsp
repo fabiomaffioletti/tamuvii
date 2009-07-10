@@ -76,36 +76,38 @@
 						</span>
 					</div>
 				</div>
-				<div class="explore_people_block_dx">
-					<c:choose>
-						<c:when test="${not empty lastSubscribedUsers[row.index+1].imageLink}">
-							<div id="user_image_div" style="background-image: url(${lastSubscribedUsers[row.index+1].imageLink});" >
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div id="user_image_div" style="background-image: url(/images/placeholder_user_48.jpg);" >
-							</div>
-						</c:otherwise>	
-					</c:choose>
-					<div id="user_profile_info" style="margin-bottom: 10px;">
-						<a href="/shelf.html?username=${lastSubscribedUsers[row.index+1].username}" style="font-size: 14px; color: black; font-weight: bold;">${lastSubscribedUsers[row.index+1].username}</a>
-						<br/>
-						<span class="light_text_italic font12">
-							<c:if test="${not empty lastSubscribedUsers[row.index+1].sex}">
-								<c:choose>
-									<c:when test="${lastSubscribedUsers[row.index+1].sex == 'M'}">
-										Maschio,
-									</c:when>
-									<c:otherwise>
-										Femmina,
-									</c:otherwise>
-								</c:choose>
-							</c:if>
-							<c:if test="${not empty lastSubscribedUsers[row.index+1].age && lastSubscribedUsers[row.index+1].age != -1}">${lastSubscribedUsers[row.index+1].age} anni,</c:if> ${lastSubscribedUsers[row.index+1].address.country}
-							<span class="light_text_italic font11"><br/>${lastSubscribedUsers[row.index+1].totMovies} Film</span>
-						</span>
+				<c:if test="${fn:length(lastSubscribedUsers) > 1}">
+					<div class="explore_people_block_dx">
+						<c:choose>
+							<c:when test="${not empty lastSubscribedUsers[row.index+1].imageLink}">
+								<div id="user_image_div" style="background-image: url(${lastSubscribedUsers[row.index+1].imageLink});" >
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div id="user_image_div" style="background-image: url(/images/placeholder_user_48.jpg);" >
+								</div>
+							</c:otherwise>	
+						</c:choose>
+						<div id="user_profile_info" style="margin-bottom: 10px;">
+							<a href="/shelf.html?username=${lastSubscribedUsers[row.index+1].username}" style="font-size: 14px; color: black; font-weight: bold;">${lastSubscribedUsers[row.index+1].username}</a>
+							<br/>
+							<span class="light_text_italic font12">
+								<c:if test="${not empty lastSubscribedUsers[row.index+1].sex}">
+									<c:choose>
+										<c:when test="${lastSubscribedUsers[row.index+1].sex == 'M'}">
+											Maschio,
+										</c:when>
+										<c:otherwise>
+											Femmina,
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+								<c:if test="${not empty lastSubscribedUsers[row.index+1].age && lastSubscribedUsers[row.index+1].age != -1}">${lastSubscribedUsers[row.index+1].age} anni,</c:if> ${lastSubscribedUsers[row.index+1].address.country}
+								<span class="light_text_italic font11"><br/>${lastSubscribedUsers[row.index+1].totMovies} Film</span>
+							</span>
+						</div>
 					</div>
-				</div>
+				</c:if>
 		</c:forEach>
 	</div>
 	

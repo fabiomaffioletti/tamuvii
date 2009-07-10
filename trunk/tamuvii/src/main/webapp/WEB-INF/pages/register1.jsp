@@ -1,11 +1,30 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="register.title"/></title>
+    <title><fmt:message key="registration.title"/></title>
     <script type="text/javascript" src="${ctx}/scripts/calendar/calendar.js"></script>
 	<script type="text/javascript" src="${ctx}/scripts/calendar/lang/calendar-it.js"></script>
   	<script type="text/javascript" src="${ctx}/scripts/calendar/calendar-setup.js"></script>
 </head>
+
+<div id="sidebar">
+	<div id="registration_menu">
+		<ul>
+			<li>
+				<fmt:message key="registration.data"/>
+			</li>
+			<li>
+				<b><fmt:message key="registration.a.bit.about.you"/></b>
+			</li>
+			<li>
+				<fmt:message key="registration.other"/>
+			</li>
+			<li>
+				<fmt:message key="registration.finished"/>
+			</li>
+		</ul>
+	</div>
+</div>
 
 <div id="main">
 	<form:form name="user" id="user" commandName="user" method="post" action="/register.html">
@@ -13,9 +32,9 @@
 		<input type="hidden" name="_target2" value="true" />
 		
 		<div id="registration_form_container">
-			<b>Perfetto!</b>
+			<b><fmt:message key="registration.perfect"/></b>
 			<br/>
-			<span class="light_text_italic">Ora puoi inserire alcuni dati per personalizzare il tuo profilo. Alcuni dati sono obbligatori, ma potrai modificarli anche in seguito. Se non sei convinto dei dati inseriti al punto precedente puoi <a href="/register.html">iniziare da capo.</a></span>
+			<span class="light_text_italic"><fmt:message key="registration.second"/></span>
 			<br/><br/>
 			
 			<spring:bind path="user.*">
@@ -29,90 +48,67 @@
 			
 			<ul>
 				<li>
-					<div class="td_sx">Nome: </div>
+					<div class="td_sx"><fmt:message key="registration.name"/></div>
 					<div class="td_dx"><form:input path="firstName" /></div>
 				</li>
 				<li>
-					<div class="td_sx">Cognome: </div>
+					<div class="td_sx"><fmt:message key="registration.surname"/></div>
 					<div class="td_dx"><form:input path="lastName" /></div>
 				</li>
 				<li>
-					<div class="td_sx">Sesso: </div>
+					<div class="td_sx"><fmt:message key="registration.sex"/></div>
 					<div class="td_dx">
 						<form:select path="sex">
-							<form:option value="M">M</form:option>
-							<form:option value="F">F</form:option>
+							<form:option value="M"><fmt:message key="registration.sex.m"/></form:option>
+							<form:option value="F"><fmt:message key="registration.sex.f"/></form:option>
 						</form:select>
 					</div>
 				</li>
 				<li>
-					<div class="td_sx">Data di nascita: </div>
+					<div class="td_sx"><fmt:message key="registration.dob"/></div>
 					<div class="td_dx"><form:input path="dob" readonly="true" cssStyle="width: 210px;" /><img src="${ctx}/images/iconCalendar.gif" id="dobButton" style="vertical-align: middle; cursor: pointer; margin-left:10px;" title="Calendario" /></div>
 				</li>
 				<li>
-					<div class="td_sx">Citt&agrave;: </div>
+					<div class="td_sx"><fmt:message key="registration.city"/></div>
 					<div class="td_dx"><form:input path="address.city" /></div>
 				</li>
 				<li>
-					<div class="td_sx"><span class="mandatory">* </span>Paese: </div>
+					<div class="td_sx"><span class="mandatory">* </span><fmt:message key="registration.country"/></div>
 					<div class="td_dx"><appfuse:country name="address.country" prompt="" default="${user.address.country}"/></div>
 				</li>
 				<li>
-					<a href="#" style="float:right;" onclick="showConfirmationDiv(); return false;">Avanti</a>
+					<a href="#" style="float:right;" onclick="showConfirmationDiv(); return false;"><fmt:message key="l.proceed"/></a>
 				</li>
 			</ul>
 		</div>
 		<div id="confirmation_data_container" style="display:none;">
-			Vuoi confermare i dati che hai inserito?
+			<fmt:message key="registration.confirm.data.question"/>
 			<ul>
 				<li>
-					<div style="float:left; margin-right: 20px;"><b>Nome: </b></div><div id="chosenFirstName" style="float:left"></div>
+					<div style="float:left; margin-right: 20px;"><b><fmt:message key="registration.name"/></b></div><div id="chosenFirstName" style="float:left"></div>
 				</li>
 				<li>
-					<div style="float:left; margin-right: 20px;"><b>Cognome: </b></div><div id="chosenLastName" style="float:left"></div>
+					<div style="float:left; margin-right: 20px;"><b><fmt:message key="registration.surname"/></b></div><div id="chosenLastName" style="float:left"></div>
 				</li>
 				<li>
-					<div style="float:left; margin-right: 20px;"><b>Sesso: </b></div><div id="chosenSex" style="float:left"></div>
+					<div style="float:left; margin-right: 20px;"><b><fmt:message key="registration.sex"/></b></div><div id="chosenSex" style="float:left"></div>
 				</li>
 				<li>
-					<div style="float:left; margin-right: 20px;"><b>Data di nascita: </b></div><div id="chosenDob" style="float:left"></div>
+					<div style="float:left; margin-right: 20px;"><b><fmt:message key="registration.dob"/></b></div><div id="chosenDob" style="float:left"></div>
 				</li>
 				<li>
-					<div style="float:left; margin-right: 20px;"><b>Citt&agrave;: </b></div><div id="chosenCity" style="float:left"></div>
+					<div style="float:left; margin-right: 20px;"><b><fmt:message key="registration.city"/></b></div><div id="chosenCity" style="float:left"></div>
 				</li>
 				<li>
-					<div style="float:left; margin-right: 20px;"><b>Paese: </b></div><div id="chosenCountry" style="float:left"></div>
+					<div style="float:left; margin-right: 20px;"><b><fmt:message key="registration.country"/></b></div><div id="chosenCountry" style="float:left"></div>
 				</li>
 				<li>
-					<a style="float:left;" href="#" onclick="hideConfirmationDiv(); return false;">No, voglio modificarli</a>
-					<input type="submit" style="float:right;" value="S&igrave;, vai al terzo step" />
+					<a style="float:left;" href="#" onclick="hideConfirmationDiv(); return false;"><fmt:message key="registration.modify.data"/></a>
+					<input type="submit" style="float:right;" value="<fmt:message key='registration.go.to.third.step'/>" />
 				</li>
 			</ul>
 		</div>
 	</form:form>
-</div>
-
-
-
-
-
-<div id="sidebar">
-	<div id="registration_menu">
-		<ul>
-			<li>
-				Dati di registrazione
-			</li>
-			<li>
-				<b>Un po' di te</b>
-			</li>
-			<li>
-				Altre informazioni
-			</li>
-			<li>
-				Finito!
-			</li>
-		</ul>
-	</div>
 </div>
 
 

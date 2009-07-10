@@ -1,9 +1,28 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="register.title"/></title>
+    <title><fmt:message key="registration.title"/></title>
 </head>
 
+
+<div id="sidebar">
+	<div id="registration_menu">
+		<ul>
+			<li>
+				<fmt:message key="registration.data"/>
+			</li>
+			<li>
+				<fmt:message key="registration.a.bit.about.you"/>
+			</li>
+			<li>
+				<b><fmt:message key="registration.other"/></b>
+			</li>
+			<li>
+				<fmt:message key="registration.finished"/>
+			</li>
+		</ul>
+	</div>
+</div>
 
 
 <div id="main">
@@ -12,69 +31,48 @@
 		<input type="hidden" name="_finish" value="true" />
 		
 		<div id="registration_form_container">
-			<b>Ancora un ultimo sforzo!</b>
+			<b><fmt:message key="registration.last.effort"/></b>
 			<br/>
-			<span class="light_text_italic">Vuoi arricchire la tua pagina con altre informazioni per renderla unica? Anche questi dati non sono obbligatori, e potrai modificarli anche in seguito. Ricorda che se hai dubbi sui dati inseriti puoi sempre <a href="/register.html">iniziare da capo.</a></span>
+			<span class="light_text_italic"><fmt:message key="registration.third"/></span>
 			<br/><br/>
 			
 			<ul>
 				<li>
-					<div class="td_sx">URL del tuo sito web: </div>
+					<div class="td_sx"><fmt:message key="registration.website.url"/></div>
 					<div class="td_dx"><form:input path="website" /></div>
 				</li>
 				<li>
-					<div class="td_sx">Titolo del tuo sito web: </div>
+					<div class="td_sx"><fmt:message key="registration.website.title"/></div>
 					<div class="td_dx"><form:input path="websitetitle" /></div>
 				</li>
 				<li>
-					<div class="td_sx">Citazione preferita: </div>
+					<div class="td_sx"><fmt:message key="registration.quotation"/></div>
 					<div class="td_dx"><form:input path="quotation" /></div>
 				</li>
 				<li>
-					<a href="#" style="float:right;" onclick="showConfirmationDiv(); return false;">Avanti</a>
+					<a href="#" style="float:right;" onclick="showConfirmationDiv(); return false;"><fmt:message key="l.proceed"/></a>
 				</li>
 			</ul>
 		</div>
 		<div id="confirmation_data_container" style="display:none;">
-			Vuoi confermare i dati che hai inserito?
+			<fmt:message key="registration.confirm.data.question"/>
 			<ul>
 				<li>
-					<div style="float:left; margin-right: 20px;"><b>URL del tuo sito web: </b></div><div id="chosenWebsiteURL" style="float:left"></div>
+					<div style="float:left; margin-right: 20px;"><b><fmt:message key="registration.website.url"/></b></div><div id="chosenWebsiteURL" style="float:left"></div>
 				</li>
 				<li>
-					<div style="float:left; margin-right: 20px;"><b>Titolo del tuo sito web: </b></div><div id="chosenWebsiteTitle" style="float:left"></div>
+					<div style="float:left; margin-right: 20px;"><b><fmt:message key="registration.website.title"/></b></div><div id="chosenWebsiteTitle" style="float:left"></div>
 				</li>
 				<li>
-					<div style="float:left; margin-right: 20px;"><b>Citazione preferita: </b></div><div id="chosenQuotation" style="float:left"></div>
+					<div style="float:left; margin-right: 20px;"><b><fmt:message key="registration.quotation"/></b></div><div id="chosenQuotation" style="float:left"></div>
 				</li>
 				<li>
-					<a style="float:left;" href="#" onclick="hideConfirmationDiv(); return false;">No, voglio modificarli</a>
-					<input type="submit" style="float:right;" value="S&igrave;, registrami!" />
+					<a style="float:left;" href="#" onclick="hideConfirmationDiv(); return false;"><fmt:message key="registration.modify.data"/></a>
+					<input type="submit" style="float:right;" value="<fmt:message key='registration.do.register'/>" />
 				</li>
 			</ul>
 		</div>
 	</form:form>
-</div>
-
-
-
-<div id="sidebar">
-	<div id="registration_menu">
-		<ul>
-			<li>
-				Dati di registrazione
-			</li>
-			<li>
-				Un po' di te
-			</li>
-			<li>
-				<b>Altre informazioni</b>
-			</li>
-			<li>
-				Finito!
-			</li>
-		</ul>
-	</div>
 </div>
 
 

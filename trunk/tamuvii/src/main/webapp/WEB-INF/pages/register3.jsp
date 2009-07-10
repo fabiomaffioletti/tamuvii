@@ -1,36 +1,34 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="register.title"/></title>
+    <title><fmt:message key="registration.title"/></title>
 </head>
-
-
-
-<div id="main">
-	<div id="registration_form_container">
-		<b>Congratulazioni, ora sei un taMuviiano!</b>
-		<br/>
-		<span class="light_text_italic">Hai completato la procedura di registrazione, controlla la casella di posta e attiva il tuo profilo per iniziare!</span>
-	</div>
-</div>
-
 
 
 <div id="sidebar">
 	<div id="registration_menu">
 		<ul>
 			<li>
-				Dati di registrazione
+				<fmt:message key="registration.data"/>
 			</li>
 			<li>
-				Un po' di te
+				<fmt:message key="registration.a.bit.about.you"/>
 			</li>
 			<li>
-				Altre informazioni
+				<fmt:message key="registration.other"/>
 			</li>
 			<li>
-				<b>Finito!</b>
+				<b><fmt:message key="registration.finished"/></b>
 			</li>
 		</ul>
+	</div>
+</div>
+
+
+<div id="main">
+	<div id="registration_form_container">
+		<b><fmt:message key="registration.success.message"/></b>
+		<br/>
+		<span class="light_text_italic"><fmt:message key="registration.success.check.email"/></span>
 	</div>
 </div>

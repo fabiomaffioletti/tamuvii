@@ -74,7 +74,14 @@
 				</li>
 				<li>
 					<div class="td_sx"><span class="mandatory">* </span><fmt:message key="registration.country"/></div>
-					<div class="td_dx"><appfuse:country name="address.country" prompt="" default="${user.address.country}"/></div>
+					<div class="td_dx">
+						<form:select path="address.country">
+							<form:option value="IT"><fmt:message key="italy"/></form:option>
+							<form:option value="EN"><fmt:message key="gb"/></form:option>
+							<form:option value="FR"><fmt:message key="france"/></form:option>
+							<form:option value="SP"><fmt:message key="spain"/></form:option>
+						</form:select>
+					</div>
 				</li>
 				<li>
 					<a href="#" style="float:right;" onclick="showConfirmationDiv(); return false;"><fmt:message key="l.proceed"/></a>

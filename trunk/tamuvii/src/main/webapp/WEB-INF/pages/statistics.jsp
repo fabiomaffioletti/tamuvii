@@ -7,101 +7,6 @@
     <script type="text/javascript" src="/dwr/interface/ShelfManager.js"> </script>
 </head>
 
-<div id="main">
-	<div class="statistics_section_title">
-		<div style="padding: 10px;">Visite alla tua videoteca</div>
-	</div>
-	<div class="statistics_section_content">
-		<div id="statistics_visits">
-			<ul>
-				<li>
-					Dalla data di creazione della tua videoteca, hai avuto <b>${userPublicInfo.visits}</b> visite.
-				</li>
-				<li>
-					Vuoi sapere chi ti ha visitato? Ecco qui gli <a href="#" onclick="displayElement('statistics_last_visitors'); displayElement('hide_visitors_link'); return false;">ultimi visitatori!</a><a href="#" id="hide_visitors_link" style="display:none; font-size: 11px; margin-left: 5px;" onclick="hideElement('statistics_last_visitors'); hideElement(this.id); return false;"> (Nascondi)</a>		
-				</li>
-			</ul>
-		</div>
-		<div id="statistics_last_visitors" style="display: none;">
-			<c:forEach var="contact" items="${statistics.lastVisitors}" varStatus="row" >
-					<div class="statistics_last_visitors_content">
-						<c:choose>
-							<c:when test="${not empty contact.imageLink}">
-								<div id="user_image_div" style="background-image: url(${contact.imageLink});" >
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div id="user_image_div" style="background-image: url(/images/placeholder_user_48.jpg);" >
-								</div>
-							</c:otherwise>	
-						</c:choose>
-						<div id="user_profile_info" style="margin-bottom: 10px;">
-							<a href="/shelf.html?username=${contact.username}" style="font-size: 14px; color: black; font-weight: bold;">${contact.username}</a>
-							<br/>
-							<span class="light_text_italic font12">
-								<c:if test="${not empty contact.sex}">
-									<c:choose>
-										<c:when test="${contact.sex == 'M'}">
-											Maschio,
-										</c:when>
-										<c:otherwise>
-											Femmina,
-										</c:otherwise>
-									</c:choose>
-								</c:if>
-								<c:if test="${not empty contact.age && contact.age != -1}">${contact.age} anni,</c:if> ${contact.address.country}
-								<span class="light_text_italic font11"><br/>${contact.totMovies} Film</span>
-							</span>
-						</div>
-						<div class="statistics_latest_movies_added">
-							<div class="statistics_last_movie_added_title">
-								Ultimi film aggiunti
-							</div>
-							<c:forEach var="item" items="${contact.lastMovies}" begin="0" end="1">
-								<div class="statistics_last_movie_added_item">
-									<c:choose>
-										<c:when test="${not empty item.localizedTitle}">
-											<a href="/socialMovie.html?movie=${item.movie}">${item.localizedTitle}</a>
-										</c:when>
-										<c:otherwise>
-											<a href="/socialMovie.html?movie=${item.movie}">${item.originalTitle}</a>
-										</c:otherwise>
-									</c:choose>
-								</div>
-							</c:forEach>
-						</div>
-					</div>
-			</c:forEach>
-		</div>
-	</div>
-	
-	<div class="statistics_section_title">
-		<div style="padding: 10px;">Rapporto sui film visti</div>
-	</div>
-	<div class="statistics_section_content">
-		<ul style="list-style: none; padding: 0; margin: 0;">
-			<li style="border-bottom: 1px dotted #ccc; height: 35px; font-size:13px; font-weight: bold;">
-				<div style="width: 100px; clear: both; float:left; padding: 10px;">Anno</div>
-				<div style="width: 150px; float:left; padding: 10px;">Numero di film</div>
-				<div style="width: 150px; float:left; padding: 10px;">Minuti totali</div>
-			</li>
-			<c:forEach var="yearReport" items="${statistics.yearReport}">
-				<li>
-					<div style="width: 100px; clear:both; float:left; padding: 10px;">${yearReport.year}</div>
-					<div style="width: 150px; float:left; padding: 10px;">${yearReport.numMovies}</div>
-					<div style="width: 150px; float:left; padding: 10px;">${yearReport.totMinutes}</div>
-				</li>			
-			</c:forEach>
-		</ul>
-	</div>
-	
-</div>
-
-
-
-
-
-
 <div id="sidebar">
 	<div id="user_profile">
 		<div id="user_profile_image">	
@@ -310,6 +215,101 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+<div id="main">
+	<div class="statistics_section_title">
+		<div style="padding: 10px;">Visite alla tua videoteca</div>
+	</div>
+	<div class="statistics_section_content">
+		<div id="statistics_visits">
+			<ul>
+				<li>
+					Dalla data di creazione della tua videoteca, hai avuto <b>${userPublicInfo.visits}</b> visite.
+				</li>
+				<li>
+					Vuoi sapere chi ti ha visitato? Ecco qui gli <a href="#" onclick="displayElement('statistics_last_visitors'); displayElement('hide_visitors_link'); return false;">ultimi visitatori!</a><a href="#" id="hide_visitors_link" style="display:none; font-size: 11px; margin-left: 5px;" onclick="hideElement('statistics_last_visitors'); hideElement(this.id); return false;"> (Nascondi)</a>		
+				</li>
+			</ul>
+		</div>
+		<div id="statistics_last_visitors" style="display: none;">
+			<c:forEach var="contact" items="${statistics.lastVisitors}" varStatus="row" >
+					<div class="statistics_last_visitors_content">
+						<c:choose>
+							<c:when test="${not empty contact.imageLink}">
+								<div id="user_image_div" style="background-image: url(${contact.imageLink});" >
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div id="user_image_div" style="background-image: url(/images/placeholder_user_48.jpg);" >
+								</div>
+							</c:otherwise>	
+						</c:choose>
+						<div id="user_profile_info" style="margin-bottom: 10px;">
+							<a href="/shelf.html?username=${contact.username}" style="font-size: 14px; color: black; font-weight: bold;">${contact.username}</a>
+							<br/>
+							<span class="light_text_italic font12">
+								<c:if test="${not empty contact.sex}">
+									<c:choose>
+										<c:when test="${contact.sex == 'M'}">
+											Maschio,
+										</c:when>
+										<c:otherwise>
+											Femmina,
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+								<c:if test="${not empty contact.age && contact.age != -1}">${contact.age} anni,</c:if> ${contact.address.country}
+								<span class="light_text_italic font11"><br/>${contact.totMovies} Film</span>
+							</span>
+						</div>
+						<div class="statistics_latest_movies_added">
+							<div class="statistics_last_movie_added_title">
+								Ultimi film aggiunti
+							</div>
+							<c:forEach var="item" items="${contact.lastMovies}" begin="0" end="1">
+								<div class="statistics_last_movie_added_item">
+									<c:choose>
+										<c:when test="${not empty item.localizedTitle}">
+											<a href="/socialMovie.html?movie=${item.movie}">${item.localizedTitle}</a>
+										</c:when>
+										<c:otherwise>
+											<a href="/socialMovie.html?movie=${item.movie}">${item.originalTitle}</a>
+										</c:otherwise>
+									</c:choose>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+			</c:forEach>
+		</div>
+	</div>
+	
+	<div class="statistics_section_title">
+		<div style="padding: 10px;">Rapporto sui film visti</div>
+	</div>
+	<div class="statistics_section_content">
+		<ul style="list-style: none; padding: 0; margin: 0;">
+			<li style="border-bottom: 1px dotted #ccc; height: 35px; font-size:13px; font-weight: bold;">
+				<div style="width: 100px; clear: both; float:left; padding: 10px;">Anno</div>
+				<div style="width: 150px; float:left; padding: 10px;">Numero di film</div>
+				<div style="width: 150px; float:left; padding: 10px;">Minuti totali</div>
+			</li>
+			<c:forEach var="yearReport" items="${statistics.yearReport}">
+				<li>
+					<div style="width: 100px; clear:both; float:left; padding: 10px;">${yearReport.year}</div>
+					<div style="width: 150px; float:left; padding: 10px;">${yearReport.numMovies}</div>
+					<div style="width: 150px; float:left; padding: 10px;">${yearReport.totMinutes}</div>
+				</li>			
+			</c:forEach>
+		</ul>
+	</div>
+	
+</div>
+
+
 		
 <script>
 	function displayElement(id) {

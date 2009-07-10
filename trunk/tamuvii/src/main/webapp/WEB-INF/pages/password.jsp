@@ -4,12 +4,6 @@
     <title><fmt:message key="Modifica il profilo"/></title>
 </head>
 
-<div id="main">
-	Questa funzione non &egrave; ancora attiva.
-</div>
-
-
-
 <div id="sidebar">
 	<div id="registration_menu">
 		<ul>
@@ -25,3 +19,10 @@
 		</ul>
 	</div>
 </div>
+
+<div id="main">
+	Questa funzione non &egrave; ancora attiva.
+</div>
+
+
+

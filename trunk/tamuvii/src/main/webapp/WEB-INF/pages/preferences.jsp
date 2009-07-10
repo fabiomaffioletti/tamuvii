@@ -7,6 +7,22 @@
   	<script type="text/javascript" src="${ctx}/scripts/calendar/calendar-setup.js"></script>
 </head>
 
+<div id="sidebar">
+	<div id="registration_menu">
+		<ul>
+			<li>
+				<b>Dati del profilo</b>
+			</li>
+			<li>
+				<a href="/image.html">Immagine personale</a>
+			</li>
+			<li>
+				<a href="/password.html">Modifica la tua password</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
 <div id="main">
 	<form:form commandName="appUser" name="appUser" id="appUser" method="post" action="/preferences.html">
 		<form:hidden path="id"/>
@@ -119,24 +135,6 @@
 			</ul>
 		</div>
 	</form:form>
-</div>
-
-
-
-<div id="sidebar">
-	<div id="registration_menu">
-		<ul>
-			<li>
-				<b>Dati del profilo</b>
-			</li>
-			<li>
-				<a href="/image.html">Immagine personale</a>
-			</li>
-			<li>
-				<a href="/password.html">Modifica la tua password</a>
-			</li>
-		</ul>
-	</div>
 </div>
 
 

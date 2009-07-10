@@ -8,91 +8,6 @@
     <script type="text/javascript" src="/dwr/interface/MessageManager.js"> </script>
 </head>
 
-<div id="main">
-	<div id="options">
-		<div id="order_div">
-			<select id="order" name="">
-				<option value="0">Ordina per:</option>
-				<option value="1">priorit&agrave; (dalla pi&ugrave; alta)</option>
-				<option value="2">priorit&agrave; (dalla pi&ugrave; bassa)</option>
-				<option value="3">data inserimento (dal pi&ugrave; recente) </option>
-				<option value="4">data inserimento (dal meno recente) </option>
-			</select>
-		</div>
-	</div>
-		
-	<div id="movies">
-		<div id="movies_list_container">
-			<ul class="movie_list">
-				<c:forEach var="wishedItem" items="${wishedItems}">
-					<c:set var="displayOriginalTitle" value="n" />
-					
-					<li class="movie_image">
-						<c:choose>
-							<c:when test="${not empty wishedItem.localizedImage}">
-								<img src="${wishedItem.localizedImage}" />
-							</c:when>
-							<c:otherwise>
-								<img src="${wishedItem.originalImage}" />
-							</c:otherwise>
-						</c:choose>
-					</li>
-					
-					<li class="movie_data">
-						<div class="title" id="title_${wishedItem.movie}">
-							<c:choose>
-					    		<c:when test="${empty wishedItem.localizedTitle}">
-						    		<a href="/socialMovie.html?movie=${wishedItem.movie}"><b>${wishedItem.originalTitle}</b></a> 
-						    	</c:when>
-						    	<c:otherwise>
-						    		<a href="/socialMovie.html?movie=${wishedItem.movie}"><b>${wishedItem.localizedTitle}</b></a>
-						    		<c:set var="displayOriginalTitle" value="y" />
-						    	</c:otherwise>
-					    	</c:choose>
-						</div>
-						
-						<c:if test="${wishedItem.originalTitle != wishedItem.localizedTitle && displayOriginalTitle == 'y'}">
-				    		<div class="localized_title">
-				    			<i>Titolo originale: ${wishedItem.originalTitle}</i>
-				    		</div>
-				    	</c:if>
-				    	
-						<div class="directed_by">di <a href="/directorDetail.html?director=${wishedItem.directorId}">${wishedItem.director}</a></div>
-					</li>
-					<c:if test="${empty username || username == pageContext.request.remoteUser}">
-						<li class="movie_actions">
-							<div class="action action_title">Opzioni</div>
-							<div class="action"><a href="/wishlistManagement.html?action=move&movie=${wishedItem.movie}">Sposta nella videoteca</a></div>
-					    	<div class="action"><a href="/wishlistManagement.html?action=delete&movie=${wishedItem.movie}">Cancella dalla wishlist</a></div>
-						</li>
-					</c:if>
-					
-					<li class="separator">
-					</li>
-				</c:forEach>
-			</ul>
-		</div>
-	</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div id="sidebar">
 	<div id="user_profile">
 		<div id="user_profile_image">	
@@ -305,6 +220,74 @@
 		<div class="relationship_navigation" style="width:100%;">
 			<a href="#" id="upNeighbors" style="display:none;float:left;" onclick="indexNeighbors = doup(indexNeighbors, 1, 'neighbors_list_content', $('neighbors_list_container').getHeight(), 'downNeighbors', 'upNeighbors'); return false;"><img class="relationship_navigation_image" src="/images/bw.png"/></a>
 			<a href="#" id="downNeighbors" style="float:right;display:none;" onclick="indexNeighbors = dodown(indexNeighbors, pagesNeighbors, 1, 'neighbors_list_content', $('neighbors_list_container').getHeight(), 'downNeighbors', 'upNeighbors'); return false;"><img class="relationship_navigation_image" src="/images/ff.png"/></a>
+		</div>
+	</div>
+</div>
+
+
+<div id="main">
+	<div id="options">
+		<div id="order_div">
+			<select id="order" name="">
+				<option value="0">Ordina per:</option>
+				<option value="1">priorit&agrave; (dalla pi&ugrave; alta)</option>
+				<option value="2">priorit&agrave; (dalla pi&ugrave; bassa)</option>
+				<option value="3">data inserimento (dal pi&ugrave; recente) </option>
+				<option value="4">data inserimento (dal meno recente) </option>
+			</select>
+		</div>
+	</div>
+		
+	<div id="movies">
+		<div id="movies_list_container">
+			<ul class="movie_list">
+				<c:forEach var="wishedItem" items="${wishedItems}">
+					<c:set var="displayOriginalTitle" value="n" />
+					
+					<li class="movie_image">
+						<c:choose>
+							<c:when test="${not empty wishedItem.localizedImage}">
+								<img src="${wishedItem.localizedImage}" />
+							</c:when>
+							<c:otherwise>
+								<img src="${wishedItem.originalImage}" />
+							</c:otherwise>
+						</c:choose>
+					</li>
+					
+					<li class="movie_data">
+						<div class="title" id="title_${wishedItem.movie}">
+							<c:choose>
+					    		<c:when test="${empty wishedItem.localizedTitle}">
+						    		<a href="/socialMovie.html?movie=${wishedItem.movie}"><b>${wishedItem.originalTitle}</b></a> 
+						    	</c:when>
+						    	<c:otherwise>
+						    		<a href="/socialMovie.html?movie=${wishedItem.movie}"><b>${wishedItem.localizedTitle}</b></a>
+						    		<c:set var="displayOriginalTitle" value="y" />
+						    	</c:otherwise>
+					    	</c:choose>
+						</div>
+						
+						<c:if test="${wishedItem.originalTitle != wishedItem.localizedTitle && displayOriginalTitle == 'y'}">
+				    		<div class="localized_title">
+				    			<i>Titolo originale: ${wishedItem.originalTitle}</i>
+				    		</div>
+				    	</c:if>
+				    	
+						<div class="directed_by">di <a href="/directorDetail.html?director=${wishedItem.directorId}">${wishedItem.director}</a></div>
+					</li>
+					<c:if test="${empty username || username == pageContext.request.remoteUser}">
+						<li class="movie_actions">
+							<div class="action action_title">Opzioni</div>
+							<div class="action"><a href="/wishlistManagement.html?action=move&movie=${wishedItem.movie}">Sposta nella videoteca</a></div>
+					    	<div class="action"><a href="/wishlistManagement.html?action=delete&movie=${wishedItem.movie}">Cancella dalla wishlist</a></div>
+						</li>
+					</c:if>
+					
+					<li class="separator">
+					</li>
+				</c:forEach>
+			</ul>
 		</div>
 	</div>
 </div>

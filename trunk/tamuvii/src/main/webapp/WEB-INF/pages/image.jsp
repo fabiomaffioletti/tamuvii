@@ -17,6 +17,23 @@
     </style>
 </head>
 
+<div id="sidebar">
+	<div id="registration_menu">
+		<ul>
+			<li>
+				<a href="/preferences.html">Dati del profilo</a>
+			</li>
+			<li>
+				<b>Immagine personale</b>
+			</li>
+			<li>
+				<a href="/password.html">Modifica la tua password</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
 <div id="main">
 
 	<div id="registration_form_container">
@@ -61,23 +78,6 @@
 
 </div>
 
-
-
-<div id="sidebar">
-	<div id="registration_menu">
-		<ul>
-			<li>
-				<a href="/preferences.html">Dati del profilo</a>
-			</li>
-			<li>
-				<b>Immagine personale</b>
-			</li>
-			<li>
-				<a href="/password.html">Modifica la tua password</a>
-			</li>
-		</ul>
-	</div>
-</div>
 
 
 <script>

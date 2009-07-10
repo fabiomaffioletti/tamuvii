@@ -40,6 +40,14 @@
     </style>
 </head>
 
+
+
+
+<div id="sidebar">
+	
+</div>
+
+
 <div id="main">
 	<div class="statistics_section_title">
 		<div style="padding: 10px;">Ultimi utenti registrati</div>
@@ -110,14 +118,5 @@
 				</c:if>
 		</c:forEach>
 	</div>
-	
-</div>
-
-
-
-
-
-
-<div id="sidebar">
 	
 </div>

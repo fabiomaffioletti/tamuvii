@@ -5,6 +5,22 @@
 </head>
 
 
+<div id="sidebar">
+	<div id="tamuvii_info_login_page">
+		<ul>
+			<li>
+				<fmt:message key="tamuvii.description" />
+			</li>
+			<li>
+				<fmt:message key="tamuvii.register.message" />
+			</li>
+			<li style="background-color: #FFDF8F;">
+				<fmt:message key="tamuvii.note.firefox" /> 
+			</li>
+		</ul>
+	</div>
+</div>
+
 <div id="main">
 	<div id="registration_form_container">
 		<form method="post" id="loginForm" action="<c:url value='/j_security_check'/>" onsubmit="saveUsername(this);">
@@ -39,23 +55,6 @@
 			    </li>
 			</ul>
 		</form>
-	</div>
-</div>
-
-
-<div id="sidebar">
-	<div id="tamuvii_info_login_page">
-		<ul>
-			<li>
-				<fmt:message key="tamuvii.description" />
-			</li>
-			<li>
-				<fmt:message key="tamuvii.register.message" />
-			</li>
-			<li style="background-color: #FFDF8F;">
-				<fmt:message key="tamuvii.note.firefox" /> 
-			</li>
-		</ul>
 	</div>
 </div>
 

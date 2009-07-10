@@ -33,13 +33,16 @@ select {
 #wrap {
 	width:750px;
 	margin:0 auto;
-	background-color: #fff;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 #header {
 	background:#fff;
 	height: auto;
 	border-bottom: 1px solid #aaa;
-	padding: 20px;	
+	padding: 20px;
+	-moz-border-radius-topright: 10px;
+	-moz-border-radius-topleft: 10px;
 }
 #header img {
 	height: 43px;
@@ -54,12 +57,15 @@ select {
 }
 
 #main {
-	float:right;
+	float:left;
 	width:480px;
 	padding:10px;
 	background:#fff;
-	height: 100%;
+	margin-bottom: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
 }
+
 h2 {
 	margin:0 0 1em;
 }
@@ -67,6 +73,7 @@ h2 {
 	clear:both;
 	border-top: 1px solid #aaa;
 	background:#fff;
+	-moz-border-radius: 10px;
 }
 #footer a {
 	color: blue;

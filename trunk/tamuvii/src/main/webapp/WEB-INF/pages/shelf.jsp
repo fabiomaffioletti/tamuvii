@@ -8,153 +8,6 @@
     <script type="text/javascript" src="/dwr/interface/MessageManager.js"> </script>
 </head>
 
-<div id="main">
-	<div id="options">
-		<div id="order_div">
-			<select id="order" name="order" onchange="orderShelfByFilter('${userPublicInfo.username}'); return false;">
-				<option value="1">data visto (dal pi&ugrave; recente)</option>
-				<option value="2">data visto (dal pi&ugrave; vecchio)</option>
-				<option value="3">giudizio (dal pi&ugrave; alto) </option>
-				<option value="4">giudizio (dal pi&ugrave; basso) </option>
-			</select>
-		</div>
-		<div id="search_div">
-			<form>
-				<input type="text" name="searchbox" id="searchbox_text" value="Cerca in questa videoteca" />
-				<input type="image" src="/images/search.png" name="doSearchShelf" id="searchbox_button" />
-			</form>
-		</div>
-	</div>
-		
-	<div id="movies">
-		<div id="movies_list_container">
-			<ul id="movie_list" class="movie_list">
-				<c:forEach var="shelfItem" items="${shelfItems}">
-					<c:set var="displayOriginalTitle" value="n" />
-					
-					<li class="movie_image">
-						<c:choose>
-							<c:when test="${not empty shelfItem.localizedImage}">
-								<img src="${shelfItem.localizedImage}" />
-							</c:when>
-							<c:otherwise>
-								<img src="${shelfItem.originalImage}" />
-							</c:otherwise>
-						</c:choose>
-					</li>
-					
-					<li class="movie_data">
-						<div class="title" id="title_${shelfItem.movie}">
-							<c:choose>
-					    		<c:when test="${empty shelfItem.localizedTitle}">
-						    		<a href="/socialMovie.html?movie=${shelfItem.movie}"><b>${shelfItem.originalTitle}</b></a> 
-						    	</c:when>
-						    	<c:otherwise>
-						    		<a href="/socialMovie.html?movie=${shelfItem.movie}"><b>${shelfItem.localizedTitle}</b></a>
-						    		<c:set var="displayOriginalTitle" value="y" />
-						    	</c:otherwise>
-					    	</c:choose>
-					    	<span class="light_text_italic font11">${shelfItem.numUsers} utenti</span>
-						</div>
-						
-						<c:if test="${shelfItem.originalTitle != shelfItem.localizedTitle && displayOriginalTitle == 'y'}">
-				    		<div class="localized_title">
-				    			<i>Titolo originale: ${shelfItem.originalTitle}</i>
-				    		</div>
-				    	</c:if>
-				    	
-						<div class="directed_by">di <a href="/directorDetail.html?director=${shelfItem.directorId}">${shelfItem.director}</a></div>
-						
-						<c:if test="${not empty shelfItem.dateViewed}">
-					    	<div class="date_viewed">Visto il: <fmt:formatDate pattern="${df}" value="${shelfItem.dateViewed}" /></div> 
-					    </c:if>
-				    	
-						
-						<c:if test="${shelfItem.mark > 0}">
-					    	<div class="mark">
-						    	<c:forEach begin="1" end="${shelfItem.mark}">
-									<img src="/images/star.gif"/>
-						    	</c:forEach>
-					    	</div>
-				    	</c:if>
-	
-					</li>
-					<li class="movie_actions">
-						<div class="action action_title">Opzioni</div>
-							<c:if test="${not empty shelfItem.originalPlot || not empty shelfItem.localizedPlot}">
-								<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;">Vedi trama</a></div>
-							</c:if>
-							<c:if test="${not empty shelfItem.review}">
-								<div class="action"><a href="#" onclick="toggleAndMove('movie_review_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;">Vedi recensione</a></div>
-							</c:if>
-							<c:choose>
-							    <c:when test="${empty username || username == pageContext.request.remoteUser}">
-								    <div class="action"><a href="/personalMovie.html?movie=${shelfItem.movie}">Modifica</a></div>
-							    </c:when>
-							    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
-							    	<c:set var="isInPersonalMovies" value="0" />
-						    		<c:set var="isWished" value="0" />
-							    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">
-							    		<c:if test="${personalMovieId.movie == shelfItem.movie}">
-							    			<c:set var="isInPersonalMovies" value="1" />
-							    			<c:if test="${personalMovieId.wished == 1}">
-							    				<c:set var="isWished" value="1" />
-							    			</c:if>
-							    		</c:if>
-							    	</c:forEach>
-							    	<c:choose>
-				    					<c:when test="${isInPersonalMovies == 0}">
-				    						<div class="action"><a href="/shelfManagement.html?action=add&movie=${shelfItem.movie}">Aggiungi alla videoteca</a></div>
-				    						<div class="action"><a href="/wishlistManagement.html?action=wish&movie=${shelfItem.movie}">Aggiungi alla wishlist</a></div>
-				    					</c:when>
-				    					<c:otherwise>
-				    						<div class="action">Presente in 
-				    							<c:if test="${isWished == 0}"> videoteca</c:if>
-								    			<c:if test="${isWished == 1}"> wishlist</c:if>
-				    						</div>
-								    	</c:otherwise>
-				    				</c:choose>
-							    </c:when>
-							</c:choose>
-					</li>
-					<li class="movie_plot" id="movie_plot_${shelfItem.movie}" style="display: none;">
-						<div class="plot_text">
-							 <c:choose>
-					    		<c:when test="${empty shelfItem.localizedPlot}">
-						    		${shelfItem.originalPlot}
-						    	</c:when>
-						    	<c:otherwise>
-						    		${shelfItem.localizedPlot}
-						    	</c:otherwise>
-					    	</c:choose>
-						</div>
-					</li>
-					<li class="movie_review" id="movie_review_${shelfItem.movie}" style="display: none;">
-						<div class="review_text">
-							${shelfItem.reviewText}
-						</div>
-					</li>
-					
-					<li class="separator">
-					</li>
-				</c:forEach>
-			</ul>
-		</div>
-	</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-	
 <div id="sidebar">
 	<div id="user_profile">
 		<div id="user_profile_image">			
@@ -438,7 +291,147 @@
 		</div>
 	</div>
 </div>
+
+
+<div id="main">
+	<div id="options">
+		<div id="order_div">
+			<select id="order" name="order" onchange="orderShelfByFilter('${userPublicInfo.username}'); return false;">
+				<option value="1">data visto (dal pi&ugrave; recente)</option>
+				<option value="2">data visto (dal pi&ugrave; vecchio)</option>
+				<option value="3">giudizio (dal pi&ugrave; alto) </option>
+				<option value="4">giudizio (dal pi&ugrave; basso) </option>
+			</select>
+		</div>
+		<div id="search_div">
+			<form>
+				<input type="text" name="searchbox" id="searchbox_text" value="Cerca in questa videoteca" />
+				<input type="image" src="/images/search.png" name="doSearchShelf" id="searchbox_button" />
+			</form>
+		</div>
+	</div>
 		
+	<div id="movies">
+		<div id="movies_list_container">
+			<ul id="movie_list" class="movie_list">
+				<c:forEach var="shelfItem" items="${shelfItems}">
+					<c:set var="displayOriginalTitle" value="n" />
+					
+					<li class="movie_image">
+						<c:choose>
+							<c:when test="${not empty shelfItem.localizedImage}">
+								<img src="${shelfItem.localizedImage}" />
+							</c:when>
+							<c:otherwise>
+								<img src="${shelfItem.originalImage}" />
+							</c:otherwise>
+						</c:choose>
+					</li>
+					
+					<li class="movie_data">
+						<div class="title" id="title_${shelfItem.movie}">
+							<c:choose>
+					    		<c:when test="${empty shelfItem.localizedTitle}">
+						    		<a href="/socialMovie.html?movie=${shelfItem.movie}"><b>${shelfItem.originalTitle}</b></a> 
+						    	</c:when>
+						    	<c:otherwise>
+						    		<a href="/socialMovie.html?movie=${shelfItem.movie}"><b>${shelfItem.localizedTitle}</b></a>
+						    		<c:set var="displayOriginalTitle" value="y" />
+						    	</c:otherwise>
+					    	</c:choose>
+					    	<span class="light_text_italic font11">${shelfItem.numUsers} utenti</span>
+						</div>
+						
+						<c:if test="${shelfItem.originalTitle != shelfItem.localizedTitle && displayOriginalTitle == 'y'}">
+				    		<div class="localized_title">
+				    			<i>Titolo originale: ${shelfItem.originalTitle}</i>
+				    		</div>
+				    	</c:if>
+				    	
+						<div class="directed_by">di <a href="/directorDetail.html?director=${shelfItem.directorId}">${shelfItem.director}</a></div>
+						
+						<c:if test="${not empty shelfItem.dateViewed}">
+					    	<div class="date_viewed">Visto il: <fmt:formatDate pattern="${df}" value="${shelfItem.dateViewed}" /></div> 
+					    </c:if>
+				    	
+						
+						<c:if test="${shelfItem.mark > 0}">
+					    	<div class="mark">
+						    	<c:forEach begin="1" end="${shelfItem.mark}">
+									<img src="/images/star.gif"/>
+						    	</c:forEach>
+					    	</div>
+				    	</c:if>
+	
+					</li>
+					<li class="movie_actions">
+						<div class="action action_title">Opzioni</div>
+							<c:if test="${not empty shelfItem.originalPlot || not empty shelfItem.localizedPlot}">
+								<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;">Vedi trama</a></div>
+							</c:if>
+							<c:if test="${not empty shelfItem.review}">
+								<div class="action"><a href="#" onclick="toggleAndMove('movie_review_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;">Vedi recensione</a></div>
+							</c:if>
+							<c:choose>
+							    <c:when test="${empty username || username == pageContext.request.remoteUser}">
+								    <div class="action"><a href="/personalMovie.html?movie=${shelfItem.movie}">Modifica</a></div>
+							    </c:when>
+							    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
+							    	<c:set var="isInPersonalMovies" value="0" />
+						    		<c:set var="isWished" value="0" />
+							    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">
+							    		<c:if test="${personalMovieId.movie == shelfItem.movie}">
+							    			<c:set var="isInPersonalMovies" value="1" />
+							    			<c:if test="${personalMovieId.wished == 1}">
+							    				<c:set var="isWished" value="1" />
+							    			</c:if>
+							    		</c:if>
+							    	</c:forEach>
+							    	<c:choose>
+				    					<c:when test="${isInPersonalMovies == 0}">
+				    						<div class="action"><a href="/shelfManagement.html?action=add&movie=${shelfItem.movie}">Aggiungi alla videoteca</a></div>
+				    						<div class="action"><a href="/wishlistManagement.html?action=wish&movie=${shelfItem.movie}">Aggiungi alla wishlist</a></div>
+				    					</c:when>
+				    					<c:otherwise>
+				    						<div class="action">Presente in 
+				    							<c:if test="${isWished == 0}"> videoteca</c:if>
+								    			<c:if test="${isWished == 1}"> wishlist</c:if>
+				    						</div>
+								    	</c:otherwise>
+				    				</c:choose>
+							    </c:when>
+							</c:choose>
+					</li>
+					<li class="movie_plot" id="movie_plot_${shelfItem.movie}" style="display: none;">
+						<div class="plot_text">
+							 <c:choose>
+					    		<c:when test="${empty shelfItem.localizedPlot}">
+						    		${shelfItem.originalPlot}
+						    	</c:when>
+						    	<c:otherwise>
+						    		${shelfItem.localizedPlot}
+						    	</c:otherwise>
+					    	</c:choose>
+						</div>
+					</li>
+					<li class="movie_review" id="movie_review_${shelfItem.movie}" style="display: none;">
+						<div class="review_text">
+							${shelfItem.reviewText}
+						</div>
+					</li>
+					
+					<li class="separator">
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+
+
+
 <script>
 	function displayElement(id) {
 		$(id).appear({ duration: 0.2 });

@@ -140,6 +140,11 @@
 			<div style="float:right"><span id="directors_view_all" style="display:none;">vedi tutti </span><a href="#" onmouseover="displayElement('directors_view_all')" onmouseout="hideElement('directors_view_all')">(${fn:length(shelfDirectorReportList)})</a></div>
 		</div>
 		<div id="directors_list_container">
+			<div id="loader_sdr" style="height:inherit;display:none;">
+				<center>
+				<img src="/images/loader.gif" />
+				</center>
+			</div>
 			<div id="directors_list_content">
 				<ul class="person_list" id="directors_ul">
 					<c:forEach var="shelfDirectorReportItem" items="${shelfDirectorReportList}">
@@ -613,12 +618,14 @@
 	//////// FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////
 	// Ordina per cognome
 	function orderShelfDirectorReportBySurname(username) {
+		displayElement('loader_sdr');
 		ShelfManager.getShelfDirectorReport(username, null, null, "surname", function(str) {
 			refreshShelfDirectorReportList(str);
 		});
 	}
 	// Ordina per numero di film
 	function orderShelfDirectorReportByNumMovies(username) {
+		displayElement('loader_sdr');
 		ShelfManager.getShelfDirectorReport(username, null, null, null, function(str) {
 			refreshShelfDirectorReportList(str);
 		});
@@ -654,6 +661,7 @@
 
 			li.insert(person_list_info_container);
 			$('directors_ul').insert(li);
+			hideElement('loader_sdr');
 		}
 	}
 	//////// FINE FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////

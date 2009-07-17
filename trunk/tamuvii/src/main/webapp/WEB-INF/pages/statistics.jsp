@@ -235,55 +235,62 @@
 			</ul>
 		</div>
 		<div id="statistics_last_visitors" style="display: none;">
-			<c:forEach var="contact" items="${statistics.lastVisitors}" varStatus="row" >
-					<div class="statistics_last_visitors_content">
-						<c:choose>
-							<c:when test="${not empty contact.imageLink}">
-								<div id="user_image_div" style="background-image: url(${contact.imageLink});" >
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div id="user_image_div" style="background-image: url(/images/placeholder_user_48.jpg);" >
-								</div>
-							</c:otherwise>	
-						</c:choose>
-						<div id="user_profile_info" style="margin-bottom: 10px;">
-							<a href="/shelf.html?username=${contact.username}" style="font-size: 14px; color: black; font-weight: bold;">${contact.username}</a>
-							<br/>
-							<span class="light_text_italic font12">
-								<c:if test="${not empty contact.sex}">
-									<c:choose>
-										<c:when test="${contact.sex == 'M'}">
-											Maschio,
-										</c:when>
-										<c:otherwise>
-											Femmina,
-										</c:otherwise>
-									</c:choose>
-								</c:if>
-								<c:if test="${not empty contact.age && contact.age != -1}">${contact.age} anni,</c:if> ${contact.address.country}
-								<span class="light_text_italic font11"><br/>${contact.totMovies} Film</span>
-							</span>
-						</div>
-						<div class="statistics_latest_movies_added">
-							<div class="statistics_last_movie_added_title">
-								Ultimi film aggiunti
+			<c:choose>
+				<c:when test="${fn:length(statistics.lastVisitors) > 0}">
+					<c:forEach var="contact" items="${statistics.lastVisitors}" varStatus="row" >
+						<div class="statistics_last_visitors_content">
+							<c:choose>
+								<c:when test="${not empty contact.imageLink}">
+									<div id="user_image_div" style="background-image: url(${contact.imageLink});" >
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div id="user_image_div" style="background-image: url(/images/placeholder_user_48.jpg);" >
+									</div>
+								</c:otherwise>	
+							</c:choose>
+							<div id="user_profile_info" style="margin-bottom: 10px;">
+								<a href="/shelf.html?username=${contact.username}" style="font-size: 14px; color: black; font-weight: bold;">${contact.username}</a>
+								<br/>
+								<span class="light_text_italic font12">
+									<c:if test="${not empty contact.sex}">
+										<c:choose>
+											<c:when test="${contact.sex == 'M'}">
+												Maschio,
+											</c:when>
+											<c:otherwise>
+												Femmina,
+											</c:otherwise>
+										</c:choose>
+									</c:if>
+									<c:if test="${not empty contact.age && contact.age != -1}">${contact.age} anni,</c:if> ${contact.address.country}
+									<span class="light_text_italic font11"><br/>${contact.totMovies} Film</span>
+								</span>
 							</div>
-							<c:forEach var="item" items="${contact.lastMovies}" begin="0" end="1">
-								<div class="statistics_last_movie_added_item">
-									<c:choose>
-										<c:when test="${not empty item.localizedTitle}">
-											<a href="/socialMovie.html?movie=${item.movie}">${item.localizedTitle}</a>
-										</c:when>
-										<c:otherwise>
-											<a href="/socialMovie.html?movie=${item.movie}">${item.originalTitle}</a>
-										</c:otherwise>
-									</c:choose>
+							<div class="statistics_latest_movies_added">
+								<div class="statistics_last_movie_added_title">
+									Ultimi film aggiunti
 								</div>
-							</c:forEach>
+								<c:forEach var="item" items="${contact.lastMovies}" begin="0" end="1">
+									<div class="statistics_last_movie_added_item">
+										<c:choose>
+											<c:when test="${not empty item.localizedTitle}">
+												<a href="/socialMovie.html?movie=${item.movie}">${item.localizedTitle}</a>
+											</c:when>
+											<c:otherwise>
+												<a href="/socialMovie.html?movie=${item.movie}">${item.originalTitle}</a>
+											</c:otherwise>
+										</c:choose>
+									</div>
+								</c:forEach>
+							</div>
 						</div>
-					</div>
-			</c:forEach>
+				</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<span style="margin:10px">Non hai ancora ricevuto nessuna visita!</span>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	

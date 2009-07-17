@@ -90,7 +90,6 @@
 #movies .movie_plot {
 	clear: both; 
 	width: 100%; 
-	background-color: #eee; 
 	height: auto;
 	margin-bottom: 10px;
 	padding-top: 0px;
@@ -99,11 +98,12 @@
 	padding: 10px; 
 	text-align: justify;
 	font-size: 12px;
+	-moz-border-radius: 5px;
+	background-color: #ADCEFF;
 }
 #movies .movie_review {
 	clear: both; 
 	width: 100%; 
-	background-color: #eee; 
 	height: auto;
 	margin-bottom: 10px;
 	padding-top: 0px;
@@ -112,6 +112,8 @@
 	padding: 10px; 
 	text-align: justify;
 	font-size: 12px;
+	background-color: #FFCE8A;
+	-moz-border-radius: 5px;
 }
 
 

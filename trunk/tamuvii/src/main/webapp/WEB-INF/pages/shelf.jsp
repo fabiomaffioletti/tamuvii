@@ -477,9 +477,7 @@
 		return false;
 	}
 	function toggleAndMove(id, title) {	
-		new Effect.toggle(id, 'slide', { duration: 0.5, afterFinish: function(effect) {
-	      new Effect.ScrollTo(title, { duration: 0.5 });
-	    }});
+		new Effect.toggle(id, 'appear', { duration: 0.5});
 	}
 </script>
 

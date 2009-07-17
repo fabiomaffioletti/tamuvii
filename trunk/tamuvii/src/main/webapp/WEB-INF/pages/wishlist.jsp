@@ -24,7 +24,16 @@
 			<div id="user_profile_info" style="margin-bottom: 10px;">
 				<b>${userPublicInfo.username}</b>
 				<br/>
-				<span class="light_text_italic font12">${userPublicInfo.totMovies} film</span>
+				<span class="light_text_italic font12">${userPublicInfo.totMovies} 
+					<c:choose>
+						<c:when test="${userPublicInfo.totMovies > 1}">
+							<fmt:message key="label.movies" />		
+						</c:when>
+						<c:otherwise>
+							<fmt:message key="label.movie" />
+						</c:otherwise>
+					</c:choose>
+				</span>
 				<br/>
 				<a href="#" id="other_info_link" onclick="displayOtherInfo('other_info_container')">Vedi altre informazioni</a>
 			</div>

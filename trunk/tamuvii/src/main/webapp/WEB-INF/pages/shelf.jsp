@@ -24,9 +24,18 @@
 			<div id="user_profile_info" style="margin-bottom: 10px;">
 				<b>${userPublicInfo.username}</b>
 				<br/>
-				<span class="light_text_italic font12">${userPublicInfo.totMovies} film</span>
+				<span class="light_text_italic font12">${userPublicInfo.totMovies} 
+					<c:choose>
+						<c:when test="${userPublicInfo.totMovies > 1}">
+							<fmt:message key="label.movies" />		
+						</c:when>
+						<c:otherwise>
+							<fmt:message key="label.movie" />
+						</c:otherwise>
+					</c:choose>
+				</span>
 				<br/>
-				<a href="#" id="other_info_link" onclick="displayOtherInfo('other_info_container')">Vedi altre informazioni</a>
+				<a href="#" id="other_info_link" onclick="displayOtherInfo('other_info_container')"><fmt:message key="label.see.other.info" /></a>
 			</div>
 		</div>
 		<div id="other_info_container" style="display: none;">
@@ -35,10 +44,10 @@
 					<c:if test="${not empty userPublicInfo.sex}">
 						<c:choose>
 							<c:when test="${userPublicInfo.sex == 'M'}">
-								Maschio,
+								<fmt:message key="label.male" />,
 							</c:when>
 							<c:otherwise>
-								Femmina,
+								<fmt:message key="label.female" />,
 							</c:otherwise>
 						</c:choose>
 					</c:if>
@@ -46,33 +55,33 @@
 					<br/>	
 				</span>
 				<c:if test="${not empty userPublicInfo.website}">
-					<span class="font12">Sito web: <a href="${userPublicInfo.website}" target="_blank">${userPublicInfo.websiteTitle}</a></span>
+					<span class="font12"><fmt:message key="label.website" />: <a href="${userPublicInfo.website}" target="_blank">${userPublicInfo.websiteTitle}</a></span>
 					<br/>
 				</c:if>
 				<c:if test="${not empty userPublicInfo.quotation}">
-					<span class="font12">Citazione preferita: </span><span class="light_text_italic font12">${userPublicInfo.quotation}</span>
+					<span class="font12"><fmt:message key="label.quotation" />: </span><span class="light_text_italic font12">${userPublicInfo.quotation}</span>
 				</c:if>
 			</div>
 		</div>
 		<div id="user_profile_options">
 			<ul>
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
-					<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Invia un messaggio privato')" onclick="chooseOption('send_message')"><img src="/images/message.png" /></a></li>
+					<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('<fmt:message key="label.send.private.message" />')" onclick="chooseOption('send_message')"><img src="/images/message.png" /></a></li>
 				</c:if>
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
-				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Relazioni')" onclick="chooseOption('relationship')"><img src="/images/add_friend.png" /></a></li>
+				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('<fmt:message key="label.relationships" />')" onclick="chooseOption('relationship')"><img src="/images/add_friend.png" /></a></li>
 				</c:if>
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
-				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Calcola compatibilit&agrave;')" onclick="chooseOption('compatibility')"><img src="/images/calculator.png" /></a></li>
+				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('<fmt:message key="label.calc.compatibility" />')" onclick="chooseOption('compatibility')"><img src="/images/calculator.png" /></a></li>
 				</c:if>
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
-				<li><a href="/wishlist.html?username=${username}" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('Vedi la sua wishlist')"><img src="/images/wishlist.png" /></a></li>
+				<li><a href="/wishlist.html?username=${username}" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('<fmt:message key="label.view.wishlist" />')"><img src="/images/wishlist.png" /></a></li>
 				</c:if>
 			</ul>
 		</div>
 		<c:if test="${not empty username && username != pageContext.request.remoteUser}">
 			<div id="option_hint_container">
-				<div id="option_hint">Cosa vuoi fare?</div>
+				<div id="option_hint"><fmt:message key="label.what.do.you.want.to.do" /></div>
 			</div>
 		</c:if>
 	</div>
@@ -86,26 +95,26 @@
 						<c:choose>
 							<c:when test="${areFriends}">
 								<ul>
-									<li onclick="document.location.href='/relationshipManagement.html?action=moveToNeighborhoods&username=${username}'">Cambia a vicino</li>
-									<li onclick="document.location.href='/relationshipManagement.html?action=deleteFriend&username=${username}'">Cancella dagli amici</li>
+									<li onclick="document.location.href='/relationshipManagement.html?action=moveToNeighborhoods&username=${username}'"><fmt:message key="label.change.to.neighbor" /></li>
+									<li onclick="document.location.href='/relationshipManagement.html?action=deleteFriend&username=${username}'"><fmt:message key="label.delete.from.friends" /></li>
 								</ul>
 							</c:when>
 							<c:when test="${areNeighborhoods}">
 								<ul>
-									<li onclick="document.location.href='/relationshipManagement.html?action=moveToFriends&username=${username}'">Cambia a amico</li>
-									<li onclick="document.location.href='/relationshipManagement.html?action=deleteNeighborhood&username=${username}'">Cancella dai vicini</li>
+									<li onclick="document.location.href='/relationshipManagement.html?action=moveToFriends&username=${username}'"><fmt:message key="label.change.to.friend" /></li>
+									<li onclick="document.location.href='/relationshipManagement.html?action=deleteNeighborhood&username=${username}'"><fmt:message key="label.delete.from.neighbors" /></li>
 								</ul>
 							</c:when>
 							<c:otherwise>
 								<ul>
-									<li onclick="document.location.href='/relationshipManagement.html?action=addFriend&username=${username}'">Aggiungi come amico</li>
-									<li onclick="document.location.href='/relationshipManagement.html?action=addNeighborhood&username=${username}'">Aggiungi come vicino</li>
+									<li onclick="document.location.href='/relationshipManagement.html?action=addFriend&username=${username}'"><fmt:message key="label.add.friend" /></li>
+									<li onclick="document.location.href='/relationshipManagement.html?action=addNeighborhood&username=${username}'"><fmt:message key="label.add.neighbor" /></li>
 								</ul>
 							</c:otherwise>
 						</c:choose>
 					</c:when>
 				</c:choose>
-				<div style="float: left;"><a href="#" onclick="Effect.Fade('relationship', { duration: 0.4 }); return false;">Chiudi</a></div>
+				<div style="float: left;"><a href="#" onclick="Effect.Fade('relationship', { duration: 0.4 }); return false;"><fmt:message key="label.close" /></a></div>
 			</div>
 		</div>
 	</div>
@@ -115,9 +124,9 @@
 			<div id="compatibility" style="width:100%; display:none;">
 				<div id="compatibility_message">
 					<div style="font-size: 12px; color: black;">La compatibilit&agrave; con questo utente &egrave;:</div>
-					<div id="compatibility_value">94%</div>
+					<div id="compatibility_value">94% (demo)</div>
 				</div>
-				<div style="float: left;"><a href="#" onclick="Effect.Fade('compatibility', { duration: 0.4 }); return false;">Chiudi</a></div>
+				<div style="float: left;"><a href="#" onclick="Effect.Fade('compatibility', { duration: 0.4 }); return false;"><fmt:message key="label.close" /></a></div>
 				<div style="float: right;"><a href="#">Dettagli</a></div>
 			</div>
 		</div>
@@ -128,7 +137,7 @@
 			<div id="send_message" style="width:100%; display:none;">
 				<textarea id="messagetext" name="messagetext" style="width: 98%" rows="5"></textarea>
 				<span style="float: right;"><input type="button" name="sendMessage" value="Spedisci" onclick="sendMessage()" /></span>
-				<span style="float: left;"><a href="#" onclick="cancelSendingMessage(); return false;">Annulla</a></span>
+				<span style="float: left;"><a href="#" onclick="cancelSendingMessage(); return false;"><fmt:message key="label.cancel" /></a></span>
 			</div>
 		</div>
 	</div>
@@ -136,8 +145,8 @@
 	
 	<div id="directors">
 		<div class="relationship_title">
-			<div style="float:left">Film per regista</div>
-			<div style="float:right"><span id="directors_view_all" style="display:none;">vedi tutti </span><a href="#" onmouseover="displayElement('directors_view_all')" onmouseout="hideElement('directors_view_all')">(${fn:length(shelfDirectorReportList)})</a></div>
+			<div style="float:left"><fmt:message key="label.movies.director" /></div>
+			<div style="float:right">(${fn:length(shelfDirectorReportList)})</div>
 		</div>
 		<div id="directors_list_container">
 			<div id="loader_sdr" style="height:inherit;display:none;">
@@ -157,7 +166,16 @@
 								<div class="person_list_info">
 									<span class="bold_text">${shelfDirectorReportItem.name} ${shelfDirectorReportItem.surname}</span>
 									<br/>
-									<span class="light_text_italic">${shelfDirectorReportItem.numMovies} Film</span>
+									<span class="light_text_italic">${shelfDirectorReportItem.numMovies} 
+										<c:choose>
+											<c:when test="${shelfDirectorReportItem.numMovies > 1}">
+												<fmt:message key="label.movies" />
+											</c:when>
+											<c:otherwise>
+												<fmt:message key="label.movie" />
+											</c:otherwise>
+										</c:choose>
+									</span>
 								</div>
 							</div>
 						</li>
@@ -168,7 +186,7 @@
 		<div class="relationship_navigation" style="width:100%;">
 			<a href="#" id="upDirectors" style="display:none;float:left;" onclick="indexDirectors = doup(indexDirectors, 1, 'directors_list_content', $('directors_list_container').getHeight(), 'downDirectors', 'upDirectors'); return false;"><img class="relationship_navigation_image" src="/images/bw.png"/></a>
 			<div style="float:left; margin-left: 53px;">
-				<span class="font12">Ordina: </span>
+				<span class="font12"><fmt:message key="label.order" />: </span>
 				<a href="#" onclick="orderShelfDirectorReportBySurname('${userPublicInfo.username}'); return false;">A-Z</a>
 				<a href="#" onclick="orderShelfDirectorReportByNumMovies('${userPublicInfo.username}'); return false;"># Film</a>
 			</div>
@@ -179,13 +197,13 @@
 	
 	<div id="friends">
 		<div class="relationship_title">
-			<div style="float:left">Amici</div>
+			<div style="float:left"><fmt:message key="label.friends" /></div>
 			<c:choose>
 				<c:when test="${not empty username && username != pageContext.request.remoteUser}">
-					<div style="float:right"><span id="friends_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=friends&username=${username}" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
+					<div style="float:right"><span id="friends_view_all" style="display:none;"><fmt:message key="label.see.all" /> </span><a href="/relationship.html?mode=friends&username=${username}" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
 				</c:when>
 				<c:otherwise>
-					<div style="float:right"><span id="friends_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=friends" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
+					<div style="float:right"><span id="friends_view_all" style="display:none;"><fmt:message key="label.see.all" /> </span><a href="/relationship.html?mode=friends" onmouseover="displayElement('friends_view_all')" onmouseout="hideElement('friends_view_all')">(${fn:length(friends)})</a></div>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -214,10 +232,10 @@
 										<c:if test="${not empty friend.sex}">
 											<c:choose>
 												<c:when test="${friend.sex == 'M'}">
-													Maschio,
+													<fmt:message key="label.male" />,
 												</c:when>
 												<c:otherwise>
-													Femmina,
+													<fmt:message key="label.female" />,
 												</c:otherwise>
 											</c:choose>
 										</c:if>
@@ -239,13 +257,13 @@
 
 	<div id="neighbors">
 		<div class="relationship_title">
-			<div style="float:left">Vicini</div>
+			<div style="float:left"><fmt:message key="label.neighbors" /></div>
 			<c:choose>
 				<c:when test="${not empty username && username != pageContext.request.remoteUser}">
-					<div style="float:right"><span id="neighbors_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=neighborhoods&username=${username}" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
+					<div style="float:right"><span id="neighbors_view_all" style="display:none;"><fmt:message key="label.see.all" /> </span><a href="/relationship.html?mode=neighborhoods&username=${username}" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
 				</c:when>
 				<c:otherwise>
-					<div style="float:right"><span id="neighbors_view_all" style="display:none;">vedi tutti </span><a href="/relationship.html?mode=neighborhoods" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
+					<div style="float:right"><span id="neighbors_view_all" style="display:none;"><fmt:message key="label.see.all" /> </span><a href="/relationship.html?mode=neighborhoods" onmouseover="displayElement('neighbors_view_all')" onmouseout="hideElement('neighbors_view_all')">(${fn:length(neighborhoods)})</a></div>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -274,10 +292,10 @@
 										<c:if test="${not empty neighborhood.sex}">
 											<c:choose>
 												<c:when test="${neighborhood.sex == 'M'}">
-													Maschio,
+													<fmt:message key="label.male" />,
 												</c:when>
 												<c:otherwise>
-													Femmina,
+													<fmt:message key="label.female" />,
 												</c:otherwise>
 											</c:choose>
 										</c:if>
@@ -310,7 +328,7 @@
 		</div>
 		<div id="search_div">
 			<form>
-				<input type="text" name="searchbox" id="searchbox_text" value="Cerca in questa videoteca" />
+				<input type="text" name="searchbox" id="searchbox_text" value="<fmt:message key='label.search.shelf' />" />
 				<input type="image" src="/images/search.png" name="doSearchShelf" id="searchbox_button" />
 			</form>
 		</div>
@@ -344,19 +362,28 @@
 						    		<c:set var="displayOriginalTitle" value="y" />
 						    	</c:otherwise>
 					    	</c:choose>
-					    	<span class="light_text_italic font11">${shelfItem.numUsers} utenti</span>
+					    	<span class="light_text_italic font11">${shelfItem.numUsers}
+					    		<c:choose>
+					    			<c:when test="${shelfItem.numUsers > 1}">
+					    				<fmt:message key="label.users" />
+					    			</c:when>
+					    			<c:otherwise>
+					    				<fmt:message key="label.user" />
+					    			</c:otherwise>
+					    		</c:choose> 
+							</span>
 						</div>
 						
 						<c:if test="${shelfItem.originalTitle != shelfItem.localizedTitle && displayOriginalTitle == 'y'}">
 				    		<div class="localized_title">
-				    			<i>Titolo originale: ${shelfItem.originalTitle}</i>
+				    			<i><fmt:message key="label.original.title" />: ${shelfItem.originalTitle}</i>
 				    		</div>
 				    	</c:if>
 				    	
-						<div class="directed_by">di <a href="/directorDetail.html?director=${shelfItem.directorId}">${shelfItem.director}</a></div>
+						<div class="directed_by"><fmt:message key="label.by" /> <a href="/directorDetail.html?director=${shelfItem.directorId}">${shelfItem.director}</a></div>
 						
 						<c:if test="${not empty shelfItem.dateViewed}">
-					    	<div class="date_viewed">Visto il: <fmt:formatDate pattern="${df}" value="${shelfItem.dateViewed}" /></div> 
+					    	<div class="date_viewed"><fmt:message key="label.date.viewed" />: <fmt:formatDate pattern="${df}" value="${shelfItem.dateViewed}" /></div> 
 					    </c:if>
 				    	
 						
@@ -370,16 +397,16 @@
 	
 					</li>
 					<li class="movie_actions">
-						<div class="action action_title">Opzioni</div>
+						<div class="action action_title"><fmt:message key="label.options" /></div>
 							<c:if test="${not empty shelfItem.originalPlot || not empty shelfItem.localizedPlot}">
-								<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;">Vedi trama</a></div>
+								<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;"><fmt:message key="label.plot" /></a></div>
 							</c:if>
 							<c:if test="${not empty shelfItem.review}">
-								<div class="action"><a href="#" onclick="toggleAndMove('movie_review_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;">Vedi recensione</a></div>
+								<div class="action"><a href="#" onclick="toggleAndMove('movie_review_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;"><fmt:message key="label.review" /></a></div>
 							</c:if>
 							<c:choose>
 							    <c:when test="${empty username || username == pageContext.request.remoteUser}">
-								    <div class="action"><a href="/personalMovie.html?movie=${shelfItem.movie}">Modifica</a></div>
+								    <div class="action"><a href="/personalMovie.html?movie=${shelfItem.movie}"><fmt:message key="label.modify" /></a></div>
 							    </c:when>
 							    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
 							    	<c:set var="isInPersonalMovies" value="0" />
@@ -394,13 +421,13 @@
 							    	</c:forEach>
 							    	<c:choose>
 				    					<c:when test="${isInPersonalMovies == 0}">
-				    						<div class="action"><a href="/shelfManagement.html?action=add&movie=${shelfItem.movie}">Aggiungi alla videoteca</a></div>
-				    						<div class="action"><a href="/wishlistManagement.html?action=wish&movie=${shelfItem.movie}">Aggiungi alla wishlist</a></div>
+				    						<div class="action"><a href="/shelfManagement.html?action=add&movie=${shelfItem.movie}"><fmt:message key="label.add.shelf" /></a></div>
+				    						<div class="action"><a href="/wishlistManagement.html?action=wish&movie=${shelfItem.movie}"><fmt:message key="label.add.wishlist" /></a></div>
 				    					</c:when>
 				    					<c:otherwise>
-				    						<div class="action">Presente in 
-				    							<c:if test="${isWished == 0}"> videoteca</c:if>
-								    			<c:if test="${isWished == 1}"> wishlist</c:if>
+				    						<div class="action"> 
+				    							<c:if test="${isWished == 0}"> <fmt:message key="label.present.in.shelf" /></c:if>
+								    			<c:if test="${isWished == 1}"> <fmt:message key="label.present.in.wishlist" /></c:if>
 				    						</div>
 								    	</c:otherwise>
 				    				</c:choose>
@@ -461,18 +488,18 @@
 		return false;
 	}
 	function resetOptionHint() {
-		$('option_hint').innerHTML = 'Cosa vuoi fare?';		
+		$('option_hint').innerHTML = "<fmt:message key='label.what.do.you.want.to.do' />";		
 		return false;
 	}
 	function displayOtherInfo() {
 		$('other_info_container').appear({ duration: 0.2 });
-		$('other_info_link').innerHTML = "Nascondi altre informazioni";
+		$('other_info_link').innerHTML = "<fmt:message key='label.hide.other.info' />";
 		$('other_info_link').onclick = hideOtherInfo;
 		return false;
 	}
 	function hideOtherInfo() {
 		$('other_info_container').fade({ duration: 0.2 });
-		$('other_info_link').innerHTML = "Vedi altre informazioni";
+		$('other_info_link').innerHTML = "<fmt:message key='label.see.other.info' />";
 		$('other_info_link').onclick = displayOtherInfo;
 		return false;
 	}
@@ -731,7 +758,7 @@
 			
 			// Titolo originale
 			if(displayOriginalTitle == 'y' && str[x].originalTitle != str[x].localizedTitle) {
-				var localized_title_div = Builder.node('div', { className: 'localized_title' }, 'Titolo originale: ' + str[x].originalTitle);
+				var localized_title_div = Builder.node('div', { className: 'localized_title' }, "<fmt:message key='label.original.title' />: " + str[x].originalTitle);
 				movie_data_li.insert(localized_title_div);
 			}
 
@@ -760,7 +787,7 @@
 
 			//Opzioni
 			var option_li = Builder.node('li', { className: 'movie_actions' });
-			var action_title_div = Builder.node('div', { className: 'action action_title' }, 'Opzioni');
+			var action_title_div = Builder.node('div', { className: 'action action_title' }, "<fmt:message key='label.options' />");
 			$(option_li).insert(action_title_div);
 			
 			if(str[x].originalPlot != null || str[x].localizedPlot != null) {
@@ -778,7 +805,7 @@
 			<c:choose>
 			    <c:when test="${empty username || username == pageContext.request.remoteUser}">
 			    	var modify_action_div = Builder.node('div', { className: 'action' });
-			    	var modify_action_link = Builder.node('a', {href: '/personalMovie.html?movie='+str[x].movie}, 'Modifica');
+			    	var modify_action_link = Builder.node('a', {href: '/personalMovie.html?movie='+str[x].movie}, "<fmt:message key='label.modify' />");
 			    	modify_action_div.insert(modify_action_link);
 			    	$(option_li).insert(modify_action_div);
 			    </c:when>
@@ -797,10 +824,10 @@
 			    	
 			    	if(isInPersonalMovies == 0) {
 						var add_shelf_div = Builder.node('div', { className: 'action' });
-						var add_shelf_a = Builder.node('a', { href: '/shelfManagement.html?action=add&movie='+str[x].movie }, 'Aggiundi alla videoteca');
+						var add_shelf_a = Builder.node('a', { href: '/shelfManagement.html?action=add&movie='+str[x].movie }, "<fmt:message key='label.add.shelf' />");
 						add_shelf_div.insert(add_shelf_a);
 						var add_wish_div = Builder.node('div', { className: 'action' });
-						var add_wish_a = Builder.node('a', { href: '/wishlistManagement.html?action=add&movie='+str[x].movie }, 'Aggiundi alla wishlist');
+						var add_wish_a = Builder.node('a', { href: '/wishlistManagement.html?action=add&movie='+str[x].movie }, "<fmt:message key='label.add.wishlist' />");
 						add_wish_div.insert(add_wish_a);
 						option_li.insert(add_shelf_div);
 						option_li.insert(add_wish_div);
@@ -808,9 +835,9 @@
 			    	} else {
 				    	var presence_div = Builder.node('div', { className: 'action' });
 				    	if(isWished == 0) {
-					    	presence_div.innerHTML = 'Presente in videoteca';	
+					    	presence_div.innerHTML = "<fmt:message key='label.present.in.shelf' />";	
 				    	} else {
-				    		presence_div.innerHTML = 'Presente in wishlist';
+				    		presence_div.innerHTML = "<fmt:message key='label.present.in.wishlist' />";	
 				    	}
 				    	option_li.insert(presence_div);
 			    	}

@@ -2,20 +2,21 @@
 
 <head>
     <title><fmt:message key="search.pagetitle"/></title>
-
 </head>
 
+<div id="sidebar">
+	<span style="font-size:12px;color:#777;font-style:italic;">Inserisci la stringa da ricercare</span>
+	<input type="text" name="search" id="search" style="width: 215px; border:1px dashed #AAA;"/>
+	<span id="spin" style="display:none;color:#FF0000"><img src="/images/loader.gif" alt="Attendere..." style="width:15px;vertical-align:middle"/></span>
+	<div id="autocomplete_choices" class="autocomplete" style="clear:both;"></div>
+	<input type="button" value="vai" onclick="search();" />
+</div>
 
-
-	<div id="sidebar">
-		<span style="font-size:12px;color:#777;font-style:italic;">Inserisci la stringa da ricercare</span>
-		<input type="text" name="search" id="search" style="width: 150px; border:1px dashed #AAA;"/>
-		<span id="spin" style="display:none;color:#FF0000"><img src="/images/loader.gif" alt="Attendere..." style="width:15px;vertical-align:middle"/></span>
-		
-		<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
-		<div id="autocomplete_choices" class="autocomplete"></div>
-		
+<div id="main">
+	<div id="searchFrameContainer">
+		<iframe id="searchIframe" frameborder="0" scrolling="no" width="100%" height="100%"></iframe>
 	</div>
+</div>
 
 <script type="text/javascript">
     new Ajax.Autocompleter("search", "autocomplete_choices", "searchAutocomplete.html?ajax=true", {
@@ -25,6 +26,14 @@
     	  	frequency: 0.5
     	});
 </script>
+
+<script>
+	function search() {
+		var stringSearch = $('search').value;
+		$('searchIframe').writeAttribute('src', '/searchSocialMovies.html?ajax=true&filter='+stringSearch);
+	}
+</script>
+
 
 <style type="text/css">
 div.autocomplete {

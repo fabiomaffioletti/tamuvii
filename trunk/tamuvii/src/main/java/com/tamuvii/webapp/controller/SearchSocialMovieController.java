@@ -26,7 +26,7 @@ public class SearchSocialMovieController implements Controller {
 		mv.addObject("resultSocialMovies", movieManager.searchSocialMovie(request.getRemoteUser(), filter));
 		mv.addObject("filter", filter);
 		
-		mv.setViewName("resultSocialMovies");
+		mv.setViewName("if_search");
 		return mv;
 	}
 

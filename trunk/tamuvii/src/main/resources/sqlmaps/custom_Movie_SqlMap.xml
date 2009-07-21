@@ -162,64 +162,45 @@
   </select>
   
   <select id="searchSocialMovies" resultMap="socialMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.SocialMovieFilter" >
-		select				abc.movie, 
-							abc.duration, 
-							abc.original_title,
-							abc.original_plot,
-							abc.original_image,
-							abc.localized_title,
-							abc.localized_plot,
-							abc.localized_image,
-							abc.director as directorId, 
-							concat(abc.name, " ", abc.surname) as director,
-							abc.release_date,
-							avg(abc.mark) as avgMark,
-							count(distinct abc.mark) as numMarks,
-							count(distinct abc.review) as numReviews,
-							count(distinct abc.username) as numUsers
-
-		from (
-					select			m.movie, 
-									m.duration, 
-									m.original_title,
-									m.original_plot,
-									m.original_image,
-									m.release_date,
-									loc.localized_title,
-									loc.localized_plot,
-									loc.localized_image,
-									d.*,
-									um.mark as mark,
-									r.review,
-									au.username
-									
-					from			movie m 							inner join 	user_to_movie um
-									on m.movie = um.movie 				inner join	app_user au	
-									on	au.username = um.username		inner join director d
-									on m.director = d.director			left join localized_data loc
-									on m.movie = loc.movie	and loc.locale like concat('%', au.country, '%')	left join review r
-									on	m.movie = r.movie	and r.username = au.username
-					
-					<dynamic prepend="WHERE">
-				         <isNotNull property="filter" prepend="and">
-			                  <iterate conjunction="and" property="filter" removeFirstPrepend="true">
-			                       (
-			                       m.original_title like #filter[]#
-			                       or
-			                       loc.localized_title like #filter[]#
-			                       or
-			                       d.surname like #filter[]#
-			                       or
-			                       d.name like #filter[]#
-			                       )
-			                  </iterate>
-				        </isNotNull>
-				        and loc.locale like (select country from app_user where username = #username#)
-				    </dynamic>								
-										
-					group by m.movie
-		) as abc
-
+		select			m.movie, 
+						m.duration, 
+						m.original_title,
+						m.original_plot,
+						m.original_image,
+						m.release_date,
+						loc.localized_title,
+						loc.localized_plot,
+						loc.localized_image,
+						d.*,
+						null as mark,
+						null as review,
+						null as username
+						
+		from			movie m 							inner join 	user_to_movie um
+						on m.movie = um.movie 				inner join	app_user au	
+						on	au.username = um.username		inner join director d
+						on m.director = d.director			left join localized_data loc
+						on m.movie = loc.movie	and loc.locale like concat('%', au.country, '%')	left join review r
+						on	m.movie = r.movie	and r.username = au.username
+		
+		<dynamic prepend="WHERE">
+	         <isNotNull property="filter" prepend="and">
+                  <iterate conjunction="and" property="filter" removeFirstPrepend="true">
+                       (
+                       m.original_title like #filter[]#
+                       or
+                       loc.localized_title like #filter[]#
+                       or
+                       d.surname like #filter[]#
+                       or
+                       d.name like #filter[]#
+                       )
+                  </iterate>
+	        </isNotNull>
+	        and loc.locale like (select country from app_user where username = #username#)
+	    </dynamic>								
+							
+		group by m.movie
   </select>
   
   <!-- 

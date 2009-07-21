@@ -174,9 +174,10 @@
 						d.director as directorId, 
 						concat(d.name, " ", d.surname) as director,
 						m.release_date,
-						null as mark,
-						null as review,
-						null as username
+						null as numReviews,
+						null as avgMark,
+						null as numMarks,
+						null as numUsers
 						
 		from			movie m 							inner join 	user_to_movie um
 						on m.movie = um.movie 				inner join	app_user au	

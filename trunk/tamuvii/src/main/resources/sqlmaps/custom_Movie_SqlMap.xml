@@ -190,13 +190,13 @@
 	         <isNotNull property="filter" prepend="and">
                   <iterate conjunction="and" property="filter" removeFirstPrepend="true">
                        (
-                       m.original_title like #filter[]#
+                       m.original_title like concat('%', #filter[]#, '%')
                        or
-                       loc.localized_title like #filter[]#
+                       loc.localized_title like concat('%', #filter[]#, '%')
                        or
-                       d.surname like #filter[]#
+                       d.surname like concat('%', #filter[]#, '%')
                        or
-                       d.name like #filter[]#
+                       d.name like concat('%', #filter[]#, '%')
                        )
                   </iterate>
 	        </isNotNull>

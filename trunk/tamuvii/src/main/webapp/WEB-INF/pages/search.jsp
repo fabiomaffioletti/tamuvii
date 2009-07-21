@@ -5,11 +5,10 @@
 </head>
 
 <div id="sidebar">
-	<span style="font-size:12px;color:#777;font-style:italic;">Inserisci la stringa da ricercare</span>
-	<input type="text" name="search" id="search" style="width: 215px; border:1px dashed #AAA;"/>
+	<span style="font-size:12px;color:#777;font-style:italic;"><fmt:message key="label.search.movie" /></span>
+	<input type="text" name="search" id="search" style="width: 185px; border:1px dashed #AAA;"/><img style="vertical-align: middle; margin-left: 5px; cursor: pointer;" src="/images/search.png" onclick="searchMovie();" />
 	<span id="spin" style="display:none;color:#FF0000"><img src="/images/loader.gif" alt="Attendere..." style="width:15px;vertical-align:middle"/></span>
 	<div id="autocomplete_choices" class="autocomplete" style="clear:both;"></div>
-	<input type="button" value="vai" onclick="search();" />
 </div>
 
 <div id="main">
@@ -28,9 +27,9 @@
 </script>
 
 <script>
-	function search() {
-		var stringSearch = $('search').value;
-		$('searchIframe').writeAttribute('src', '/searchSocialMovies.html?ajax=true&filter='+stringSearch);
+	function searchMovie() {
+		var searchString = $('search').value.replace(",", " ");
+		$('searchIframe').writeAttribute('src', '/searchSocialMovies.html?ajax=true&filter='+searchString);
 	}
 </script>
 
@@ -40,7 +39,6 @@ div.autocomplete {
   position:absolute;
   width:250px;
   background-color:white;
-  /* border:1px solid #888; */
   margin:0;
   padding:0;
 }

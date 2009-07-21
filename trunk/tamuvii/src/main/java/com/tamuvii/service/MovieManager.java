@@ -22,7 +22,7 @@ public interface MovieManager {
 	
 	public List<Movie> getAllMovies();
 	
-	public List<SocialMovie> searchSocialMovie(String filter);
+	public List<SocialMovie> searchSocialMovie(String username, String filter);
 	
 	public boolean doesMovieBelongToUserShelf(Integer movie, String username);
 	

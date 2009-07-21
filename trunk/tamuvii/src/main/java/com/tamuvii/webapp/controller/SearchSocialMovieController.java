@@ -23,7 +23,7 @@ public class SearchSocialMovieController implements Controller {
 		ModelAndView mv = new ModelAndView();
 		
 		String filter = request.getParameter("filter") == null ? null : request.getParameter("filter"); 
-		mv.addObject("resultSocialMovies", movieManager.searchSocialMovie(filter));
+		mv.addObject("resultSocialMovies", movieManager.searchSocialMovie(request.getRemoteUser(), filter));
 		mv.addObject("filter", filter);
 		
 		mv.setViewName("resultSocialMovies");

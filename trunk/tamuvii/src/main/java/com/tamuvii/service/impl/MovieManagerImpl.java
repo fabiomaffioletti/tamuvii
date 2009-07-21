@@ -105,13 +105,14 @@ public class MovieManagerImpl implements MovieManager {
 		reviewManager.updatePersonalMovieReviewData(personalMovie, username);
 	}
 	
-	public List<SocialMovie> searchSocialMovie(String filter) {
+	public List<SocialMovie> searchSocialMovie(String username, String filter) {
 		String[] splittedFilter = filter.split(" ");
 		for (int i=0; i<splittedFilter.length; i++) {
 			splittedFilter[i] = "%" + splittedFilter[i] + "%"; 
 		}
 		
 		SocialMovieFilter searchMovieFilter = new SocialMovieFilter();
+		searchMovieFilter.setUsername(username);
 		searchMovieFilter.setFilter(splittedFilter);
 		return customMovieDao.searchSocialMovie(searchMovieFilter);
 	}

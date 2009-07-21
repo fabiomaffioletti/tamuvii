@@ -171,7 +171,9 @@
 						loc.localized_title,
 						loc.localized_plot,
 						loc.localized_image,
-						d.*,
+						d.director as directorId, 
+						concat(d.name, " ", d.surname) as director,
+						m.release_date,
 						null as mark,
 						null as review,
 						null as username

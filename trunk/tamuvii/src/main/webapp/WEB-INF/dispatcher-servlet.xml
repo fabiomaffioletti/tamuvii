@@ -91,6 +91,10 @@
                 /opinion.html=opinionController
                 /searchSocialMovies.html=searchSocialMovieController
                 
+                <!-- Menu -->
+                /search.html=filenameController
+                /searchAutocomplete.html=SearchAutocompleteController
+                
                 <!-- Review -->
                 /voteReview.html=userReviewVoteController
                 /voteReview.html=userReviewVoteController
@@ -279,6 +283,10 @@
 	
 	<bean id="registrationConfirmationController" class="com.tamuvii.webapp.controller.RegistrationConfirmationController">
 		<property name="appUserManager" ref="appUserManager" />
+	</bean>
+	
+	<bean id="SearchAutocompleteController" class="com.tamuvii.webapp.controller.SearchAutocompleteController">
+		<property name="movieManager" ref="movieManager" />
 	</bean>
     
     

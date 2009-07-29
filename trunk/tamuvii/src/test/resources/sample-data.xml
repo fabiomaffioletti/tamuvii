@@ -1,93 +1,1742 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-    <table name="app_user">
-        <column>id</column>
-        <column>username</column>
-        <column>password</column>
-        <column>first_name</column>
-        <column>last_name</column>
-        <column>address</column>
-        <column>city</column>
-        <column>country</column>
-        <column>email</column>
-        <column>phone_number</column>
-        <column>postal_code</column>
-        <column>province</column>
-        <column>website</column>
-        <column>password_hint</column>
-        <column>version</column>
-        <column>account_enabled</column>
-        <column>account_expired</column>
-        <column>account_locked</column>
-        <column>credentials_expired</column>
-        <row>
-            <value description="id">-1</value>
-            <value description="username">user</value>
-            <value description="password">12dea96fec20593566ab75692c9949596833adc9</value>
-            <value description="first_name">Tomcat</value>
-            <value description="last_name">User</value>
-            <value description="address"></value>
-            <value description="city">Denver</value>
-            <value description="country">US</value>
-            <value description="email">matt_raible@yahoo.com</value>
-            <value description="phone_number"></value>
-            <value description="postal_code">80210</value>
-            <value description="province">CO</value>
-            <value description="website">http://tomcat.apache.org</value>
-            <value description="password_hint"><![CDATA[A male kitty.]]></value>
-            <value description="version">1</value>
-            <value description="account_enabled">1</value>
-            <value description="account_expired">0</value>
-            <value description="account_locked">0</value>
-            <value description="credentials_expired">0</value>
-        </row>
-        <row>
-            <value description="id">-2</value>
-            <value description="username">admin</value>
-            <value description="password">d033e22ae348aeb5660fc2140aec35850c4da997</value>
-            <value description="first_name">Matt</value>
-            <value description="last_name">Raible</value>
-            <value description="address"></value>
-            <value description="city">Denver</value>
-            <value description="country">US</value>
-            <value description="email">matt@raibledesigns.com</value>
-            <value description="phone_number"></value>
-            <value description="postal_code">80210</value>
-            <value description="province">CO</value>
-            <value description="website">http://raibledesigns.com</value>
-            <value description="password_hint"><![CDATA[Not a female kitty.]]></value>
-            <value description="version">1</value>
-            <value description="account_enabled">1</value>
-            <value description="account_expired">0</value>
-            <value description="account_locked">0</value>
-            <value description="credentials_expired">0</value>
-        </row>
-    </table>
-    <table name="role">
-        <column>id</column>
-        <column>name</column>
-        <column>description</column>
-        <row>
-            <value description="id">-1</value>
-            <value description="name">ROLE_ADMIN</value>
-            <value description="description"><![CDATA[Administrator role (can edit Users)]]></value>
-        </row>
-        <row>
-            <value description="id">-2</value>
-            <value description="name">ROLE_USER</value>
-            <value description="description"><![CDATA[Default role for all Users]]></value>
-        </row>
-    </table>
-    <table name="user_role">
-        <column>user_id</column>
-        <column>role_id</column>
-        <row>
-            <value description="user_id">-1</value>
-            <value description="role_id">-2</value>
-        </row>
-        <row>
-            <value description="user_id">-2</value>
-            <value description="role_id">-1</value>
-        </row>
-    </table>
+  <table name="config">
+    <column>configKey</column>
+    <column>configValue</column>
+    <row>
+      <value>NEWREGISTRATIONEMAILSUBJECT_EN</value>
+      <value><![CDATA[Registration successful]]></value>
+    </row>
+    <row>
+      <value>NEWREGISTRATIONEMAILSUBJECT_IT</value>
+      <value><![CDATA[Registrazione avvenuta con successo]]></value>
+    </row>
+    <row>
+      <value>NEWREGISTRATIONEMAILTEMPLATE_EN</value>
+      <value>newRegistration_En.vm</value>
+    </row>
+    <row>
+      <value>NEWREGISTRATIONEMAILTEMPLATE_IT</value>
+      <value>newRegistration_It.vm</value>
+    </row>
+  </table>
+  
+  <table name="app_user">
+    <column>id</column>
+    <column>username</column>
+    <column>version</column>
+    <column>password</column>
+    <column>first_name</column>
+    <column>last_name</column>
+    <column>address</column>
+    <column>city</column>
+    <column>province</column>
+    <column>country</column>
+    <column>postal_code</column>
+    <column>email</column>
+    <column>phone_number</column>
+    <column>website</column>
+    <column>website_title</column>
+    <column>password_hint</column>
+    <column>account_enabled</column>
+    <column>account_expired</column>
+    <column>account_locked</column>
+    <column>credentials_expired</column>
+    <column>image</column>
+    <column>quotation</column>
+    <column>sex</column>
+    <column>dob</column>
+    <column>date_registered</column>
+    <column>date_activated</column>
+    <row>
+      <value>-4</value>
+      <value>u2</value>
+      <value>1</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>Eustachio</value>
+      <value>Bargiggia</value>
+      <value/>
+      <value>Campobasso</value>
+      <value>CB</value>
+      <value>EN</value>
+      <value>20026</value>
+      <value>flavio.ricci82+1@gmail.com</value>
+      <value/>
+      <value>http://www.google.it</value>
+      <value><![CDATA[Flickr photostream]]></value>
+      <value>Boh2</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>http://farm1.static.flickr.com/1/buddyicons/10614962@N00.jpg?1156979671#10614962@N00</value>
+      <value><![CDATA[Domani arriva, adesso siamo solo ad oggi ]]></value>
+      <value>M</value>
+      <value><![CDATA[1982-09-16 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>-3</value>
+      <value>u1</value>
+      <value>1</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>Calogero</value>
+      <value>Rizzitelli</value>
+      <value/>
+      <value>Trapani</value>
+      <value>TP</value>
+      <value>IT</value>
+      <value>20025</value>
+      <value>flavio.ricci82@gmail.com</value>
+      <value/>
+      <value>http://www.google.it</value>
+      <value>Google</value>
+      <value>Boh</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>http://farm3.static.flickr.com/2099/buddyicons/22566153@N05.jpg?1199714409#22566153@N05</value>
+      <value><![CDATA[Va tutto bene, telo prometto]]></value>
+      <value>F</value>
+      <value><![CDATA[1982-09-22 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>-2</value>
+      <value>admin</value>
+      <value>1</value>
+      <value>d033e22ae348aeb5660fc2140aec35850c4da997</value>
+      <value>Matt</value>
+      <value>Riable</value>
+      <value/>
+      <value>denver</value>
+      <value>CO</value>
+      <value>EN</value>
+      <value>80210</value>
+      <value>fabio.maffioletti+1@gmail.com</value>
+      <value/>
+      <value>http://www.google.it</value>
+      <value><![CDATA[taMuvii rocks!]]></value>
+      <value><![CDATA[Not a female kitty]]></value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>http://farm1.static.flickr.com/58/buddyicons/77563824@N00.jpg?1158137691#77563824@N00</value>
+      <value><![CDATA[Non ti perdono]]></value>
+      <value>M</value>
+      <value><![CDATA[1982-01-17 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>user</value>
+      <value>1</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>Tomcat</value>
+      <value>User</value>
+      <value/>
+      <value>denver</value>
+      <value>CO</value>
+      <value>IT</value>
+      <value>80210</value>
+      <value>fabio.maffioletti+2@gmail.com</value>
+      <value/>
+      <value>http://www.google.it</value>
+      <value><![CDATA[Il mio blog]]></value>
+      <value><![CDATA[A male kitty]]></value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <value>http://farm1.static.flickr.com/53/buddyicons/84165691@N00.jpg?1204375300#84165691@N00</value>
+      <value><![CDATA[Il mio tamuvii sembra essere bellissimo agli occhi]]></value>
+      <value>M</value>
+      <value><![CDATA[1982-07-12 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>fubbyo</value>
+      <value>2</value>
+      <value>0a899e102a47ff85590833137f949bfe0c129cb2</value>
+      <value>Fabio</value>
+      <value>Maffioletti</value>
+      <null/>
+      <value>London</value>
+      <null/>
+      <value>IT</value>
+      <null/>
+      <value>fabio.maffioletti@gmail.com</value>
+      <null/>
+      <value/>
+      <value/>
+      <null/>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <null/>
+      <value/>
+      <value>M</value>
+      <value><![CDATA[2000-07-10 00:00:00.0]]></value>
+      <value><![CDATA[2009-07-10 15:29:14.0]]></value>
+      <null/>
+    </row>
+  </table>
+  
+  <table name="role">
+    <column>id</column>
+    <column>name</column>
+    <column>description</column>
+    <row>
+      <value>-2</value>
+      <value>ROLE_USER</value>
+      <value><![CDATA[Default role for all Users]]></value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>ROLE_ADMIN</value>
+      <value><![CDATA[Administrator role (can edit Users)]]></value>
+    </row>
+  </table>
+  
+  <table name="user_role">
+    <column>user_id</column>
+    <column>role_id</column>
+    <row>
+      <value>-4</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-3</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-2</value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>-2</value>
+    </row>
+  </table>
+  
+  
+  <table name="genre">
+    <column>genre</column>
+    <column>locale</column>
+    <column>localized_genre</column>
+    <row>
+      <value>-20</value>
+      <value>IT</value>
+      <value>fantascienza</value>
+    </row>
+    <row>
+      <value>-19</value>
+      <value>EN</value>
+      <value><![CDATA[science fiction]]></value>
+    </row>
+    <row>
+      <value>-18</value>
+      <value>IT</value>
+      <value>guerra</value>
+    </row>
+    <row>
+      <value>-17</value>
+      <value>EN</value>
+      <value>war</value>
+    </row>
+    <row>
+      <value>-16</value>
+      <value>IT</value>
+      <value>azione</value>
+    </row>
+    <row>
+      <value>-15</value>
+      <value>EN</value>
+      <value>action</value>
+    </row>
+    <row>
+      <value>-14</value>
+      <value>IT</value>
+      <value>thriller</value>
+    </row>
+    <row>
+      <value>-13</value>
+      <value>EN</value>
+      <value>thriller</value>
+    </row>
+    <row>
+      <value>-12</value>
+      <value>IT</value>
+      <value>commedia</value>
+    </row>
+    <row>
+      <value>-11</value>
+      <value>EN</value>
+      <value>comedy</value>
+    </row>
+    <row>
+      <value>-10</value>
+      <value>IT</value>
+      <value>animazione</value>
+    </row>
+    <row>
+      <value>-9</value>
+      <value>EN</value>
+      <value>animation</value>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>IT</value>
+      <value>avventura</value>
+    </row>
+    <row>
+      <value>-7</value>
+      <value>EN</value>
+      <value>adventure</value>
+    </row>
+    <row>
+      <value>-6</value>
+      <value>IT</value>
+      <value>fantasy</value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>EN</value>
+      <value>fantasy</value>
+    </row>
+    <row>
+      <value>-4</value>
+      <value>IT</value>
+      <value>gangster</value>
+    </row>
+    <row>
+      <value>-3</value>
+      <value>EN</value>
+      <value>gangster</value>
+    </row>
+    <row>
+      <value>-2</value>
+      <value>IT</value>
+      <value>drammatico</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>EN</value>
+      <value>drama</value>
+    </row>
+  </table>
+  
+  <table name="actor">
+    <column>actor</column>
+    <column>name</column>
+    <column>surname</column>
+    <column>aka</column>
+    <row>
+      <value>-2</value>
+      <value>Nicole</value>
+      <value>Kidman</value>
+      <null/>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>Robert</value>
+      <value><![CDATA[De Niro]]></value>
+      <null/>
+    </row>
+  </table>
+  
+  <table name="director">
+    <column>director</column>
+    <column>name</column>
+    <column>surname</column>
+    <column>aka</column>
+    <column>image</column>
+    <row>
+      <value>-5</value>
+      <value><![CDATA[Robert Lee]]></value>
+      <value>Zemeckis</value>
+      <value/>
+      <value>/images/placeholder_user_48.jpg</value>
+    </row>
+    <row>
+      <value>-4</value>
+      <value><![CDATA[Francis Ford]]></value>
+      <value>Coppola</value>
+      <value/>
+      <value>/images/placeholder_user_48.jpg</value>
+    </row>
+    <row>
+      <value>-3</value>
+      <value><![CDATA[Quentin Jerome]]></value>
+      <value>Tarantino</value>
+      <value/>
+      <value>/images/placeholder_user_48.jpg</value>
+    </row>
+    <row>
+      <value>-2</value>
+      <value>Ridley</value>
+      <value>Scott</value>
+      <value/>
+      <value>/images/placeholder_user_48.jpg</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>Federico</value>
+      <value>Fellini</value>
+      <value/>
+      <value>/images/placeholder_user_48.jpg</value>
+    </row>
+  </table>
+  
+  
+  <table name="movie">
+    <column>movie</column>
+    <column>duration</column>
+    <column>original_title</column>
+    <column>director</column>
+    <column>release_date</column>
+    <column>original_plot</column>
+    <column>original_image</column>
+    <row>
+      <value>-18</value>
+      <value>141</value>
+      <value><![CDATA[Forrest Gump]]></value>
+      <value>-5</value>
+      <value><![CDATA[1994-01-01 00:00:00.0]]></value>
+      <value><![CDATA[The film begins with a feather falling to the feet of Forrest Gump who is sitting at a bus stop in Savannah, Georgia. Gump picks up the feather and puts it in the book Curious George, then tells the story of his life to a woman seated next to him. The listeners at the bus stop change regularly throughout his narration, each showing a different attitude ranging from disbelief and indifference to rapt veneration. On his first day of school, he meets a girl named Jenny Curran, whose life is followed in parallel to Gump's at times. Despite his below-average intelligence quotient (IQ), his ability to run at great speed gets him into college on a football scholarship. After his college graduation, he enlists in the army, where he makes friends with a black man named Bubba, who convinces Gump to go into the shrimping business with him when the war is over. They are sent to Vietnam, and during an ambush, Bubba is killed in action. Gump ends up saving much of his platoon, including his platoon leader, Second Lieutenant Dan Taylor, who loses both his legs as a result of injuries. Gump is awarded the Medal of Honor for his heroism. While Gump is in recovery for a shot to his buttocks, he discovers his uncanny ability for ping-pong, eventually gaining popularity and rising to celebrity status, later playing ping-pong competitively against Chinese teams in ping pong diplomacy. He is subsequently promoted to sergeant. At an anti-war rally in Washington, D.C., now Sergeant Gump reunites with Curran, who has been living a hippie counterculture lifestyle. Returning home, Gump endorses a company that makes ping-pong paddles, earning himself $25,000, which he uses to buy a shrimping boat, fulfilling his promise to Bubba. Dan joins Gump, and although they initially have little success, after finding their boat the only surviving one in the area after Hurricane Carmen, they begin to pull in huge amounts of shrimp. They use their income to buy an entire fleet of shrimp boats. Dan invests the money in Apple Computer and Gump is financially secure for the rest of his life, and also donates a large portion of money to Bubba's family. He returns home to see his mother's last days. One day, Curran returns to visit Gump and he proposes marriage to her. She declines, though feels obliged to prove her love to him by having sex with him. She leaves early the next morning. On a whim, Gump elects to go for a run. Seemingly capriciously, he decides to keep running across the country several times, over three and a half years, becoming famous in the process. In present-day, Gump reveals that he is waiting at the bus stop because he received a letter from Curran who, having seen him run on television, asks him to visit her. Once he is reunited with Curran, she introduces him to his son, also named Forrest. Curran tells Gump she is suffering from a virus (probably HIV, though this is never definitively stated). Together the three move back to Greenbow, Alabama. Curran and Gump finally marry but she dies soon afterward. The film ends with father and son waiting for the school bus on little Forrest's first day of school. Opening the book his son is taking to school, the white feather from the beginning of the film is caught on a breeze and drifts skyward.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-17</value>
+      <value>143</value>
+      <value><![CDATA[Cast Away]]></value>
+      <value>-5</value>
+      <value><![CDATA[2000-01-01 00:00:00.0]]></value>
+      <value><![CDATA[Chuck Noland (Tom Hanks) is a time-obsessed FedEx systems analyst, who travels worldwide resolving productivity problems at FedEx depots. He is in a long-term relationship with Kelly Frears (Helen Hunt), with whom he lives in Memphis. Although the couple want to get married, Chuck's busy schedule causes problems. A Christmas with relatives is interrupted by Chuck being summoned to resolve a problem overseas. At the airport, the couple exchange Christmas gifts. Kelly gives Chuck her grandfather's pocket watch with her picture in it, and Chuck gives her what appears to be a ring, which he tells her to open on New Years, after he returns. While flying through a violent thunderstorm somewhere over the southern Pacific Ocean, apparently having flown off course, an incident occurs on Chuck's plane which results in it crashing into the ocean. Chuck is able to escape the sinking plane and is saved by an inflatable life-raft, which floats for some time in the storm before being washed up on an island. It soon becomes clear that the island is uninhabited, and Chuck's early attempts to make visual signals for any searching aircraft, and to escape the island in the remnants of his life raft are fruitless. After several FedEx packages from the crashed plane wash up on the island, Chuck begins to open them, looking for items to use for his survival. He finds a number of potentially useful items but leaves one package, painted with a pair of wings, unopened. During a failed attempt to make fire, Chuck receives a deep wound to his hand. In anger he throws several objects, including a Wilson volleyball from one of the FedEx packages. A short time later he draws a face in the bloody hand print on the ball, naming it "Wilson" and talking to it as if it were a person. When, after concerted attempts, Chuck finally succeeds in making fire, the film shifts forward by four years to show Chuck, now dramatically thinner and bearded, expertly spearing a fish and eating it raw. It becomes clear that in the intervening time Chuck has not only become proficient at surviving in the island environment, but has also developed a deep attachment to Wilson, regularly having "conversations" with him and becoming distressed when he is seemingly lost. After a large sheet of plastic from a portable toilet washes up on the island, Chuck decides to use it as a sail in the construction of a raft. After spending some time building and stocking the raft (including food, fishing equipment, oars and the unopened package) and deciding when the weather conditions will be optimal, Chuck launches the raft and finally escapes the island. After some time on the ocean, the raft is virtually destroyed by a storm which ultimately results in Wilson being lost. Distraught, Chuck resigns himself to his fate and abandons his attempt to find rescue. Half-dead and sunburned, he is found drifting a short time later by a passing cargo ship. Upon returning home Chuck discovers that he has long been given up for dead by everyone he knows; his family and friends held a funeral, and Kelly has since married and had a daughter. After meeting Kelly the pair profess their love for each other but realize a future together would be impossible; they part, Kelly giving Chuck their Jeep Cherokee which she had kept. Chuck remarks to a friend that he has now "lost her all over again," having previously resigned himself to being stranded on the island for the rest of his life. Chuck then travels to the address on his unopened package to deliver it. The house is empty so he leaves the package at the door and departs, stopping at a remote crossroads. A woman passing by in a truck explains where each road leads. As she drives away, Chuck stands at the crossroads, apparently trying to decide which direction to go. He then notices a pair of wings painted on the back of the woman's truck: the same as those on the unopened parcel he had just delivered. The film ends with Chuck watching the departing truck with a faint smile.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-16</value>
+      <value>103</value>
+      <value><![CDATA[Who Framed Roger Rabbit]]></value>
+      <value>-5</value>
+      <value><![CDATA[1988-01-01 00:00:00.0]]></value>
+      <value><![CDATA[In 1947, Los Angeles, California, Toons commonly interact with the Hollywood studio system and live in a section of the city known as Toontown. Roger Rabbit is the star of &quot;Maroon Cartoon&quot; animated short subjects, but he has trouble following the director's commands, delaying the production. Rumors are spreading that Roger's wife Jessica has a &quot;sugar daddy&quot; and studio head R.K. Maroon hires private investigator Eddie Valiant to look into the matter. Eddie, whose brother Teddy was killed by a Toon five years before, reluctantly takes the job. He discovers that the buxom Jessica is &quot;cheating&quot; on Roger by literally playing pattycake with Marvin Acme, owner of the Acme Corporation and Toontown. Eddie reveals photographic evidence to Roger, who sinks into depression. Marvin Acme is found murdered the next day, and Roger becomes the prime suspect. At the crime scene, Eddie is met by Judge Doom of the Toontown District Superior Court and his Toon Patrol weasel henchmen. Doom is eager to use &quot;The Dip&quot;, a mixture of chemicals that can dissolve any Toon character on contact, on Roger once he can be found. Eddie encounters Baby Herman, Roger's co-star, who swears that Roger is innocent and that Acme's will, which would have left Toontown to the Toons, has gone missing; if the will is not found by midnight, Toontown could be sold at a public auction. Roger himself turns up at Eddie's office and pleads his innocence. Eddie begins to investigate the case deeper with his on-off girlfriend Dolores and Roger's Toon taxicab friend Benny while trying to keep Roger hidden from the Toon Patrol. Valiant is visited by Jessica, who reveals that she was forced by Maroon to get close to Acme or else he would have ruined Roger's career. Valiant then questions Maroon, who tells him that Cloverleaf Industries wouldn't buy his studio unless Acme sold Toontown to them, but Acme refused to do so, so he was going to set up Acme with the pictures of him and Jessica. But before he can explain any further, Maroon is shot from behind by a mysterious assassin. Eddie sees Jessica fleeing from the studio and, overcoming his anxiety, pursues her into Toontown, but the culprit turns out to be Judge Doom. As they attempt to bring Doom to the authorities, Eddie, Jessica and Roger are all captured by the Toon Patrol and taken to the Acme warehouse. Doom reveals his plans: as the sole stockholder in Cloverleaf Industries, he bought the Red Car and he plans to buy Toontown, the Acme Company, and Maroon Studios, and then raze them to make way for a freeway for Los Angeles. To wipe out Toontown, Doom has built a vehicle with a large Dip vat that he plans to spray throughout the district, wiping out all the Toons. As Roger and Jessica struggle to avoid being hit by the spray of Dip, Eddie manages to get free and causes the weasels of the Toon Patrol to die of laughter through various comedic antics, leaving the Dip sprayer running automatically. Eddie and Doom then fight, using assorted Toon props found within the factory, until Eddie is able to run Doom over with a road roller. The crushing does not kill Doom, however; instead, Doom reveals himself to be a Toon, the same one that killed Eddie's brother. Eddie manages to open the drain on the Dip sprayer, showering Doom with the mixture and dissolving him. Eddie frees Roger and Jessica, their relationship having been mended, while the Dip sprayer harmlessly crashes through the warehouse wall into Toontown and immediately smashed by a Toon train. As numerous Toons enter the warehouse to see what the commotion is, Eddie discovers Acme's will written in disappearing/reappearing ink on an apparent blank piece of paper that Acme had given to Jessica that Roger later wrote a love poem to his wife on. With the will in hand, the Toons celebrate their ownership of Toontown and sing &quot;Smile, Darn Ya, Smile&quot; while Roger and Jessica as well as Eddie and Dolores rekindle their relationships.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-15</value>
+      <value>118</value>
+      <value><![CDATA[Back to the Future Part III]]></value>
+      <value>-5</value>
+      <value><![CDATA[1990-01-01 00:00:00.0]]></value>
+      <value><![CDATA[After having successfully sent Marty McFly (Michael J. Fox) back to 1985 from 1955, the young &quot;Doc&quot; Emmett Brown (Christopher Lloyd) is shocked and faints from the sight at Marty running up to request his help. Marty helps Doc back home and recover, and explains he has come back from the future and now stranded in 1955, and presents the letter that the older Doc wrote in 1885. In the letter, Doc explains that he and the DeLorean were sent back to 1885 when hit by a lightning bolt, frying the time machine's circuits, and thus has resigned to live out his life in Hill Valley's nascent years. The letter contains the location of the DeLorean in an old mineshaft and plans for his younger counterpart to repair the time machine's circuitry to allow Marty to return to 1985, and further instructs Marty to destroy the machine once back in 1985 to prevent further disruption of the space-time continuum. With the help of the Doc of 1955, Marty retrieves the DeLorean. In the process, he discovers a tombstone which leads him to learn that Doc was killed in 1885 by Buford &quot;Mad Dog&quot; Tannen, just seven days after having written the letter. Ignoring Doc's urging to return to 1985, Marty decides that he must save Doc, who had no idea he would be killed days later. Marty takes the DeLorean back to 1885, and arrives in the middle of a skirmish between a group of Native Americans and the United States cavalry, resulting in the DeLorean's fuel line being ruptured. After hiding the car, Marty treks towards town, encountering his great-great-grandparents who had recently arrived in America from Ireland. To mask his identity, he takes up the name &quot;Clint Eastwood.&quot; After arriving in Hill Valley and narrowly avoiding a skirmish with Buford, Marty reunites with Doc, who agrees to leave when he learns of his upcoming fate. Doc sees Marty's photograph of his tombstone and concludes from the inscription that he was to have fallen in love with a woman named &quot;Clara.&quot; Learning that the new schoolmarm he has promised to pick up is named Clara Clayton, Doc decides to leave without meeting her. However, the ruptured fuel line has left the DeLorean's gas tank completely empty and the DeLorean cannot reach 88 miles per hour without gasoline. After several failed attempts to accelerate the car through alternate means, Doc decides to push the DeLorean up to speed with a steam locomotive, but finds that the only track straight enough ends in an incomplete bridge over a deep ravine. The car will have to reach 88 miles per hour before reaching the bridge, so that it can travel to 1985, when the bridge is completed. As they scout the location, they save a woman from falling into a ravine on a runaway carriage, only to discover that she is Clara Clayton. Doc and Marty surmise that Clara was meant to die in the ravine, as it was known as Clayton Ravine in the future. Despite the misgivings about interfering with the past, Doc and Clara immediately become enamored with each other, discovered a shared love of the sciences and science fiction, including the works of Jules Verne. At a festival dedicating the newly constructed clock tower, Buford attempts to kill Doc, only to be thwarted by Marty. Marty, however, is goaded into a gun duel after Buford calls him &quot;yellow&quot;. With Doc's original death averted, his name disappears from the tombstone in the photograph, but the date remains. Doc warns Marty that 'his' name may end up on it if he chooses to meet up with Buford. Still infatuated with Clara, the Doc expresses his desire to stay with her in 1885, but Marty talks him out of it. Doc decides to say goodbye to her and, when pressed, tells her that he's from the future. Thinking this an obvious lie, Clara angrily slaps him in rejection and starts to cry as Doc heads to the town saloon to get drunk. Marty convinces him to leave the saloon, but not before Buford shows up and captures Doc in their flight attempt. Marty is forced to participate and defeats Buford by using a stove cover as a bullet-proof shield. Following the duel, Buford is arrested for having committed a stage coach robbery the previous day. When Marty consults the photograph of the tombstone he had discovered in 1955, he sees that it has disappeared entirely. Clara, meanwhile, hears about how heartbroken Doc Brown was when she rejected him and sets off to find him. Doc and Marty manage to hijack the locomotive and start to push the DeLorean; Marty waits in the DeLorean while Doc remains on the train to add specially-created logs to the boiler that will overheat it and increase the train's speed. Clara catches up with the locomotive on horse and climbs aboard as Doc makes his way to the DeLorean. Seeing Clara in the cab, he is forced to return for her, and, with Marty's timely assistance, manages to fly off with her on Marty's hoverboard from 2015 just as the DeLorean reaches 88 miles per hour and transports Marty back to 1985 alone. The locomotive, which subsequently runs past the track, takes a nose-dive into the ravine and explodes. As planned in the parallel year 1985, Marty coasts safely across the ravine bridge, now called &quot;Eastwood Ravine,&quot; but he immediately encounters a modern-day diesel locomotive bearing down on him. Marty escapes, but the DeLorean is smashed to pieces. Marty picks Jennifer up at her house where he left her in Part II, and having learned his lesson back in 1885, refuses to take part in a drag race with Needles, who calls him &quot;chicken&quot;. This causes him to avoid the automobile accident which resulted in the ruined future depicted in the previous film, as evidenced by the erasure of the fax Jennifer obtained from the future. Marty takes Jennifer to the site of the destroyed DeLorean, where he accepts that it is what Doc wanted. At that moment, however, a time machine built out of a locomotive appears. The door opens to reveal Doc, Clara and their two sons, who are named Jules and Verne. Doc presents Marty with a photograph of the two of them at the clock tower ceremony in 1885 as a memento. When Jennifer asks about the empty fax, Doc explains their future is whatever they make of it. Doc prepares to leave again, Marty asks if he plans to go back to the future. Doc replies that they've already been there, and the train &#x2014; which has been futuristically upgraded &#x2014; lifts off from the ground and flies off into time, mirroring the end of the first film of the trilogy.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-14</value>
+      <value>108</value>
+      <value><![CDATA[Back to the Future Part II]]></value>
+      <value>-5</value>
+      <value><![CDATA[1989-01-01 00:00:00.0]]></value>
+      <value><![CDATA[Marty McFly, &quot;Doc&quot; Brown and Jennifer Parker (now played by Elisabeth Shue) arrive from the parallel year 1985 in 2015. Jennifer begins asking many questions about her future. Doc tranquilizes Jennifer, who is not necessary for his plan, explaining that he brought her along only because she saw the time machine. After landing in Hill Valley, Marty and Doc leave Jennifer in an alley, expecting her to remain unconscious while they attend to the crisis involving Marty's children. Doc explains that Martin McFly Jr., Marty's and Jennifer's son, is about to be approached by Griff Tannen, Biff's grandson, and his gang, who will offer him the chance to take part in a robbery. According to Doc, this event leads to the ruin of the entire McFly family. Marty impersonates his future son and tells Griff he will not join the robbery; however, his self-control crumbles when his courage is called into question, and he is accused of being a &quot;chicken.&quot; The resulting confrontation leads to a hoverboard chase that causes Griff and his thugs to damage the glass facade of the nearby courthouse. Griff and his gang are arrested on an entirely different charge, Marty Jr.'s innocence has been assured without his knowledge and the planned robbery never occurs. Before reuniting with Doc, Marty notices a sports almanac displayed in an antique store window, which lists sports statistics from 1950 through to 2000. He buys it, intending to take the book back to 1985 and use the data within for financial gain. Doc discovers the almanac, and sternly tells Marty that the purpose of inventing this time machine was for scientific investigation, not to win at gambling, and pitches the almanac into a garbage can. Meanwhile, Jennifer, still tranquilized, is found by the police, who mistake her for her future self after thumbprint identification, and take her to her future home, waking her up just as they arrive. Confused, she hides in a closet, not seeing Marlene McFly, Marty's and Jennifer's daughter, letting George and Lorraine in for dinner. She also witnesses the Marty of 2015 being fired from his job after his Japanese boss catches him &quot;cooperating&quot; in an illegal scheme that his immediate boss and longtime friend, Douglas Needles, goads him into joining, again by taunting him that he is too 'chicken' to try it. Traveling to the house, Doc leaves Marty with the DeLorean, finds Jennifer and sneaks her out of the house. Along the way, she encounters her older self, who has just arrived home, with the shock causing both women to pass out. Unable to carry her himself, Doc calls Marty for help, leaving the DeLorean unguarded. While Doc and Marty rescue Jennifer, the original Biff (age 78), having overheard Doc and Marty talking about time travel and about the folly and hazards in using it to win at gambling, recovers the discarded sports almanac, steals the DeLorean and travels back in time. He returns the car just before Marty and Doc return to it to leave for their own time. Upon arrival in 1985, Marty and Doc find that Hill Valley has become a dilapidated, crime-ridden slum lorded over by a middle-aged Biff, who is now immeasurably rich, powerful and corrupt thanks to decades of successful sports betting, the proceeds of which he invested in toxic waste dumps, oil, and to purchase the Hill Valley courthouse and convert it into a luxury hotel and casino, not to mention helping Richard Nixon run for a fifth term as President of the United States. Biff has also married Marty's widowed mother, Lorraine, after secretly killing her husband George on March 15, 1973. Doc deduces that the Biff of 2015 must have given the almanac to his younger self sometime in the past, also showing Marty that he has been committed to an insane asylum. Marty confronts Biff and finds out that he received the almanac on November 12, 1955, the date of the lightning storm that Marty used to get back to the future in Part I. Biff then intends to murder Marty (telling him that it's the same gun that he used to kill Marty's real dad George) as he now knows too much. Marty again is saved by Doc when Doc knocks out Biff with the DeLorean's gull-wing door. Marty and Doc duly travel back to 1955 to prevent Biff from getting the almanac. Marty goes through a long and complicated series of events involving his multiple attempts to recover the almanac, all the while making sure that he does not interfere with past events again and does not undo all that he had previously done in 1955 in the first film to set his parents up with each other. After revisiting the events of the Enchantment Under the Sea dance, he eventually manages to steal the book from the 1955 Biff with the help of Doc in the flying DeLorean, and burns it, restoring history to its proper course, as evidenced by the changes in the newspapers from the alternative 1985, which now read &quot;George McFly Honored&quot; rather than &quot;George McFly Murdered&quot; and &quot;Emmett Brown Commended&quot; instead of &quot;Emmett Brown Committed.&quot; As Doc fights the controls while attempting to land the DeLorean during the storm to pick Marty up, the car is struck by lightning, causing it to disappear, the time-travel capability having been triggered by the lightning. A few minutes later, a Western Union delivery man appears with a letter, which he explains was sent seventy years ago with the explicit instructions that it be delivered to Marty &quot;at this exact location, at this exact minute, November 12, 1955&quot;. Marty opens the letter, which is from Doc, explaining that he is now living happily in 1885. Knowing he has only one source of help, Marty runs to the clock tower to find the Doc of 1955, just as lightning strikes to send the previous film's Marty back to the future. The shock of suddenly seeing the new Marty, whom (he thinks) he has just sent back to 1985 causes Doc to faint. The film ends as Marty tries to revive Doc, with the caption &quot;To Be Concluded...&quot; appearing. In the theatrical release, this was then followed by scenes for Part III. In the television and DVD releases, the credits merely follow.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-13</value>
+      <value>117</value>
+      <value><![CDATA[Back to the Future]]></value>
+      <value>-5</value>
+      <value><![CDATA[1985-01-01 00:00:00.0]]></value>
+      <value><![CDATA[Marty McFly is a 17-year-old living in Hill Valley, California. On the morning of Friday, October 25, 1985, his eccentric friend, scientist Dr. Emmett &quot;Doc&quot; Brown (Lloyd), calls him, asking to meet at 1:15am the following morning at Twin Pines Mall. Upon arriving home from school, Marty finds the family car wrecked in the driveway, ruining his plans to spend the weekend with his girlfriend Jennifer (Claudia Wells). Inside the house, he finds his meek, nerdy father, George (Crispin Glover), being bullied by his supervisor Biff Tannen (Thomas F. Wilson), who had borrowed and wrecked the car. At dinner that night, Marty's mother Lorraine (Lea Thompson) recounts how she and George first met when her father hit George with his car as George was &quot;bird-watching&quot;. That night, Marty meets Doc as planned in the parking lot of Twin Pines Mall. Doc presents a DeLorean DMC-12 which he has modified into a time machine. As Marty videotapes, Doc explains the car travels to a programmed date and time upon reaching 88 miles per hour using plutonium in a nuclear reaction to generate the 1.21 gigawatts of power it requires. Demonstrating how to program the machine, Doc enters in November 5, 1955 as the target date, explaining that it was the day he conceived the idea of the flux capacitor; the device which &quot;makes time travel possible.&quot; Before Doc can depart for his planned trip into the future, a group of Libyan terrorists, from whom he stole the plutonium, arrive in a Volkswagen bus and murder him. Marty jumps into the DeLorean and is pursued by the Libyans until he accelerates to 88 miles per hour and is inadvertently transported back in time to 1955. The car's starter fails shortly thereafter; Marty hides it, and makes his way into town on foot. He finds that the town square now reflects the popular culture of the 1950s, and that the clock tower which was destroyed sometime in his past is once again functioning. Marty runs into his own father, then a teenager, being tyrannized just as he was in 1985 by Biff, then the school bully. Marty follows George (who turns out to be a peeping tom, not a birdwatcher) as he is about to be hit by a car; Marty pushes George out of the way and takes the impact. The car turns out to be driven by Lorraine's father, resulting in Lorraine becoming infatuated with Marty instead of George. Marty is disturbed by her flirtations, which contrast sharply with the prudish mother he is familiar with. He flees from her home to find Doc Brown. The scientist at first believes that Marty is a lunatic. Marty convinces Doc by recounting the story of how Doc got the inspiration for the flux capacitor, and then by showing Doc the videotape of the 1985 experiment. However, when he hears his older self describe the power requirements for time travel, Doc is shocked. He tells Marty that aside from plutonium, the only possible source of that much power is a bolt of lightning, which cannot be predicted. Marty remembers that the lightning strike at the clock tower will occur the following Saturday (November 12, 1955) at 10:04pm. As a result, Doc begins planning a way to harness the bolt's power. Doc also deduces that Marty, by saving his father from the car, has prevented his parents from meeting, and instructs him to set things right. After several failed attempts at playing matchmaker, Marty eventually works out a plan to have George appear to rescue Lorraine from Marty's overt sexual advances on the night of a school dance, so he can leave to make his return to 1985. However, Biff shows up unexpectedly and orders his friends to lock Marty in a car trunk. Heavily intoxicated, Biff jumps into the car and attempts to force himself on the horrified Lorraine. George arrives as he and Marty have planned and is shocked to find Biff instead of Marty. Biff orders him to turn around and walk away, but George cannot bring himself to ignore Lorraine's pleas for help. When Biff pins his arm behind his back and laughs as he knocks away Lorraine who tries to defend him, George finally snaps and knocks out his tormentor with a single punch. A smitten Lorraine follows George to the dance floor, where they kiss for the first time, ensuring Marty's existence. Doc, meanwhile, has used cables to connect the clock tower's antenna to two lampposts, which he plans to have Marty drive under in the DeLorean, now sporting a lightning rod, the moment the lightning strikes. Before Marty can leave, Doc finds a letter in his coat pocket that Marty has written, warning him about his future murder. Doc indignantly tears up the letter without reading it, describing the dangers of altering the future. Marty instead adjusts the time machine to take him back to 1985, the parallel year, ten minutes earlier than he left, giving him time to warn Doc. Upon his return to the future, however, the car stalls and Marty arrives at the mall too late to save Doc. As Marty begins crying behind his friend's body, Doc wakes up and opens his radiation suit to reveal a bulletproof vest. He shows Marty the letter he had written, taped back together. When asked about his belief in not altering the future, Doc replies, &quot;I figured, what the hell?&quot; The next morning, Marty finds his family has been changed for the better. Most notably, Lorraine is physically fit and is no longer prudish, and George has become a self-confident novelist who confidently confronts a servile Biff. Just as Jennifer and Marty reunite, Doc arrives, insisting frantically that he has visited the future and that they must go back with him to work out a problem concerning their future children. The three take off into the sky in a newly upgraded DeLorean that can fly, and disappear into the future.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-12</value>
+      <value>153</value>
+      <value><![CDATA[Apocalypse Now]]></value>
+      <value>-4</value>
+      <value><![CDATA[1979-01-01 00:00:00.0]]></value>
+      <value><![CDATA[The film opens, introducing Captain Benjamin L. Willard (Martin Sheen); a deeply troubled, seasoned special operations veteran. It is 1970. Willard has returned to Saigon from deployment in the field. He drinks excessively and appears to be having difficulty adjusting to life in the rear-area. Two intelligence officers, LTG Corman (G. D. Spradlin), Colonel Lucas (Harrison Ford) and a government man (Jerry Ziesmer), approach him with an assignment: journey up the fictional Nung River into the remote Cambodian jungle to find Colonel Walter E. Kurtz (Marlon Brando), a member of the US Army Special Forces feared to have gone rogue. They tell Willard that Kurtz, once considered a model officer and future general, has gone insane and is commanding a legion of his own Montagnard troops deep inside the forest in neutral Cambodia. Their claims are supported by very disturbing radio broadcasts and recordings made by Kurtz himself. Willard is ordered to undertake a mission to find Kurtz and terminate the Colonel's command &quot;with extreme prejudice.&quot; Willard joins the crew of a Navy Patrol Boat, Riverine (PBR), with an eclectic crew composed of QMC George Phillips (Albert Hall), the Navy PBR boat commander; GM3 Lance B. Johnson (Sam Bottoms), GM3 Tyrone Miller (Laurence Fishburne), a.k.a. &quot;Mr. Clean&quot;, and EN3 Jay &quot;Chef&quot; Hicks (Frederic Forrest). Willard and the PBR crew rendezvous with the 1/9 AirCav, commanded by Lieutenant Colonel Bill Kilgore (Robert Duvall) for transport to the Nung River. He initially refuses their request for transport until Kilgore, a keen surfer, is told by one of his men that Lance Johnson, a professional surfer is a member of the boat's crew. Kilgore befriends Johnson, and later learns from one of his men that the beach down the coast which marks the opening to the river is perfect for surfing. This changes his mind about transporting Willard and the PBR and Kilgore decides to capture the village. His men advise him that it's &quot;Charlie's point&quot; and heavily fortified. Dismissing this concern with the explanation that &quot;Charlie don't surf!,&quot; Kilgore orders his men to saddle up in the morning to capture the town and the beach. Riding high above the coast in a fleet of Hueys accompanied by OH-6As, Kilgore launches his attack on the beach. The scene, famous for its use of Richard Wagner's &quot;Ride of the Valkyries,&quot; ends with the soldiers surfing the barely-secured beach amidst skirmishes between infantry and VC. After helicopters swoop over the village and demolish all visible signs of resistance, a giant napalm strike in the nearby jungle dramatically marks the climax of the battle. Kilgore exults to Willard, &quot;I love the smell of napalm in the morning, smells like... victory&quot; as he recalls a battle in which a hill was bombarded with napalm for over twelve hours. The lighting and mood darken as the boat navigates upstream and Willard's silent obsession with Kurtz deepens. Incidents on the journey include a run-in with a tiger while Willard and Chef search for mangoes. The boat continues up river and watches a USO show featuring Playboy Bunnies and a centerfold that degenerates into chaos. Shortly after the Playmate performance, Phillips spots a sampan and orders an inspection over the objections of Willard. Initially reluctant to board the boat, Chef hostilely searches it and one of the civilians makes a sudden movement towards a barrel, prompting Clean to open fire, killing nearly all the crew. The one concerned about the barrel, a young woman, lies dying. Chef discovers that the barrel contained the woman's pet puppy. Phillips insists on taking the survivor to receive medical attention, however, Willard ends the debate by shooting the survivor, calmly stating &quot;I told you not to stop.&quot; The boat moves up river to the American outpost at the Do Long bridge, the last U.S. Army outpost on the river. The boat arrives during a North Vietnamese attack on the bridge, which is under constant construction. Upon arrival, Willard receives the last piece of the dossier from a lieutenant named Carlson, along with mail for the boat crewmen. Willard and Lance, who has taken LSD, go ashore and they make their way through the trenches where they encounter many panicked, leaderless soldiers. Realizing the situation has devolved into chaos, Willard and Lance return to the boat. The chief tries to convince Willard not to continue on with his mission. In response, Willard snaps at Phillips to continue upriver. As the boat departs, the NVA launch an artillery strike that destroys the bridge. The next day, Willard learns from the information he received at Do Lung that an Army Lieutenant Colby was sent to find Kurtz a few months prior to Willard's assignment and is missing. While its crew is busy reading mail, the boat is ambushed by Viet Cong hiding in the trees by the river. Clean is killed as he listens to an audio tape from his mother. The chief, who had a close relationship with Clean, becomes increasingly hostile to Willard. Montagnard villagers begin firing arrows at the boat as it approaches the camp. The crew opens fire until the chief is hit by a spear. Willard attempts to assist the mortally wounded Phillips who tries to kill Willard by pulling him onto the speartip protruding from his chest. Willard grapples with Phillips until the man finally dies. After arriving at Kurtz' outpost, Willard leaves Chef behind with orders to call in an airstrike on the village if he does not return and takes Johnson with him to the village. They are met by a manic freelance photographer (Dennis Hopper), who explains that Kurtz's greatness and philosophical skills inspire his people to follow him. Willard also encounters the missing Lt. Colby who is in a nearly catatonic state. Willard is bound and brought before Kurtz in a darkened temple. Kurtz lectures him on his theories of war, humanity, and civilization. Kurtz explains his motives and philosophy in a haunting monologue in which he praises the ruthlessness of the Viet Cong he witnessed following one of his own humanitarian missions. The scene changes to Chef attempting to call in the airstrike on the village as ordered by Willard. Chef is attacked and the scene cuts to Willard bound to a post outside in the pouring rain. Kurtz walks up to him and drops Chef's severed head into his lap. Sometime later, a villager releases Willard's bonds and gives him a machete. Willard enters Kurtz's chamber as Kurtz is making a recording, and attacks him with the machete. This entire sequence is set to &quot;The End&quot; by The Doors and juxtaposed with a ceremonial slaughtering of a Water Buffalo. Lying bloody and dying on the ground, Kurtz whispers &quot;The horror... the horror.&quot; Willard descends the stairs from Kurtz' chamber and drops his weapon. The villagers do so as well. Willard walks through the now-silent crowd of natives and takes Johnson by the hand. He leads Johnson to the PBR, and they sail away as Kurtz's final words echo as the scene fades to black.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-11</value>
+      <value>162</value>
+      <value><![CDATA[The Godfather Part III]]></value>
+      <value>-4</value>
+      <value><![CDATA[1990-01-01 00:00:00.0]]></value>
+      <value><![CDATA[The film begins on February 23, 1979. Michael Corleone is nearly 60 and feeling tremendous guilt for indulging in his ruthless ambition over the years, especially for ordering the murder of his brother Fredo two decades before. Although his previous conquests have made him a very rich man, the thoughts of his children, their future, happiness, and his legacy are now his primary motivations, and he has all but retired from the Mafia, selling the Las Vegas casinos and leaving the Corleone family's criminal interests in the hands of former enforcer Joey Zasa. His adopted brother Tom Hagen is now dead and the Corleone compound at Lake Tahoe has been abandoned. Michael and Kay have been divorced since 1959, and Michael gave her custody of their children, Anthony and Mary. He has since returned to New York City, where he is using his wealth and power to restore his reputation via numerous acts of charity. In an attempt to break with the past, Michael creates a charity, the Vito Andolini Foundation, in memory of his father, which he has endowed with $100 million to use for the betterment of Sicily. At a ceremony in St. Patrick's Old Cathedral, presided over by Archbishop Gilday, Michael is named a Commander of the Order of St. Sebastian. At a lavish party following the ceremony, Michael and Kay have a somewhat uneasy reunion. Anthony tells his father that he is going to drop out of law school to pursue a career as an opera singer (Kay reveals this as the &quot;only reason she came&quot; to the party). Kay supports his choice, but Michael initially disagrees, wishing that his son would either finish law school or join the family business. Anthony steadfastly refuses, stating that while he loves his father, he will never be part of the family business (much like Michael's initial relationship with his own father). Michael eventually, though somewhat reluctantly, acquiesces to Anthony's wishes. Meanwhile, Vincent Mancini, the illegitimate son of Michael's brother Sonny, shows up at the party. He is embroiled in a feud with Zasa, who has involved the Corleone family in drug trafficking and turned Little Italy into a slum. In Michael's study, Vincent and Zasa tell him about their feud. The discussion grows heated, with Vincent accusing Zasa of mocking Michael behind his back. Michael makes it clear that he is not a &quot;gangster&quot; and that whatever bad blood exists between Vincent and Zasa is none of his business, and must only be settled between them. He asks the two men to make peace with one another. They embrace, but Zasa insults Vincent by whispering the word &quot;bastardo&quot; in his ear. Enraged, Vincent bites off part of Zasa&#x2019;s ear. Zasa is escorted out and Michael scolds Vincent for losing his temper, but is nevertheless impressed by Vincent's passionate loyalty to him and agrees to take Vincent under his wing. The party concludes with a family picture, where Michael asks Vincent to join the rest of the family. That night, as Vincent makes love with Grace Hamilton, a journalist he met at the party, two men break in and try to kill him. Vincent quickly gains the upper hand, and kills one in order to frighten the other into revealing that Zasa is the man who sent them. Once the second assassin has surrendered, Vincent kills him, too. When Michael learns of Vincent's actions, he again chastises Vincent for his rash actions, telling him that he could have let them live as &quot;he only had a knife...you had a gun.&quot; Meanwhile, Michael busies himself with the biggest deal of his career: he has recently bought up enough stock in Immobiliare, an international real estate holding company known as &quot;the world's biggest landlord&quot;, to control six of the company's 13-member board of directors. He now makes a tender offer to buy the Vatican's 25% interest in the company, which will give him majority control. Knowing that Archbishop Gilday, who serves as head of the Vatican Bank, has run up a massive deficit through his mismanagement, he offers to pay $600 million to the Bank in exchange for the shares. While in the Vatican, Michael learns that several influential parties oppose the deal for many reasons, not the least of which is his extensive criminal history. Don Altobello, an elderly New York Mafia boss and old friend of the Corleones (as well as Connie's godfather), soon visits Michael, telling him that his old partners on the Commission want in on the Immobiliare deal. A meeting is arranged at an Atlantic City hotel, and Michael appeases most of the Mafia bosses with generous payoffs from the sale of his Las Vegas holdings. Zasa, however, gets nothing. Furious, he declares that Michael is his enemy and storms out. Altobello follows close behind, allegedly attempting to calm him down. Minutes later, a helicopter hovers outside the conference room and sprays it with submachine gun fire. Most of the other mob bosses are killed, but Michael, Vincent, and Michael's bodyguard, Al Neri, escape. Back at his apartment in New York, Michael is told that those mob bosses who escaped the massacre quickly made deals with Zasa, and comes to the realization that Altobello was the boss who supported Zasa in carrying out the hit. As Michael considers how to respond to the situation, he suffers a diabetic stroke and is hospitalized. In his delirium, Michael cries out Fredo's name shortly before he is loaded on an ambulance to the hospital. As Michael recuperates in the hospital, Vincent begins a romantic relationship with Mary, despite being first cousins, and also plots revenge against Joey Zasa. During a street festival hosted by Zasa's Italian American civil rights group, Vincent's men gun down Zasa's bodyguards. Vincent, disguised as a mounted police officer, then murders Zasa himself. When Michael discovers this, he berates Vincent for his rashness. Michael also insists that Vincent end his relationship with Mary, because Vincent's involvement in the family's criminal dealings puts Mary's life in jeopardy. Vincent agrees. The family takes a vacation to Sicily in March 1980, in preparation for Anthony's operatic debut in Palermo. They stay at the villa of Don Tommasino, the Mafia boss who sheltered Michael when he was on the run in the first film. Michael tells Vincent to speak with Altobello and falsely tell him that he is planning to leave the Corleone family. Altobello supports the idea of Vincent switching his allegiance, and introduces him to Don Licio Lucchesi, a powerful Italian political figure. Michael realizes that the Immobiliare deal was a conspiracy by Lucchesi, Archbishop Gilday, and Vatican accountant Frederick Keinszig to swindle him out of his money, and visits Cardinal Lamberto, the man favoured to become the next Pope, to speak about the deal. Lamberto convinces Michael to make his first confession after nearly thirty years, in which he tearfully admits to ordering Fredo's murder. Shortly after the meeting between Vincent and Lucchesi, Altobello travels to the small village of Montelepre, where he meets Mosca, an elderly, veteran hitman with whom he has previously done business. [...]]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-10</value>
+      <value>200</value>
+      <value><![CDATA[The Godfather Part II]]></value>
+      <value>-4</value>
+      <value><![CDATA[1974-01-01 00:00:00.0]]></value>
+      <value><![CDATA[The Godfather Part II presents two parallel storylines. One involves Mafia chief Michael Corleone following the events of the first movie from 1958 to 1959; the other is a series of flashbacks following his father, Vito Corleone, from his childhood in Sicily (1901) to his founding of the criminal Corleone Family in New York City while still a young man (1917–1925). In 1901, in the town of Corleone in Sicily, at the funeral procession for young Vito's father, Antonio Andolini, who had been ordered killed by the local Mafia chieftain, Don Ciccio. During the procession, Vito's older brother Paolo is also murdered because he swore revenge on the Don. Vito's mother goes to Ciccio to beg him to let young Vito live. When he refuses, she holds a knife to his throat, sacrificing herself to allow Vito to escape, and Ciccio's gunmen shoot her. They scour the town for Vito, warning the sleeping townsfolk that they will regret harboring the boy. With the aid of a few of the townspeople, Vito finds his way by ship to New York. Arriving at Ellis Island, an immigration agent, mishearing Vito's hometown of Corleone as his surname, registers him as "Vito Corleone". In 1958, Michael Corleone, Godfather of the Corleone Family, deals with various business and family problems at his Lake Tahoe, Nevada compound during an elaborate party celebrating his son's First Communion. He meets with Nevada Senator Pat Geary, who despises the Corleones, but has shown up with his wife to accept a large endowment to the state university. Senator Geary demands a grossly exaggerated price for a new gaming license and a monthly payment of 5% of the gross profits from all of the Corleone Family's Nevada gaming interests, to which Michael responds with a counter-offer of "nothing ... not even the fee for the gaming license, which I would appreciate if you would put up personally." Michael also deals with his sister Connie, who, although recently divorced, is planning to marry a man with no obvious means of support, and of whom Michael disapproves. He also talks with Johnny Ola, the right hand man of Jewish gangster Hyman Roth, who is supporting Michael's move into the gambling industry. Finally, Michael meets with Frank "Five Angels" Pentangeli, who took over Corleone caporegime Peter Clemenza's territory after his death, and now has problems with the Rosato Brothers, who are backed by Roth. Michael refuses to allow Pentangeli to kill the Rosatos, due to his desire to prevent interruption of his business with Roth. Pentangeli leaves abruptly, after telling Michael "your father did business with Hyman Roth, your father respected Hyman Roth, but your father never trusted Hyman Roth or his Sicilian messenger boy Johnny Ola." Later that night, an assassination attempt is made on Michael, which he survives when his wife Kay notices the bedroom window drapes are inexplicably open. Afterwards, Michael tells Tom Hagen that the hit was made with the help of someone close, and that he must leave, entrusting Hagen to protect his family. In 1917, the 25-year-old Vito Corleone, now married with one son, works in a New York grocery store with his close friend Genco Abbandando. The neighborhood is controlled by a blackhander, Don Fanucci, who extorts protection payments from local businesses. One night, Vito's neighbor Clemenza asks him to hide a stash of guns for him, and later, to repay the favor, takes him to a fancy apartment where they commit their first crime together, stealing an expensive rug. Michael meets with Hyman Roth in his home near Miami and tells him that he believes Frank Pentangeli was responsible for the assassination attempt and that Pentangeli will pay for it. Traveling to Brooklyn, Michael lets Pentangeli know that Roth was actually behind it and that Michael has a plan to deal with Roth, but needs Frankie to cooperate with the Rosato Brothers in order to put Roth off guard. When Pentangeli goes to meet with the Rosatos, he is told "Michael Corleone says hello," as he is garroted; but the attempted murder is accidentally interrupted by a policeman. Pentangeli is left for dead, and his bodyguard, Willi Cicci, is wounded by gunfire. It is later revealed that Roth was behind the attempted assassination of Pentangeli.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-9</value>
+      <value>175</value>
+      <value><![CDATA[The Godfather]]></value>
+      <value>-4</value>
+      <value><![CDATA[1972-01-01 00:00:00.0]]></value>
+      <value><![CDATA[In late summer 1945, guests are gathered for the wedding reception of Don Vito Corleone's daughter Connie (Talia Shire) and Carlo Rizzi (Gianni Russo). Vito (Marlon Brando), the head of the Corleone Mafia family – who is known to friends and associates as "Godfather" – and Tom Hagen (Robert Duvall), the Corleone family lawyer and consigliere (counselor), are hearing requests for favors. Meanwhile, the Don's youngest son Michael (Al Pacino), a decorated Marine war hero returning from World War II service, tells his girlfriend Kay Adams (Diane Keaton) anecdotes about his family, attempting to inform her about his father's criminal life; he reassures her that he is different from his family. Among the guests at the celebration is the famous singer Johnny Fontane (Al Martino), Corleone's godson, who has come from Hollywood to petition Vito's help in landing a movie role that will revitalize his flagging career. Hagen is dispatched to California to fix the problem by convincing the head of the studio, Jack Woltz (John Marley) to give Fontane the part. Woltz refuses and is soon persuaded, when he finds the severed head of his prized $600,000 stud horse in bed with him, after waking up the next morning.Upon Hagen's return, the family meets with Virgil "The Turk" Sollozzo (Al Lettieri), who is being backed by the rival Tattaglia family. He asks Don Corleone for financing, and political and legal protection for importing and distributing heroin. Despite the huge profit to be made, Corleone doesn't agree and feels his political influence could be jeopardized. The Don's second eldest son, Sonny questions Sollozzo's assurances along with the family's investment with the Tattaglia family. Don Corleone then sends Luca Brasi (Lenny Montana) to infiltrate Sollozzo's organization and report back with information. During the meeting, Brasi is stabbed in his hand to prevent him from defending himself and garroted by an assassin.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>154</value>
+      <value><![CDATA[Jackie Brown]]></value>
+      <value>-3</value>
+      <value><![CDATA[1997-01-01 00:00:00.0]]></value>
+      <value><![CDATA[Set in Los Angeles in 1995, Jackie Brown (Pam Grier) is a flight attendant for a small Mexican airline, the latest step down for her career in the airline industry. Despite the low pay, the job enables her to smuggle money from Mexico into the United States for Ordell Robbie (Samuel L. Jackson), a gun runner under the close watch of the ATF. Ordell learns that another of his workers, Beaumont Livingston (Chris Tucker), has been arrested and, fearing that he will talk to authorities in order to avoid jail time, Ordell arranges for Beaumont's bail and murders him. Acting on information Beaumont had indeed shared, ATF agent Ray Nicolette (Michael Keaton) and LAPD Detective Mark Dargus (Michael Bowen) catch Jackie as she arrives in the U.S. with Ordell's cash and some cocaine that Brown was unaware was stashed along with the cash. She initially refuses to deal with Nicolette and Dargus, and is sent to jail on possession of drugs with intent to sell. Ordell, sensing Jackie may be just as likely to inform as Beaumont had been, arranges to bail her out. He returns to Max Cherry (Robert Forster), the same bail bondsman he used to arrange Beaumont's release, to bail out Brown. Cherry arranges for Jackie's bail and, only partly masking his physical attraction, offers to help her determine her legal options. Later that night, Ordell shows up at Jackie's house, presumably to eliminate her, but using a gun she stole from Cherry, she cuts a deal whereby she will pretend to help the authorities while still managing to smuggle $500,000 of Ordell's money, enough to allow him to retire.To carry out this plan, Ordell employs several others, a woman he lives with, Melanie Ralston (Bridget Fonda), Louis Gara (Robert De Niro), his friend and former cellmate, and a naïve Southern girl, Sheronda (Lisa Gay Hamilton). With Jackie's help Nicolette arranges a sting to catch Ordell, though Jackie and Ordell plan to double cross him by diverting the actual money before Ray makes an arrest.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-7</value>
+      <value>110</value>
+      <value><![CDATA[Kill Bill Vol.2]]></value>
+      <value>-3</value>
+      <value><![CDATA[2004-01-01 00:00:00.0]]></value>
+      <value><![CDATA[Billie and Christy have managed to turn everything around. The two of them have now take over the Manor and demons are at Magic School, the Charmed Ones are forced to hide in the Underworld. While on the run several demons try to make an alliance with the sisters in order to permanently vanquish the Triad, who keep resurrecting in spirit form and eventually regain their bodies. Billie and Christy are now being helped by the magical community. The Charmed Ones stealthily orb back to the manor after dropping the Book of Shadows at Phoebe's loft, to prepare their most powerful vanquishing potion. After they descend the stairs, they found Billie and Christy wielding the same potion. A battle ensues at the manor and an explosion occured. Piper is down and Christy is hurt but both sets of sisters can retreat to their respective corner to battle another day.Realizing the only way to defeat the Charmed Ones is to gain more power than them, the Triad want Dumain to had Billie and Christy to summon the Hollow. Since summoning the Hollow requires a person from the Halliwell line, Dumain coaxes Wyatt to help Aunt Billie help his mommy. The plan works and Billie and Christy successfully summon the Hollow. After the receiving the info from the demons, the Charmed Ones also summon the Hollow at the same time. The Hollow, not knowing where to go, splits into two parts into Billie and Christy and the Charmed Ones. Possessed by the Hollow, Billie and Christy took Wyatt's power and Chris starts to manifest his power and orbs his brother into safety. The Charmed One also receive the power to throw energy balls and vanquish the demon. Then, they hunt for the Triad and use their new power to vanquish the Triad, hoping they will never be resurrected again. The final showdown takes place in the manor. The Charmed Ones orb in while Billie and Christy got down from upstairs. Both sets of sisters launch their newly possessed electric stream and raw power. The accumulation of energy from their powers erupts and destroys the manor, killing Phoebe, Paige and Christy. The Angel of Destiny returned with Leo in tow to Piper, who unable to accept the fate that to have her husband returned and her sisters die. Piper hears the sound of moving debris and moaning, and, thinking it could be Paige, goes to check. She discovers Billie and tries to kill her in a rage. Leo, confused why his wife would attacked her former protegee stops her while Billie flees from the manor, as Leo tells Piper they have to get out of the manor.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-6</value>
+      <value>110</value>
+      <value><![CDATA[Kill Bill Vol.1]]></value>
+      <value>-3</value>
+      <value><![CDATA[2003-01-01 00:00:00.0]]></value>
+      <value><![CDATA[Kill Bill is one story, divided into two volumes with five chapters each, presented in a nonlinear style (as is common among Tarantino's films).]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>154</value>
+      <value><![CDATA[Pulp Fiction]]></value>
+      <value>-3</value>
+      <value><![CDATA[1994-01-01 00:00:00.0]]></value>
+      <value><![CDATA[&quot;Pumpkin&quot; (Tim Roth) and &quot;Honey Bunny&quot; (Amanda Plummer) are having breakfast in a diner. They decide to rob it after realizing they could make money off not just the business but the customers as well, as occurred during their previous heist. Moments after they initiate the hold-up, the scene breaks off and the title credits roll.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-4</value>
+      <value>102</value>
+      <value><![CDATA[Reservoir Dogs]]></value>
+      <value>-3</value>
+      <value><![CDATA[1992-01-01 00:00:00.0]]></value>
+      <value><![CDATA[The film opens to eight men eating breakfast at a diner. Six of them wear matching suits and are using codenames: Mr. Blonde (Michael Madsen), Mr. Blue (Eddie Bunker), Mr. Brown (Quentin Tarantino), Mr. Orange (Tim Roth), Mr. Pink (Steve Buscemi), Mr. White (Harvey Keitel). Among them is aged Los Angeles gangster Joe Cabot (Lawrence Tierney), and his son, &quot;Nice Guy&quot; Eddie (Chris Penn). Mr. Brown discusses his comparative analysis on Madonna's &quot;Like a Virgin&quot;, Joe's senior moments involving his address book rankle Mr. White, and Mr. Pink defends his anti-tipping policy until Joe forces him to leave a tip. After the opening credits, the action cuts quickly to the interior of a speeding car. Mr. White, driving with one hand, is trying to comfort a hysterical Mr. Orange, who has been shot in the abdomen and is bleeding profusely. They arrive at an abandoned warehouse, later revealed to be the rendezvous point for the armed robbery they have just committed. Mr. White leaves Mr. Orange on the warehouse floor when Mr. Pink appears, angrily suggesting that their robbery of a jeweler, orchestrated by Joe Cabot, was a setup. Mr. White reveals that Mr. Brown has been killed by the police; the whereabouts of Mr. Blonde and Mr. Blue are unknown to both. A flashback is played, revealing more of Mr. White's long-time friendship with Joe Cabot.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-3</value>
+      <value>102</value>
+      <value><![CDATA[Il mostro]]></value>
+      <value>-1</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value><![CDATA[Il mostro &egrave; un film del 1994, diretto da Roberto Benigni, basato sulla sceneggiatura scritta dallo stesso Benigni in collaborazione con Vincenzo Cerami, anche co-autore dell'omonimo libro.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-2</value>
+      <value>90</value>
+      <value><![CDATA[Vita da cani]]></value>
+      <value>-2</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value><![CDATA[Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>107</value>
+      <value><![CDATA[La vita è bella]]></value>
+      <value>-1</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value><![CDATA[Il film comincia con un commento fuori campo di Omero Antonutti: Questa &egrave; una storia semplice, eppure non &egrave; facile raccontarla, come in una favola c'&egrave; dolore, e come in una favola, &egrave; piena di meraviglie e di felicit&agrave;. 1939. Guido Orefice (Roberto Benigni), un giovanotto ebreo pieno di allegria, si reca ad Arezzo con l'amico Ferruccio. Durante il movimentato viaggio Guido incontra una maestrina, Dora (Nicoletta Braschi), che chiama da subito principessa poich&eacute; lui si spaccia per principe. Arrivato in citt&agrave;, si reca a casa dello zio Eliseo (Giustino Durano), ma&icirc;tre dell'hotel pi&ugrave; rinomato della citt&agrave;: Guido &egrave; infatti deciso a diventare un cameriere sebbene il suo progetto sia quello di aprire in seguito una libreria. Quello stesso giorno, in municipio, avviene lo scontro con Rodolfo, un arrogante gerarca fascista, in seguito al quale ciascuno dei due soprannomina l'altro lo scemo delle uova (Guido sbadatamente mette le uova nel cappello del gerarca, e quando questo lo indossa le uova gli si rompono sulla testa). Un giorno Guido incontra di nuovo Dora e scopre che &egrave; fidanzata con Rodolfo. Nel frattempo, Guido all'hotel fa amicizia con un medico tedesco con la fissazione per gli indovinelli. Il giorno dopo, nella speranza di reincontrare Dora, Guido, si spaccia per ispettore scolastico e &quot;dimostra&quot; la superiorit&agrave; della razza ariana. Una sera Dora, con i suoi amici, va a teatro, ovviamente Guido la segue e, con uno stratagemma, la &quot;soffia&quot; a Rodolfo. I due quella sera parlano a lungo e Guido le confessa infine il proprio amore per lei. Una sera, proprio al Grand Hotel, Rodolfo festeggia il suo fidanzamento ufficiale con Dora, restia e non troppo convinta del passo. Nel corso della serata Dora si rende conto di quanto sia pi&ugrave; attratta da Guido, e al termine della serata, sale sul cavallo che Guido fa entrare nell'hotel e si lascia &quot;rapire&quot;. Guido e Dora si sposano e dal loro amore nasce Giosu&egrave; (Giorgio Cantarini).]]></value>
+      <value>/images/placeholder_movie.jpg</value>
+    </row>
+  </table>
+  
+  <table name="localized_data">
+    <column>localized_data</column>
+    <column>movie</column>
+    <column>locale</column>
+    <column>localized_title</column>
+    <column>localized_plot</column>
+    <column>localized_image</column>
+    <row>
+      <value>-10</value>
+      <value>-1</value>
+      <value>IT</value>
+      <value><![CDATA[La vita è bella]]></value>
+      <value><![CDATA[Il film comincia con un commento fuori campo di Omero Antonutti: Questa &egrave; una storia semplice, eppure non &egrave; facile raccontarla, come in una favola c'&egrave; dolore, e come in una favola, &egrave; piena di meraviglie e di felicit&agrave;. 1939. Guido Orefice (Roberto Benigni), un giovanotto ebreo pieno di allegria, si reca ad Arezzo con l'amico Ferruccio. Durante il movimentato viaggio Guido incontra una maestrina, Dora (Nicoletta Braschi), che chiama da subito principessa poich&eacute; lui si spaccia per principe. Arrivato in citt&agrave;, si reca a casa dello zio Eliseo (Giustino Durano), ma&icirc;tre dell'hotel pi&ugrave; rinomato della citt&agrave;: Guido &egrave; infatti deciso a diventare un cameriere sebbene il suo progetto sia quello di aprire in seguito una libreria. Quello stesso giorno, in municipio, avviene lo scontro con Rodolfo, un arrogante gerarca fascista, in seguito al quale ciascuno dei due soprannomina l'altro lo scemo delle uova (Guido sbadatamente mette le uova nel cappello del gerarca, e quando questo lo indossa le uova gli si rompono sulla testa). Un giorno Guido incontra di nuovo Dora e scopre che &egrave; fidanzata con Rodolfo. Nel frattempo, Guido all'hotel fa amicizia con un medico tedesco con la fissazione per gli indovinelli. Il giorno dopo, nella speranza di reincontrare Dora, Guido, si spaccia per ispettore scolastico e &quot;dimostra&quot; la superiorit&agrave; della razza ariana. Una sera Dora, con i suoi amici, va a teatro, ovviamente Guido la segue e, con uno stratagemma, la &quot;soffia&quot; a Rodolfo. I due quella sera parlano a lungo e Guido le confessa infine il proprio amore per lei. Una sera, proprio al Grand Hotel, Rodolfo festeggia il suo fidanzamento ufficiale con Dora, restia e non troppo convinta del passo. Nel corso della serata Dora si rende conto di quanto sia pi&ugrave; attratta da Guido, e al termine della serata, sale sul cavallo che Guido fa entrare nell'hotel e si lascia &quot;rapire&quot;. Guido e Dora si sposano e dal loro amore nasce Giosu&egrave; (Giorgio Cantarini).]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-9</value>
+      <value>-1</value>
+      <value>EN</value>
+      <value><![CDATA[Life is beautiful]]></value>
+      <value><![CDATA[The first half of the movie is a whimsical, romantic comedy and often slapstick. Guido (Roberto Benigni), a young Italian Jew, arrives in Arezzo where he plans to set up a bookstore, taking a job in the interim as a waiter. Guido is both funny and charismatic, especially when he romances Dora (Italian, but not Jewish; portrayed by Benigni's actual wife Nicoletta Braschi), whom he steals &#x2013; at her engagement &#x2013; from her rude and loud fianc&eacute;. Several years pass, in which Guido and Dora have a son, Joshua (written Giosu&eacute; in the Italian version; portrayed by Giorgio Cantarini). In the film, Joshua is around four and a half years old. However, both the beginning and ending of the film are narrated by an older Joshua. In the second half, Guido, Uncle Eliseo and Joshua are taken to a concentration camp on Joshua's birthday. Dora demands to join her family and is permitted to do so. When Dora boards the train she is the only one wearing red, as everyone else is wearing dark coloured clothes. Guido hides Joshua from the Nazi guards and sneaks him food. Eliseo is gassed to death, though the others do not know. In an attempt to keep up Joshua's spirits, Guido convinces him that the camp is just a game &#x2014; a game in which the first person to get 1000 points wins a tank. He tells Joshua that if you cry, complain that you want your mother or complain that you are hungry, you lose points, while quiet boys who hide from the camp guards earn points. He convinces Joshua that the camp guards are mean because they want the tank for themselves and that all the other children are hiding in order to win the game. He puts off every attempt of Joshua ending the game and returning home by convincing him that they are in the lead for the tank. Despite being surrounded by rampant death and people and all their sicknesses, Joshua does not question this fiction both because of his father's convincing performance and his own innocence.]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>-3</value>
+      <value>EN</value>
+      <value><![CDATA[The monster]]></value>
+      <value><![CDATA[A monster goes to hell and kills everyone]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-7</value>
+      <value>-3</value>
+      <value>IT</value>
+      <value><![CDATA[Il mostro]]></value>
+      <value><![CDATA[Loris (Roberto Benigni) is a part-time mannequin handler for a department store. He hopes to learn the Chinese language in order to get an assistant manager position. He lives in a building where he hasn't paid the rent in months, and he also owes money to other people around town. At a party, Loris is told about a nymphomaniac who will sleep with anyone. Loris approaches the wrong woman, who runs away and tells the police. Because of his odd behavior, Loris becomes the chief suspect in a series of rape/murders. The chief of police, frustrated by the lack of solid evidence against Loris, resolves to provoke Loris's passion and catch him &quot;red-handed.&quot; An attractive police officer, Jessica (Nicoletta Braschi) goes undercover as his roommate, and is directed by the police chief and the police doctor, Paride, to dress provocatively in order to entrap Loris.]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-6</value>
+      <value>-12</value>
+      <value>IT</value>
+      <value><![CDATA[Apocalypse now]]></value>
+      <value><![CDATA[1969: la guerra del Vietnam &egrave; al suo culmine. Il capitano Benjamin L. Willard (Martin Sheen) &egrave; tornato a Saigon; egli &egrave; un ufficiale dell'esercito americano, dove nominalmente appartiene ai paracadutisti della 173a Brigata Aviotrasportata. Inoltre &egrave; profondamente turbato dalle missioni segrete che ha svolto ed apparentemente non &egrave; pi&ugrave; adeguato alla vita civile. Due funzionari del servizio d'informazione militare, il generale Corman (G.D. Spradlin) ed il maggiore Lucas (Harrison Ford), ed un membro dei servizi segreti (Jerry Ziesmer), lo raggiungono con una missione speciale: il viaggio lungo il fiume Nung nella remota giungla cambogiana per trovare il colonnello Walter E. Kurtz (Marlon Brando), ex membro della US Army Special Forces. Essi affermano che Kurtz, un tempo considerato un ufficiale modello e prossimo al grado di generale, &egrave; presumibilmente impazzito e comanda una legione di truppe-sudditi nella foresta della neutrale Cambogia. Le loro rivendicazioni sono supportate da un'inquietante trasmissione radio e da registrazioni effettuate da Kurtz stesso. Willard &egrave; &quot;condannato&quot; a intraprendere la missione per trovare e &quot;sollevare&quot; il colonnello Kurtz dal comando &quot;senza alcuno scrupolo&quot;.]]></value>
+      <value>/movie_images/apocalypsenow.jpg</value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>-12</value>
+      <value>EN</value>
+      <value><![CDATA[Apocalypse now]]></value>
+      <value><![CDATA[The film opens, introducing Captain Benjamin L. Willard (Martin Sheen); a deeply troubled, seasoned special operations veteran. It is 1970. Willard has returned to Saigon from deployment in the field. He drinks excessively and appears to be having difficulty adjusting to life in the rear-area. Two intelligence officers, LTG Corman (G. D. Spradlin), Colonel Lucas (Harrison Ford) and a government man (Jerry Ziesmer), approach him with an assignment: journey up the fictional Nung River into the remote Cambodian jungle to find Colonel Walter E. Kurtz (Marlon Brando), a member of the US Army Special Forces feared to have gone rogue. They tell Willard that Kurtz, once considered a model officer and future general, has gone insane and is commanding a legion of his own Montagnard troops deep inside the forest in neutral Cambodia. Their claims are supported by very disturbing radio broadcasts and recordings made by Kurtz himself. Willard is ordered to undertake a mission to find Kurtz and terminate the Colonel's command &quot;with extreme prejudice.&quot; Willard joins the crew of a Navy Patrol Boat, Riverine (PBR), with an eclectic crew composed of QMC George Phillips (Albert Hall), the Navy PBR boat commander; GM3 Lance B. Johnson (Sam Bottoms), GM3 Tyrone Miller (Laurence Fishburne), a.k.a. &quot;Mr. Clean&quot;, and EN3 Jay &quot;Chef&quot; Hicks (Frederic Forrest). Willard and the PBR crew rendezvous with the 1/9 AirCav, commanded by Lieutenant Colonel Bill Kilgore (Robert Duvall) for transport to the Nung River. He initially refuses their request for transport until Kilgore, a keen surfer, is told by one of his men that Lance Johnson, a professional surfer is a member of the boat's crew. Kilgore befriends Johnson, and later learns from one of his men that the beach down the coast which marks the opening to the river is perfect for surfing. This changes his mind about transporting Willard and the PBR and Kilgore decides to capture the village. His men advise him that it's &quot;Charlie's point&quot; and heavily fortified. Dismissing this concern with the explanation that &quot;Charlie don't surf!,&quot; Kilgore orders his men to saddle up in the morning to capture the town and the beach. Riding high above the coast in a fleet of Hueys accompanied by OH-6As, Kilgore launches his attack on the beach. The scene, famous for its use of Richard Wagner's &quot;Ride of the Valkyries,&quot; ends with the soldiers surfing the barely-secured beach amidst skirmishes between infantry and VC. After helicopters swoop over the village and demolish all visible signs of resistance, a giant napalm strike in the nearby jungle dramatically marks the climax of the battle. Kilgore exults to Willard, &quot;I love the smell of napalm in the morning, smells like... victory&quot; as he recalls a battle in which a hill was bombarded with napalm for over twelve hours. The lighting and mood darken as the boat navigates upstream and Willard's silent obsession with Kurtz deepens. Incidents on the journey include a run-in with a tiger while Willard and Chef search for mangoes. The boat continues up river and watches a USO show featuring Playboy Bunnies and a centerfold that degenerates into chaos. Shortly after the Playmate performance, Phillips spots a sampan and orders an inspection over the objections of Willard. Initially reluctant to board the boat, Chef hostilely searches it and one of the civilians makes a sudden movement towards a barrel, prompting Clean to open fire, killing nearly all the crew. The one concerned about the barrel, a young woman, lies dying. Chef discovers that the barrel contained the woman's pet puppy. Phillips insists on taking the survivor to receive medical attention, however, Willard ends the debate by shooting the survivor, calmly stating &quot;I told you not to stop.&quot; The boat moves up river to the American outpost at the Do Long bridge, the last U.S. Army outpost on the river. The boat arrives during a North Vietnamese attack on the bridge, which is under constant construction. Upon arrival, Willard receives the last piece of the dossier from a lieutenant named Carlson, along with mail for the boat crewmen. Willard and Lance, who has taken LSD, go ashore and they make their way through the trenches where they encounter many panicked, leaderless soldiers. Realizing the situation has devolved into chaos, Willard and Lance return to the boat. The chief tries to convince Willard not to continue on with his mission. In response, Willard snaps at Phillips to continue upriver. As the boat departs, the NVA launch an artillery strike that destroys the bridge. The next day, Willard learns from the information he received at Do Lung that an Army Lieutenant Colby was sent to find Kurtz a few months prior to Willard's assignment and is missing. While its crew is busy reading mail, the boat is ambushed by Viet Cong hiding in the trees by the river. Clean is killed as he listens to an audio tape from his mother. The chief, who had a close relationship with Clean, becomes increasingly hostile to Willard. Montagnard villagers begin firing arrows at the boat as it approaches the camp. The crew opens fire until the chief is hit by a spear. Willard attempts to assist the mortally wounded Phillips who tries to kill Willard by pulling him onto the speartip protruding from his chest. Willard grapples with Phillips until the man finally dies. After arriving at Kurtz' outpost, Willard leaves Chef behind with orders to call in an airstrike on the village if he does not return and takes Johnson with him to the village. They are met by a manic freelance photographer (Dennis Hopper), who explains that Kurtz's greatness and philosophical skills inspire his people to follow him. Willard also encounters the missing Lt. Colby who is in a nearly catatonic state. Willard is bound and brought before Kurtz in a darkened temple. Kurtz lectures him on his theories of war, humanity, and civilization. Kurtz explains his motives and philosophy in a haunting monologue in which he praises the ruthlessness of the Viet Cong he witnessed following one of his own humanitarian missions. The scene changes to Chef attempting to call in the airstrike on the village as ordered by Willard. Chef is attacked and the scene cuts to Willard bound to a post outside in the pouring rain. Kurtz walks up to him and drops Chef's severed head into his lap. Sometime later, a villager releases Willard's bonds and gives him a machete. Willard enters Kurtz's chamber as Kurtz is making a recording, and attacks him with the machete. This entire sequence is set to &quot;The End&quot; by The Doors and juxtaposed with a ceremonial slaughtering of a Water Buffalo. Lying bloody and dying on the ground, Kurtz whispers &quot;The horror... the horror.&quot; Willard descends the stairs from Kurtz' chamber and drops his weapon. The villagers do so as well. Willard walks through the now-silent crowd of natives and takes Johnson by the hand. He leads Johnson to the PBR, and they sail away as Kurtz's final words echo as the scene fades to black.]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-4</value>
+      <value>-17</value>
+      <value>IT</value>
+      <value><![CDATA[Cast away]]></value>
+      <value><![CDATA[Chuck Noland (Tom Hanks) &egrave; un ingegnere della Federal Express, nota azienda di spedizione merci. La sua vita lavorativa, seppur molto frenetica, lo appaga e lo stimola ad avviare nuovi punti di smistamento internazionali (all'inizio del film lo vediamo a Mosca), spostandosi per il mondo. &Egrave; proprio in uno di questi viaggi che, a causa di un incidente aereo, dopo un ammaraggio di fortuna, si ritrova su un'isola deserta. Dopo aver scoperto di essere l'unico sopravvissuto alla sciagura, dovr&agrave; affrontare le problematiche di una vita in totale solitudine (l'unico suo &quot;amico&quot; &egrave; il pallone &quot;Wilson&quot;, trovato tra i pacchi che stava trasportando). Dopo 4 lunghi anni passati sull'isola (pi&ugrave; precisamente, 1500 giorni) Chuck Noland si rende conto che l'unica speranza per tornare a casa sar&agrave; la costruzione di un'ingegnosa zattera, con la quale tentare di superare lo scoglio della barriera corallina per poi essere trascinato dalle correnti e dai venti in pieno Oceano Pacifico. Recuperato fortunosamente da una nave di passaggio e tornato finalmente alla vita di tutti i giorni, comincia a rendersi conto che i problemi non sono finiti: la donna che amava, il ricordo della quale gli aveva fatto affrontare con speranza la sua disgrazia, credendolo morto, nel frattempo si &egrave; sposata ed ha una figlia. Una prova sicuramente molto dura, ma che Chuck sapr&agrave; infine affrontare senza troppi problemi, grazie anche alla freddezza e alla forza d'animo acquisita nel corso della sua lunga solitudine sull'isola.]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-3</value>
+      <value>-17</value>
+      <value>EN</value>
+      <value><![CDATA[Cast away]]></value>
+      <value><![CDATA[Chuck Noland (Tom Hanks) is a time-obsessed FedEx systems analyst, who travels worldwide resolving productivity problems at FedEx depots. He is in a long-term relationship with Kelly Frears (Helen Hunt), with whom he lives in Memphis. Although the couple want to get married, Chuck's busy schedule causes problems. A Christmas with relatives is interrupted by Chuck being summoned to resolve a problem overseas. At the airport, the couple exchange Christmas gifts. Kelly gives Chuck her grandfather's pocket watch with her picture in it, and Chuck gives her what appears to be a ring, which he tells her to open on New Years, after he returns. While flying through a violent thunderstorm somewhere over the southern Pacific Ocean, apparently having flown off course, an incident occurs on Chuck's plane which results in it crashing into the ocean. Chuck is able to escape the sinking plane and is saved by an inflatable life-raft, which floats for some time in the storm before being washed up on an island. It soon becomes clear that the island is uninhabited, and Chuck's early attempts to make visual signals for any searching aircraft, and to escape the island in the remnants of his life raft are fruitless. After several FedEx packages from the crashed plane wash up on the island, Chuck begins to open them, looking for items to use for his survival. He finds a number of potentially useful items but leaves one package, painted with a pair of wings, unopened. During a failed attempt to make fire, Chuck receives a deep wound to his hand. In anger he throws several objects, including a Wilson volleyball from one of the FedEx packages. A short time later he draws a face in the bloody hand print on the ball, naming it "Wilson" and talking to it as if it were a person. When, after concerted attempts, Chuck finally succeeds in making fire, the film shifts forward by four years to show Chuck, now dramatically thinner and bearded, expertly spearing a fish and eating it raw. It becomes clear that in the intervening time Chuck has not only become proficient at surviving in the island environment, but has also developed a deep attachment to Wilson, regularly having "conversations" with him and becoming distressed when he is seemingly lost. After a large sheet of plastic from a portable toilet washes up on the island, Chuck decides to use it as a sail in the construction of a raft. After spending some time building and stocking the raft (including food, fishing equipment, oars and the unopened package) and deciding when the weather conditions will be optimal, Chuck launches the raft and finally escapes the island. After some time on the ocean, the raft is virtually destroyed by a storm which ultimately results in Wilson being lost. Distraught, Chuck resigns himself to his fate and abandons his attempt to find rescue. Half-dead and sunburned, he is found drifting a short time later by a passing cargo ship. Upon returning home Chuck discovers that he has long been given up for dead by everyone he knows; his family and friends held a funeral, and Kelly has since married and had a daughter. After meeting Kelly the pair profess their love for each other but realize a future together would be impossible; they part, Kelly giving Chuck their Jeep Cherokee which she had kept. Chuck remarks to a friend that he has now "lost her all over again," having previously resigned himself to being stranded on the island for the rest of his life. Chuck then travels to the address on his unopened package to deliver it. The house is empty so he leaves the package at the door and departs, stopping at a remote crossroads. A woman passing by in a truck explains where each road leads. As she drives away, Chuck stands at the crossroads, apparently trying to decide which direction to go. He then notices a pair of wings painted on the back of the woman's truck: the same as those on the unopened parcel he had just delivered. The film ends with Chuck watching the departing truck with a faint smile.]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-2</value>
+      <value>-4</value>
+      <value>IT</value>
+      <value><![CDATA[Le iene]]></value>
+      <value><![CDATA[Joe Cabot (Lawrence Tierney), un personaggio noto nella mala losangelina, raduna un gruppo di sei rapinatori professionisti per rapinare un grossista di diamanti in procinto di ricevere un quantitativo di gioielli raffinati da Israele. Il gruppo &egrave; composto da vecchie conoscenze di Cabot: Lawrence Dimmick, Mr. White (Harvey Keitel) ed il sadico Victor Vega, Mr. Blonde (Michael Madsen), assai fedele ai Cabot, avendo passato quattro anni in prigione senza fare il loro nome al processo, grande amico di Eddie (Chris Penn), figlio di Joe. Ad essi si aggiungono altre persone ritenute professionisti nel loro campo: l'irrequieto Mr. Pink (Steve Buscemi), l'estroso Dennis Koonstock, Mr. Brown (Quentin Tarantino) e il taciturno Roy Spafucci, Mr. Blue (Edward Bunker). Tra i partecipanti indiretti alla rapina c'&egrave; anche lo stesso Eddie. Le attivit&agrave; di Joe vengono per&ograve; da tempo sorvegliate dalla polizia di Los Angeles che decide di infiltrare nella banda un sesto uomo: Freddy Newandyke, alias Mr. Orange (Tim Roth). Per conquistarsi la fiducia di Cabot, Orange gli narra una storia &#x2014; sotto consiglio del suo mentore &#x2014; davanti alla quale Joe rimane stupefatto e divertito. Orange viene dunque ammesso nella banda. Prima del colpo, Joe chiarisce la regola principale del loro gruppo: mai parlare di se stessi. Per assicurarsi ci&ograve;, Cabot d&agrave; ad ogni membro della banda un colore come nome. Durante le riunioni della banda, Mr. White stringe un legame d'amicizia con l'infiltrato, Mr. Orange.]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>-4</value>
+      <value>EN</value>
+      <value><![CDATA[Reseirvor dogs]]></value>
+      <value><![CDATA[The film opens to eight men eating breakfast at a diner. Six of them wear matching suits and are using codenames: Mr. Blonde (Michael Madsen), Mr. Blue (Eddie Bunker), Mr. Brown (Quentin Tarantino), Mr. Orange (Tim Roth), Mr. Pink (Steve Buscemi), Mr. White (Harvey Keitel). Among them is aged Los Angeles gangster Joe Cabot (Lawrence Tierney), and his son, &quot;Nice Guy&quot; Eddie (Chris Penn). Mr. Brown discusses his comparative analysis on Madonna's &quot;Like a Virgin&quot;, Joe's senior moments involving his address book rankle Mr. White, and Mr. Pink defends his anti-tipping policy until Joe forces him to leave a tip. After the opening credits, the action cuts quickly to the interior of a speeding car. Mr. White, driving with one hand, is trying to comfort a hysterical Mr. Orange, who has been shot in the abdomen and is bleeding profusely. They arrive at an abandoned warehouse, later revealed to be the rendezvous point for the armed robbery they have just committed. Mr. White leaves Mr. Orange on the warehouse floor when Mr. Pink appears, angrily suggesting that their robbery of a jeweler, orchestrated by Joe Cabot, was a setup. Mr. White reveals that Mr. Brown has been killed by the police; the whereabouts of Mr. Blonde and Mr. Blue are unknown to both. A flashback is played, revealing more of Mr. White's long-time friendship with Joe Cabot.]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-11</value>
+      <value>-16</value>
+      <value>IT</value>
+      <value><![CDATA[Chi ha incastrato Roger Rabbit]]></value>
+      <value><![CDATA[Hollywood, 1947. Nell'universo del film, i cartoni animati sono dei veri e propri esseri viventi, che vivono nel mondo a fianco degli umani. Molti di loro lavorano nel mondo dello spettacolo (facendo gli attori nei cartoni animati), ma vivono al di fuori delle pellicole e se ne trovano ad esempio anche impiegati come buttafuori o camerieri. Vivono indipendentemente dai loro film, quindi si pu&ograve; spiegare il fatto che si vedano in circolazione personaggi che nel 1947 in realt&agrave; non erano ancora stati creati (semplicemente, potevano essere sconosciuti al pubblico). Non &egrave; chiaro il modo in cui questi cartoni nascano, ma si intuisce che possano prendere vita dopo essere stati disegnati da qualcuno (&quot;Io non sono cattiva, &egrave; che mi disegnano cos&igrave;!&quot;). Nonostante siano praticamente invulnerabili a qualunque tipo di colpo (ad esempio &egrave; possibile tiragli in testa qualunque cosa senza ferirli veramente, al massimo rimangono storditi per un po'), nel film si vedono due metodi con cui &egrave; possibile ucciderli.]]></value>
+      <value>/movie_images/rogerrabbit.jpg</value>
+    </row>
+    <row>
+      <value>-12</value>
+      <value>-16</value>
+      <value>EN</value>
+      <value><![CDATA[Who framed Roger Rabbit]]></value>
+      <value><![CDATA[In 1947, Los Angeles, California, Toons commonly interact with the Hollywood studio system and live in a section of the city known as Toontown. Roger Rabbit is the star of &quot;Maroon Cartoon&quot; animated short subjects, but he has trouble following the director's commands, delaying the production. Rumors are spreading that Roger's wife Jessica has a &quot;sugar daddy&quot; and studio head R.K. Maroon hires private investigator Eddie Valiant to look into the matter. Eddie, whose brother Teddy was killed by a Toon five years before, reluctantly takes the job. He discovers that the buxom Jessica is &quot;cheating&quot; on Roger by literally playing pattycake with Marvin Acme, owner of the Acme Corporation and Toontown. Eddie reveals photographic evidence to Roger, who sinks into depression. Marvin Acme is found murdered the next day, and Roger becomes the prime suspect. At the crime scene, Eddie is met by Judge Doom of the Toontown District Superior Court and his Toon Patrol weasel henchmen. Doom is eager to use &quot;The Dip&quot;, a mixture of chemicals that can dissolve any Toon character on contact, on Roger once he can be found. Eddie encounters Baby Herman, Roger's co-star, who swears that Roger is innocent and that Acme's will, which would have left Toontown to the Toons, has gone missing; if the will is not found by midnight, Toontown could be sold at a public auction. Roger himself turns up at Eddie's office and pleads his innocence. Eddie begins to investigate the case deeper with his on-off girlfriend Dolores and Roger's Toon taxicab friend Benny while trying to keep Roger hidden from the Toon Patrol. Valiant is visited by Jessica, who reveals that she was forced by Maroon to get close to Acme or else he would have ruined Roger's career. Valiant then questions Maroon, who tells him that Cloverleaf Industries wouldn't buy his studio unless Acme sold Toontown to them, but Acme refused to do so, so he was going to set up Acme with the pictures of him and Jessica. But before he can explain any further, Maroon is shot from behind by a mysterious assassin. Eddie sees Jessica fleeing from the studio and, overcoming his anxiety, pursues her into Toontown, but the culprit turns out to be Judge Doom. As they attempt to bring Doom to the authorities, Eddie, Jessica and Roger are all captured by the Toon Patrol and taken to the Acme warehouse. Doom reveals his plans: as the sole stockholder in Cloverleaf Industries, he bought the Red Car and he plans to buy Toontown, the Acme Company, and Maroon Studios, and then raze them to make way for a freeway for Los Angeles. To wipe out Toontown, Doom has built a vehicle with a large Dip vat that he plans to spray throughout the district, wiping out all the Toons. As Roger and Jessica struggle to avoid being hit by the spray of Dip, Eddie manages to get free and causes the weasels of the Toon Patrol to die of laughter through various comedic antics, leaving the Dip sprayer running automatically. Eddie and Doom then fight, using assorted Toon props found within the factory, until Eddie is able to run Doom over with a road roller. The crushing does not kill Doom, however; instead, Doom reveals himself to be a Toon, the same one that killed Eddie's brother. Eddie manages to open the drain on the Dip sprayer, showering Doom with the mixture and dissolving him. Eddie frees Roger and Jessica, their relationship having been mended, while the Dip sprayer harmlessly crashes through the warehouse wall into Toontown and immediately smashed by a Toon train. As numerous Toons enter the warehouse to see what the commotion is, Eddie discovers Acme's will written in disappearing/reappearing ink on an apparent blank piece of paper that Acme had given to Jessica that Roger later wrote a love poem to his wife on. With the will in hand, the Toons celebrate their ownership of Toontown and sing &quot;Smile, Darn Ya, Smile&quot; while Roger and Jessica as well as Eddie and Dolores rekindle their relationships.]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-13</value>
+      <value>-13</value>
+      <value>IT</value>
+      <value><![CDATA[Ritorno al futuro]]></value>
+      <value><![CDATA[Il 25 ottobre 1985 Marty McFly, 17enne studente di liceo, si ritrova in visita dell&#x2019;amico scienziato &quot;Doc&quot; Emmett Brown. Non lo trova a casa ed usa di nascosto il suo amplificatore gigante, distruggendo letteralmente l&#x2019;abitazione con la sua chitarra. Presto riceve una telefonata da Doc, che gli chiede di incontrarlo alle ore 1:15 nel parcheggio del Twin Pines Mall e Marty gli risponde che lo avrebbe raggiunto al posto concordato. Mentre Marty gli risponde di s&igrave;, gli orologi nel laboratorio di Doc suonano l&#x2019;ora. Quando Doc Brown gli spiega che quegli orologi sono indietro di 25 minuti, prova di un esperimento riuscito, Marty si rende conto di essere in ritardo a scuola. Il ragazzo raggiunge il liceo in skateboard ed entra con l&#x2019;aiuto della fidanzata, Jennifer Parker, ma il burbero preside Strickland gli mette una nota sul registro, intimando Marty di evitare di continuare a frequentare il suo amico Doc. Dopo le lezioni, Marty comincia a suonare la chitarra come solista per i &quot;Pinheads&quot;, gruppo che vorrebbe accompagnare il ballo della scuola. Il gruppo per&ograve; viene scartato dalla giuria perch&eacute; Marty e colleghi fanno &quot;troppo rumore&quot;. Fuori dalla scuola, nel centro della citt&agrave;, Marty si confida con Jennifer, preoccupato perch&eacute; crede che come musicista non avr&agrave; successo nemmeno al liceo. Vengono interrotti da una donna, che d&agrave; al ragazzo un volantino: esso serve per promuovere la riparazione dell&#x2019;orologio della torre, danneggiato da un fulmine alle 22:04 di sabato 12 novembre 1955.]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-14</value>
+      <value>-13</value>
+      <value>EN</value>
+      <value><![CDATA[Back to the future]]></value>
+      <value><![CDATA[Marty McFly is a 17-year-old living in Hill Valley, California. On the morning of Friday, October 25, 1985, his eccentric friend, scientist Dr. Emmett &quot;Doc&quot; Brown (Lloyd), calls him, asking to meet at 1:15am the following morning at Twin Pines Mall. Upon arriving home from school, Marty finds the family car wrecked in the driveway, ruining his plans to spend the weekend with his girlfriend Jennifer (Claudia Wells). Inside the house, he finds his meek, nerdy father, George (Crispin Glover), being bullied by his supervisor Biff Tannen (Thomas F. Wilson), who had borrowed and wrecked the car. At dinner that night, Marty's mother Lorraine (Lea Thompson) recounts how she and George first met when her father hit George with his car as George was &quot;bird-watching&quot;. That night, Marty meets Doc as planned in the parking lot of Twin Pines Mall. Doc presents a DeLorean DMC-12 which he has modified into a time machine. As Marty videotapes, Doc explains the car travels to a programmed date and time upon reaching 88 miles per hour using plutonium in a nuclear reaction to generate the 1.21 gigawatts of power it requires. Demonstrating how to program the machine, Doc enters in November 5, 1955 as the target date, explaining that it was the day he conceived the idea of the flux capacitor; the device which &quot;makes time travel possible.&quot; Before Doc can depart for his planned trip into the future, a group of Libyan terrorists, from whom he stole the plutonium, arrive in a Volkswagen bus and murder him. Marty jumps into the DeLorean and is pursued by the Libyans until he accelerates to 88 miles per hour and is inadvertently transported back in time to 1955. The car's starter fails shortly thereafter; Marty hides it, and makes his way into town on foot. He finds that the town square now reflects the popular culture of the 1950s, and that the clock tower which was destroyed sometime in his past is once again functioning. Marty runs into his own father, then a teenager, being tyrannized just as he was in 1985 by Biff, then the school bully. Marty follows George (who turns out to be a peeping tom, not a birdwatcher) as he is about to be hit by a car; Marty pushes George out of the way and takes the impact. The car turns out to be driven by Lorraine's father, resulting in Lorraine becoming infatuated with Marty instead of George. Marty is disturbed by her flirtations, which contrast sharply with the prudish mother he is familiar with. He flees from her home to find Doc Brown. The scientist at first believes that Marty is a lunatic. Marty convinces Doc by recounting the story of how Doc got the inspiration for the flux capacitor, and then by showing Doc the videotape of the 1985 experiment. However, when he hears his older self describe the power requirements for time travel, Doc is shocked. He tells Marty that aside from plutonium, the only possible source of that much power is a bolt of lightning, which cannot be predicted. Marty remembers that the lightning strike at the clock tower will occur the following Saturday (November 12, 1955) at 10:04pm. As a result, Doc begins planning a way to harness the bolt's power. Doc also deduces that Marty, by saving his father from the car, has prevented his parents from meeting, and instructs him to set things right. After several failed attempts at playing matchmaker, Marty eventually works out a plan to have George appear to rescue Lorraine from Marty's overt sexual advances on the night of a school dance, so he can leave to make his return to 1985. However, Biff shows up unexpectedly and orders his friends to lock Marty in a car trunk. Heavily intoxicated, Biff jumps into the car and attempts to force himself on the horrified Lorraine. George arrives as he and Marty have planned and is shocked to find Biff instead of Marty. Biff orders him to turn around and walk away, but George cannot bring himself to ignore Lorraine's pleas for help. When Biff pins his arm behind his back and laughs as he knocks away Lorraine who tries to defend him, George finally snaps and knocks out his tormentor with a single punch. A smitten Lorraine follows George to the dance floor, where they kiss for the first time, ensuring Marty's existence. Doc, meanwhile, has used cables to connect the clock tower's antenna to two lampposts, which he plans to have Marty drive under in the DeLorean, now sporting a lightning rod, the moment the lightning strikes. Before Marty can leave, Doc finds a letter in his coat pocket that Marty has written, warning him about his future murder. Doc indignantly tears up the letter without reading it, describing the dangers of altering the future. Marty instead adjusts the time machine to take him back to 1985, the parallel year, ten minutes earlier than he left, giving him time to warn Doc. Upon his return to the future, however, the car stalls and Marty arrives at the mall too late to save Doc. As Marty begins crying behind his friend's body, Doc wakes up and opens his radiation suit to reveal a bulletproof vest. He shows Marty the letter he had written, taped back together. When asked about his belief in not altering the future, Doc replies, &quot;I figured, what the hell?&quot; The next morning, Marty finds his family has been changed for the better. Most notably, Lorraine is physically fit and is no longer prudish, and George has become a self-confident novelist who confidently confronts a servile Biff. Just as Jennifer and Marty reunite, Doc arrives, insisting frantically that he has visited the future and that they must go back with him to work out a problem concerning their future children. The three take off into the sky in a newly upgraded DeLorean that can fly, and disappear into the future.]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-15</value>
+      <value>-9</value>
+      <value>IT</value>
+      <value><![CDATA[Il padrino]]></value>
+      <value><![CDATA[New York, 1946. Vito Corleone, detto il padrino, &egrave; un immigrato siciliano che, dopo anni di crimine, principalmente nell'organizzazione del gioco d'azzardo illegale e nei racket sindacali, si &egrave; affermato come il pi&ugrave; potente dei capi-mafia italo-statunitensi della citt&agrave;. La sua organizzazione, la Famiglia Corleone, con cui gestisce un enorme giro di affari illegali, coinvolge l'iracondo figlio maggiore Santino detto Sonny, Fredo, ingenuo e poco intelligente, e il figliastro Tom Hagen, brillante avvocato divenuto &quot;consigliere&quot; cio&egrave; braccio destro del capo. Il suo potere non si basa solo sulla violenza, ma anche e soprattutto sull' &quot;amicizia&quot;, che il Capo elargisce generosamente a chi gli chiede favori, ma che pretende ricambiata in maniera assoluta e che gli ha creato negli anni una preziosa rete di conoscenze e protezioni nel mondo cosiddetto &quot;legale&quot;. Dopo il fastoso matrimonio &quot;alla siciliana&quot; della figlia Constanzia (Connie), Corleone riceve Virgil Sollozzo, pericoloso trafficante di droga chiamato &quot;Il Turco&quot;, affiliato alla famiglia Tattaglia, una delle cinque cosche mafiose newyorkesi, che gli chiede protezione giudiziaria e finanziaria per impiantare un traffico di stupefacenti di vasta portata. Il capo rifiuta il proprio appoggio al nascente affare della droga, nonostante il parere favorevole di Santino e di Tom, e tra le famiglie mafiose scoppia una feroce guerra fatta di reciproci attentati ai principali capi e rappresentanti.]]></value>
+      <value>/movie_images/ilpadrino.jpg</value>
+    </row>
+    <row>
+      <value>-16</value>
+      <value>-9</value>
+      <value>EN</value>
+      <value><![CDATA[The godfather]]></value>
+      <value><![CDATA[In late summer 1945, guests are gathered for the wedding reception of Don Vito Corleone's daughter Connie (Talia Shire) and Carlo Rizzi (Gianni Russo). Vito (Marlon Brando), the head of the Corleone Mafia family – who is known to friends and associates as "Godfather" – and Tom Hagen (Robert Duvall), the Corleone family lawyer and consigliere (counselor), are hearing requests for favors. Meanwhile, the Don's youngest son Michael (Al Pacino), a decorated Marine war hero returning from World War II service, tells his girlfriend Kay Adams (Diane Keaton) anecdotes about his family, attempting to inform her about his father's criminal life; he reassures her that he is different from his family. Among the guests at the celebration is the famous singer Johnny Fontane (Al Martino), Corleone's godson, who has come from Hollywood to petition Vito's help in landing a movie role that will revitalize his flagging career. Hagen is dispatched to California to fix the problem by convincing the head of the studio, Jack Woltz (John Marley) to give Fontane the part. Woltz refuses and is soon persuaded, when he finds the severed head of his prized $600,000 stud horse in bed with him, after waking up the next morning.Upon Hagen's return, the family meets with Virgil "The Turk" Sollozzo (Al Lettieri), who is being backed by the rival Tattaglia family. He asks Don Corleone for financing, and political and legal protection for importing and distributing heroin. Despite the huge profit to be made, Corleone doesn't agree and feels his political influence could be jeopardized. The Don's second eldest son, Sonny questions Sollozzo's assurances along with the family's investment with the Tattaglia family. Don Corleone then sends Luca Brasi (Lenny Montana) to infiltrate Sollozzo's organization and report back with information. During the meeting, Brasi is stabbed in his hand to prevent him from defending himself and garroted by an assassin.]]></value>
+      <null/>
+    </row>
+    <row>
+      <value>-17</value>
+      <value>-18</value>
+      <value>IT</value>
+      <value><![CDATA[Forrest Gump]]></value>
+      <value><![CDATA[Mentre attende un autobus, seduto a una fermata di Savannah (Georgia), uno strambo quarantenne, apparentemente molto stupido, racconta imperterrito la storia della sua affascinante vita ad ascoltatori occasionali e completamente sconosciuti che cambieranno diverse volte nel corso del film, mostrando alcuni indifferenza, altri incredulit&agrave; e a volte commozione. &Egrave; Forrest Gump, un personaggio &quot;border line&quot; non tanto per il suo quoziente intellettivo (75, dunque al di sotto della norma) quanto per il suo rapporto ingenuo e fiducioso con un mondo che sin da bambino fa di tutto per relegarlo nell'ambito del diverso. Persino sua madre, che lo incita a non farsi scavalcare da nessuno, lo costringe a mettere un apparecchio alle gambe che ulteriormente lo avrebbe penalizzato se una provvidenziale quanto vile aggressione da parte di piccoli bulli non gli avesse rivelato le proprie straordinarie doti fisiche. Forrest inizialmente non &egrave; ammesso nella scuola pubblica a causa del suo Q.I., ma la madre, concedendosi al preside, ottiene di farlo comunque ammettere. Il primo giorno di scuola incontra sull'autobus Jenny, unica amica e suo unico amore. Il rapporto d'amicizia che s&#x2019;instaura tra i due bambini &egrave; profondissimo, con Jenny la cui personalit&agrave;, a causa degli abusi paterni, risulter&agrave; in seguito instabile, anche per uso di droghe. I due s&#x2019;incontreranno a pi&ugrave; riprese in diverse fasi della loro esistenza e in diversi momenti cruciali della storia degli U.S.A. dagli anni '50 in poi. Grazie alla sua abilit&agrave; nel correre e quindi nel football, Forrest ottiene di essere ammesso al college con una borsa di studio. Qui le vite di Forrest e Jenny cominciano a prendere pieghe diverse; lei diventa popolare grazie al noto Playboy e nel vortice del suo solitario dolore pare considerare Forrest troppo stupido e lontano per capirla. In ogni caso, il legame tra i due sopravvive nonostanze le interferenze dell'ambiente esterno.]]></value>
+      <value>/movie_images/-18_it_IT.jpg</value>
+    </row>
+    <row>
+      <value>-18</value>
+      <value>-18</value>
+      <value>EN</value>
+      <value><![CDATA[Forrest Gump]]></value>
+      <value><![CDATA[The film begins with a feather falling to the feet of Forrest Gump who is sitting at a bus stop in Savannah, Georgia. Gump picks up the feather and puts it in the book Curious George, then tells the story of his life to a woman seated next to him. The listeners at the bus stop change regularly throughout his narration, each showing a different attitude ranging from disbelief and indifference to rapt veneration. On his first day of school, he meets a girl named Jenny Curran, whose life is followed in parallel to Gump's at times. Despite his below-average intelligence quotient (IQ), his ability to run at great speed gets him into college on a football scholarship. After his college graduation, he enlists in the army, where he makes friends with a black man named Bubba, who convinces Gump to go into the shrimping business with him when the war is over. They are sent to Vietnam, and during an ambush, Bubba is killed in action. Gump ends up saving much of his platoon, including his platoon leader, Second Lieutenant Dan Taylor, who loses both his legs as a result of injuries. Gump is awarded the Medal of Honor for his heroism. While Gump is in recovery for a shot to his buttocks, he discovers his uncanny ability for ping-pong, eventually gaining popularity and rising to celebrity status, later playing ping-pong competitively against Chinese teams in ping pong diplomacy. He is subsequently promoted to sergeant. At an anti-war rally in Washington, D.C., now Sergeant Gump reunites with Curran, who has been living a hippie counterculture lifestyle. Returning home, Gump endorses a company that makes ping-pong paddles, earning himself $25,000, which he uses to buy a shrimping boat, fulfilling his promise to Bubba. Dan joins Gump, and although they initially have little success, after finding their boat the only surviving one in the area after Hurricane Carmen, they begin to pull in huge amounts of shrimp. They use their income to buy an entire fleet of shrimp boats. Dan invests the money in Apple Computer and Gump is financially secure for the rest of his life, and also donates a large portion of money to Bubba's family. He returns home to see his mother's last days. One day, Curran returns to visit Gump and he proposes marriage to her. She declines, though feels obliged to prove her love to him by having sex with him. She leaves early the next morning. On a whim, Gump elects to go for a run. Seemingly capriciously, he decides to keep running across the country several times, over three and a half years, becoming famous in the process. In present-day, Gump reveals that he is waiting at the bus stop because he received a letter from Curran who, having seen him run on television, asks him to visit her. Once he is reunited with Curran, she introduces him to his son, also named Forrest. Curran tells Gump she is suffering from a virus (probably HIV, though this is never definitively stated). Together the three move back to Greenbow, Alabama. Curran and Gump finally marry but she dies soon afterward. The film ends with father and son waiting for the school bus on little Forrest's first day of school. Opening the book his son is taking to school, the white feather from the beginning of the film is caught on a breeze and drifts skyward.]]></value>
+      <null/>
+    </row>
+  </table>
+  
+  <table name="movie_to_actor">
+    <column>movie</column>
+    <column>actor</column>
+    <row>
+      <value>-9</value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>-1</value>
+    </row>
+  </table>
+  <table name="movie_to_genre">
+    <column>movie</column>
+    <column>genre</column>
+    <row>
+      <value>-18</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-18</value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>-17</value>
+      <value>-8</value>
+    </row>
+    <row>
+      <value>-17</value>
+      <value>-7</value>
+    </row>
+    <row>
+      <value>-17</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-17</value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>-16</value>
+      <value>-12</value>
+    </row>
+    <row>
+      <value>-16</value>
+      <value>-11</value>
+    </row>
+    <row>
+      <value>-16</value>
+      <value>-10</value>
+    </row>
+    <row>
+      <value>-16</value>
+      <value>-9</value>
+    </row>
+    <row>
+      <value>-16</value>
+      <value>-6</value>
+    </row>
+    <row>
+      <value>-16</value>
+      <value>-5</value>
+    </row>
+    <row>
+      <value>-15</value>
+      <value>-20</value>
+    </row>
+    <row>
+      <value>-15</value>
+      <value>-19</value>
+    </row>
+    <row>
+      <value>-15</value>
+      <value>-12</value>
+    </row>
+    <row>
+      <value>-15</value>
+      <value>-11</value>
+    </row>
+    <row>
+      <value>-14</value>
+      <value>-20</value>
+    </row>
+    <row>
+      <value>-14</value>
+      <value>-19</value>
+    </row>
+    <row>
+      <value>-14</value>
+      <value>-12</value>
+    </row>
+    <row>
+      <value>-14</value>
+      <value>-11</value>
+    </row>
+    <row>
+      <value>-13</value>
+      <value>-20</value>
+    </row>
+    <row>
+      <value>-13</value>
+      <value>-19</value>
+    </row>
+    <row>
+      <value>-13</value>
+      <value>-12</value>
+    </row>
+    <row>
+      <value>-13</value>
+      <value>-11</value>
+    </row>
+    <row>
+      <value>-12</value>
+      <value>-18</value>
+    </row>
+    <row>
+      <value>-12</value>
+      <value>-17</value>
+    </row>
+    <row>
+      <value>-12</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-12</value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>-11</value>
+      <value>-4</value>
+    </row>
+    <row>
+      <value>-11</value>
+      <value>-3</value>
+    </row>
+    <row>
+      <value>-11</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-11</value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>-10</value>
+      <value>-4</value>
+    </row>
+    <row>
+      <value>-10</value>
+      <value>-3</value>
+    </row>
+    <row>
+      <value>-10</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-10</value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>-9</value>
+      <value>-4</value>
+    </row>
+    <row>
+      <value>-9</value>
+      <value>-3</value>
+    </row>
+    <row>
+      <value>-9</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-9</value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>-12</value>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>-11</value>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>-7</value>
+      <value>-16</value>
+    </row>
+    <row>
+      <value>-7</value>
+      <value>-15</value>
+    </row>
+    <row>
+      <value>-7</value>
+      <value>-14</value>
+    </row>
+    <row>
+      <value>-7</value>
+      <value>-13</value>
+    </row>
+    <row>
+      <value>-6</value>
+      <value>-16</value>
+    </row>
+    <row>
+      <value>-6</value>
+      <value>-15</value>
+    </row>
+    <row>
+      <value>-6</value>
+      <value>-14</value>
+    </row>
+    <row>
+      <value>-6</value>
+      <value>-13</value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>-12</value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>-11</value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>-4</value>
+      <value>-12</value>
+    </row>
+    <row>
+      <value>-4</value>
+      <value>-11</value>
+    </row>
+    <row>
+      <value>-4</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-4</value>
+      <value>-1</value>
+    </row>
+    <row>
+      <value>-3</value>
+      <value>-12</value>
+    </row>
+    <row>
+      <value>-3</value>
+      <value>-11</value>
+    </row>
+    <row>
+      <value>-2</value>
+      <value>-12</value>
+    </row>
+    <row>
+      <value>-2</value>
+      <value>-11</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>-12</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>-11</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>-1</value>
+    </row>
+  </table>
+  
+  <table name="review">
+    <column>review</column>
+    <column>username</column>
+    <column>movie</column>
+    <column>title</column>
+    <column>review_text</column>
+    <column>date_inserted</column>
+    <column>ok</column>
+    <column>ko</column>
+    <row>
+      <value>-9</value>
+      <value>u1</value>
+      <value>-12</value>
+      <value>apocalittico</value>
+      <value>ora</value>
+      <value><![CDATA[2008-12-25 00:10:00.0]]></value>
+      <value>0</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>u2</value>
+      <value>-3</value>
+      <value>bah</value>
+      <value><![CDATA[mah bah]]></value>
+      <value><![CDATA[2008-12-28 00:10:00.0]]></value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-7</value>
+      <value>u1</value>
+      <value>-7</value>
+      <value>zozzissimo</value>
+      <value><![CDATA[che zozzata]]></value>
+      <value><![CDATA[2008-12-22 08:10:00.0]]></value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-6</value>
+      <value>admin</value>
+      <value>-1</value>
+      <value>spaventoso!</value>
+      <value>iiiiiih</value>
+      <value><![CDATA[2009-04-16 09:10:00.0]]></value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>user</value>
+      <value>-16</value>
+      <value>Rogerio</value>
+      <value><![CDATA[sdi asdio asf asfdasfdasfd asfdasfdsfd]]></value>
+      <value><![CDATA[2009-02-12 00:10:00.0]]></value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-4</value>
+      <value>user</value>
+      <value>-4</value>
+      <value>jena</value>
+      <value><![CDATA[jena jena jena jena jena]]></value>
+      <value><![CDATA[2009-03-12 00:10:00.0]]></value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-3</value>
+      <value>user</value>
+      <value>-3</value>
+      <value>mostruoso</value>
+      <value><![CDATA[bleah bleah bleah che schif]]></value>
+      <value><![CDATA[2009-01-03 05:10:00.0]]></value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-2</value>
+      <value>user</value>
+      <value>-2</value>
+      <value>titolo</value>
+      <value><![CDATA[txt rew film -2]]></value>
+      <value><![CDATA[2008-12-28 00:10:00.0]]></value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>user</value>
+      <value>-1</value>
+      <value>BBBELLO!</value>
+      <value>Bello</value>
+      <value><![CDATA[2009-01-05 00:10:00.0]]></value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>u2</value>
+      <value>-1</value>
+      <value><![CDATA[Mi è piaciuto molto]]></value>
+      <value><![CDATA[...soprattutto Benigni!]]></value>
+      <value><![CDATA[2009-07-09 17:07:06.0]]></value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+  </table>
+  
+  <table name="user_review_vote">
+    <column>username</column>
+    <column>review</column>
+    <column>date_voted</column>
+    <row>
+      <value>u1</value>
+      <value>-1</value>
+      <value><![CDATA[2009-01-05 00:10:00.0]]></value>
+    </row>
+    <row>
+      <value>user</value>
+      <value>-9</value>
+      <value><![CDATA[2009-07-29 11:09:18.0]]></value>
+    </row>
+    <row>
+      <value>user</value>
+      <value>-1</value>
+      <value><![CDATA[2009-01-05 00:10:00.0]]></value>
+    </row>
+  </table>
+  
+  <table name="opinion">
+    <column>opinion</column>
+    <column>review</column>
+    <column>username</column>
+    <column>opinion_text</column>
+    <column>date_inserted</column>
+    <row>
+      <value>-2</value>
+      <value>-3</value>
+      <value>u1</value>
+      <value><![CDATA[A me sembra ok]]></value>
+      <value><![CDATA[2009-04-25 00:11:00.0]]></value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>-3</value>
+      <value>user</value>
+      <value><![CDATA[Ma che cavolo dici]]></value>
+      <value><![CDATA[2009-04-25 00:10:00.0]]></value>
+    </row>
+  </table>
+  
+  
+  <table name="message">
+    <column>message</column>
+    <column>sender</column>
+    <column>receiver</column>
+    <column>message_text</column>
+    <column>date_added</column>
+    <row>
+      <value>-3</value>
+      <value>user</value>
+      <value>admin</value>
+      <value><![CDATA[tu sei molto cinOfilo!!! :-)]]></value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>-2</value>
+      <value>admin</value>
+      <value>user</value>
+      <value><![CDATA[tu sei molto cinefilo]]></value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>user</value>
+      <value>u1</value>
+      <value><![CDATA[mi piace la tua shelf!]]></value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>1</value>
+      <value>user</value>
+      <value>admin</value>
+      <value>ghggh</value>
+      <value><![CDATA[2009-07-10 15:19:43.0]]></value>
+    </row>
+  </table>
+  
+  
+  <table name="user_to_movie">
+    <column>movie</column>
+    <column>username</column>
+    <column>date_added</column>
+    <column>date_viewed</column>
+    <column>mark</column>
+    <column>wished</column>
+    <row>
+      <value>-18</value>
+      <value>admin</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>1</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-18</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value>3</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-17</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <null/>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-16</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value>5</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-15</value>
+      <value>admin</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>3</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-15</value>
+      <value>u2</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <null/>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-15</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-14</value>
+      <value>u2</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-14</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-13</value>
+      <value>u2</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>1</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-13</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <null/>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-12</value>
+      <value>u1</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>2</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-12</value>
+      <value>u2</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>1</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-12</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-11</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>1</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-10</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value>1</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-9</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <null/>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>admin</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>u1</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>2</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-8</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value>3</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-7</value>
+      <value>u1</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>2</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-7</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>3</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-6</value>
+      <value>u1</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-6</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>admin</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>user</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>3</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-4</value>
+      <value>u1</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>2</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-4</value>
+      <value>user</value>
+      <value><![CDATA[2005-07-15 00:00:00.0]]></value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-3</value>
+      <value>admin</value>
+      <value><![CDATA[2009-03-15 00:00:00.0]]></value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value>2</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-3</value>
+      <value>u2</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>1</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-2</value>
+      <value>user</value>
+      <value><![CDATA[2005-08-02 00:00:00.0]]></value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <value>5</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>admin</value>
+      <value><![CDATA[2005-01-22 00:00:00.0]]></value>
+      <null/>
+      <null/>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>u1</value>
+      <value><![CDATA[2009-01-22 00:00:00.0]]></value>
+      <null/>
+      <value>1</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>u2</value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+      <value><![CDATA[2009-07-09 00:00:00.0]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>-1</value>
+      <value>user</value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+      <null/>
+      <null/>
+      <value>0</value>
+    </row>
+  </table>
+  
+  <table name="user_to_user">
+    <column>first</column>
+    <column>second</column>
+    <column>friend</column>
+    <column>date_added</column>
+    <row>
+      <value>u1</value>
+      <value>admin</value>
+      <value>0</value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>u1</value>
+      <value>user</value>
+      <value>0</value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>u2</value>
+      <value>user</value>
+      <value>1</value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>user</value>
+      <value>admin</value>
+      <value>0</value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>user</value>
+      <value>fubbyo</value>
+      <value>1</value>
+      <value><![CDATA[2009-07-10 15:43:13.0]]></value>
+    </row>
+    <row>
+      <value>user</value>
+      <value>u1</value>
+      <value>1</value>
+      <value><![CDATA[2009-07-17 11:56:32.0]]></value>
+    </row>
+    <row>
+      <value>user</value>
+      <value>u2</value>
+      <value>1</value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+    </row>
+  </table>
+  <table name="visit">
+    <column>visit</column>
+    <column>visited</column>
+    <column>visitor</column>
+    <column>date_visit</column>
+    <row>
+      <value>1</value>
+      <value>admin</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-10 12:05:40.0]]></value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>admin</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-10 12:28:28.0]]></value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>admin</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-10 12:28:28.0]]></value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>admin</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-10 12:29:11.0]]></value>
+    </row>
+    <row>
+      <value>5</value>
+      <value>admin</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-10 12:33:22.0]]></value>
+    </row>
+    <row>
+      <value>6</value>
+      <value>admin</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-10 12:33:37.0]]></value>
+    </row>
+    <row>
+      <value>7</value>
+      <value>admin</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-10 12:34:15.0]]></value>
+    </row>
+    <row>
+      <value>8</value>
+      <value>admin</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-10 12:34:28.0]]></value>
+    </row>
+    <row>
+      <value>9</value>
+      <value>u2</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-10 12:36:07.0]]></value>
+    </row>
+    <row>
+      <value>10</value>
+      <value>fubbyo</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-10 15:43:07.0]]></value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>fubbyo</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 11:18:11.0]]></value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>u1</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 11:52:09.0]]></value>
+    </row>
+    <row>
+      <value>13</value>
+      <value>admin</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 11:52:34.0]]></value>
+    </row>
+    <row>
+      <value>14</value>
+      <value>u2</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 11:52:41.0]]></value>
+    </row>
+    <row>
+      <value>15</value>
+      <value>u1</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 11:52:45.0]]></value>
+    </row>
+    <row>
+      <value>16</value>
+      <value>u1</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 11:53:25.0]]></value>
+    </row>
+    <row>
+      <value>17</value>
+      <value>u1</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 11:57:58.0]]></value>
+    </row>
+    <row>
+      <value>18</value>
+      <value>u1</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 12:21:41.0]]></value>
+    </row>
+    <row>
+      <value>19</value>
+      <value>fubbyo</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 12:22:26.0]]></value>
+    </row>
+    <row>
+      <value>20</value>
+      <value>u2</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 12:31:28.0]]></value>
+    </row>
+    <row>
+      <value>21</value>
+      <value>u2</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 12:54:12.0]]></value>
+    </row>
+    <row>
+      <value>22</value>
+      <value>u2</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 12:54:50.0]]></value>
+    </row>
+    <row>
+      <value>23</value>
+      <value>u2</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 12:55:22.0]]></value>
+    </row>
+    <row>
+      <value>24</value>
+      <value>u2</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 12:55:58.0]]></value>
+    </row>
+    <row>
+      <value>25</value>
+      <value>u2</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 12:56:28.0]]></value>
+    </row>
+    <row>
+      <value>26</value>
+      <value>u2</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 12:56:55.0]]></value>
+    </row>
+    <row>
+      <value>27</value>
+      <value>u2</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-17 14:35:13.0]]></value>
+    </row>
+    <row>
+      <value>28</value>
+      <value>u2</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-29 11:07:55.0]]></value>
+    </row>
+    <row>
+      <value>29</value>
+      <value>u1</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-29 11:08:37.0]]></value>
+    </row>
+    <row>
+      <value>30</value>
+      <value>u1</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-29 11:08:54.0]]></value>
+    </row>
+    <row>
+      <value>31</value>
+      <value>admin</value>
+      <value>user</value>
+      <value><![CDATA[2009-07-29 11:08:58.0]]></value>
+    </row>
+  </table>
+  
+  
+  
 </dataset>

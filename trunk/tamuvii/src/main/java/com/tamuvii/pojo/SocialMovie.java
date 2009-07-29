@@ -9,8 +9,12 @@ public class SocialMovie {
 	private String duration;
 	private String originalTitle;
 	private String originalPlot;
+	private String originalCountry;
+	private String originalTrailer;
 	private String localizedTitle;
 	private String localizedPlot;
+	private String localizedCountry;
+	private String localizedTrailer;
 	private String originalImage;
 	private String localizedImage;
 	private Integer directorId;
@@ -24,6 +28,30 @@ public class SocialMovie {
 	private List<MovieUser> movieUsers;
 	
 	
+	public String getOriginalCountry() {
+		return originalCountry;
+	}
+	public void setOriginalCountry(String originalCountry) {
+		this.originalCountry = originalCountry;
+	}
+	public String getOriginalTrailer() {
+		return originalTrailer;
+	}
+	public void setOriginalTrailer(String originalTrailer) {
+		this.originalTrailer = originalTrailer;
+	}
+	public String getLocalizedCountry() {
+		return localizedCountry;
+	}
+	public void setLocalizedCountry(String localizedCountry) {
+		this.localizedCountry = localizedCountry;
+	}
+	public String getLocalizedTrailer() {
+		return localizedTrailer;
+	}
+	public void setLocalizedTrailer(String localizedTrailer) {
+		this.localizedTrailer = localizedTrailer;
+	}
 	public Integer getNumUsers() {
 		return numUsers;
 	}

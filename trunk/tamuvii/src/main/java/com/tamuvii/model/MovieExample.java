@@ -650,5 +650,151 @@ public class MovieExample {
 					"originalimage");
 			return this;
 		}
+
+		public Criteria andOriginalcountryIsNull() {
+			addCriterion("original_country is null");
+			return this;
+		}
+
+		public Criteria andOriginalcountryIsNotNull() {
+			addCriterion("original_country is not null");
+			return this;
+		}
+
+		public Criteria andOriginalcountryEqualTo(String value) {
+			addCriterion("original_country =", value, "originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginalcountryNotEqualTo(String value) {
+			addCriterion("original_country <>", value, "originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginalcountryGreaterThan(String value) {
+			addCriterion("original_country >", value, "originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginalcountryGreaterThanOrEqualTo(String value) {
+			addCriterion("original_country >=", value, "originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginalcountryLessThan(String value) {
+			addCriterion("original_country <", value, "originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginalcountryLessThanOrEqualTo(String value) {
+			addCriterion("original_country <=", value, "originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginalcountryLike(String value) {
+			addCriterion("original_country like", value, "originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginalcountryNotLike(String value) {
+			addCriterion("original_country not like", value, "originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginalcountryIn(List values) {
+			addCriterion("original_country in", values, "originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginalcountryNotIn(List values) {
+			addCriterion("original_country not in", values, "originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginalcountryBetween(String value1, String value2) {
+			addCriterion("original_country between", value1, value2,
+					"originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginalcountryNotBetween(String value1,
+				String value2) {
+			addCriterion("original_country not between", value1, value2,
+					"originalcountry");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerIsNull() {
+			addCriterion("original_trailer is null");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerIsNotNull() {
+			addCriterion("original_trailer is not null");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerEqualTo(String value) {
+			addCriterion("original_trailer =", value, "originaltrailer");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerNotEqualTo(String value) {
+			addCriterion("original_trailer <>", value, "originaltrailer");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerGreaterThan(String value) {
+			addCriterion("original_trailer >", value, "originaltrailer");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerGreaterThanOrEqualTo(String value) {
+			addCriterion("original_trailer >=", value, "originaltrailer");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerLessThan(String value) {
+			addCriterion("original_trailer <", value, "originaltrailer");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerLessThanOrEqualTo(String value) {
+			addCriterion("original_trailer <=", value, "originaltrailer");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerLike(String value) {
+			addCriterion("original_trailer like", value, "originaltrailer");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerNotLike(String value) {
+			addCriterion("original_trailer not like", value, "originaltrailer");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerIn(List values) {
+			addCriterion("original_trailer in", values, "originaltrailer");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerNotIn(List values) {
+			addCriterion("original_trailer not in", values, "originaltrailer");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerBetween(String value1, String value2) {
+			addCriterion("original_trailer between", value1, value2,
+					"originaltrailer");
+			return this;
+		}
+
+		public Criteria andOriginaltrailerNotBetween(String value1,
+				String value2) {
+			addCriterion("original_trailer not between", value1, value2,
+					"originaltrailer");
+			return this;
+		}
 	}
 }

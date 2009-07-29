@@ -41,10 +41,10 @@
       <property name="enableSubPackages" value="true" />
     </daoGenerator>
 
-    <!-- table tableName="movie" domainObjectName="Movie" >
+    <table tableName="movie" domainObjectName="Movie" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table-->
+    </table>
     
     <!-- table tableName="user_to_movie" domainObjectName="UserToMovie" >
       <property name="useActualColumnNames" value="false"/>
@@ -71,10 +71,10 @@
 	  <columnRenamingRule searchString="_" replaceString="" />
     </table-->
     
-    <table tableName="director" domainObjectName="Director" >
+    <!-- table tableName="director" domainObjectName="Director" >
       <property name="useActualColumnNames" value="false"/>
 	  <columnRenamingRule searchString="_" replaceString="" />
-    </table>
+    </table-->
     
     <!-- table tableName="user_to_user" domainObjectName="UserToUser" >
       <property name="useActualColumnNames" value="false"/>

@@ -13,7 +13,11 @@ public class PersonalMovie {
 	private String localizedTitle;
 	private String localizedPlot;
 	private String originalImage;
+	private String originalCountry;
+	private String originalTrailer;
 	private String localizedImage;
+	private String localizedCountry;
+	private String localizedTrailer;
 	private Integer directorId;
 	private String director;
 	private Date releaseDate;
@@ -27,6 +31,30 @@ public class PersonalMovie {
 	}
 	
 	
+	public String getOriginalCountry() {
+		return originalCountry;
+	}
+	public void setOriginalCountry(String originalCountry) {
+		this.originalCountry = originalCountry;
+	}
+	public String getOriginalTrailer() {
+		return originalTrailer;
+	}
+	public void setOriginalTrailer(String originalTrailer) {
+		this.originalTrailer = originalTrailer;
+	}
+	public String getLocalizedCountry() {
+		return localizedCountry;
+	}
+	public void setLocalizedCountry(String localizedCountry) {
+		this.localizedCountry = localizedCountry;
+	}
+	public String getLocalizedTrailer() {
+		return localizedTrailer;
+	}
+	public void setLocalizedTrailer(String localizedTrailer) {
+		this.localizedTrailer = localizedTrailer;
+	}
 	public String getOriginalPlot() {
 		return originalPlot;
 	}

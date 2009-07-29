@@ -49,10 +49,11 @@
 				</c:choose>
 			</li>
 			<li class="title">${socialMovie.localizedTitle}</li>
-			<li><span class="light_text_italic">Titolo originale: ${socialMovie.originalTitle}</span></li>
+			<li><span class="light_text_italic font11">Titolo originale: ${socialMovie.originalTitle}</span></li>
 			<li>di <a href="/directorDetail.html?director=${socialMovie.directorId}">${socialMovie.director}</a></li>
+			<li>Paese: ${socialMovie.localizedCountry}</li>
 			<li>Durata: ${socialMovie.duration} min</li>
-			<li>Data di rilascio: <fmt:formatDate pattern="${df}" value="${socialMovie.releaseDate}" /></li>
+			<li>Anno: <fmt:formatDate pattern="yyyy" value="${socialMovie.releaseDate}" /></li>
 		</ul>
 	</div>
 	<div id="social_movie_details_container">
@@ -115,10 +116,9 @@
 
 <div id="main">
 	<div style="margin-bottom: 30px;">
-		<video id="v1" width="100%" src="/movie_trailers/forest.ogg" controls>
+		<video id="v1" width="100%" src="${socialMovie.originalTrailer}" controls>
 	    <p>Sorry, your browser does not support the &lt;video&gt; element.</p>
 	    </video>
-
 	</div>
 	
 	<div id="review_container">

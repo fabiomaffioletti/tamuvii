@@ -8,9 +8,13 @@
     <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
     <result column="original_plot" property="originalPlot" jdbcType="VARCHAR" />
     <result column="original_image" property="originalImage" jdbcType="VARCHAR" />
+    <result column="original_country" property="originalCountry" jdbcType="VARCHAR" />
+    <result column="original_trailer" property="originalTrailer" jdbcType="VARCHAR" />
     <result column="localized_title" property="localizedTitle" jdbcType="VARCHAR" />
     <result column="localized_plot" property="localizedPlot" jdbcType="VARCHAR" />
     <result column="localized_image" property="localizedImage" jdbcType="VARCHAR" />
+    <result column="localized_country" property="localizedCountry" jdbcType="VARCHAR" />
+    <result column="localized_trailer" property="localizedTrailer" jdbcType="VARCHAR" />
     <result column="directorId" property="directorId" jdbcType="INTEGER" />
     <result column="director" property="director" jdbcType="VARCHAR" />
     <result column="release_date" property="releaseDate" jdbcType="TIMESTAMP" />
@@ -26,8 +30,12 @@
     <result column="original_title" property="originalTitle" jdbcType="VARCHAR" />
     <result column="original_plot" property="originalPlot" jdbcType="VARCHAR" />
     <result column="original_image" property="originalImage" jdbcType="VARCHAR" />
+    <result column="original_country" property="originalCountry" jdbcType="VARCHAR" />
+    <result column="original_trailer" property="originalTrailer" jdbcType="VARCHAR" />
     <result column="localized_title" property="localizedTitle" jdbcType="VARCHAR" />
     <result column="localized_plot" property="localizedPlot" jdbcType="VARCHAR" />
+    <result column="localized_country" property="localizedCountry" jdbcType="VARCHAR" />
+    <result column="localized_trailer" property="localizedTrailer" jdbcType="VARCHAR" />
     <result column="localized_image" property="localizedImage" jdbcType="VARCHAR" />
     <result column="directorId" property="directorId" jdbcType="INTEGER" />
     <result column="director" property="director" jdbcType="VARCHAR" />
@@ -80,9 +88,13 @@
 							abc.original_title,
 							abc.original_plot,
 							abc.original_image,
+							abc.original_country,
+							abc.original_trailer,
 							abc.localized_title,
 							abc.localized_plot,
 							abc.localized_image,
+							abc.localized_country,
+							abc.localized_trailer,
 							abc.director as directorId, 
 							concat(abc.name, " ", abc.surname) as director,
 							abc.release_date,
@@ -97,10 +109,14 @@
 									m.original_title,
 									m.original_plot,
 									m.original_image,
+									m.original_country,
+									m.original_trailer,
 									m.release_date,
 									loc.localized_title,
 									loc.localized_plot,
 									loc.localized_image,
+									loc.localized_country,
+									loc.localized_trailer,
 									d.*,
 									um.mark as mark,
 									r.review,
@@ -128,9 +144,13 @@
 							m.original_title,
 							m.original_plot,
 							m.original_image,
+							m.original_country,
+							m.original_trailer,
 							loc.localized_title,
 							loc.localized_plot,
 							loc.localized_image,
+							loc.localized_country,
+							loc.localized_trailer,
 							d.director as directorId, 
 							CONCAT(d.name, " ", d.surname) as director, 
 							m.release_date, 
@@ -167,10 +187,14 @@
 						m.original_title,
 						m.original_plot,
 						m.original_image,
+						m.original_country,
+						m.original_trailer,
 						m.release_date,
 						loc.localized_title,
 						loc.localized_plot,
 						loc.localized_image,
+						loc.localized_country,
+						loc.localized_trailer,
 						d.director as directorId, 
 						concat(d.name, " ", d.surname) as director,
 						m.release_date,

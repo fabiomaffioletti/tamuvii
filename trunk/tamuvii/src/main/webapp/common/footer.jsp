@@ -17,7 +17,7 @@
  --%>
 
 
-<div id="footer_content">
+<div id="footer_content" style="-moz-border-radius: 5px;-webkit-border-radius: 5px;">
 	<div style="float:left">
 		<fmt:message key="webapp.version"/>
 	</div>

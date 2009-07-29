@@ -49,7 +49,7 @@
 				</c:choose>
 			</li>
 			<li class="title">${socialMovie.localizedTitle}</li>
-			<li><span class="light_text_italic font11">Titolo originale: ${socialMovie.originalTitle}</span></li>
+			<li><span class="light_text_italic font12">Titolo originale: ${socialMovie.originalTitle}</span></li>
 			<li>di <a href="/directorDetail.html?director=${socialMovie.directorId}">${socialMovie.director}</a></li>
 			<li>Paese: ${socialMovie.localizedCountry}</li>
 			<li>Durata: ${socialMovie.duration} min</li>

@@ -24,10 +24,10 @@
 	    	<div class="title" id="title_${resultMovie.movie}">
 				<c:choose>
 		    		<c:when test="${empty resultMovie.localizedTitle}">
-			    		<a href="/socialMovie.html?movie=${resultMovie.movie}"><b>${resultMovie.originalTitle}</b></a> 
+			    		<a href="/socialMovie.html?movie=${resultMovie.movie}" target="_parent"><b>${resultMovie.originalTitle}</b></a> 
 			    	</c:when>
 			    	<c:otherwise>
-			    		<a href="/socialMovie.html?movie=${resultMovie.movie}"><b>${resultMovie.localizedTitle}</b></a>
+			    		<a href="/socialMovie.html?movie=${resultMovie.movie}" target="_parent"><b>${resultMovie.localizedTitle}</b></a>
 			    	</c:otherwise>
 		    	</c:choose>
 		    	<div class="localized_title">
@@ -44,12 +44,7 @@
 		    		</c:choose> 
 				</span>
 			</div>
-			<div class="directed_by"><fmt:message key="label.by" /> <a href="/directorDetail.html?director=${resultMovie.directorId}">${resultMovie.director}</a></div>
-	    </display:column>
-	    
-	    
-	    <display:column escapeXml="false">
-	    	
+			<div class="directed_by"><fmt:message key="label.by" /> <a href="/directorDetail.html?director=${resultMovie.directorId}" target="_parent">${resultMovie.director}</a></div>
 	    </display:column>
 	</display:table>
 </div>

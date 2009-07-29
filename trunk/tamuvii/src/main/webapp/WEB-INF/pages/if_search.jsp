@@ -6,7 +6,7 @@
 </head>
 
 <div id="resultMoviesContainer">
-	<display:table name="resultSocialMovies" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="resultMovie" pagesize="2" class="table" export="false">
+	<display:table name="resultSocialMovies" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="resultMovie" pagesize="3" style="width:100%" class="table" export="false">
 	    <display:column escapeXml="false" class="movie_image">
 			<c:choose>
 				<c:when test="${not empty resultMovie.localizedImage}">
@@ -25,7 +25,7 @@
 		window.parent.$('searchFrameContainer').setStyle({display: 'block'});
 		new Effect.Morph(
 			window.parent.$('searchFrameContainer'), {
-				style: 'height:'+$('resultMoviesContainer').getHeight() + "px", 
+				style: 'height:' + ($('resultMoviesContainer').getHeight()+35) + "px", 
 				duration: 0.3
 			}
 		);
@@ -55,42 +55,6 @@ body {
 }
 
 
-div.exportlinks {
-    margin: -5px 0 10px 10px;
-    padding: 2px 4px 2px 0;
-    width: 100%;
-}
-
-div.exportlinks a {
-    text-decoration: none;
-}
-
-div.exportlinks span {
-    background-repeat: no-repeat;
-}
-
-span.csv {
-    background-image: url(../images/ico_file_csv.png);
-}
-
-span.excel {
-    background-image: url(../images/ico_file_excel.png);
-}
-
-span.pdf {
-    background-image: url(../images/ico_file_pdf.png);
-}
-
-span.xml {
-    background-image: url(../images/ico_file_xml.png);
-}
-
-span.export {
-    cursor: pointer;
-    display: inline-block;
-    padding: 0 4px 1px 20px;
-}
-
 span.pagebanner {
     display: block;
     margin: 10px 0 10px 0;
@@ -99,12 +63,25 @@ span.pagebanner {
 
 span.pagelinks {
     display: block;
-    font-size: .95em;
-    margin-bottom: 5px;
-    margin-top: -18px;
-    padding: 2px 0 2px 0;
+    margin-top: 15px;
     text-align: right;
-    width: 80%;
+    float:right;
+    width: 100%;
+}
+
+span.pagelinks a {
+	border: 1px solid #ccc;
+	padding: 3px 8px;
+	text-decoration: none;
+	margin-left: 3px;
+	font-size: 12px;
+	font-family: arial,helvetica,clean,sans-serif;
+	color: black;
+	background-color: #eee;
+}
+
+span.pagelinks a:hover {
+	background-color: #FFCE8A;
 }
 
 </style>

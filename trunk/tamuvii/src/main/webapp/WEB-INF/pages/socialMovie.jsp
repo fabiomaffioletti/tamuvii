@@ -141,7 +141,6 @@
 					</div>
 					<div class="vote_error_message_container">
 						<div id="message_${review.review}" class="vote_error_message" style="display:none;">
-							<img src="/images/error.png" /> Error
 						</div>
 					</div>
 					<div class="review_text">
@@ -183,12 +182,15 @@
 			  onSuccess: function(response) {
 			  if(response.responseText == -1) {
 				var message = $('message_'+review);
-				message.innerHTML = "Hai già votato per questa review... TODO!! Da internazionalizzare";
-				Effect.BlindDown(message, { duration: 0.2 });
+				message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><fmt:message key='user.review.already.voted' />";
+				$(message).appear();
+				new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
+				
 			  } else if(response.responseText == -2) {
 				var message = $('message_'+review);
-				message.innerHTML = "Non si può votare la review che hai fatto tu... TODO!! da internazionalizzare";
-				Effect.BlindDown(message, { duration: 0.2 });
+				message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><fmt:message key='user.review.vote.own' />";
+				$(message).appear();
+				new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
 			  } else {
 			    var oks = $('ok_'+review);
 			    oks.innerHTML = response.responseText;
@@ -203,12 +205,16 @@
 			  onSuccess: function(response) {
 			  if(response.responseText == -1) {
 				var message = $('message_'+review);
-				message.innerHTML = "Hai già votato per questa review... TODO!! Da internazionalizzare";
-				Effect.BlindDown(message, { duration: 0.2 });
+				message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><fmt:message key='user.review.already.voted' />";
+				$(message).appear();
+				new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
+				
 			  } else if(response.responseText == -2) {
 				var message = $('message_'+review);
-				message.innerHTML = "Non si può votare la review che hai fatto tu... TODO!! da internazionalizzare";
-				Effect.BlindDown(message, { duration: 0.2 });
+				message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><fmt:message key='user.review.vote.own' />";
+				$(message).appear();
+				new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
+				
 			  } else {
 			    var kos = $('ko_'+review);
 			    kos.innerHTML = response.responseText;

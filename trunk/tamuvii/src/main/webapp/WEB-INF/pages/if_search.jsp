@@ -7,6 +7,7 @@
 
 <div id="resultMoviesContainer">
 	<display:table name="resultSocialMovies" cellspacing="0" cellpadding="0" requestURI="" defaultsort="1" id="resultMovie" pagesize="3" style="width:100%" class="table" export="false">
+	    <!-- IMAGE -->
 	    <display:column escapeXml="false" class="movie_image">
 			<c:choose>
 				<c:when test="${not empty resultMovie.localizedImage}">
@@ -16,6 +17,39 @@
 					<img src="${resultMovie.originalImage}" />
 				</c:otherwise>
 			</c:choose>
+	    </display:column>
+	    
+	    <!-- DATA -->
+	    <display:column escapeXml="false" class="movie_data">
+	    	<div class="title" id="title_${resultMovie.movie}">
+				<c:choose>
+		    		<c:when test="${empty resultMovie.localizedTitle}">
+			    		<a href="/socialMovie.html?movie=${resultMovie.movie}"><b>${resultMovie.originalTitle}</b></a> 
+			    	</c:when>
+			    	<c:otherwise>
+			    		<a href="/socialMovie.html?movie=${resultMovie.movie}"><b>${resultMovie.localizedTitle}</b></a>
+			    	</c:otherwise>
+		    	</c:choose>
+		    	<div class="localized_title">
+	    			<i><fmt:message key="label.original.title" />: ${resultMovie.originalTitle}</i>
+	    		</div>
+		    	<span class="light_text_italic font11">${resultMovie.numUsers}
+		    		<c:choose>
+		    			<c:when test="${resultMovie.numUsers > 1}">
+		    				<fmt:message key="label.users" />
+		    			</c:when>
+		    			<c:otherwise>
+		    				<fmt:message key="label.user" />
+		    			</c:otherwise>
+		    		</c:choose> 
+				</span>
+			</div>
+			<div class="directed_by"><fmt:message key="label.by" /> <a href="/directorDetail.html?director=${resultMovie.directorId}">${resultMovie.director}</a></div>
+	    </display:column>
+	    
+	    
+	    <display:column escapeXml="false">
+	    	
 	    </display:column>
 	</display:table>
 </div>
@@ -54,6 +88,11 @@ body {
 	-moz-box-shadow: 3px 3px 15px #999;
 }
 
+.movie_data {
+	border-bottom:1px dashed #ccc;
+	height:120px;
+	width:230px;
+}
 
 span.pagebanner {
     display: block;

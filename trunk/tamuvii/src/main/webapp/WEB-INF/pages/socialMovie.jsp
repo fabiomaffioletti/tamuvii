@@ -116,9 +116,14 @@
 
 <div id="main">
 	<div style="margin-bottom: 30px;">
-		<video id="v1" width="100%" src="${socialMovie.originalTrailer}" controls>
-	    <p>Sorry, your browser does not support the &lt;video&gt; element.</p>
-	    </video>
+		<c:choose>
+			<c:when test="${not empty socialMovie.localizedTrailer}">
+				<video id="v1" width="100%" src="${socialMovie.localizedTrailer}" controls />
+			</c:when>
+			<c:otherwise>
+				<video id="v1" width="100%" src="${socialMovie.originalTrailer}" controls />
+			</c:otherwise>
+		</c:choose>
 	</div>
 	
 	<div id="review_container">

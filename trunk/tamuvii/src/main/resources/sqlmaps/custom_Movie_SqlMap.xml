@@ -203,12 +203,9 @@
 						null as numMarks,
 						null as numUsers
 						
-		from			movie m 							inner join 	user_to_movie um
-						on m.movie = um.movie 				inner join	app_user au	
-						on	au.username = um.username		inner join director d
-						on m.director = d.director			left join localized_data loc
-						on m.movie = loc.movie	and loc.locale like concat('%', au.country, '%')	left join review r
-						on	m.movie = r.movie	and r.username = au.username
+		from 			movie m inner join director d
+		  					on m.director = d.director left join localized_data loc  
+  	  						on m.movie = loc.movie	
 		
 		<dynamic prepend="WHERE">
 	         <isNotNull property="filter" prepend="and">
@@ -273,5 +270,5 @@
 		group by m.movie
   </select>
    -->
-  
+   
 </sqlMap>

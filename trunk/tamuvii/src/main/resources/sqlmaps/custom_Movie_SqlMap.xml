@@ -201,12 +201,13 @@
 						count(distinct r.review) as numReviews,
 						avg(um.mark) as avgMark,
 						null as numMarks,
-						null as numUsers
+						count(distinct au.username) as numUsers
 						
 		from 			movie m 
 						inner join director d on m.director = d.director 
 						left join localized_data loc on m.movie = loc.movie	
-  	  					left join user_to_movie um on m.movie = um.movie 
+  	  					left join user_to_movie um on m.movie = um.movie     
+						left join app_user au on um.username = au.username
 						left join review r on m.movie = r.movie
 		
 		<dynamic prepend="WHERE">
@@ -224,6 +225,7 @@
                   </iterate>
 	        </isNotNull>
 	        and loc.locale like (select country from app_user where username = #username#)
+	        and au.country like (select country from app_user where username = #username#)
 	    </dynamic>								
 							
 		group by m.movie

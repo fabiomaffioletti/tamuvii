@@ -18,6 +18,7 @@ In questo caso è stato utilizzato Apache Tomcat 6.0.20 in ambiente Windows
 in modo da poter accedere al tomcat manager con l'utenza admin
 
 * Nel file servers.xml (in conf) aggiungiamo la nostra applicazione:
+
 <Host appBase="C:\Tools\apache-tomcat-6.0.20\webapps\applicazione" name="applicazione"
 			unpackWARs="false" 
 		    xmlValidation="false" 

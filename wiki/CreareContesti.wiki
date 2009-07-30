@@ -9,7 +9,7 @@ Aggiungere un altro tag “context” nel tag “host” desiderato, del tipo:
 <Context docBase="c:/" path="/immagini" />
 
 In questo modo, se nell’applicazione voglio richiamare un’immagine image.jpg presente in c:\ dovrò fare così:
-
+{{{
 <img src="/immagini/image.jpg" > </img>
-
+}}}
 per visualizzare l'immagine.

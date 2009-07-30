@@ -13,7 +13,7 @@
 
 <div id="main">
 	<div id="searchFrameContainer">
-		<iframe id="searchIframe" frameborder="0" scrolling="no" width="100%" height="100%"></iframe>
+		<iframe id="searchIframe" frameborder="0" scrolling="no" width="100%" height="580px"></iframe>
 	</div>
 </div>
 

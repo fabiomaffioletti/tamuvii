@@ -103,13 +103,13 @@
 
 <script type="text/javascript">
 	Event.observe(window, 'load', function(event) {
-		window.parent.$('searchFrameContainer').setStyle({display: 'block'});
+		/*window.parent.$('searchFrameContainer').setStyle({display: 'block'});
 		new Effect.Morph(
 			window.parent.$('searchFrameContainer'), {
 				style: 'height:' + ($('resultMoviesContainer').getHeight()+35) + "px", 
 				duration: 0.3
 			}
-		);
+		);*/
 	});
 </script>
 
@@ -134,8 +134,7 @@ body {
 	padding-left: 5px;
 	clear: both;
 	border-bottom: 1px dashed #ccc;
-	padding-bottom: 20px;
-	padding-top: 20px;
+	padding-top: 15px;
 	vertical-align: top;
 }
 .movie_image img {
@@ -155,8 +154,8 @@ body {
 
 .movie_data {
 	border-bottom:1px dashed #ccc;
-	height:120px;
-	padding-top: 20px;
+	height:100px;
+	padding-top: 15px;
 	vertical-align: top;
 	padding-right: 10px;
 }

@@ -1,17 +1,39 @@
-#summary One-sentence summary of this page.
+#summary Descrizione del processo di configurazione di Apache Tomcat 6.x per il lancio di una applicazione Web
 
 = Introduction =
 
-introduzione
+In questo caso è stato utilizzato Apache Tomcat 6.0.20 in ambiente Windows
 
 
 = Details =
 
 
-*grassetto*
-_corsivo_
+* Incollare i sorgenti dell'applicazione Web in una cartella, ad esempio applicazione, e spostarla nella cartella webapps di Tomcat
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+* (facoltativo) Aggiungere le seguenti righe a tomcat-users.xml (in conf)
+<role rolename="admin"/>
+<role rolename="manager"/>
+<user username="admin" password="admin" roles="admin,manager"/>
+
+in modo da poter accedere al tomcat manager con l'utenza admin
+
+* Nel file servers.xml (in conf) aggiungiamo la nostra applicazione:
+<Host appBase="C:\Tools\apache-tomcat-6.0.20\webapps\applicazione" name="applicazione"
+			unpackWARs="false" 
+		    xmlValidation="false" 
+			xmlNamespaceAware="false" 
+			autoDeploy="false" 
+			deployOnStartup="false" 
+			liveDeploy="false">
+	    <Logger className="org.apache.catalina.logger.FileLogger" suffix=".txt" prefix="app.log." timestamp="true"/>
+        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="c:/LOGS" prefix="amadeus_" suffix=".log" pattern="common" resolveHosts="false"/>
+				<Context docBase="/" path="" reloadable="true" />
+      </Host>
+
+* Ora modifichiamo il DNS per inserire la nostra Webapp: modifichiamo il file c:\windows\system32\drivers\etc\hosts inserendo la riga
+
+127.0.0.1       applicazione.app.it
+
+* Avviamo tomcat da riga di comando: spostiamoci nella cartella bin e digitiamo startup.bat (se siamo in ambiente Windows)
+
+* Richiamiamo la nostra applicazione nel browser digitando http://applicazione.app.it:8080

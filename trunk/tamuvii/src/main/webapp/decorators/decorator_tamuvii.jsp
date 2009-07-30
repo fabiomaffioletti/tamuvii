@@ -23,6 +23,7 @@
 
         <script type="text/javascript" src="<c:url value='/scripts/prototype.js'/>"></script>
         <script type="text/javascript" src="<c:url value='/scripts/scriptaculous.js'/>"></script>
+        <script type="text/javascript" src="<c:url value='/scripts/slider.js'/>"></script>
         <script type="text/javascript" src="<c:url value='/scripts/global.js'/>"></script>
         <script type="text/javascript" src="<c:url value='/scripts/date.js'/>"></script>
         <decorator:head/>

@@ -48,10 +48,28 @@
 					</c:otherwise>
 				</c:choose>
 			</li>
-			<li class="title">${socialMovie.localizedTitle}</li>
+			<li class="title">
+				<c:choose>
+					<c:when test="${not empty socialMovie.localizedTitle}">
+						${socialMovie.localizedTitle}
+					</c:when>
+					<c:otherwise>
+						${socialMovie.originalTitle}
+					</c:otherwise>
+				</c:choose>
+			</li>
 			<li><span class="light_text_italic font12">Titolo originale: ${socialMovie.originalTitle}</span></li>
 			<li>di <a href="/directorDetail.html?director=${socialMovie.directorId}">${socialMovie.director}</a></li>
-			<li>Paese: ${socialMovie.localizedCountry}</li>
+			<li>
+				<c:choose>
+					<c:when test="${not empty socialMovie.localizedCountry}">
+						Paese: ${socialMovie.localizedCountry}
+					</c:when>
+					<c:otherwise>
+						Paese: ${socialMovie.originalCountry}					
+					</c:otherwise>
+				</c:choose>
+			</li>
 			<li>Durata: ${socialMovie.duration} min</li>
 			<li>Anno: <fmt:formatDate pattern="yyyy" value="${socialMovie.releaseDate}" /></li>
 		</ul>

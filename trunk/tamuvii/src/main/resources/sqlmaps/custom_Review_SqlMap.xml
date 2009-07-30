@@ -38,6 +38,7 @@
 		
 		where				r.movie = #movie#
 		group by			r.review
+		order by 			rand()
   </select>
   
 

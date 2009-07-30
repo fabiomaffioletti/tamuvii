@@ -1,4 +1,5 @@
 #summary Descrizione del processo di configurazione di Apache Tomcat 6.x per il lancio di una applicazione Web
+#labels tomcat,configuration
 
 = Introduction =
 
@@ -32,3 +33,5 @@ in modo da poter accedere al tomcat manager con l'utenza admin
 * Avviamo tomcat da riga di comando: spostiamoci nella cartella bin e digitiamo startup.bat (se siamo in ambiente Windows)
 
 * Richiamiamo la nostra applicazione nel browser digitando http://applicazione.app.it:8080
+
+* Per svuotare la cache, cancellare manualmente le sottocartelle di catalina/work

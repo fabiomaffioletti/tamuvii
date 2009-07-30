@@ -198,14 +198,16 @@
 						d.director as directorId, 
 						concat(d.name, " ", d.surname) as director,
 						m.release_date,
-						null as numReviews,
-						null as avgMark,
+						count(distinct r.review) as numReviews,
+						avg(um.mark) as avgMark,
 						null as numMarks,
 						null as numUsers
 						
-		from 			movie m inner join director d
-		  					on m.director = d.director left join localized_data loc  
-  	  						on m.movie = loc.movie	
+		from 			movie m 
+						inner join director d on m.director = d.director 
+						left join localized_data loc on m.movie = loc.movie	
+  	  					left join user_to_movie um on m.movie = um.movie 
+						left join review r on m.movie = r.movie
 		
 		<dynamic prepend="WHERE">
 	         <isNotNull property="filter" prepend="and">

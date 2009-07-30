@@ -1,4 +1,5 @@
 #summary Come creare più contesti nella stessa Webapp
+#labels tomcat,context
 
 
 = Details =
@@ -10,3 +11,5 @@ Aggiungere un altro tag “context” nel tag “host” desiderato, del tipo:
 In questo modo, se nell’applicazione voglio richiamare un’immagine image.jpg presente in c:\ dovrò fare così:
 
 <img src="/immagini/image.jpg" />
+
+per visualizzare l'immagine.

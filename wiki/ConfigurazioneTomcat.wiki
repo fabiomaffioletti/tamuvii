@@ -19,13 +19,7 @@ in modo da poter accedere al tomcat manager con l'utenza admin
 
 * Nel file servers.xml (in conf) aggiungiamo la nostra applicazione:
 
-<Host appBase="C:\Tools\apache-tomcat-6.0.20\webapps\applicazione" name="applicazione"
-			unpackWARs="false" 
-		    xmlValidation="false" 
-			xmlNamespaceAware="false" 
-			autoDeploy="false" 
-			deployOnStartup="false" 
-			liveDeploy="false">
+<Host appBase="C:\Tools\apache-tomcat-6.0.20\webapps\applicazione" name="applicazione" unpackWARs="false" xmlValidation="false" xmlNamespaceAware="false" autoDeploy="false" deployOnStartup="false" liveDeploy="false">
 	    <Logger className="org.apache.catalina.logger.FileLogger" suffix=".txt" prefix="app.log." timestamp="true"/>
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="c:/LOGS" prefix="amadeus_" suffix=".log" pattern="common" resolveHosts="false"/>
 				<Context docBase="/" path="" reloadable="true" />

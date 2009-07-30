@@ -58,7 +58,7 @@
 	   		<div id="content_${resultMovie.movie}" class="scrollable_content">
 	    		<div class="users_thoughts" id="users_thoughts_${resultMovie.movie}" style="display:block;">
 					<ul>
-						<li>${resultMovie.numUsers}0
+						<li>${resultMovie.numUsers}
 				    		<c:choose>
 				    			<c:when test="${resultMovie.numUsers > 1 || resultMovie.numUsers == 0}">
 				    				<fmt:message key="label.users" />
@@ -68,7 +68,14 @@
 				    			</c:otherwise>
 				    		</c:choose> 
 						</li>
-						<li>Voto medio: 3</li>
+						<li>
+							<c:if test="${resultMovie.avgMark > 0}">
+							Voto medio:
+							    	<c:forEach begin="1" end="${resultMovie.avgMark}">
+										<img src="/images/star.gif" style="vertical-align:-3px"/>
+							    	</c:forEach>
+					    	</c:if>
+						</li>
 						<li>${resultMovie.numReviews} reviews</li>
 					</ul>
 	    		</div>

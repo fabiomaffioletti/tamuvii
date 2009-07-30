@@ -49,13 +49,14 @@
 						null as cityReceiver,
 						null as countryReceiver,
 						null as imageLinkReceiver,
-						count(m.message) as numMessages
+						count(m.message) as numMessages,
+						case when m.sender = 'user' then m.receiver else m.sender end as interlocutor
 
 		from			message m inner join app_user u
 						on m.receiver = u.username
 		
-		where			m.sender = #username#
-		group by		m.receiver
+		where			m.sender = #username# or m.receiver = #username#
+		group by		interlocutor
 		
 		order by 		dateadded desc
   </select>

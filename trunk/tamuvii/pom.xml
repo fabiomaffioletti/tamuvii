@@ -935,6 +935,20 @@
         <jdbc.url><![CDATA[jdbc:mysql://localhost/tamuvii?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
         <jdbc.username>root</jdbc.username>
         <jdbc.password>password</jdbc.password>
+        
+        
+        <!-- Log4J -->
+        <log4j.log.path>C:/temp/tamuvii.log</log4j.log.path>
+		<log4j.appender.ref>CONSOLE</log4j.appender.ref>
+		<log4j.appenders><![CDATA[<appender-ref ref="CONSOLE"/>]]></log4j.appenders>
+		<log4j.mail.appender.from>logerror@tamuvii.com</log4j.mail.appender.from>
+		<log4j.mail.appender.to>fabio.maffioletti@gmail.com</log4j.mail.appender.to>
+		<log4j.mail.appender.subject>[SMTPAppender] Tamuvii Error</log4j.mail.appender.subject>
+		
+        <!-- Mail settings -->
+		<mail.host>localhost</mail.host>
+		<mail.username></mail.username>
+		<mail.password></mail.password>
     
         <!-- Properties calculated by AppFuse when running full-source plugin -->
         <aspectj.version>1.6.0</aspectj.version>

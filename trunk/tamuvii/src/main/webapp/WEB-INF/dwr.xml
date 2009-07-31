@@ -1,15 +1,6 @@
-<!DOCTYPE dwr PUBLIC
-    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
-    "http://getahead.ltd.uk/dwr/dwr20.dtd">
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://getahead.org/dwr//dwr30.dtd">
 <dwr>
     <allow>
-        
-        <!-- create creator="spring" javascript="UserManager">
-            <param name="class" value="com.tamuvii.service.UserManager"/>
-            <param name="beanName" value="userManager"/>
-            <include method="getUsers"/>
-        </create-->
-        
         <create creator="spring" javascript="ShelfManager">
             <param name="class" value="com.tamuvii.service.ShelfManager"/>
             <param name="beanName" value="shelfManager"/>
@@ -23,9 +14,19 @@
             <include method="sendPersonalMessageDWR"/>
         </create>
         
+        
+        <create creator="spring" javascript="UserReviewVoteManager">
+            <param name="class" value="com.tamuvii.service.UserReviewVoteManager"/>
+            <param name="beanName" value="userReviewVoteManager"/>
+            <include method="voteOkDWR"/>
+            <include method="voteKoDWR"/>
+        </create>
+        
         <convert converter="bean" match="com.tamuvii.pojo.ShelfDirectorReport"/>
         <convert converter="bean" match="com.tamuvii.pojo.ShelfItem"/>
-        <!-- convert converter="bean" match="com.tamuvii.model.User"/-->
-        
+        <convert converter="exception" match="java.lang.Exception" /> 
+        <convert converter="bean" match="java.lang.StackTraceElement"/>
+        <convert converter="exception" javascript="UserReviewAlreadyVotedException" match="com.tamuvii.exception.UserReviewAlreadyVotedException"/>
+        <convert converter="exception" javascript="UserReviewOwnVoteException" match="com.tamuvii.exception.UserReviewOwnVoteException"/>
     </allow>
 </dwr>

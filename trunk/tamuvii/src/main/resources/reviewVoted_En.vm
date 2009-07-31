@@ -1,0 +1,13 @@
+<b>One of your reviews received a new vote!</b>
+<br/>
+<br/>
+Dear ${user.username},
+<br/>
+review titled "${r.title}" received a new vote, now it has a total of:
+<br/>
+<ul>
+	<li>${r.ok} positive votes</li>
+	<li>${r.ko} negative votes</li>
+</ul>
+<br/>
+See you soon!

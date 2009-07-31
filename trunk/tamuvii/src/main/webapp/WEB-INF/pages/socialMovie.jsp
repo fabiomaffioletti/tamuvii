@@ -2,6 +2,9 @@
 
 <head>
     <title><fmt:message key="socialMovie.title"/></title>
+    <script type="text/javascript" src="/dwr/engine.js"></script>
+    <script type="text/javascript" src="/dwr/util.js"></script>
+    <script type="text/javascript" src="/dwr/interface/UserReviewVoteManager.js"> </script>
 </head>
 
 <div id="sidebar">
@@ -153,8 +156,8 @@
 							<span class="review_title_span">${review.title}</span>		
 						</div>
 						<div class="vote_options_container">
-							<img src="/images/emotes-ok.png" onclick="voteOk('${review.review}')"> <span id="ok_${review.review}">${review.ok} </span>
-							<img src="/images/emotes-ko.png" onclick="voteKo('${review.review}')"> <span id="ko_${review.review}">${review.ko} </span>
+							<img src="/images/emotes-ok.png" onclick="voteOkDWR('${review.review}')"> <span id="ok_${review.review}">${review.ok} </span>
+							<img src="/images/emotes-ko.png" onclick="voteKoDWR('${review.review}')"> <span id="ko_${review.review}">${review.ko} </span>
 						</div>
 					</div>
 					<div class="vote_error_message_container">
@@ -194,52 +197,67 @@
 
 
 <script>
-	function voteOk(review) {
-		new Ajax.Request('/voteReview.html?ajax=true&type=ok&review='+review, {
-			  method: 'post',
-			  onSuccess: function(response) {
-			  if(response.responseText == -1) {
-				var message = $('message_'+review);
-				message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><fmt:message key='user.review.already.voted' />";
+
+	function voteOkDWR(review) {
+		var username = "${pageContext.request.remoteUser}";
+		UserReviewVoteManager.voteOkDWR(username, review, {
+			callback: function(str) {
+				var oks = $('ok_'+review);
+			    oks.innerHTML = str;
+			    
+			    var message = $('message_'+review);
+				message.innerHTML = "<img src='/images/success.png' style='margin-right:10px' /><fmt:message key='user.review.vote.success' />";
 				$(message).appear();
-				new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
-				
-			  } else if(response.responseText == -2) {
-				var message = $('message_'+review);
-				message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><fmt:message key='user.review.vote.own' />";
-				$(message).appear();
-				new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
-			  } else {
-			    var oks = $('ok_'+review);
-			    oks.innerHTML = response.responseText;
-			  }
-			}
-		});
+				new Effect.Highlight(message, {startcolor: '#4F8CC9', restorecolor: true});
+			},
+			errorHandler: function(errorString, exception) {
+				if (exception instanceof UserReviewOwnVoteException) {
+					var message = $('message_'+review);
+					message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><span style='font-size: bold;color:red;'><fmt:message key='user.review.vote.own' /></span>";
+					$(message).appear();
+					new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
+	            } else if (exception instanceof UserReviewAlreadyVotedException) {
+	            	var message = $('message_'+review);
+					message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><span style='font-size: bold;color:red;'><fmt:message key='user.review.already.voted' /></span>";
+					$(message).appear();
+					new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
+	            } else {
+	            	alert("<fmt:message key='tamuvii.generic.error' />");
+	            }
+	        } 
+		})
 	}
 
-	function voteKo(review) {
-		new Ajax.Request('/voteReview.html?ajax=true&type=ko&review='+review, {
-			  method: 'post',
-			  onSuccess: function(response) {
-			  if(response.responseText == -1) {
-				var message = $('message_'+review);
-				message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><fmt:message key='user.review.already.voted' />";
+	function voteKoDWR(review) {
+		var username = "${pageContext.request.remoteUser}";
+		UserReviewVoteManager.voteOkDWR(username, review, {
+			callback: function(str) {
+				var kos = $('ko_'+review);
+		   		kos.innerHTML = response.responseText;
+
+		   		var message = $('message_'+review);
+				message.innerHTML = "<img src='/images/success.png' style='margin-right:10px' /><fmt:message key='user.review.vote.success' />";
 				$(message).appear();
-				new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
-				
-			  } else if(response.responseText == -2) {
-				var message = $('message_'+review);
-				message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><fmt:message key='user.review.vote.own' />";
-				$(message).appear();
-				new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
-				
-			  } else {
-			    var kos = $('ko_'+review);
-			    kos.innerHTML = response.responseText;
-			  }
-			}
-		});
+				new Effect.Highlight(message, {startcolor: '#4F8CC9', restorecolor: true});
+			},
+			errorHandler: function(errorString, exception) {
+				if (exception instanceof UserReviewOwnVoteException) {
+					var message = $('message_'+review);
+					message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><span style='font-size: bold;color:red;'><fmt:message key='user.review.vote.own' /></span>";
+					$(message).appear();
+					new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
+	            } else if (exception instanceof UserReviewAlreadyVotedException) {
+	            	var message = $('message_'+review);
+					message.innerHTML = "<img src='/images/error.png' style='margin-right:10px' /><span style='font-size: bold;color:red;'><fmt:message key='user.review.already.voted' /></span>";
+					$(message).appear();
+					new Effect.Highlight(message, {startcolor: '#FFB98C', restorecolor: true});
+	            } else {
+		            alert("<fmt:message key='tamuvii.generic.error' />");
+	            }
+	        } 
+		})
 	}
+
 </script>
 
 

@@ -1,0 +1,13 @@
+<b>Una tua recensione ha ricevuto un voto!</b>
+<br/>
+<br/>
+Caro ${user.username},
+<br/>
+la recensione intitolata "${r.title}" ha ricevuto un nuovo voto, ora ha un totale di:
+<br/>
+<ul>
+	<li>${r.ok} voti positivi</li>
+	<li>${r.ko} voti negativi</li>
+</ul>
+<br/>
+Alla prossima!

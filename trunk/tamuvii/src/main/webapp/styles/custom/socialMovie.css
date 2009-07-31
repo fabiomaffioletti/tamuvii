@@ -94,9 +94,7 @@
 }
 .vote_error_message {
 	font-size: 12px;
-	font-weight: bold;
-	color: red;
-	border: 1px solid red;
+	border: 1px dashed #ccc;
 	padding: 5px;
 	margin-bottom: 5px;
 }

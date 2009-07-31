@@ -163,6 +163,9 @@
 	<bean id="userReviewVoteManager" class="com.tamuvii.service.impl.UserReviewVoteManagerImpl">
 		<property name="userReviewVoteDao" ref="userReviewVoteDao" />
 		<property name="reviewManager" ref="reviewManager" />
+		<property name="appUserManager" ref="appUserManager" />
+		<property name="mailEngine" ref="mailEngine" />
+		<property name="configManager" ref="configManager" />
 	</bean>
 	
 	<bean id="shelfManager" class="com.tamuvii.service.impl.ShelfManagerImpl">

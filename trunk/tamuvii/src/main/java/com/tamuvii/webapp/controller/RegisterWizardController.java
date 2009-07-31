@@ -103,7 +103,7 @@ public class RegisterWizardController extends AbstractWizardFormController {
 				emailSubject = configManager.getString(TamuviiConstants.NEWREGISTRATIONEMAILSUBJECT + "EN");
 			}
 			
-			mailEngine.sendHtmlMessage(null, new String[]{user.getEmail()}, emailSubject, templateName, model);
+			mailEngine.sendHtmlMessage(null, new String[]{user.getEmail()}, emailSubject, templateName, model, false);
 			
 		} catch (AccessDeniedException ade) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN);

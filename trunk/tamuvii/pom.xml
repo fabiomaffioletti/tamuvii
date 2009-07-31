@@ -504,10 +504,10 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.directwebremoting</groupId>
-            <artifactId>dwr</artifactId>
-            <version>${dwr.version}</version>
-        </dependency>
+		    <groupId>org.directwebremoting</groupId>
+		    <artifactId>dwr</artifactId>
+		    <version>3.0.M1</version>
+		</dependency>
         <dependency>
             <groupId>org.jmock</groupId>
             <artifactId>jmock</artifactId>
@@ -946,7 +946,6 @@
         <commons.io.version>1.3.2</commons.io.version>
         <commons.lang.version>2.3</commons.lang.version>
         <displaytag.version>1.1.1</displaytag.version>
-        <dwr.version>2.0.1</dwr.version>
         <ehcache.version>1.4.1</ehcache.version>
         <ibatis.version>2.3.4.726</ibatis.version>
         <javamail.version>1.4</javamail.version>

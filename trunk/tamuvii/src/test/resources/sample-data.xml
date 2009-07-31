@@ -19,6 +19,23 @@
       <value>NEWREGISTRATIONEMAILTEMPLATE_IT</value>
       <value>newRegistration_It.vm</value>
     </row>
+    
+    <row>
+      <value>REVIEWVOTEDTEMPLATE_IT</value>
+      <value>reviewVoted_It.vm</value>
+    </row>
+    <row>
+      <value>REVIEWVOTEDTEMPLATE_EN</value>
+      <value>reviewVoted_En.vm</value>
+    </row>
+    <row>
+      <value>REVIEWVOTEDSUBJECT_IT</value>
+      <value><![CDATA[Nuovo voto ricevuto!]]></value>
+    </row>
+    <row>
+      <value>REVIEWVOTEDSUBJECT_EN</value>
+      <value><![CDATA[New vote received!]]></value>
+    </row>
   </table>
   
   <table name="app_user">

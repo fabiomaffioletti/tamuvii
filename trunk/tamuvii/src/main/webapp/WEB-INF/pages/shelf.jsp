@@ -184,13 +184,17 @@
 			</div>
 		</div>
 		<div class="relationship_navigation" style="width:100%;">
-			<a href="#" id="upDirectors" style="display:none;float:left;" onclick="indexDirectors = doup(indexDirectors, 1, 'directors_list_content', $('directors_list_container').getHeight(), 'downDirectors', 'upDirectors'); return false;"><img class="relationship_navigation_image" src="/images/bw.png"/></a>
-			<div style="float:left; margin-left: 53px;">
+			<span style="width: 50px">
+				<a href="#" id="upDirectors" style="display:none;float:left;" onclick="indexDirectors = doup(indexDirectors, 1, 'directors_list_content', $('directors_list_container').getHeight(), 'downDirectors', 'upDirectors'); return false;"><img class="relationship_navigation_image" src="/images/bw.png"/></a>
+			</span>
+			<!-- <span>
 				<span class="font12"><fmt:message key="label.order" />: </span>
-				<a href="#" onclick="orderShelfDirectorReportBySurname('${userPublicInfo.username}'); return false;">A-Z</a>
+				<a href="#" onclick="orderShelfDirectorReportBySurname('${userPublicInfo.username}'); return false;"></a>
 				<a href="#" onclick="orderShelfDirectorReportByNumMovies('${userPublicInfo.username}'); return false;"># Film</a>
-			</div>
-			<a href="#" id="downDirectors" style="float:right;display:none;" onclick="indexDirectors = dodown(indexDirectors, pagesDirectors, 1, 'directors_list_content', $('directors_list_container').getHeight(), 'downDirectors', 'upDirectors'); return false;"><img class="relationship_navigation_image" src="/images/ff.png"/></a>
+			</span>-->
+			<span style="width: 50px">
+				<a href="#" id="downDirectors" style="float:right;display:none;" onclick="indexDirectors = dodown(indexDirectors, pagesDirectors, 1, 'directors_list_content', $('directors_list_container').getHeight(), 'downDirectors', 'upDirectors'); return false;"><img class="relationship_navigation_image" src="/images/ff.png"/></a>
+			</span>
 		</div>
 	</div>
 	

@@ -196,13 +196,14 @@
 	Navigation for scrollable divs (next, prev, title, images...)
 */
 .relationship_title {
-	border: 1px dashed #ccc;
-	background-color: #eee;
+	-moz-border-radius: 6px;
+	background-color: #be2525;
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 5px;
 	font-size: 13px;
 	font-weight: bold;
+	color: white;
 	height: 30px;
 }
 
@@ -212,7 +213,7 @@
 .relationship_navigation a {
 	font-size: 12px;
 	text-decoration: none;
-	color: blue;
+	color: white;
 }
 .relationship_navigation a:hover {
 	font-size: 12px;
@@ -249,7 +250,7 @@
 }
 #directors_view_all {
 	font-weight: normal;
-	color: blue;
+	color: white;
 }
 
 
@@ -265,8 +266,8 @@
 	margin-bottom: 55px;
 }
 #friends a {
-	color: blue;
-	font-weight: normal;
+	color: white;
+	font-weight: bold;
 	font-size: 12px;
 	text-decoration: none;
 }
@@ -275,7 +276,7 @@
 }
 #friends_view_all {
 	font-weight: normal;
-	color: blue;
+	color: white;
 }
 
 
@@ -292,8 +293,8 @@
 	margin-bottom: 55px;
 }
 #neighbors a {
-	color: blue;
-	font-weight: normal;
+	color: white;
+	font-weight: bold;
 	font-size: 12px;
 	text-decoration: none;
 }
@@ -302,7 +303,7 @@
 }
 #neighbors_view_all {
 	font-weight: normal;
-	color: blue;
+	color: white;
 }
 
 

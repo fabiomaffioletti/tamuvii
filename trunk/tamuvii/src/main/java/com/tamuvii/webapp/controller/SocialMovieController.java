@@ -23,7 +23,6 @@ public class SocialMovieController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			ModelAndView mv = new ModelAndView();
-			int a = 1/0;
 			Integer movie = request.getParameter("movie") == null ? null : Integer.parseInt(request.getParameter("movie"));
 			
 			SocialMovie socialMovie = movieManager.getSocialMovieDetails(movie, request.getRemoteUser()); 

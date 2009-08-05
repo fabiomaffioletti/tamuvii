@@ -40,8 +40,8 @@
 	margin-bottom: 55px;
 }
 #movie_users a {
-	color: blue;
-	font-weight: normal;
+	color: white;
+	font-weight: bold;
 	font-size: 12px;
 	text-decoration: none;
 }
@@ -50,7 +50,7 @@
 }
 #movie_users_view_all {
 	font-weight: normal;
-	color: blue;
+	color: white;
 }
 .first_mark_image {
 	margin-left: -2px;

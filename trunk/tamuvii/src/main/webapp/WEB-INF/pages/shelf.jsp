@@ -187,11 +187,11 @@
 			<span style="width: 50px">
 				<a href="#" id="upDirectors" style="display:none;float:left;" onclick="indexDirectors = doup(indexDirectors, 1, 'directors_list_content', $('directors_list_container').getHeight(), 'downDirectors', 'upDirectors'); return false;"><img class="relationship_navigation_image" src="/images/bw.png"/></a>
 			</span>
-			<!-- <span>
+			<span>
 				<span class="font12"><fmt:message key="label.order" />: </span>
-				<a href="#" onclick="orderShelfDirectorReportBySurname('${userPublicInfo.username}'); return false;"></a>
-				<a href="#" onclick="orderShelfDirectorReportByNumMovies('${userPublicInfo.username}'); return false;"># Film</a>
-			</span>-->
+				<a href="#" onclick="orderShelfDirectorReport('surname', '${userPublicInfo.username}'); return false;">a-z</a>
+				<a href="#" onclick="orderShelfDirectorReport('null', '${userPublicInfo.username}'); return false;"># Film</a>
+			</span>
 			<span style="width: 50px">
 				<a href="#" id="downDirectors" style="float:right;display:none;" onclick="indexDirectors = dodown(indexDirectors, pagesDirectors, 1, 'directors_list_content', $('directors_list_container').getHeight(), 'downDirectors', 'upDirectors'); return false;"><img class="relationship_navigation_image" src="/images/ff.png"/></a>
 			</span>
@@ -363,22 +363,11 @@
 						    	</c:when>
 						    	<c:otherwise>
 						    		<a href="/socialMovie.html?movie=${shelfItem.movie}"><b>${shelfItem.localizedTitle}</b></a>
-						    		<c:set var="displayOriginalTitle" value="y" />
 						    	</c:otherwise>
 					    	</c:choose>
-					    	<span class="light_text_italic font11">${shelfItem.numUsers}
-					    		<c:choose>
-					    			<c:when test="${shelfItem.numUsers > 1}">
-					    				<fmt:message key="label.users" />
-					    			</c:when>
-					    			<c:otherwise>
-					    				<fmt:message key="label.user" />
-					    			</c:otherwise>
-					    		</c:choose> 
-							</span>
 						</div>
 						
-						<c:if test="${shelfItem.originalTitle != shelfItem.localizedTitle && displayOriginalTitle == 'y'}">
+						<c:if test="${shelfItem.originalTitle != shelfItem.localizedTitle}">
 				    		<div class="localized_title">
 				    			<i><fmt:message key="label.original.title" />: ${shelfItem.originalTitle}</i>
 				    		</div>
@@ -386,10 +375,20 @@
 				    	
 						<div class="directed_by"><fmt:message key="label.by" /> <a href="/directorDetail.html?director=${shelfItem.directorId}">${shelfItem.director}</a></div>
 						
+						<div class="light_text_italic font11" style="width: 100%; float:left;">${shelfItem.numUsers}
+				    		<c:choose>
+				    			<c:when test="${shelfItem.numUsers > 1}">
+				    				<fmt:message key="label.users" />
+				    			</c:when>
+				    			<c:otherwise>
+				    				<fmt:message key="label.user" />
+				    			</c:otherwise>
+				    		</c:choose> 
+						</div>
+						
 						<c:if test="${not empty shelfItem.dateViewed}">
 					    	<div class="date_viewed"><fmt:message key="label.date.viewed" />: <fmt:formatDate pattern="${df}" value="${shelfItem.dateViewed}" /></div> 
 					    </c:if>
-				    	
 						
 						<c:if test="${shelfItem.mark > 0}">
 					    	<div class="mark">
@@ -644,56 +643,44 @@
 </script>
 
 <script>
-	//////// FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////
-	// Ordina per cognome
-	function orderShelfDirectorReportBySurname(username) {
+	function orderShelfDirectorReport(orderBy, username) {
 		displayElement('loader_sdr');
-		ShelfManager.getShelfDirectorReport(username, null, null, "surname", function(str) {
-			refreshShelfDirectorReportList(str);
+		ShelfManager.getShelfDirectorReport(username, null, null, orderBy, {
+			callback: function(str) {
+				dwr.util.removeAllOptions('directors_ul');
+				for(var x=0; x<str.length; x++) {
+					var li = Builder.node('li', { onclick: "filterShelf('"+username+"', '"+str[x].director+"'); return false;"});
+
+					var person_list_info_container = Builder.node('div', { className: 'person_list_info_container' });
+					var container = Builder.node('div', { className: 'container' });
+					var director_image = Builder.node('img', {className: 'major', height: '30', width: '30', src: '/images/placeholder_user_48.jpg'});
+					var director_image_frame = Builder.node('img', {className: 'minor', src: '/images/frame_30.png'});
+
+					var div_person_list_info = Builder.node('div', { className: 'person_list_info' });
+					var span_director_name = Builder.node('span', { className: 'bold_text' }, str[x].name + ' ' + str[x].surname);
+					var span_director_numMovies = Builder.node('span', { className: 'light_text_italic' }, str[x].numMovies + ' Film');
+					var br = Builder.node('br');
+					
+					container.insert(director_image);
+					container.insert(director_image_frame);
+
+					div_person_list_info.insert(span_director_name);
+					div_person_list_info.insert(br);
+					div_person_list_info.insert(span_director_numMovies);
+
+					person_list_info_container.insert(container);
+					person_list_info_container.insert(div_person_list_info);
+
+					li.insert(person_list_info_container);
+					$('directors_ul').insert(li);
+					hideElement('loader_sdr');
+				}
+			},
+			errorHandler:function(errorString, exception) {
+				alert("Errore - Internazionalizzare" + errorString + " " + exception);
+			}
 		});
 	}
-	// Ordina per numero di film
-	function orderShelfDirectorReportByNumMovies(username) {
-		displayElement('loader_sdr');
-		ShelfManager.getShelfDirectorReport(username, null, null, null, function(str) {
-			refreshShelfDirectorReportList(str);
-		});
-	}
-
-	// Aggiorna la ul
-	function refreshShelfDirectorReportList(str) {
-		dwr.util.removeAllOptions('directors_ul');
-		var u = "${userPublicInfo.username}";
-		for(var x=0; x<str.length; x++) {
-			var li = Builder.node('li', { onclick: "filterShelf('"+u+"', '"+str[x].director+"'); return false;"});
-
-				
-			var person_list_info_container = Builder.node('div', { className: 'person_list_info_container' });
-			var container = Builder.node('div', { className: 'container' });
-			var director_image = Builder.node('img', {className: 'major', height: '30', width: '30', src: '/images/placeholder_user_48.jpg'});
-			var director_image_frame = Builder.node('img', {className: 'minor', src: '/images/frame_30.png'});
-
-			var div_person_list_info = Builder.node('div', { className: 'person_list_info' });
-			var span_director_name = Builder.node('span', { className: 'bold_text' }, str[x].name + ' ' + str[x].surname);
-			var span_director_numMovies = Builder.node('span', { className: 'light_text_italic' }, str[x].numMovies + ' Film');
-			var br = Builder.node('br');
-			
-			container.insert(director_image);
-			container.insert(director_image_frame);
-
-			div_person_list_info.insert(span_director_name);
-			div_person_list_info.insert(br);
-			div_person_list_info.insert(span_director_numMovies);
-
-			person_list_info_container.insert(container);
-			person_list_info_container.insert(div_person_list_info);
-
-			li.insert(person_list_info_container);
-			$('directors_ul').insert(li);
-			hideElement('loader_sdr');
-		}
-	}
-	//////// FINE FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////
 </script>
 
 

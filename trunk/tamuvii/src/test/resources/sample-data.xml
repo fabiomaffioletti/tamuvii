@@ -66,6 +66,90 @@
     <column>date_registered</column>
     <column>date_activated</column>
     <row>
+      <value>-7</value>
+      <value>u5</value>
+      <value>1</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>Red</value>
+      <value>Fox</value>
+      <value/>
+      <value>Proserpio</value>
+      <value>CB</value>
+      <value>IT</value>
+      <value>20026</value>
+      <value>flavio.ricci82+4@gmail.com</value>
+      <value/>
+      <value>http://www.google.it</value>
+      <value><![CDATA[Kesiev]]></value>
+      <value>Boh2</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <null />
+      <value><![CDATA[Sono un volpone!!!]]></value>
+      <value>M</value>
+      <value><![CDATA[1982-09-16 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>-6</value>
+      <value>u4</value>
+      <value>1</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>Vasco</value>
+      <value>Rossi</value>
+      <value/>
+      <value>Zocca</value>
+      <value>CB</value>
+      <value>IT</value>
+      <value>20026</value>
+      <value>flavio.ricci82+3@gmail.com</value>
+      <value/>
+      <value>http://www.google.it</value>
+      <value><![CDATA[Vasco Rossi Official Website]]></value>
+      <value>Boh2</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <null />
+      <value><![CDATA[Sono il numero uno!]]></value>
+      <value>M</value>
+      <value><![CDATA[1982-09-16 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>u3</value>
+      <value>1</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>Roberto</value>
+      <value>Baggio</value>
+      <value/>
+      <value>Napoli</value>
+      <value>CB</value>
+      <value>IT</value>
+      <value>20026</value>
+      <value>flavio.ricci82+2@gmail.com</value>
+      <value/>
+      <value>http://www.google.it</value>
+      <value><![CDATA[Thumblr]]></value>
+      <value>Boh2</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+      <null />
+      <value><![CDATA[Mi chiamavano il codino]]></value>
+      <value>M</value>
+      <value><![CDATA[1982-09-16 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+      <value><![CDATA[2008-07-20 00:00:00.0]]></value>
+    </row>
+    <row>
       <value>-4</value>
       <value>u2</value>
       <value>1</value>
@@ -226,6 +310,14 @@
   <table name="user_role">
     <column>user_id</column>
     <column>role_id</column>
+    <row>
+      <value>-6</value>
+      <value>-2</value>
+    </row>
+    <row>
+      <value>-5</value>
+      <value>-2</value>
+    </row>
     <row>
       <value>-4</value>
       <value>-2</value>
@@ -1594,6 +1686,24 @@
     <column>second</column>
     <column>friend</column>
     <column>date_added</column>
+    <row>
+      <value>user</value>
+      <value>u3</value>
+      <value>1</value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>user</value>
+      <value>u5</value>
+      <value>1</value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+    </row>
+    <row>
+      <value>user</value>
+      <value>u4</value>
+      <value>1</value>
+      <value><![CDATA[2008-01-22 00:00:00.0]]></value>
+    </row>
     <row>
       <value>u1</value>
       <value>admin</value>

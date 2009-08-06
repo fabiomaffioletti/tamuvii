@@ -91,13 +91,13 @@
 		<div id="user_profile_options">
 			<ul>
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
-					<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('<fmt:message key="label.send.private.message" />')" onclick="chooseOption('send_message')"><img src="/images/message.png" /></a></li>
+					<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('<fmt:message key="label.send.private.message" />')" onclick="chooseOption('message_area')"><img src="/images/message.png" /></a></li>
 				</c:if>
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
-				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('<fmt:message key="label.relationships" />')" onclick="chooseOption('relationship')"><img src="/images/add_friend.png" /></a></li>
+				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('<fmt:message key="label.relationships" />')" onclick="chooseOption('relationship_area')"><img src="/images/add_friend.png" /></a></li>
 				</c:if>
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
-				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('<fmt:message key="label.calc.compatibility" />')" onclick="chooseOption('compatibility')"><img src="/images/calculator.png" /></a></li>
+				<li><a href="#" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('<fmt:message key="label.calc.compatibility" />')" onclick="chooseOption('compatibility_area')"><img src="/images/calculator.png" /></a></li>
 				</c:if>
 				<c:if test="${not empty username && username != pageContext.request.remoteUser}">
 				<li><a href="/wishlist.html?username=${username}" onmouseout="resetOptionHint()" onmouseover="displayOptionHint('<fmt:message key="label.view.wishlist" />')"><img src="/images/wishlist.png" /></a></li>
@@ -112,9 +112,9 @@
 	</div>
 	
 	
-	<div id="relationship_area">
+	<div id="relationship_area" style="display:none;">
 		<div id="relationship_container">
-			<div id="relationship" style="display:none;">
+			<div id="relationship">
 				<c:choose>
 					<c:when test="${not empty username && username != pageContext.request.remoteUser}">
 						<c:choose>
@@ -139,27 +139,27 @@
 						</c:choose>
 					</c:when>
 				</c:choose>
-				<div style="float: left;"><a href="#" onclick="Effect.Fade('relationship', { duration: 0.4 }); return false;"><fmt:message key="label.close" /></a></div>
+				<div style="float: left;"><a href="#" onclick="Effect.Fade('relationship_area', { duration: 0.4 }); return false;"><fmt:message key="label.close" /></a></div>
 			</div>
 		</div>
 	</div>
 	
-	<div id="compatibility_area">
+	<div id="compatibility_area" style="display:none;">
 		<div id="compatibility_container">
-			<div id="compatibility" style="width:100%; display:none;">
+			<div id="compatibility" style="width:100%;">
 				<div id="compatibility_message">
 					<div style="font-size: 12px; color: black;">La compatibilit&agrave; con questo utente &egrave;:</div>
 					<div id="compatibility_value">94% (demo)</div>
 				</div>
-				<div style="float: left;"><a href="#" onclick="Effect.Fade('compatibility', { duration: 0.4 }); return false;"><fmt:message key="label.close" /></a></div>
+				<div style="float: left;"><a href="#" onclick="Effect.Fade('compatibility_area', { duration: 0.4 }); return false;"><fmt:message key="label.close" /></a></div>
 				<div style="float: right;"><a href="#">Dettagli</a></div>
 			</div>
 		</div>
 	</div>
 
-	<div id="message_area">
+	<div id="message_area" style="display:none;">
 		<div id="send_message_container">
-			<div id="send_message" style="width:100%; display:none;">
+			<div id="send_message" style="width:100%;">
 				<textarea id="messagetext" name="messagetext" style="width: 98%" rows="5"></textarea>
 				<span style="float: right;"><input type="button" name="sendMessage" value="Spedisci" onclick="sendMessage()" /></span>
 				<span style="float: left;"><a href="#" onclick="cancelSendingMessage(); return false;"><fmt:message key="label.cancel" /></a></span>
@@ -214,8 +214,8 @@
 			</span>
 			<span>
 				<span class="font12"><fmt:message key="label.order" />: </span>
-				<a href="#" onclick="orderShelfDirectorReport('surname', '${userPublicInfo.username}'); return false;">a-z</a>
-				<a href="#" onclick="orderShelfDirectorReport('null', '${userPublicInfo.username}'); return false;"># Film</a>
+				<a href="#" style="color:blue;" onclick="orderShelfDirectorReport('surname', '${userPublicInfo.username}'); return false;">a-z</a>
+				<a href="#" style="color:blue;" onclick="orderShelfDirectorReport('null', '${userPublicInfo.username}'); return false;"># Film</a>
 			</span>
 			<span style="width: 50px">
 				<a href="#" id="downDirectors" style="float:right;display:none;" onclick="indexDirectors = dodown(indexDirectors, pagesDirectors, 1, 'directors_list_content', $('directors_list_container').getHeight(), 'downDirectors', 'upDirectors'); return false;"><img class="relationship_navigation_image" src="/images/ff.png"/></a>
@@ -667,7 +667,7 @@
 <script>
 	function cancelSendingMessage() {
 		$('messagetext').value = "";
-		new Effect.Fade('send_message', { duration: 0.4 });
+		new Effect.Fade('message_area', { duration: 0.4 });
 		return false;
 	}
 	function sendMessage() {

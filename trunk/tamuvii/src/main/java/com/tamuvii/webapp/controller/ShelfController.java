@@ -10,7 +10,6 @@ import org.springframework.web.servlet.mvc.Controller;
 
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
 import com.tamuvii.pojo.Shelf;
-import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.UserNeighbor;
 import com.tamuvii.service.AppUserManager;
 import com.tamuvii.service.MovieManager;

@@ -215,6 +215,10 @@
 			order by $orderAttribute$ $orderCriteria$
 		</isNotNull>
 		
+		<isNotNull property="from">
+			limit #from#, #to#
+		</isNotNull>
+		
   </select>
   
 </sqlMap>

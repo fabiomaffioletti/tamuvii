@@ -1,3 +1,4 @@
+<%@ page import="com.tamuvii.util.TamuviiConstants" %>
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
@@ -6,6 +7,29 @@
     <script type="text/javascript" src="/dwr/util.js"></script>
     <script type="text/javascript" src="/dwr/interface/ShelfManager.js"> </script>
     <script type="text/javascript" src="/dwr/interface/MessageManager.js"> </script>
+    
+    <style>
+    	#pagination {
+    		float:left;
+    		margin-top: 10px;
+    		float: right;
+    	}
+    	
+		#pagination a {
+			font-size: 12px;
+			border: 1px solid white;
+			-moz-border-radius: 5px;
+			padding: 3px 7px;
+			text-decoration: none;
+			color: white;
+			background-color: #be2525;
+			font-weight: bold;
+		}
+		
+		#pagination a:hover {
+			border:1px solid #be2525;
+		}
+	</style>
 </head>
 
 <div id="sidebar">
@@ -157,7 +181,7 @@
 			<div id="directors_list_content">
 				<ul class="person_list" id="directors_ul">
 					<c:forEach var="shelfDirectorReportItem" items="${shelfDirectorReportList}">
-						<li onclick="filterShelf('${userPublicInfo.username}', '${shelfDirectorReportItem.director}'); return false;">
+						<li onclick="applyDirectorFilter('${shelfDirectorReportItem.director}', '${shelfDirectorReportItem.name} ${shelfDirectorReportItem.surname}');">
 							<div class="person_list_info_container">
 								<div class="container">
 									<img src="/images/placeholder_user_48.jpg" width="30" height="30" class="major" />
@@ -319,29 +343,37 @@
 	</div>
 </div>
 
-
 <div id="main">
 	<div id="options">
 		<div id="order_div">
-			<select id="order" name="order" onchange="orderShelfByFilter('${userPublicInfo.username}'); return false;">
-				<option value="1">data visto (dal pi&ugrave; recente)</option>
-				<option value="2">data visto (dal pi&ugrave; vecchio)</option>
-				<option value="3">giudizio (dal pi&ugrave; alto) </option>
-				<option value="4">giudizio (dal pi&ugrave; basso) </option>
+			<select id="order" name="order" onchange="applyOrderingFilter();">
+				<option value="date_viewed|desc">data visto (dal pi&ugrave; recente)</option>
+				<option value="date_viewed|asc">data visto (dal pi&ugrave; vecchio)</option>
+				<option value="mark|desc">giudizio (dal pi&ugrave; alto) </option>
+				<option value="mark|asc">giudizio (dal pi&ugrave; basso) </option>
 			</select>
 		</div>
-		<div id="search_div">
+		<!-- <div id="search_div">
 			<form>
 				<input type="text" name="searchbox" id="searchbox_text" value="<fmt:message key='label.search.shelf' />" />
 				<input type="image" src="/images/search.png" name="doSearchShelf" id="searchbox_button" />
 			</form>
+		</div>  -->
+
+		<div id="appliedFilters" style="display:none; clear:both; width: 466px; border: 1px dashed #ccc; margin:5px; padding: 5px" >
+			<span id="appliedFiltersText"></span>
+			
+			<span id="chosen_order_attribute" style="display:none;"></span>
+			<span id="chosen_order_criteria" style="display:none;"></span>
+			<span id="chosen_director" style="display:none;"></span>
+			<span id="chosen_director_text" style="display:none;"></span>
 		</div>
 	</div>
-		
+	
 	<div id="movies">
 		<div id="movies_list_container">
 			<ul id="movie_list" class="movie_list">
-				<c:forEach var="shelfItem" items="${shelfItems}">
+				<c:forEach var="shelfItem" items="${shelf.items}">
 					<c:set var="displayOriginalTitle" value="n" />
 					
 					<li class="movie_image">
@@ -459,12 +491,23 @@
 					</li>
 				</c:forEach>
 			</ul>
+			
+			<div id="pagination">
+				<c:forEach begin="0" end="${shelf.itemsSize-1}" varStatus="p">
+					<c:choose>
+						<c:when test="${currentPage == p.index}">
+							<a href="#" onclick="alert('current');">${p.index+1}</a>
+						</c:when>
+						<c:otherwise>
+							<a href="#" onclick="applyFilter('${p.index}');">${p.index+1}</a>						
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</div>
+			
 		</div>
 	</div>
 </div>
-
-
-
 
 
 <script>
@@ -531,6 +574,11 @@
 	var heightNeighbors;
 	
 	Event.observe(window, 'load', function(event) {
+		$('chosen_order_attribute').innerHTML = '';
+		$('chosen_order_criteria').innerHTML = '';
+		$('chosen_director').innerHTML = '';
+
+		
 		indexDirectors = 0;
 		totDirectors = ${fn:length(shelfDirectorReportList)};
 		recordsPerPageDirectors = 5;
@@ -688,33 +736,51 @@
 
 <script>
 	//////// FUNZIONI DI AGGIORNAMENTO MOVIES ////////
-	function orderShelfByFilter(username) {
-		var order = $('order').value;
-		if(order == 1) {
-			ShelfManager.getShelfByFilter(username, null, "date_viewed", "desc", function(str) {
-				refreshShelf(str);
-			});
-		}
-		if(order == 2) {
-			ShelfManager.getShelfByFilter(username, null, "date_viewed", "asc", function(str) {
-				refreshShelf(str);
-			});
-		}
-		if(order == 3) {
-			ShelfManager.getShelfByFilter(username, null, "mark", "desc", function(str) {
-				refreshShelf(str);
-			});
-		}
-		if(order == 4) {
-			ShelfManager.getShelfByFilter(username, null, "mark", "asc", function(str) {
-				refreshShelf(str);
-			});
-		}
+	function applyDirectorFilter(director, directorText) {
+		$('chosen_director').innerHTML = director;
+		$('chosen_director_text').innerHTML = directorText;
+		
+		applyFilter(0);		
 	}
+	function applyOrderingFilter() {
+		var splittedOrder = $('order').value.split('|');
+		var orderAttribute = splittedOrder[0];
+		var orderCriteria = splittedOrder[1];
 
-	function filterShelf(username, director) {
-		ShelfManager.getShelfByFilter(username, director, null, null, function(str) {
-			refreshShelf(str);
+		$('chosen_order_attribute').innerHTML = orderAttribute;
+		$('chosen_order_criteria').innerHTML = orderCriteria;
+
+		applyFilter(0);
+	}
+	
+	function applyFilter(page) {
+		var director = $('chosen_director').innerHTML;
+		var director_text = $('chosen_director_text').innerHTML;
+		var orderAttribute = $('chosen_order_attribute').innerHTML;
+		var orderCriteria = $('chosen_order_criteria').innerHTML;
+
+		director = director==''?null:director;
+		orderAttribute = orderAttribute==''?null:orderAttribute;
+		orderCriteria = orderCriteria==''?null:orderCriteria;
+
+		if(director != null) {
+			$('appliedFilters').appear();
+			new Effect.Highlight('appliedFilters', {startcolor: '#4F8CC9',	restorecolor: true});
+			$('appliedFiltersText').innerHTML = 'Stai visualizzando tutti i film ' + (director!=null?'di <b>'+director_text+'</b> <a style="float:right" href="#">Elimina filtro (todo)</a>':'') ;
+		}
+		
+		filterShelf('${userPublicInfo.username}', director, orderAttribute, orderCriteria, page);
+	}
+	
+	
+	function filterShelf(username, director, orderAttribute, orderCriteria, page) {
+		ShelfManager.getShelfByFilter(username, director, orderAttribute, orderCriteria, page, { 
+			callback: function(str) {
+				refreshShelf(str);
+			},
+			errorHandler:function(errorString, exception) {
+				alert("Errore - Internazionalizzare" + errorString + " " + exception);
+			}
 		});
 	}
 
@@ -742,16 +808,13 @@
 				var social_movie_link = Builder.node('a', { href: '/socialMovie.html?movie='+str[x].movie }, str[x].originalTitle);
 			} else {
 				var social_movie_link = Builder.node('a', { href: '/socialMovie.html?movie='+str[x].movie }, str[x].localizedTitle);
-				displayOriginalTitle = 'y';
 			}
 			title_div.insert(social_movie_link);
 			movie_data_li.insert(title_div);
 			
 			// Titolo originale
-			if(displayOriginalTitle == 'y' && str[x].originalTitle != str[x].localizedTitle) {
-				var localized_title_div = Builder.node('div', { className: 'localized_title' }, "<fmt:message key='label.original.title' />: " + str[x].originalTitle);
-				movie_data_li.insert(localized_title_div);
-			}
+			var localized_title_div = Builder.node('div', { className: 'localized_title' }, "<fmt:message key='label.original.title' />: " + str[x].originalTitle);
+			movie_data_li.insert(localized_title_div);
 
 			// Regista
 			var directed_by_div = Builder.node('div', { className: 'directed_by' }, 'di ');
@@ -818,7 +881,7 @@
 						var add_shelf_a = Builder.node('a', { href: '/shelfManagement.html?action=add&movie='+str[x].movie }, "<fmt:message key='label.add.shelf' />");
 						add_shelf_div.insert(add_shelf_a);
 						var add_wish_div = Builder.node('div', { className: 'action' });
-						var add_wish_a = Builder.node('a', { href: '/wishlistManagement.html?action=add&movie='+str[x].movie }, "<fmt:message key='label.add.wishlist' />");
+						var add_wish_a = Builder.node('a', { href: '/wishlistManagement.html?action=wish&movie='+str[x].movie }, "<fmt:message key='label.add.wishlist' />");
 						add_wish_div.insert(add_wish_a);
 						option_li.insert(add_shelf_div);
 						option_li.insert(add_wish_div);

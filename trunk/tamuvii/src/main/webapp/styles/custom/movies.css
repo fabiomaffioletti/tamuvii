@@ -1,11 +1,8 @@
 #movies {
-	margin-bottom: 55px;
 	font-size: 13px;
 }
 #movies_list_container {
-	margin-top: 20px;
 	width:100%; 
-	overflow:hidden; 
 	position: relative;
 }
 

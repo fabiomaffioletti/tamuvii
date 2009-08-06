@@ -16,6 +16,11 @@ public class TamuviiConstants {
 	public static final String ORDER_ASC = "asc";
 	public static final String ORDER_DESC = "desc";
 	
+	public static final Integer MOVIES_INITIAL_PAGE = 0;
+	public static final Integer MOVIES_PER_PAGE = 5;
+	public static final String MOVIES_DEFAULT_ORDER_ATTRIBUTE = "date_viewed";
+	public static final String MOVIES_DEFAULT_ORDER = "desc";
+	
 	
 	
 	/* CONFIG CONSTANTS */

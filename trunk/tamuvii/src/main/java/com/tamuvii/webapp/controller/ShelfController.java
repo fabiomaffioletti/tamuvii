@@ -9,7 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
+import com.tamuvii.pojo.Shelf;
 import com.tamuvii.pojo.ShelfItem;
+import com.tamuvii.pojo.UserNeighbor;
 import com.tamuvii.service.AppUserManager;
 import com.tamuvii.service.MovieManager;
 import com.tamuvii.service.RelationshipManager;
@@ -69,17 +71,23 @@ public class ShelfController implements Controller {
 			if(!username.equals(request.getRemoteUser()))
 				visitManager.addUserVisit(username, request.getRemoteUser());
 		}
+		
+		mv.addObject("username", username);
+		
+		// Aggiunge le informazioni del profilo
+		UserNeighbor un = appUserManager.getUserPublicInfo(username);
+		mv.addObject("userPublicInfo", un);
 			
 		// Aggiunge i film della videoteca
-		List<ShelfItem> shelfItems = shelfManager.getShelfByFilter(username, null, "date_viewed", TamuviiConstants.ORDER_DESC);
-		mv.addObject("shelfItems", shelfItems);
+		Shelf shelf = new Shelf();
+		List<ShelfItem> shelfItems = shelfManager.getShelfByFilter(username, null, TamuviiConstants.MOVIES_DEFAULT_ORDER_ATTRIBUTE, TamuviiConstants.ORDER_DESC, TamuviiConstants.MOVIES_INITIAL_PAGE);
+		shelf.setItems(shelfItems);
+		shelf.setItemsSize((float) un.getTotMovies());
+		mv.addObject("shelf", shelf);
+		mv.addObject("currentPage", TamuviiConstants.MOVIES_INITIAL_PAGE);
 		
 		// Aggiunge il report sui registi
 		mv.addObject("shelfDirectorReportList", shelfManager.getShelfDirectorReport(username, null, null, TamuviiConstants.SHELF_DIRECTOR_REPORT_DEFAULT_ORDER_ATTRIBUTE));
-		
-		// Aggiunge le informazioni del profilo
-		mv.addObject("userPublicInfo", appUserManager.getUserPublicInfo(username));
-		mv.addObject("username", username);
 		
 		// Aggiunge gli amici e i vicini
 		mv.addObject("friends", relationshipManager.getUserFriends(username));

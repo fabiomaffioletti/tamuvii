@@ -9,6 +9,8 @@ public interface ShelfManager {
 
 	public List<ShelfDirectorReport> getShelfDirectorReport(String username, Integer from, Integer to, String orderAttribute);
 	
-	public List<ShelfItem> getShelfByFilter(String username, Integer director, String orderAttribute, String orderCriteria);
+	//public List<ShelfItem> getShelfByFilter(String username, Integer director, String orderAttribute, String orderCriteria);
+	
+	public List<ShelfItem> getShelfByFilter(String username, Integer director, String orderAttribute, String orderCriteria, Integer page) throws Exception;
 	
 }

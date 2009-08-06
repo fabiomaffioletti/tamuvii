@@ -80,9 +80,7 @@ public class ShelfController implements Controller {
 			
 		// Aggiunge i film della videoteca
 		Shelf shelf = new Shelf();
-		List<ShelfItem> shelfItems = shelfManager.getShelfByFilter(username, null, TamuviiConstants.MOVIES_DEFAULT_ORDER_ATTRIBUTE, TamuviiConstants.ORDER_DESC, TamuviiConstants.MOVIES_INITIAL_PAGE);
-		shelf.setItems(shelfItems);
-		shelf.setItemsSize((float) un.getTotMovies());
+		shelf = shelfManager.getShelf(username, null, TamuviiConstants.MOVIES_DEFAULT_ORDER_ATTRIBUTE, TamuviiConstants.ORDER_DESC, TamuviiConstants.MOVIES_INITIAL_PAGE);
 		mv.addObject("shelf", shelf);
 		mv.addObject("currentPage", TamuviiConstants.MOVIES_INITIAL_PAGE);
 		

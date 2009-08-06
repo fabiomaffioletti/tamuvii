@@ -218,7 +218,24 @@
 		<isNotNull property="from">
 			limit #from#, #to#
 		</isNotNull>
-		
+  </select>
+  
+  
+  <select id="getShelfCountByFilter" resultClass="java.lang.Integer" parameterClass="com.tamuvii.pojo.queryfilter.ShelfItemFilter" >
+  		select				count(*)
+							
+		from 				user_to_movie um			inner join movie m
+							on um.movie = m.movie 		inner join director d
+							on d.director = m.director 	inner join app_user u
+							on u.username = um.username left join localized_data loc
+							on (loc.movie = m.movie and loc.locale like concat('%', u.country, '%'))	left join review r
+							on r.movie = um.movie and r.username = #username#
+							
+		where				u.username = #username#
+		<isNotNull property="director" prepend="and">
+			d.director = #director#
+		</isNotNull>
+		and					um.wished = '0'
   </select>
   
 </sqlMap>

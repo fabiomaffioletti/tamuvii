@@ -25,5 +25,6 @@ public interface CustomShelfDAO {
 	public List<ShelfDirectorReport> getShelfDirectorReport(ShelfDirectorReportFilter sdrf);
 	
 	public List<ShelfItem> getShelfByFilter(ShelfItemFilter sif);
+	public Integer getShelfCountByFilter(ShelfItemFilter sif);
 	
 }

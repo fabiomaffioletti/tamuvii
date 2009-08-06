@@ -62,4 +62,8 @@ public class CustomShelfDAOImpl extends SqlMapClientDaoSupport implements Custom
 	public List<ShelfItem> getShelfByFilter(ShelfItemFilter sif) {
 		return getSqlMapClientTemplate().queryForList("custom_shelf.getShelfByFilter", sif);
 	}
+
+	public Integer getShelfCountByFilter(ShelfItemFilter sif) {
+		return (Integer) getSqlMapClientTemplate().queryForObject("custom_shelf.getShelfCountByFilter", sif);
+	}
 }

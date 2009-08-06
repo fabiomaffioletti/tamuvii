@@ -26,9 +26,10 @@
 			font-weight: bold;
 		}
 		
+		/*
 		#pagination a:hover {
 			border:1px solid #be2525;
-		}
+		}*/
 	</style>
 </head>
 
@@ -493,16 +494,18 @@
 			</ul>
 			
 			<div id="pagination">
-				<c:forEach begin="0" end="${shelf.itemsSize-1}" varStatus="p">
-					<c:choose>
-						<c:when test="${currentPage == p.index}">
-							<a href="#" onclick="alert('current');">${p.index+1}</a>
-						</c:when>
-						<c:otherwise>
-							<a href="#" onclick="applyFilter('${p.index}');">${p.index+1}</a>						
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
+				<div id="pagination_links">
+					<c:forEach begin="0" end="${shelf.itemsSize-1}" varStatus="p">
+						<c:choose>
+							<c:when test="${shelf.currentPage == p.index}">
+								<a href="#" id="${p.index}" style="background-color: #ccc; color: black;">${p.index+1}</a>	
+							</c:when>
+							<c:otherwise>
+								<a href="#" id="${p.index}" onclick="applyFilter('${p.index}');">${p.index+1}</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</div>
 			</div>
 			
 		</div>
@@ -697,7 +700,7 @@
 			callback: function(str) {
 				dwr.util.removeAllOptions('directors_ul');
 				for(var x=0; x<str.length; x++) {
-					var li = Builder.node('li', { onclick: "filterShelf('"+username+"', '"+str[x].director+"'); return false;"});
+					var li = Builder.node('li', { onclick: 'applyDirectorFilter("'+str[x].director+'", "'+str[x].name + ' ' + str[x].surname + '")'});
 
 					var person_list_info_container = Builder.node('div', { className: 'person_list_info_container' });
 					var container = Builder.node('div', { className: 'container' });
@@ -739,20 +742,21 @@
 	function applyDirectorFilter(director, directorText) {
 		$('chosen_director').innerHTML = director;
 		$('chosen_director_text').innerHTML = directorText;
-		
 		applyFilter(0);		
 	}
 	function applyOrderingFilter() {
 		var splittedOrder = $('order').value.split('|');
 		var orderAttribute = splittedOrder[0];
 		var orderCriteria = splittedOrder[1];
-
 		$('chosen_order_attribute').innerHTML = orderAttribute;
 		$('chosen_order_criteria').innerHTML = orderCriteria;
-
 		applyFilter(0);
 	}
-	
+	function deleteDirectorFilter() {
+		$('chosen_director').innerHTML = '';
+		$('chosen_director_text').innerHTML = '';
+		new Effect.Fade('appliedFilters', {duration: 0.3, afterFinish: applyFilter(0)} );		
+	}
 	function applyFilter(page) {
 		var director = $('chosen_director').innerHTML;
 		var director_text = $('chosen_director_text').innerHTML;
@@ -766,7 +770,7 @@
 		if(director != null) {
 			$('appliedFilters').appear();
 			new Effect.Highlight('appliedFilters', {startcolor: '#4F8CC9',	restorecolor: true});
-			$('appliedFiltersText').innerHTML = 'Stai visualizzando tutti i film ' + (director!=null?'di <b>'+director_text+'</b> <a style="float:right" href="#">Elimina filtro (todo)</a>':'') ;
+			$('appliedFiltersText').innerHTML = 'Stai visualizzando tutti i film ' + (director!=null?'di <b>'+director_text+'</b> <a style="float:right" href="#" onclick="deleteDirectorFilter();">Elimina filtro</a>':'') ;
 		}
 		
 		filterShelf('${userPublicInfo.username}', director, orderAttribute, orderCriteria, page);
@@ -774,9 +778,10 @@
 	
 	
 	function filterShelf(username, director, orderAttribute, orderCriteria, page) {
-		ShelfManager.getShelfByFilter(username, director, orderAttribute, orderCriteria, page, { 
+		ShelfManager.getShelf(username, director, orderAttribute, orderCriteria, page, {
 			callback: function(str) {
-				refreshShelf(str);
+				refreshShelf(str.items);
+				refreshPagination(str.itemsSize, str.currentPage);
 			},
 			errorHandler:function(errorString, exception) {
 				alert("Errore - Internazionalizzare" + errorString + " " + exception);
@@ -784,11 +789,22 @@
 		});
 	}
 
-	// Aggiorna la ul
+	function refreshPagination(itemsSize, currentPage) {
+		$('pagination_links').remove();
+		var div = Builder.node('div', {id: 'pagination_links'});
+		for(var j=0; j<itemsSize; j++) {
+			if(currentPage == j) {
+				var a = Builder.node('a', {id: j, href: '#', style:'cursor: pointer; background-color: #ccc; color:black;', onclick: 'applyFilter('+j+')'}, j+1);
+			} else {
+				var a = Builder.node('a', {id: j, href: '#', style:'cursor: pointer', onclick: 'applyFilter('+j+')'}, j+1);
+			}
+			$(div).insert(a);
+		}
+		$('pagination').insert(div);
+	}
 	function refreshShelf(str) {
 		dwr.util.removeAllOptions('movie_list');
 		for(var x=0; x<str.length; x++) {
-			var displayOriginalTitle = 'n';
 			
 			// Costruisco l'immagine giusta
 			var movie_image_li = Builder.node('li', { className: 'movie_image' });
@@ -921,6 +937,8 @@
 			$('movie_list').insert(movie_plot_li);
 			$('movie_list').insert(review_li);
 			$('movie_list').insert(sep_li);
+
+			
 		}
 	}
 	//////// FINE FUNZIONI DI AGGIORNAMENTO PER IL REPORT DEI REGISTI ////////

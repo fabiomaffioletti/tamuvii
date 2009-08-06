@@ -784,12 +784,12 @@
 	
 	
 	function filterShelf(username, director, orderAttribute, orderCriteria, page) {
-		new Effect.BlindUp('movies', {afterFinish: function() {
+		new Effect.BlindUp('movies', {duration: 0.5, afterFinish: function() {
 			ShelfManager.getShelf(username, director, orderAttribute, orderCriteria, page, {
 				callback: function(str) {
 					refreshShelf(str.items);
 					refreshPagination(str.itemsSize, str.currentPage);
-					new Effect.BlindDown('movies');
+					new Effect.BlindDown('movies', {duration: 0.5});
 				},
 				errorHandler:function(errorString, exception) {
 					alert("Errore - Internazionalizzare" + errorString + " " + exception);

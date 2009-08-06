@@ -776,21 +776,26 @@
 			new Effect.Highlight('appliedFilters', {startcolor: '#4F8CC9',	restorecolor: true});
 			$('appliedFiltersText').innerHTML = 'Stai visualizzando tutti i film ' + (director!=null?'di <b>'+director_text+'</b> <a style="float:right" href="#" onclick="deleteDirectorFilter();">Elimina filtro</a>':'') ;
 		}
-		
-		filterShelf('${userPublicInfo.username}', director, orderAttribute, orderCriteria, page);
+
+		//FIXME FLICKERING!!!
+		new Effect.ScrollTo('movies', {duration: 0.5, offset: -100, afterFinish: function() { filterShelf('${userPublicInfo.username}', director, orderAttribute, orderCriteria, page)}});
+		return false;
 	}
 	
 	
 	function filterShelf(username, director, orderAttribute, orderCriteria, page) {
-		ShelfManager.getShelf(username, director, orderAttribute, orderCriteria, page, {
-			callback: function(str) {
-				refreshShelf(str.items);
-				refreshPagination(str.itemsSize, str.currentPage);
-			},
-			errorHandler:function(errorString, exception) {
-				alert("Errore - Internazionalizzare" + errorString + " " + exception);
-			}
-		});
+		new Effect.BlindUp('movies', {afterFinish: function() {
+			ShelfManager.getShelf(username, director, orderAttribute, orderCriteria, page, {
+				callback: function(str) {
+					refreshShelf(str.items);
+					refreshPagination(str.itemsSize, str.currentPage);
+					new Effect.BlindDown('movies');
+				},
+				errorHandler:function(errorString, exception) {
+					alert("Errore - Internazionalizzare" + errorString + " " + exception);
+				}
+			});
+		}});
 	}
 
 	function refreshPagination(itemsSize, currentPage) {

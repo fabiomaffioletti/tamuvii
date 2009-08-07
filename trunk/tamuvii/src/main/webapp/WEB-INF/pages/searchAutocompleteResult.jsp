@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp"%>
 <ul>
-    <c:forEach var="searchResult" items="${searchResults}" varStatus="row">
+    <c:forEach var="searchResult" items="${searchResults.items}" varStatus="row">
     <c:choose>
     	<c:when test="${row.first}">
     		<c:choose>

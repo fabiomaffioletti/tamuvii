@@ -5,6 +5,7 @@ import java.util.List;
 import com.tamuvii.model.Movie;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
+import com.tamuvii.pojo.Search;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
 
@@ -22,7 +23,9 @@ public interface MovieManager {
 	
 	public List<Movie> getAllMovies();
 	
-	public List<SocialMovie> searchSocialMovie(String username, String filter);
+//	public List<SocialMovie> searchSocialMovie(String username, String filter, boolean rand);
+	
+	public Search searchSocialMovies(String username, String filter, boolean rand, Integer page) throws Exception;
 	
 	public boolean doesMovieBelongToUserShelf(Integer movie, String username);
 	

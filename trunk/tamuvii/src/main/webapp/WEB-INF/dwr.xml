@@ -9,6 +9,12 @@
             <include method="getShelf"/>
         </create>
         
+        <create creator="spring" javascript="MovieManager">
+            <param name="class" value="com.tamuvii.service.MovieManager"/>
+            <param name="beanName" value="movieManager"/>
+            <include method="searchSocialMovies"/>
+        </create>
+        
         <create creator="spring" javascript="MessageManager">
             <param name="class" value="com.tamuvii.service.MessageManager"/>
             <param name="beanName" value="messageManager"/>
@@ -26,6 +32,8 @@
         <convert converter="bean" match="com.tamuvii.pojo.ShelfDirectorReport"/>
         <convert converter="bean" match="com.tamuvii.pojo.ShelfItem"/>
         <convert converter="bean" match="com.tamuvii.pojo.Shelf"/>
+        <convert converter="bean" match="com.tamuvii.pojo.Search"/>
+        <convert converter="bean" match="com.tamuvii.pojo.SocialMovie"/>
         <convert converter="exception" match="java.lang.Exception" /> 
         <convert converter="bean" match="java.lang.StackTraceElement"/>
         <convert converter="exception" javascript="UserReviewAlreadyVotedException" match="com.tamuvii.exception.UserReviewAlreadyVotedException"/>

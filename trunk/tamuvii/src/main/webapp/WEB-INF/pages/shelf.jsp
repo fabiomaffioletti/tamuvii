@@ -9,27 +9,8 @@
     <script type="text/javascript" src="/dwr/interface/MessageManager.js"> </script>
     
     <style>
-    	#pagination {
-    		float:left;
-    		margin-top: 10px;
-    		float: right;
-    	}
     	
-		#pagination a {
-			font-size: 12px;
-			border: 1px solid white;
-			-moz-border-radius: 5px;
-			padding: 3px 7px;
-			text-decoration: none;
-			color: white;
-			background-color: #be2525;
-			font-weight: bold;
-		}
-		
-		/*
-		#pagination a:hover {
-			border:1px solid #be2525;
-		}*/
+
 	</style>
 </head>
 
@@ -503,7 +484,7 @@
 							<c:forEach begin="0" end="${shelf.itemsSize-1}" varStatus="p">
 								<c:choose>
 									<c:when test="${shelf.currentPage == p.index}">
-										<a href="#" id="${p.index}" style="background-color: #ccc; color: black;">${p.index+1}</a>	
+										<a href="#" id="${p.index}" style="cursor:default; background-color: #ccc; color: black;">${p.index+1}</a>	
 									</c:when>
 									<c:otherwise>
 										<a href="#" id="${p.index}" onclick="applyFilter('${p.index}');">${p.index+1}</a>
@@ -817,7 +798,7 @@
 		var div = Builder.node('div', {id: 'pagination_links'});
 		for(var j=0; j<itemsSize; j++) {
 			if(currentPage == j) {
-				var a = Builder.node('a', {id: j, href: '#', style:'cursor: pointer; background-color: #ccc; color:black;', onclick: 'applyFilter('+j+')'}, j+1);
+				var a = Builder.node('a', {id: j, href: '#', style:'cursor:default; background-color: #ccc; color:black;'}, j+1);
 			} else {
 				var a = Builder.node('a', {id: j, href: '#', style:'cursor: pointer', onclick: 'applyFilter('+j+')'}, j+1);
 			}

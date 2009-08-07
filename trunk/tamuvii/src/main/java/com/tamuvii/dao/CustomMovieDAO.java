@@ -21,4 +21,6 @@ public interface CustomMovieDAO {
 	
 	public List<SocialMovie> searchSocialMovie(SocialMovieFilter searchMovieFilter);
 	
+	public Integer searchSocialMoviesCount(SocialMovieFilter searchMovieFilter);
+	
 }

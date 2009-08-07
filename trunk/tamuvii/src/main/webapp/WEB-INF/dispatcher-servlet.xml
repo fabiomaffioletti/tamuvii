@@ -89,10 +89,10 @@
                 
                 /directorDetail.html=directorDetailController
                 /opinion.html=opinionController
-                /searchSocialMovies.html=searchSocialMovieController
+ <!--                /searchSocialMovies.html=searchSocialMovieController -->
                 
                 <!-- Ricerca -->
-                /search.html=filenameController
+                /search.html=searchSocialMovieController
                 /searchAutocomplete.html=SearchAutocompleteController
                 
                 <!-- Review -->

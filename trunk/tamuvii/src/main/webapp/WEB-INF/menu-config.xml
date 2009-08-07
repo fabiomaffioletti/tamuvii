@@ -4,8 +4,7 @@
         <Displayer name="Velocity" type="net.sf.navigator.displayer.VelocityMenuDisplayer"/>
     </Displayers>
     <Menus>
-        <Menu name="MainMenu" title="menu.initial.page" page="/mainMenu.html" roles="ROLE_ADMIN,ROLE_USER" width="120">
-        	<Item name="Search" title="menu.search" page="/search.html"/>
+        <Menu name="Search" title="menu.search" page="/search.html" roles="ROLE_ADMIN,ROLE_USER" width="120">
 		</Menu>
         	
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" width="120" page="/admin/users.html">
@@ -19,6 +18,7 @@
         </Menu>
         
         <Menu name="MyMenu" title="menu.user" roles="ROLE_ADMIN,ROLE_USER" width="120" page="/shelf.html">
+        	<Item name="MainMenu" title="menu.initial.page" page="/mainMenu.html" roles="ROLE_ADMIN,ROLE_USER" />
         	<Item name="ShelfMenu" title="menu.shelf" page="/shelf.html" roles="ROLE_ADMIN,ROLE_USER" />
         	<Item name="WishlistMenu" title="menu.wishlist" page="/wishlist.html" roles="ROLE_ADMIN,ROLE_USER" />
         	<Item name="StatisticsMenu" title="menu.statistics" page="/statistics.html" roles="ROLE_ADMIN,ROLE_USER" />

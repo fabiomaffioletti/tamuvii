@@ -19,7 +19,7 @@ public class SearchAutocompleteController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		String searchString = request.getParameter("searchString") == null ? null : request.getParameter("searchString");
-		mv.addObject("searchResults", movieManager.searchSocialMovie(request.getRemoteUser(),searchString));
+		mv.addObject("searchResults", movieManager.searchSocialMovies(request.getRemoteUser(),searchString, false, 0));
 		mv.setViewName("searchAutocompleteResult");
 		return mv;
 	}

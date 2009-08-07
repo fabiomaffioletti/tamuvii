@@ -210,69 +210,55 @@
 						left join app_user au on um.username = au.username
 						left join review r on m.movie = r.movie
 		
-		<dynamic prepend="WHERE">
-	         <isNotNull property="filter" prepend="and">
-                  <iterate conjunction="and" property="filter" removeFirstPrepend="true">
-                       (
-                       m.original_title like concat('%', #filter[]#, '%')
-                       or
-                       loc.localized_title like concat('%', #filter[]#, '%')
-                       or
-                       d.surname like concat('%', #filter[]#, '%')
-                       or
-                       d.name like concat('%', #filter[]#, '%')
-                       )
-                  </iterate>
-	        </isNotNull>
-	        and loc.locale like (select country from app_user where username = #username#)
-	        and au.country like (select country from app_user where username = #username#)
-	    </dynamic>								
+		where			loc.locale like (select country from app_user where username = #username#)
+						and au.country like (select country from app_user where username = #username#)
+			
+				         <isNotNull property="filter" prepend="and">
+			                  <iterate conjunction="and" property="filter" removeFirstPrepend="true">
+			                       (
+			                       m.original_title like concat('%', #filter[]#, '%')
+			                       or
+			                       loc.localized_title like concat('%', #filter[]#, '%')
+			                       or
+			                       d.surname like concat('%', #filter[]#, '%')
+			                       or
+			                       d.name like concat('%', #filter[]#, '%')
+			                       )
+			                  </iterate>
+				        </isNotNull>
 							
 		group by m.movie
+		
+		<isEqual property="rand" compareValue="true">
+			order by rand()
+		</isEqual>
+		
+		<isNotNull property="from">
+			limit #from#, #to#
+		</isNotNull>
   </select>
   
-  <!-- 
-  <select id="searchSocialMovies" resultMap="socialMovieMap" parameterClass="com.tamuvii.pojo.queryfilter.SocialMovieFilter" >
-		select				m.movie, 
-							m.duration, 
-							m.original_title,
-							m.original_plot,
-							m.original_image,
-							loc.localized_title,
-							loc.localized_plot,
-							loc.localized_image,
-							d.director as directorId, 
-							CONCAT(d.name, " ", d.surname) as director, 
-							m.release_date,
-							count(distinct r.review) as numReviews,
-							avg(um.mark) as avgMark,
-							null as numUsers
-							
-		from 				movie m 					left join review r
-							on	m.movie = r.movie 		inner join director d
-							on m.director = d.director	inner join user_to_movie um 
-							on um.movie = m.movie 		left join localized_data loc
-							on loc.movie = m.movie
-							
-		<dynamic prepend="WHERE">
-	         <isNotNull property="filter" prepend="and">
-                  <iterate conjunction="and" property="filter" removeFirstPrepend="true">
-                       (
-                       m.original_title like #filter[]#
-                       or
-                       loc.localized_title like #filter[]#
-                       or
-                       d.surname like #filter[]#
-                       or
-                       d.name like #filter[]#
-                       )
-                  </iterate>
-	        </isNotNull>
-	        and loc.locale like (select country from app_user where username = #username#)
-	    </dynamic>								
-							
-		group by m.movie
+  <select id="searchSocialMoviesCount" resultClass="java.lang.Integer" parameterClass="com.tamuvii.pojo.queryfilter.SocialMovieFilter" >
+			select   	count(*)
+			from    	movie m     inner join director d on m.director = d.director        
+									left join localized_data loc on m.movie = loc.movie                  
+		
+			where   	loc.locale like (select country from app_user where username = #username#)              
+			
+				        <isNotNull property="filter" prepend="and">
+			                  <iterate conjunction="and" property="filter" removeFirstPrepend="true">
+			                       (
+			                       m.original_title like concat('%', #filter[]#, '%')
+			                       or
+			                       loc.localized_title like concat('%', #filter[]#, '%')
+			                       or
+			                       d.surname like concat('%', #filter[]#, '%')
+			                       or
+			                       d.name like concat('%', #filter[]#, '%')
+			                       )
+			                  </iterate>
+				        </isNotNull>
+		
   </select>
-   -->
-   
+  
 </sqlMap>

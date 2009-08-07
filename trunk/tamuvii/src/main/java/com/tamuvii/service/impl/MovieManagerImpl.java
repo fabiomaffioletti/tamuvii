@@ -14,6 +14,7 @@ import com.tamuvii.pojo.DetailedReview;
 import com.tamuvii.pojo.MovieUser;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
+import com.tamuvii.pojo.Search;
 import com.tamuvii.pojo.ShelfItem;
 import com.tamuvii.pojo.SocialMovie;
 import com.tamuvii.pojo.queryfilter.PersonalMovieFilterMap;
@@ -21,6 +22,7 @@ import com.tamuvii.pojo.queryfilter.SocialMovieFilter;
 import com.tamuvii.service.MovieManager;
 import com.tamuvii.service.ReviewManager;
 import com.tamuvii.service.UserToMovieManager;
+import com.tamuvii.util.TamuviiConstants;
 
 public class MovieManagerImpl implements MovieManager {
 	private CustomMovieDAO customMovieDao = null;
@@ -105,13 +107,48 @@ public class MovieManagerImpl implements MovieManager {
 		reviewManager.updatePersonalMovieReviewData(personalMovie, username);
 	}
 	
-	public List<SocialMovie> searchSocialMovie(String username, String filter) {
-		String[] splittedFilter = filter.split(" ");
-		SocialMovieFilter searchMovieFilter = new SocialMovieFilter();
-		searchMovieFilter.setUsername(username);
-		searchMovieFilter.setFilter(splittedFilter);
-		return customMovieDao.searchSocialMovie(searchMovieFilter);
+//	public List<SocialMovie> searchSocialMovie(String username, String filter, boolean rand) {
+//		String[] splittedFilter = filter!= null ? filter.split(" ") : null;
+//		SocialMovieFilter searchMovieFilter = new SocialMovieFilter();
+//		searchMovieFilter.setUsername(username);
+//		searchMovieFilter.setFilter(splittedFilter);
+//		searchMovieFilter.setRand(rand);
+//		return customMovieDao.searchSocialMovie(searchMovieFilter);
+//	}
+	
+	
+	public Search searchSocialMovies(String username, String filter, boolean rand, Integer page) throws Exception {
+		try {
+			Search s = new Search();
+			SocialMovieFilter smf = new SocialMovieFilter();
+			smf.setUsername(username);
+			String[] splittedFilter = (filter!= null && !filter.equals("")) ? filter.split(" ") : null;
+			smf.setFilter(splittedFilter);
+			smf.setRand(rand);
+			
+			if(!rand)
+				s.setItemsSize((float) customMovieDao.searchSocialMoviesCount(smf));
+			
+			// Continuo a riempire il filtro per l'ordinamento (il numero totale di film non cambia applicando solo un ordinamento)
+			smf.setFrom(page*TamuviiConstants.MOVIES_PER_PAGE);
+			smf.setTo(TamuviiConstants.MOVIES_PER_PAGE);
+
+			
+			// Riempio il bean con i dati relativi ai film filtrati
+			s.setItems(customMovieDao.searchSocialMovie(smf));
+			if(rand)
+				s.setItemsSize((float) s.getItems().size());
+			
+			// Setto la pagina corrente
+			s.setCurrentPage(page);
+			return s;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new Exception();
+		}
 	}
+	
 	
 	
 	public boolean doesMovieBelongToUserShelf(Integer movie, String username) {

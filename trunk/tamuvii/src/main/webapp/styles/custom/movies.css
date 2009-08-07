@@ -146,3 +146,20 @@
 	padding: 0; 
 	margin: 0;
 }
+
+#pagination {
+	float:left;
+	margin-top: 10px;
+	float: right;
+}
+  	
+#pagination a {
+	font-size: 12px;
+	border: 1px solid white;
+	-moz-border-radius: 5px;
+	padding: 3px 7px;
+	text-decoration: none;
+	color: white;
+	background-color: #be2525;
+	font-weight: bold;
+}

@@ -19,10 +19,13 @@
 		<span style="width:100%;float:left;"><img src="/images/loader.gif"/></span>
 	</div>
 	
-	
 	<div id="movies_loading">
 		<c:if test="${fn:length(results.items) > 0}">
 			<div id="movies">
+				<div style="width: 466px; border: 1px dashed #ccc; padding: 5px; margin: 5px;" id="random">
+					Vuoi dare un'occhiata a questi film? 
+				</div>
+				
 				<div id="movies_list_container">
 					<ul id="movie_list" class="movie_list">
 						<c:forEach var="shelfItem" items="${results.items}">
@@ -152,6 +155,12 @@
 
 
 <script>
+	Event.observe(window, 'load', function(event) {
+		if ($('random')) {
+	        new Effect.Highlight('random', {startcolor: '#4F8CC9',	restorecolor: true});
+	    }
+	});
+
 	function toggleAndMove(id) {	
 		new Effect.toggle(id, 'appear', { duration: 0.5});
 	}
@@ -161,6 +170,9 @@
 		
 		new Effect.ScrollTo('header', {duration: 0.5, offset: -100, afterFinish: function() {
 			new Effect.BlindUp('movies_loading', {duration: 0.5, afterFinish: function() {
+				$('random').setStyle({
+					display: 'none'
+				});
 				new Effect.BlindDown('movies_loader', {duration: 0.2});
 				
 				MovieManager.searchSocialMovies('${pageContext.request.remoteUser}', filter, false, page, {

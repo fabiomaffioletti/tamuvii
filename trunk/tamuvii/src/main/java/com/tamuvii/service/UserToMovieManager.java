@@ -1,5 +1,6 @@
 package com.tamuvii.service;
 
+import com.tamuvii.exception.UserToMovieAlreadyAddedToShelfException;
 import com.tamuvii.model.UserToMovie;
 
 public interface UserToMovieManager {
@@ -10,7 +11,7 @@ public interface UserToMovieManager {
 	
 	public boolean doesMovieBelongToUserWishlist(Integer movie, String username);
 	
-	public void addMovieToShelf(Integer movie, String username);
+	public void addMovieToShelf(Integer movie, String username) throws UserToMovieAlreadyAddedToShelfException;
 	
 	public void deleteMovieFromShelf(Integer movie, String username);
 	

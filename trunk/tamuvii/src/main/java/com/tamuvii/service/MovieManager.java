@@ -2,6 +2,7 @@ package com.tamuvii.service;
 
 import java.util.List;
 
+import com.tamuvii.exception.UserToMovieAlreadyAddedToShelfException;
 import com.tamuvii.model.Movie;
 import com.tamuvii.pojo.PersonalMovie;
 import com.tamuvii.pojo.PersonalMovieIdAndWishedFlag;
@@ -31,7 +32,7 @@ public interface MovieManager {
 	
 	public boolean doesMovieBelongToUserWishlist(Integer movie, String username);
 	
-	public void addMovieToShelf(Integer movie, String username);
+	public void addMovieToShelf(Integer movie, String username) throws UserToMovieAlreadyAddedToShelfException;
 	
 	public void addMovieToWishlist(Integer movie, String username);
 	

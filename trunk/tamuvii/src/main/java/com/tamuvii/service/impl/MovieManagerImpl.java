@@ -6,6 +6,7 @@ import java.util.List;
 import com.tamuvii.dao.CustomMovieDAO;
 import com.tamuvii.dao.CustomShelfDAO;
 import com.tamuvii.dao.MovieDAO;
+import com.tamuvii.exception.UserToMovieAlreadyAddedToShelfException;
 import com.tamuvii.model.Movie;
 import com.tamuvii.model.MovieExample;
 import com.tamuvii.model.Review;
@@ -160,7 +161,7 @@ public class MovieManagerImpl implements MovieManager {
 	}
 	
 	
-	public void addMovieToShelf(Integer movie, String username) {
+	public void addMovieToShelf(Integer movie, String username) throws UserToMovieAlreadyAddedToShelfException {
 		userToMovieManager.addMovieToShelf(movie, username);
 	}
 	

@@ -29,6 +29,12 @@
             <include method="voteKoDWR"/>
         </create>
         
+        <create creator="spring" javascript="UserToMovieManager">
+            <param name="class" value="com.tamuvii.service.UserToMovieManager"/>
+            <param name="beanName" value="userToMovieManager"/>
+            <include method="addMovieToShelf"/>
+        </create>
+        
         <convert converter="bean" match="com.tamuvii.pojo.ShelfDirectorReport"/>
         <convert converter="bean" match="com.tamuvii.pojo.ShelfItem"/>
         <convert converter="bean" match="com.tamuvii.pojo.Shelf"/>
@@ -38,5 +44,6 @@
         <convert converter="bean" match="java.lang.StackTraceElement"/>
         <convert converter="exception" javascript="UserReviewAlreadyVotedException" match="com.tamuvii.exception.UserReviewAlreadyVotedException"/>
         <convert converter="exception" javascript="UserReviewOwnVoteException" match="com.tamuvii.exception.UserReviewOwnVoteException"/>
+        <convert converter="exception" javascript="UserToMovieAlreadyAddedToShelfException" match="com.tamuvii.exception.UserToMovieAlreadyAddedToShelfException"/>
     </allow>
 </dwr>

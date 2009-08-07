@@ -3,6 +3,7 @@ package com.tamuvii.service.impl;
 import java.util.Calendar;
 
 import com.tamuvii.dao.UserToMovieDAO;
+import com.tamuvii.exception.UserToMovieAlreadyAddedToShelfException;
 import com.tamuvii.model.UserToMovie;
 import com.tamuvii.model.UserToMovieExample;
 import com.tamuvii.model.UserToMovieKey;
@@ -21,7 +22,7 @@ public class UserToMovieManagerImpl implements UserToMovieManager {
 		userToMovieDao.updateByPrimaryKeySelective(userToMovie);
 	}
 
-	public void addMovieToShelf(Integer movie, String username) {
+	public void addMovieToShelf(Integer movie, String username) throws UserToMovieAlreadyAddedToShelfException {
 		if(!doesMovieBelongToUserShelf(movie, username)) {
 			UserToMovie userToMovie = new UserToMovie();
 			userToMovie.setMovie(movie);
@@ -31,6 +32,8 @@ public class UserToMovieManagerImpl implements UserToMovieManager {
 			userToMovie.setMark(null);
 			userToMovie.setWished(0);
 			userToMovieDao.insert(userToMovie);
+		} else {
+			throw new UserToMovieAlreadyAddedToShelfException();
 		}
 	}
 	

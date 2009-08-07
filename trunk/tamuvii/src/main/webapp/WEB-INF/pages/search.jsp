@@ -5,6 +5,26 @@
     <script type="text/javascript" src="/dwr/engine.js"></script>
     <script type="text/javascript" src="/dwr/util.js"></script>
     <script type="text/javascript" src="/dwr/interface/MovieManager.js"> </script>
+    <script type="text/javascript" src="/dwr/interface/UserToMovieManager.js"> </script>
+    
+    <style>
+    	#deploy_shelf {
+    		height: 150px; 
+    		font-size: 13px; 
+    		border: 1px dashed #aaa; 
+    		margin-top: 20px; 
+    		margin-bottom: 10px; 
+    		padding: 10px;
+    	}
+    	.deploy_message {
+    		margin-top: 20px;
+    		text-align: center;
+    	}
+    	#deploy_shelf.deploy_hover {
+    		border: 3px dashed #aaa;
+    		padding: 8px; 
+    	}
+    </style>
 </head>
 
 <div id="sidebar">
@@ -12,6 +32,58 @@
 	<input type="text" name="search" id="search" style="width: 185px; border:1px dashed #AAA;"/><img style="vertical-align: middle; margin-left: 5px; cursor: pointer;" src="/images/search.png" onclick="browse(0);" />
 	<span id="spin" style="display:none;color:#FF0000"><img src="/images/loader.gif" alt="Attendere..." style="width:15px;vertical-align:middle"/></span>
 	<div id="autocomplete_choices" class="autocomplete" style="clear:both;"></div>
+	
+	<div id="deploy_shelf">
+		<div id="deploy_info" class="deploy_message light_text_italic">
+			Trascina qui la locandina del film per aggiungerlo alla tua videoteca
+		</div>
+		<div id="deploy_result" class="deploy_message light_text_italic" style="display:none;">
+			<!-- <img src="/images/loader.gif" /> -->
+		</div>
+	</div>
+	<script>
+		Droppables.add('deploy_shelf', { 
+		    accept: 'movie_image',
+		    hoverclass: 'deploy_hover',
+		    onHover: function() {
+				$('deploy_result').setStyle({
+					display: 'none'
+				});
+			},
+		    onDrop: function(dragged, dropped, event) {
+		    	var movie = dragged.id.substring(dragged.id.lastIndexOf('_')+1, dragged.id.length);
+		    	addMovieToShelf(movie);
+		    }
+		});
+
+		function addMovieToShelf(movie) {
+			loadingAdditionResponse();
+			UserToMovieManager.addMovieToShelf(movie, '${pageContext.request.remoteUser}', {
+				callback: function() {
+					displayAdditionResult('Perfetto, hai aggiunto il film alla tua videoteca!');
+				},
+				errorHandler:function(errorString, exception) {
+					if (exception instanceof UserToMovieAlreadyAddedToShelfException) {
+						displayAdditionResult('Hai già questo film nella tua videoteca!');
+					} else {
+						alert("<fmt:message key='tamuvii.generic.error' />");
+					}
+				}
+			}); 
+		}
+
+		function loadingAdditionResponse() {
+			$('deploy_result').update('<img src="/images/loader.gif" />');
+			new Effect.Appear('deploy_result', {duration: 0.2});
+		}
+		function displayAdditionResult(message) {
+			new Effect.DropOut('deploy_result', {duration: 0.2, afterFinish: function() {
+				$('deploy_result').update(message);
+				new Effect.Appear('deploy_result', {duration: 0.2});
+				$('deploy_shelf').highlight();
+			}});
+		}
+	</script>
 </div>
 
 <div id="main">
@@ -30,7 +102,7 @@
 					<ul id="movie_list" class="movie_list">
 						<c:forEach var="shelfItem" items="${results.items}">
 							
-							<li class="movie_image">
+							<li class="movie_image" id="movie_image_${shelfItem.movie}">
 								<c:choose>
 									<c:when test="${not empty shelfItem.localizedImage}">
 										<img src="${shelfItem.localizedImage}" />
@@ -40,6 +112,13 @@
 									</c:otherwise>
 								</c:choose>
 							</li>
+							<script>
+								new Draggable('movie_image_'+${shelfItem.movie}, { 
+								    revert: true,
+								    ghosting: true,
+								    scroll: window
+								});
+							</script>
 							
 							<li class="movie_data">
 								<div class="title" id="title_${shelfItem.movie}">
@@ -210,13 +289,20 @@
 		for(var x=0; x<str.length; x++) {
 			
 			// Costruisco l'immagine giusta
-			var movie_image_li = Builder.node('li', { className: 'movie_image' });
+			var movie_image_li = Builder.node('li', {id: 'movie_image_'+str[x].movie, className: 'movie_image' });
 			if(str[x].localizedImage != null) { 
 				var image = Builder.node('img', { src: str[x].localizedImage });
 			} else {
 				var image = Builder.node('img', { src: str[x].originalImage });
 			}
 			movie_image_li.insert(image);
+			new Draggable( $(movie_image_li), { 
+			    revert: true,
+			    ghosting: true,
+			    scroll: window
+			});
+
+			
 
 			// Costruisco le informazioni sul film
 			var movie_data_li = Builder.node('li', { className: 'movie_data' });

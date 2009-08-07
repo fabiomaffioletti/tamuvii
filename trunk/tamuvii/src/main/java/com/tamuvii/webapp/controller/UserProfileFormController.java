@@ -1,5 +1,9 @@
 package com.tamuvii.webapp.controller;
 
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tamuvii.model.AppUser;
 import com.tamuvii.service.AppUserManager;
+import com.tamuvii.util.Utilities;
 
 public class UserProfileFormController extends TamuviiFormController {
 	private AppUserManager appUserManager = null;
@@ -45,6 +50,12 @@ public class UserProfileFormController extends TamuviiFormController {
 		}
 		
 		return new ModelAndView("redirect:/preferences.html");
+	}
+	
+	protected Map referenceData(HttpServletRequest request) throws Exception {
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("language", request.getLocale());
+		return data;
 	}
 	
 }

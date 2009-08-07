@@ -31,6 +31,7 @@ public class PersonalMovieFormController extends BaseFormController {
 	protected Map referenceData(HttpServletRequest request) throws Exception {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("years", Utilities.getYears(Calendar.getInstance().get(Calendar.YEAR)));
+		data.put("language", request.getLocale());
 		return data;
 	}
 	

@@ -1,10 +1,23 @@
 <%@ include file="/common/taglibs.jsp"%>
-
+<c:choose>
+	<c:when test="${language=='it'}">
+		<c:set var="firstDayOfWeek">1</c:set>
+		<c:set var="localeLanguage">it</c:set>
+		<c:set var="dateFormat">"%d/%m/%Y"</c:set>
+	</c:when>
+	<c:otherwise>
+		<c:set var="firstDayOfWeek">0</c:set>
+		<c:set var="localeLanguage">en</c:set>
+		<c:set var="dateFormat">"%m/%d/%Y"</c:set>
+	</c:otherwise>
+</c:choose>
 <head>
     <title><fmt:message key="Modifica il profilo"/></title>
-    <script type="text/javascript" src="${ctx}/scripts/calendar/calendar.js"></script>
-	<script type="text/javascript" src="${ctx}/scripts/calendar/lang/calendar-it.js"></script>
-  	<script type="text/javascript" src="${ctx}/scripts/calendar/calendar-setup.js"></script>
+  	<link rel="stylesheet" type="text/css" href="${ctx}/scripts/dynarchcalendar/css/tamuvii_jscal2.css" />
+    <link rel="stylesheet" type="text/css" href="${ctx}/scripts/dynarchcalendar/css/border-radius.css" />
+    <link rel="stylesheet" type="text/css" href="${ctx}/scripts/dynarchcalendar/css/tamuvii/tamuvii.css" />
+  	<script type="text/javascript" src="${ctx}/scripts/dynarchcalendar/js/jscal2.js"></script>
+  	<script type="text/javascript" src="${ctx}/scripts/dynarchcalendar/js/lang/${localeLanguage}.js"></script>
 </head>
 
 <div id="sidebar">
@@ -175,13 +188,22 @@
 	}
 </script>
 
-<script type="text/javascript"> 
-    Calendar.setup({
-        inputField     :    "dob",      // id of the input field
-        ifFormat       :    "%d/%m/%Y",       // format of the input field
-        showsTime      :    false,            // will display a time selector
-        button         :    "dobButton",   // trigger for the calendar (button ID)
-        singleClick    :    true,           // single-click mode
-        step           :    1                // show all years in drop-down boxes (instead of every other year as default)
-    });
+
+
+<script type="text/javascript">
+//<![CDATA[
+var c = Calendar.setup({
+	trigger       : "dobButton",
+	inputField    : "dob",
+	dateFormat	  : ${dateFormat},
+	weekNumbers   : false,
+	showTime      : false,
+	bottomBar	  : false,
+	fdow		  : ${firstDayOfWeek},
+	date		  : $('dob').value,
+	onSelect      : function() {
+			this.hide();
+		}
+	});          
+//]]>
 </script>

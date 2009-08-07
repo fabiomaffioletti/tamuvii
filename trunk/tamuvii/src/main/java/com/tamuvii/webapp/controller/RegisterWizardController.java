@@ -30,6 +30,7 @@ import com.tamuvii.service.RoleManager;
 import com.tamuvii.service.UserExistsException;
 import com.tamuvii.service.UserManager;
 import com.tamuvii.util.TamuviiConstants;
+import com.tamuvii.util.Utilities;
 import com.tamuvii.webapp.util.RequestUtil;
 
 public class RegisterWizardController extends AbstractWizardFormController {
@@ -120,7 +121,12 @@ public class RegisterWizardController extends AbstractWizardFormController {
 		return new ModelAndView("register3");
 	}
 	
-	
+	@SuppressWarnings("unchecked")
+	protected Map referenceData(HttpServletRequest request) throws Exception {
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("language", request.getLocale());
+		return data;
+	}
 	
 	
 	public String getText(String msgKey, Locale locale) {

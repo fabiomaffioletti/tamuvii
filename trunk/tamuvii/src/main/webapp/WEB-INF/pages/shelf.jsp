@@ -7,11 +7,6 @@
     <script type="text/javascript" src="/dwr/util.js"></script>
     <script type="text/javascript" src="/dwr/interface/ShelfManager.js"> </script>
     <script type="text/javascript" src="/dwr/interface/MessageManager.js"> </script>
-    
-    <style>
-    	
-
-	</style>
 </head>
 
 <div id="sidebar">

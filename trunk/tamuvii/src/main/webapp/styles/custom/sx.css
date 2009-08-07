@@ -235,6 +235,7 @@
 	width:100%; 
 	overflow:hidden; 
 	position: relative;
+	max-height: 205px;
 }
 #directors {
 	margin-bottom: 55px;
@@ -260,6 +261,7 @@
 	width:100%; 
 	overflow:hidden; 
 	position: relative;
+	max-height: 205px;
 }
 #friends {
 	margin-bottom: 55px;
@@ -286,6 +288,7 @@
 	width:100%; 
 	overflow:hidden; 
 	position: relative;
+	max-height: 205px;
 }
 #neighbors {
 	margin-bottom: 55px;

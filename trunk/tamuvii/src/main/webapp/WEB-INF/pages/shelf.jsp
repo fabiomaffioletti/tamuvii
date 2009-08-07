@@ -346,173 +346,177 @@
 
 
 <div id="main">
-	<div id="options">
-		<div id="order_div">
-			<select id="order" name="order" onchange="applyOrderingFilter();">
-				<option value="date_viewed|desc">data visto (dal pi&ugrave; recente)</option>
-				<option value="date_viewed|asc">data visto (dal pi&ugrave; vecchio)</option>
-				<option value="mark|desc">giudizio (dal pi&ugrave; alto) </option>
-				<option value="mark|asc">giudizio (dal pi&ugrave; basso) </option>
-			</select>
-		</div>
-		<!-- <div id="search_div">
-			<form>
-				<input type="text" name="searchbox" id="searchbox_text" value="<fmt:message key='label.search.shelf' />" />
-				<input type="image" src="/images/search.png" name="doSearchShelf" id="searchbox_button" />
-			</form>
-		</div>  -->
-
-		<div id="appliedFilters" style="display:none; clear:both; width: 466px; border: 1px dashed #ccc; margin:5px; padding: 5px" >
-			<span id="appliedFiltersText"></span>
-			
-			<span id="chosen_order_attribute" style="display:none;"></span>
-			<span id="chosen_order_criteria" style="display:none;"></span>
-			<span id="chosen_director" style="display:none;"></span>
-			<span id="chosen_director_text" style="display:none;"></span>
-		</div>
+	<div id="movies_loader" style="display: none; text-align: center;width: 100%;">
+		<span style="width:100%;float:left;"><img src="/images/loader.gif"/></span>
 	</div>
 	
-	<c:if test="${fn:length(shelf.items) > 0}">
-		<div id="movies">
-			<div id="movies_list_container">
-				<ul id="movie_list" class="movie_list">
-					<c:forEach var="shelfItem" items="${shelf.items}">
-						
-						<li class="movie_image">
-							<c:choose>
-								<c:when test="${not empty shelfItem.localizedImage}">
-									<img src="${shelfItem.localizedImage}" />
-								</c:when>
-								<c:otherwise>
-									<img src="${shelfItem.originalImage}" />
-								</c:otherwise>
-							</c:choose>
-						</li>
-						
-						<li class="movie_data">
-							<div class="title" id="title_${shelfItem.movie}">
-								<c:choose>
-						    		<c:when test="${empty shelfItem.localizedTitle}">
-							    		<a href="/socialMovie.html?movie=${shelfItem.movie}"><b>${shelfItem.originalTitle}</b></a> 
-							    	</c:when>
-							    	<c:otherwise>
-							    		<a href="/socialMovie.html?movie=${shelfItem.movie}"><b>${shelfItem.localizedTitle}</b></a>
-							    	</c:otherwise>
-						    	</c:choose>
-							</div>
-							
-							<c:if test="${shelfItem.originalTitle != shelfItem.localizedTitle}">
-					    		<div class="localized_title">
-					    			<i><fmt:message key="label.original.title" />: ${shelfItem.originalTitle}</i>
-					    		</div>
-					    	</c:if>
-					    	
-							<div class="directed_by"><fmt:message key="label.by" /> <a href="/directorDetail.html?director=${shelfItem.directorId}">${shelfItem.director}</a></div>
-							
-							<div class="light_text_italic font11" style="width: 100%; float:left;">${shelfItem.numUsers}
-					    		<c:choose>
-					    			<c:when test="${shelfItem.numUsers > 1}">
-					    				<fmt:message key="label.users" />
-					    			</c:when>
-					    			<c:otherwise>
-					    				<fmt:message key="label.user" />
-					    			</c:otherwise>
-					    		</c:choose> 
-							</div>
-							
-							<c:if test="${not empty shelfItem.dateViewed}">
-						    	<div class="date_viewed"><fmt:message key="label.date.viewed" />: <fmt:formatDate pattern="${df}" value="${shelfItem.dateViewed}" /></div> 
-						    </c:if>
-							
-							<c:if test="${shelfItem.mark > 0}">
-						    	<div class="mark">
-							    	<c:forEach begin="1" end="${shelfItem.mark}">
-										<img src="/images/star.gif"/>
-							    	</c:forEach>
-						    	</div>
-					    	</c:if>
-		
-						</li>
-						<li class="movie_actions">
-							<div class="action action_title"><fmt:message key="label.options" /></div>
-								<c:if test="${not empty shelfItem.originalPlot || not empty shelfItem.localizedPlot}">
-									<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;"><fmt:message key="label.plot" /></a></div>
-								</c:if>
-								<c:if test="${not empty shelfItem.review}">
-									<div class="action"><a href="#" onclick="toggleAndMove('movie_review_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;"><fmt:message key="label.review" /></a></div>
-								</c:if>
-								<c:choose>
-								    <c:when test="${empty username || username == pageContext.request.remoteUser}">
-									    <div class="action"><a href="/personalMovie.html?movie=${shelfItem.movie}"><fmt:message key="label.modify" /></a></div>
-								    </c:when>
-								    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
-								    	<c:set var="isInPersonalMovies" value="0" />
-							    		<c:set var="isWished" value="0" />
-								    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">
-								    		<c:if test="${personalMovieId.movie == shelfItem.movie}">
-								    			<c:set var="isInPersonalMovies" value="1" />
-								    			<c:if test="${personalMovieId.wished == 1}">
-								    				<c:set var="isWished" value="1" />
-								    			</c:if>
-								    		</c:if>
-								    	</c:forEach>
-								    	<c:choose>
-					    					<c:when test="${isInPersonalMovies == 0}">
-					    						<div class="action"><a href="/shelfManagement.html?action=add&movie=${shelfItem.movie}"><fmt:message key="label.add.shelf" /></a></div>
-					    						<div class="action"><a href="/wishlistManagement.html?action=wish&movie=${shelfItem.movie}"><fmt:message key="label.add.wishlist" /></a></div>
-					    					</c:when>
-					    					<c:otherwise>
-					    						<div class="action"> 
-					    							<c:if test="${isWished == 0}"> <fmt:message key="label.present.in.shelf" /></c:if>
-									    			<c:if test="${isWished == 1}"> <fmt:message key="label.present.in.wishlist" /></c:if>
-					    						</div>
-									    	</c:otherwise>
-					    				</c:choose>
-								    </c:when>
-								</c:choose>
-						</li>
-						<li class="movie_plot" id="movie_plot_${shelfItem.movie}" style="display: none;">
-							<div class="plot_text">
-								 <c:choose>
-						    		<c:when test="${empty shelfItem.localizedPlot}">
-							    		${shelfItem.originalPlot}
-							    	</c:when>
-							    	<c:otherwise>
-							    		${shelfItem.localizedPlot}
-							    	</c:otherwise>
-						    	</c:choose>
-							</div>
-						</li>
-						<li class="movie_review" id="movie_review_${shelfItem.movie}" style="display: none;">
-							<div class="review_text">
-								${shelfItem.reviewText}
-							</div>
-						</li>
-						
-						<li class="separator">
-						</li>
-					</c:forEach>
-				</ul>
-				
-				<div id="pagination">
-					<div id="pagination_links">
-						<c:forEach begin="0" end="${shelf.itemsSize-1}" varStatus="p">
-							<c:choose>
-								<c:when test="${shelf.currentPage == p.index}">
-									<a href="#" id="${p.index}" style="background-color: #ccc; color: black;">${p.index+1}</a>	
-								</c:when>
-								<c:otherwise>
-									<a href="#" id="${p.index}" onclick="applyFilter('${p.index}');">${p.index+1}</a>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-					</div>
-				</div>
-				
+	<div id="movies_loading">
+		<div id="options">
+			<div id="order_div">
+				<select id="order" name="order" onchange="applyOrderingFilter();">
+					<option value="date_viewed|desc">data visto (dal pi&ugrave; recente)</option>
+					<option value="date_viewed|asc">data visto (dal pi&ugrave; vecchio)</option>
+					<option value="mark|desc">giudizio (dal pi&ugrave; alto) </option>
+					<option value="mark|asc">giudizio (dal pi&ugrave; basso) </option>
+				</select>
 			</div>
+			<!-- <div id="search_div">
+				<form>
+					<input type="text" name="searchbox" id="searchbox_text" value="<fmt:message key='label.search.shelf' />" />
+					<input type="image" src="/images/search.png" name="doSearchShelf" id="searchbox_button" />
+				</form>
+			</div>  -->
 		</div>
-	</c:if>
-
+	
+		<c:if test="${fn:length(shelf.items) > 0}">
+			<div id="movies">
+				<div id="appliedFilters" style="display:none; clear:both; width: 466px; border: 1px dashed #ccc; margin:5px; padding: 5px" >
+					<span id="appliedFiltersText"></span>
+					
+					<span id="chosen_order_attribute" style="display:none;"></span>
+					<span id="chosen_order_criteria" style="display:none;"></span>
+					<span id="chosen_director" style="display:none;"></span>
+					<span id="chosen_director_text" style="display:none;"></span>
+				</div>
+				<div id="movies_list_container">
+					<ul id="movie_list" class="movie_list">
+						<c:forEach var="shelfItem" items="${shelf.items}">
+							
+							<li class="movie_image">
+								<c:choose>
+									<c:when test="${not empty shelfItem.localizedImage}">
+										<img src="${shelfItem.localizedImage}" />
+									</c:when>
+									<c:otherwise>
+										<img src="${shelfItem.originalImage}" />
+									</c:otherwise>
+								</c:choose>
+							</li>
+							
+							<li class="movie_data">
+								<div class="title" id="title_${shelfItem.movie}">
+									<c:choose>
+							    		<c:when test="${empty shelfItem.localizedTitle}">
+								    		<a href="/socialMovie.html?movie=${shelfItem.movie}"><b>${shelfItem.originalTitle}</b></a> 
+								    	</c:when>
+								    	<c:otherwise>
+								    		<a href="/socialMovie.html?movie=${shelfItem.movie}"><b>${shelfItem.localizedTitle}</b></a>
+								    	</c:otherwise>
+							    	</c:choose>
+								</div>
+								
+								<c:if test="${shelfItem.originalTitle != shelfItem.localizedTitle}">
+						    		<div class="localized_title">
+						    			<i><fmt:message key="label.original.title" />: ${shelfItem.originalTitle}</i>
+						    		</div>
+						    	</c:if>
+						    	
+								<div class="directed_by"><fmt:message key="label.by" /> <a href="/directorDetail.html?director=${shelfItem.directorId}">${shelfItem.director}</a></div>
+								
+								<div class="light_text_italic font11" style="width: 100%; float:left;">${shelfItem.numUsers}
+						    		<c:choose>
+						    			<c:when test="${shelfItem.numUsers > 1}">
+						    				<fmt:message key="label.users" />
+						    			</c:when>
+						    			<c:otherwise>
+						    				<fmt:message key="label.user" />
+						    			</c:otherwise>
+						    		</c:choose> 
+								</div>
+								
+								<c:if test="${not empty shelfItem.dateViewed}">
+							    	<div class="date_viewed"><fmt:message key="label.date.viewed" />: <fmt:formatDate pattern="${df}" value="${shelfItem.dateViewed}" /></div> 
+							    </c:if>
+								
+								<c:if test="${shelfItem.mark > 0}">
+							    	<div class="mark">
+								    	<c:forEach begin="1" end="${shelfItem.mark}">
+											<img src="/images/star.gif"/>
+								    	</c:forEach>
+							    	</div>
+						    	</c:if>
+			
+							</li>
+							<li class="movie_actions">
+								<div class="action action_title"><fmt:message key="label.options" /></div>
+									<c:if test="${not empty shelfItem.originalPlot || not empty shelfItem.localizedPlot}">
+										<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;"><fmt:message key="label.plot" /></a></div>
+									</c:if>
+									<c:if test="${not empty shelfItem.review}">
+										<div class="action"><a href="#" onclick="toggleAndMove('movie_review_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;"><fmt:message key="label.review" /></a></div>
+									</c:if>
+									<c:choose>
+									    <c:when test="${empty username || username == pageContext.request.remoteUser}">
+										    <div class="action"><a href="/personalMovie.html?movie=${shelfItem.movie}"><fmt:message key="label.modify" /></a></div>
+									    </c:when>
+									    <c:when test="${not empty username && username != pageContext.request.remoteUser}">
+									    	<c:set var="isInPersonalMovies" value="0" />
+								    		<c:set var="isWished" value="0" />
+									    	<c:forEach var="personalMovieId" items="${personalMoviesIdsAndWishedFlags}">
+									    		<c:if test="${personalMovieId.movie == shelfItem.movie}">
+									    			<c:set var="isInPersonalMovies" value="1" />
+									    			<c:if test="${personalMovieId.wished == 1}">
+									    				<c:set var="isWished" value="1" />
+									    			</c:if>
+									    		</c:if>
+									    	</c:forEach>
+									    	<c:choose>
+						    					<c:when test="${isInPersonalMovies == 0}">
+						    						<div class="action"><a href="/shelfManagement.html?action=add&movie=${shelfItem.movie}"><fmt:message key="label.add.shelf" /></a></div>
+						    						<div class="action"><a href="/wishlistManagement.html?action=wish&movie=${shelfItem.movie}"><fmt:message key="label.add.wishlist" /></a></div>
+						    					</c:when>
+						    					<c:otherwise>
+						    						<div class="action"> 
+						    							<c:if test="${isWished == 0}"> <fmt:message key="label.present.in.shelf" /></c:if>
+										    			<c:if test="${isWished == 1}"> <fmt:message key="label.present.in.wishlist" /></c:if>
+						    						</div>
+										    	</c:otherwise>
+						    				</c:choose>
+									    </c:when>
+									</c:choose>
+							</li>
+							<li class="movie_plot" id="movie_plot_${shelfItem.movie}" style="display: none;">
+								<div class="plot_text">
+									 <c:choose>
+							    		<c:when test="${empty shelfItem.localizedPlot}">
+								    		${shelfItem.originalPlot}
+								    	</c:when>
+								    	<c:otherwise>
+								    		${shelfItem.localizedPlot}
+								    	</c:otherwise>
+							    	</c:choose>
+								</div>
+							</li>
+							<li class="movie_review" id="movie_review_${shelfItem.movie}" style="display: none;">
+								<div class="review_text">
+									${shelfItem.reviewText}
+								</div>
+							</li>
+							
+							<li class="separator">
+							</li>
+						</c:forEach>
+					</ul>
+					
+					<div id="pagination">
+						<div id="pagination_links">
+							<c:forEach begin="0" end="${shelf.itemsSize-1}" varStatus="p">
+								<c:choose>
+									<c:when test="${shelf.currentPage == p.index}">
+										<a href="#" id="${p.index}" style="background-color: #ccc; color: black;">${p.index+1}</a>	
+									</c:when>
+									<c:otherwise>
+										<a href="#" id="${p.index}" onclick="applyFilter('${p.index}');">${p.index+1}</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</c:if>
+	</div>
 </div>
 
 
@@ -650,7 +654,7 @@
 		if(index == 0) {
 			$(up).setStyle({ display: 'none' });
 		}
-		new Effect.Move($(container),{x: 0, y: step*h, duration: 0.3}); return index;
+		new Effect.Move($(container),{x: 0, y: step*h, duration: 0.8, transition: Effect.Transitions.spring}); return index;
 	}
 
 	function dodown(index, pages, step, container, h, down, up) {
@@ -663,7 +667,7 @@
 		} else {
 			$(down).setStyle({ display: 'block' });
 		}
-		new Effect.Move($(container),{x: 0, y: step*-h, duration: 0.3}); return index;
+		new Effect.Move($(container),{x: 0, y: step*-h, duration: 0.8, transition: Effect.Transitions.spring}); return index;
 	}
 	//////// FINE FUNZIONI GENERICHE PER LO SCROLLING ////////
 </script>
@@ -771,25 +775,35 @@
 		orderAttribute = orderAttribute==''?null:orderAttribute;
 		orderCriteria = orderCriteria==''?null:orderCriteria;
 
-		if(director != null) {
-			$('appliedFilters').appear();
-			new Effect.Highlight('appliedFilters', {startcolor: '#4F8CC9',	restorecolor: true});
-			$('appliedFiltersText').innerHTML = 'Stai visualizzando tutti i film ' + (director!=null?'di <b>'+director_text+'</b> <a style="float:right" href="#" onclick="deleteDirectorFilter();">Elimina filtro</a>':'') ;
-		}
+		
 
-		//FIXME FLICKERING!!!
-		new Effect.ScrollTo('movies', {duration: 0.5, offset: -100, afterFinish: function() { filterShelf('${userPublicInfo.username}', director, orderAttribute, orderCriteria, page)}});
+		new Effect.ScrollTo('header', {duration: 0.5, offset: -100, afterFinish: function() { 
+				filterShelf('${userPublicInfo.username}', director, director_text, orderAttribute, orderCriteria, page);
+			}
+		});
 		return false;
 	}
 	
 	
-	function filterShelf(username, director, orderAttribute, orderCriteria, page) {
-		new Effect.BlindUp('movies', {duration: 0.5, afterFinish: function() {
+	function filterShelf(username, director, director_text, orderAttribute, orderCriteria, page) {
+		new Effect.BlindUp('movies_loading', {duration: 0.5, afterFinish: function() {
+			new Effect.BlindDown('movies_loader', {duration: 0.2});
+			
 			ShelfManager.getShelf(username, director, orderAttribute, orderCriteria, page, {
 				callback: function(str) {
-					refreshShelf(str.items);
-					refreshPagination(str.itemsSize, str.currentPage);
-					new Effect.BlindDown('movies', {duration: 0.5});
+							new Effect.DropOut('movies_loader', {duration: 0.2, afterFinish: function() {
+							refreshShelf(str.items);
+							refreshPagination(str.itemsSize, str.currentPage);
+							new Effect.BlindDown('movies_loading', {duration: 0.5});
+
+							if(director != null) {
+								$('appliedFilters').appear();
+								new Effect.Highlight('appliedFilters', {startcolor: '#4F8CC9',	restorecolor: true});
+								$('appliedFiltersText').innerHTML = 'Stai visualizzando tutti i film ' + (director!=null?'di <b>'+director_text+'</b> <a style="float:right" href="#" onclick="deleteDirectorFilter();">Elimina filtro</a>':'') ;
+							}
+								
+						} 
+					});
 				},
 				errorHandler:function(errorString, exception) {
 					alert("Errore - Internazionalizzare" + errorString + " " + exception);

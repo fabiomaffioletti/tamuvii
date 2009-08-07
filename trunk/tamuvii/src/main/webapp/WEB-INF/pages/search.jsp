@@ -81,7 +81,7 @@
 							<li class="movie_actions">
 								<div class="action action_title"><fmt:message key="label.options" /></div>
 									<c:if test="${not empty shelfItem.originalPlot || not empty shelfItem.localizedPlot}">
-										<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_${shelfItem.movie}', 'title_${shelfItem.movie}'); return false;"><fmt:message key="label.plot" /></a></div>
+										<div class="action"><a href="#" onclick="toggleAndMove('movie_plot_${shelfItem.movie}'); return false;"><fmt:message key="label.plot" /></a></div>
 									</c:if>
 									
 									<c:set var="isInPersonalMovies" value="0" />
@@ -152,6 +152,10 @@
 
 
 <script>
+	function toggleAndMove(id) {	
+		new Effect.toggle(id, 'appear', { duration: 0.5});
+	}
+
 	function browse(page) {
 		var filter = $('search').value.replace(",", " ");
 		

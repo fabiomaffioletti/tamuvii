@@ -1,0 +1,9 @@
+Ciao!
+
+${user.username} ti ha invitato ad iscriverti a taMuvii.
+
+Per iscriverti vai qui: ${appURL} e inizia subito a creare la tua videoteca.
+
+Alla presto!
+
+taMuvii

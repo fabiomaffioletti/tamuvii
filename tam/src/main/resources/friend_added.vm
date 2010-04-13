@@ -1,0 +1,9 @@
+Ciao ${user.username},
+
+${first} ti ha iniziato a seguire la tua videoteca e ti ha aggiunto come amico!
+
+Puoi vedere la sua videoteca qui: ${appURL}/${first}/movies/
+
+Alla prossima!
+
+taMuvii

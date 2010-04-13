@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="user">
+
+  <resultMap class="com.tamuvii.model.User" id="UserMap">
+    <result column="id" property="id" />
+    <result column="username" property="username" />
+    <result property="password" column="password"/>
+    <result column="first_name" property="firstName" />
+    <result column="last_name" property="lastName" />
+    <result column="email" property="email" />
+    <result column="date_added" property="dateAdded" />
+    <result column="avatar" property="avatar" />
+    <result column="website_title" property="websiteTitle" />
+    <result column="website_url" property="websiteUrl" />
+    <result column="can_invite" property="canInvite" />
+    <result property="enabled" column="account_enabled"/>
+    <result property="accountExpired" column="account_expired"/>
+    <result property="accountLocked" column="account_locked"/>
+    <result property="credentialsExpired" column="credentials_expired"/>
+  </resultMap>
+  
+  <resultMap class="com.tamuvii.pojo.UserInfo" id="UserInfoMap">
+    <result column="id" property="id" />
+    <result column="username" property="username" />
+    <result column="first_name" property="firstName" />
+    <result column="last_name" property="lastName" />
+    <result column="date_added" property="dateAdded" />
+    <result column="avatar" property="avatar" />
+    <result column="website_title" property="websiteTitle" />
+    <result column="website_url" property="websiteUrl" />
+    <result column="can_invite" property="canInvite" />
+    <result column="username" select="review.getReviewsCountByUsername" property="reviewCount" />
+  </resultMap>
+  
+  <select id="getUserInfo" resultMap="UserInfoMap" parameterClass="java.lang.String">
+	select 		id,
+				username,
+				first_name,
+				last_name,
+				date_added,
+				avatar,
+				website_title,
+				website_url,
+				can_invite
+	from 		user
+	where		username = #username#
+  </select>
+  
+  <select id="getAll" resultMap="UserMap" parameterClass="java.util.Map">
+	select 	u.* 
+	from 	user u
+	<include refid="common.fakeWhere" />
+	<isParameterPresent>
+  		<isNotNull property="filter" prepend="and">
+  			<iterate property="filter" conjunction="and">
+  				(
+  					u.username like concat('%', #filter[]#, '%')
+  				)
+  			</iterate>
+  		</isNotNull>
+  	</isParameterPresent>
+	<include refid="common.limitParameter"/>
+  </select>
+  
+  <select id="getUserByUsername" resultMap="UserMap" parameterClass="java.lang.String">
+	select 	* 
+	from 	user 
+	where 	username = #username#
+  </select>
+  <select id="getUserByEmail" resultMap="UserMap" parameterClass="java.lang.String">
+	select 	* 
+	from 	user 
+	where 	email = #email#
+  </select>
+  <select id="getUserById" resultMap="UserMap" parameterClass="java.lang.Long">
+	select 	* 
+	from 	user 
+	where 	id = #id#
+  </select>
+  <select id="getUserPassword" resultClass="java.lang.String" parameterClass="java.lang.String">
+	select 	password 
+	from 	user
+	where	username = #username#
+  </select>
+  
+  <insert id="addUser" parameterClass="com.tamuvii.model.User">
+    insert into
+    user (username, password, first_name, last_name, email, date_added, account_enabled, account_expired, account_locked, credentials_expired)
+    values (#username#, #password#, #firstName#, #lastName#, #email#, #dateAdded#, #enabled#, #accountExpired#, #accountLocked#, #credentialsExpired#)
+    <selectKey resultClass="java.lang.Long" keyProperty="id" type="post">
+        select last_insert_id();
+    </selectKey>
+  </insert>
+  <update id="updateUser" parameterClass="com.tamuvii.model.User">
+    update user SET
+        username = #username#,
+        password = #password#,
+        first_name = #firstName#,
+        last_name = #lastName#,
+        email = #email#,
+        website_title = #websiteTitle#,
+        website_url = #websiteUrl#,
+        can_invite = #canInvite#,
+        account_enabled = #enabled#,
+        account_expired = #accountExpired#,
+        account_locked = #accountLocked#,
+        credentials_expired = #credentialsExpired#
+    where id = #id#
+  </update>
+  <update id="updateUserAvatar" parameterClass="com.tamuvii.model.User">
+    update user SET
+        avatar = #avatar#
+    where id = #id#
+  </update>
+  <update id="enableUser" parameterClass="java.lang.Long">
+  	update user set account_enabled = 1 where id = #id#
+  </update>
+  <delete id="deleteUser" parameterClass="java.lang.Long">
+  	delete from user where id = #id#
+  </delete>
+  
+  <select id="getUserRoles" resultClass="com.tamuvii.model.Role" parameterClass="java.lang.Long">
+	select 	r.id, 
+			r.name, 
+			r.description 
+	from 	role r inner join user_role ur
+			on r.id = ur.role
+	where  	ur.user = #id#
+  </select>
+  <insert id="addUserRole" parameterClass="java.util.Map">
+    insert into user_role (user, role) values (#userId#, #roleId#)
+  </insert>
+  <delete id="deleteUserRoles" parameterClass="java.lang.Long">
+    delete from user_role 
+    where 		user = #id#
+  </delete>
+  
+  
+  <!-- RELATIONSHIPS -->
+  <select id="getFriends" resultMap="UserInfoMap" parameterClass="java.util.Map">
+  	select	u.id,
+			u.username,
+			u.first_name,
+			u.last_name,
+			u.date_added,
+			u.avatar,
+			website_title,
+			website_url,
+			can_invite
+	from 	user_user uu inner join user u
+			on uu.second = u.id
+	where	uu.first = (select id from user where username = <isParameterPresent><isNotEmpty property="username">#username#</isNotEmpty></isParameterPresent>)
+			and friend = 1
+			<isParameterPresent>
+		  		<isNotNull property="filter" prepend="and">
+		  			<iterate property="filter" conjunction="and">
+		  				(
+		  					u.username like concat('%', #filter[]#, '%')
+		  				)
+		  			</iterate>
+		  		</isNotNull>
+		  	</isParameterPresent>
+	<include refid="common.orderParameter"/>
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getNearbies" resultMap="UserInfoMap" parameterClass="java.util.Map">
+  	select	u.id,
+			u.username,
+			u.first_name,
+			u.last_name,
+			u.date_added,
+			u.avatar,
+			website_title,
+			website_url,
+			can_invite
+	from 	user_user uu inner join user u
+			on uu.second = u.id
+	where	uu.first = (select id from user where username = <isParameterPresent><isNotEmpty property="username">#username#</isNotEmpty></isParameterPresent>)
+			and friend = 0
+			<isParameterPresent>
+		  		<isNotNull property="filter" prepend="and">
+		  			<iterate property="filter" conjunction="and">
+		  				(
+		  					u.username like concat('%', #filter[]#, '%')
+		  				)
+		  			</iterate>
+		  		</isNotNull>
+		  	</isParameterPresent>
+	<include refid="common.orderParameter"/>
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getFriendsCount" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+  	select	count(*)
+	from 	user_user uu inner join user u
+			on uu.second = u.id
+	where	uu.first = (select id from user where username = <isParameterPresent><isNotEmpty property="username">#username#</isNotEmpty></isParameterPresent>)
+			and friend = 1
+			<isParameterPresent>
+		  		<isNotNull property="filter" prepend="and">
+		  			<iterate property="filter" conjunction="and">
+		  				(
+		  					u.username like concat('%', #filter[]#, '%')
+		  				)
+		  			</iterate>
+		  		</isNotNull>
+		  	</isParameterPresent>
+  </select>
+  <select id="getNearbiesCount" resultClass="java.lang.Integer" parameterClass="java.util.Map">
+  	select	count(*)
+	from 	user_user uu inner join user u
+			on uu.second = u.id
+	where	uu.first = (select id from user where username = <isParameterPresent><isNotEmpty property="username">#username#</isNotEmpty></isParameterPresent>)
+			and friend = 0
+			<isParameterPresent>
+		  		<isNotNull property="filter" prepend="and">
+		  			<iterate property="filter" conjunction="and">
+		  				(
+		  					u.username like concat('%', #filter[]#, '%')
+		  				)
+		  			</iterate>
+		  		</isNotNull>
+		  	</isParameterPresent>
+  </select>
+  
+  
+  
+  <select id="getRelationship" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  	select 	friend 
+  	from 	user_user 
+  	where 	first = (select id from user where username = #first#) 
+  		and second = (select id from user where username = #second#)
+  </select>
+  <insert id="addFriend" parameterClass="java.util.Map">
+  	insert into user_user (first, second, friend, date_added) values (
+  		(select id from user where username = #first#),
+		(select id from user where username = #second#),
+		1,
+		#date_added#
+	)
+  </insert>
+  <insert id="addNearby" parameterClass="java.util.Map">
+  	insert into user_user (first, second, friend, date_added) values (
+  		(select id from user where username = #first#),
+		(select id from user where username = #second#),
+		0,
+		#date_added#
+	)
+  </insert>
+  <update id="changeToFriend" parameterClass="java.util.Map">
+  	update 	user_user set friend = 1 
+  	where 	first = (select id from user where username = #first#) 
+  			and second =  (select id from user where username = #second#)
+  </update>
+  <update id="changeToNearby" parameterClass="java.util.Map">
+  	update 	user_user set friend = 0 
+  	where 	first = (select id from user where username = #first#) 
+  			and second =  (select id from user where username = #second#)
+  </update>
+  <delete id="deleteRelationship" parameterClass="java.util.Map">
+  	delete	from user_user
+	where 	first = (select id from user where username = #first#)
+			and	second = (select id from user where username = #second#)
+  </delete>
+  
+  
+  <select id="getLastRegistered" resultMap="UserInfoMap" parameterClass="java.lang.Integer">
+  	select	u.id,
+			u.username,
+			u.first_name,
+			u.last_name,
+			u.date_added,
+			u.avatar,
+			website_title,
+			website_url,
+			can_invite
+	from 	user u
+	order by date_added desc
+	limit 0, #num#
+  </select>
+  
+  <select id="getUsersByMovie" parameterClass="java.util.Map" resultMap="UserInfoMap">
+  	select	u.id,
+			u.username,
+			u.first_name,
+			u.last_name,
+			u.date_added,
+			u.avatar,
+			website_title,
+			website_url,
+			can_invite
+	from 	user u inner join user_movie um
+			on u.id = um.user
+	where 	um.movie = #movie#
+	order 	by rand()
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getUsersByMovieCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  	select	count(*)
+	from 	user u inner join user_movie um
+			on u.id = um.user
+	where 	um.movie = #movie#
+  </select>
+  <select id="getFriendsByMovie" parameterClass="java.util.Map" resultMap="UserInfoMap">
+  	select	u.id,
+			u.username,
+			u.first_name,
+			u.last_name,
+			u.date_added,
+			u.avatar,
+			website_title,
+			website_url,
+			can_invite
+	from 	user_user uu inner join user u
+			on uu.second = u.id inner join user_movie um
+			on um.user = u.id
+	where	uu.first = (select id from user where username = <isParameterPresent><isNotEmpty property="username">#username#</isNotEmpty></isParameterPresent>)
+			and friend = 1 and movie = #movie#
+	order by rand()
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getFriendsByMovieCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  	select	count(*)
+	from 	user_user uu inner join user u
+			on uu.second = u.id inner join user_movie um
+			on um.user = u.id
+	where	uu.first = (select id from user where username = <isParameterPresent><isNotEmpty property="username">#username#</isNotEmpty></isParameterPresent>)
+			and friend = 1 and movie = #movie#
+  </select>
+  <select id="getNearbiesByMovie" parameterClass="java.util.Map" resultMap="UserInfoMap">
+  	select	u.id,
+			u.username,
+			u.first_name,
+			u.last_name,
+			u.date_added,
+			u.avatar,
+			website_title,
+			website_url,
+			can_invite
+	from 	user_user uu inner join user u
+			on uu.second = u.id inner join user_movie um
+			on um.user = u.id
+	where	uu.first = (select id from user where username = <isParameterPresent><isNotEmpty property="username">#username#</isNotEmpty></isParameterPresent>)
+			and friend = 0 and movie = #movie#
+	order by rand()
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getNearbiesByMovieCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  	select	count(*)
+	from 	user_user uu inner join user u
+			on uu.second = u.id inner join user_movie um
+			on um.user = u.id
+	where	uu.first = (select id from user where username = <isParameterPresent><isNotEmpty property="username">#username#</isNotEmpty></isParameterPresent>)
+			and friend = 0 and movie = #movie#
+  </select>
+  
+  
+</sqlMap>

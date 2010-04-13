@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="opinion" >
+  
+  <resultMap id="OpinionMap" class="com.tamuvii.model.Opinion" >
+    <result column="id" property="id" />
+    <result column="user" property="user" />
+    <result column="reviewer" property="reviewer" />
+    <result column="movie" property="movie" />
+    <result column="text" property="text" />
+    <result column="date_added" property="dateAdded" />
+  </resultMap>
+  
+  <select id="getOpinionsByReview" parameterClass="java.util.Map" resultMap="OpinionMap">
+  	select *
+	from opinion
+	where reviewer = #reviewer# and movie = #movie#
+	<include refid="common.limitParameter"/>
+  </select>
+  
+  <select id="getOpinionById" parameterClass="java.lang.Long" resultMap="OpinionMap">
+  	select *
+	from opinion
+	where id = #id#
+  </select>
+  
+  <select id="isOpinionWrittenByUser" parameterClass="java.util.Map" resultMap="OpinionMap">
+  	select *
+	from opinion
+	where user = (select id from user where username = #username#) and reviewer = #reviewer# and movie = #movie#
+	<include refid="common.limitParameter"/>
+  </select>
+  
+  <insert id="addOpinion" parameterClass="com.tamuvii.model.Opinion">
+  	insert into opinion (user, reviewer, movie, text, date_added)
+	values (#user#, #reviewer#, #movie#, #text#, #dateAdded#)
+  </insert>
+  
+  <update id="updateOpinion" parameterClass="com.tamuvii.model.Opinion">
+  	update opinion set
+        text = #text#
+    where id = #id#
+  </update>
+  
+  <delete id="deleteOpinion" parameterClass="com.tamuvii.model.Opinion">
+  	delete from	opinion
+    where 		id = #id#
+  </delete>
+    
+</sqlMap>

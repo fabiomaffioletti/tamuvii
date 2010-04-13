@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="user_movie" >
+  
+  <resultMap id="UserMovieMap" class="com.tamuvii.model.UserMovie" >
+    <result column="user" property="user" />
+    <result column="movie" property="movie" />
+	<result column="date_added" property="dateAdded" />
+	<result column="date_viewed" property="dateViewed" />
+    <result column="mark" property="mark" />
+    <result column="wishlist" property="wishlist"/>
+  </resultMap>
+  
+  <resultMap id="ShelfItemMap" class="com.tamuvii.pojo.ShelfItem" >
+    <!-- user_movie -->
+    <result column="umUser" property="userMovie.user" />
+    <result column="umMovie" property="userMovie.movie" />
+	<result column="umDateAdded" property="userMovie.dateAdded" />
+	<result column="umDateViewed" property="userMovie.dateViewed" />
+    <result column="umMark" property="userMovie.mark" />
+    <result column="umWishlist" property="userMovie.wishlist"/>
+    <!-- movie -->
+    <result column="mId" property="movie.id" jdbcType="INTEGER" />
+    <result column="mTitle" property="movie.title" jdbcType="VARCHAR" />
+    <result column="mPlot" property="movie.plot" jdbcType="VARCHAR" />
+    <result column="mDuration" property="movie.duration" jdbcType="INTEGER" />
+    <result column="mImage" property="movie.image" jdbcType="VARCHAR" />
+    <result column="mYear" property="movie.year" jdbcType="INTEGER" />
+    <result column="mDirector" property="movie.director" jdbcType="INTEGER" />
+    <!-- director -->
+    <result column="dId" property="director.id" jdbcType="INTEGER" />
+    <result column="dName" property="director.name" jdbcType="VARCHAR" />
+    <result column="dSurname" property="director.surname" jdbcType="VARCHAR" />
+    <result column="dNickname" property="director.nickname" jdbcType="VARCHAR" />
+    <!-- review -->
+    <result column="rUser" property="review.user" />
+    <result column="rMovie" property="review.movie" />
+    <result column="rTitle" property="review.title" />
+    <result column="rText" property="review.text" />
+    <result column="rPositive" property="review.positive" />
+    <result column="rNegative" property="review.negative" />
+    <result column="rDateAdded" property="review.dateAdded" />
+  </resultMap>
+  
+  <resultMap id="MovieItemBelongingMap" class="com.tamuvii.pojo.MovieItemBelonging">
+  	<result property="movie" column="movie"/>
+  	<result property="wishlist" column="wishlist"/>
+  </resultMap>
+  
+  <select id="getAll" parameterClass="java.util.Map" resultMap="ShelfItemMap">
+  	select	um.user as umUser,
+			um.movie as umMovie,
+			um.date_added as umDateAdded,
+			um.date_viewed as umDateViewed,
+			um.mark as umMark,
+			um.wishlist as umWishlist,
+			m.id as mId,
+			m.title as mTitle,
+			m.plot as mPlot,
+			m.duration as mDuration,
+			m.image as mImage,
+			m.year as mYear,
+			m.director as mDirector,
+			d.id as dId,
+			d.name as dName,
+			d.surname as dSurname,
+			d.nickname as dNickname,
+			r.user as rUser,
+			r.movie as rMovie,
+			r.title as rTitle,
+			r.text as rText,
+			r.positive as rPositive,
+			r.negative as rNegative,
+			r.date_added as rDateAdded
+  	from 	user_movie um 
+  				inner join movie m on um.movie = m.id 
+  				inner join director d on d.id = m.director
+  				left join review r on r.user = um.user and r.movie = um.movie
+	where 	um.user = (select id from user where username = #username#)
+	order by umDateAdded desc
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getAllShelf" parameterClass="java.util.Map" resultMap="ShelfItemMap">
+  	select	um.user as umUser,
+			um.movie as umMovie,
+			um.date_added as umDateAdded,
+			um.date_viewed as umDateViewed,
+			um.mark as umMark,
+			um.wishlist as umWishlist,
+			m.id as mId,
+			m.title as mTitle,
+			m.plot as mPlot,
+			m.duration as mDuration,
+			m.image as mImage,
+			m.year as mYear,
+			m.director as mDirector,
+			d.id as dId,
+			d.name as dName,
+			d.surname as dSurname,
+			d.nickname as dNickname,
+			r.user as rUser,
+			r.movie as rMovie,
+			r.title as rTitle,
+			r.text as rText,
+			r.positive as rPositive,
+			r.negative as rNegative,
+			r.date_added as rDateAdded
+  	from 	user_movie um 
+  				inner join movie m on um.movie = m.id 
+  				inner join director d on d.id = m.director
+  				left join review r on r.user = um.user and r.movie = um.movie
+	where 	um.user = (select id from user where username = #username#) and wishlist = 0
+	<isParameterPresent>
+  		<isNotNull property="filter" prepend="and">
+  			<iterate property="filter" conjunction="and">
+  				(
+  					m.title like concat('%', #filter[]#, '%') or concat(d.name, d.surname) like concat('%', #filter[]#, '%')
+  				)
+  			</iterate>
+  		</isNotNull>
+  	</isParameterPresent>
+	order by umDateAdded desc
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getAllShelfCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  	select	count(*)
+  	from 	user_movie um <isNotNull property="filter">inner join movie m on um.movie = m.id inner join director d on m.director = d.id</isNotNull>
+	where 	um.user = (select id from user where username = #username#) and wishlist = 0
+	<isParameterPresent>
+  		<isNotNull property="filter" prepend="and">
+  			<iterate property="filter" conjunction="and">
+  				(
+  					m.title like concat('%', #filter[]#, '%') or concat(d.name, d.surname) like concat('%', #filter[]#, '%')
+  				)
+  			</iterate>
+  		</isNotNull>
+  	</isParameterPresent>
+  </select>
+  <select id="getAllWishlist" parameterClass="java.util.Map" resultMap="ShelfItemMap">
+  	select	um.user as umUser,
+			um.movie as umMovie,
+			um.date_added as umDateAdded,
+			um.date_viewed as umDateViewed,
+			um.mark as umMark,
+			um.wishlist as umWishlist,
+			m.id as mId,
+			m.title as mTitle,
+			m.plot as mPlot,
+			m.duration as mDuration,
+			m.image as mImage,
+			m.year as mYear,
+			m.director as mDirector,
+			d.id as dId,
+			d.name as dName,
+			d.surname as dSurname,
+			d.nickname as dNickname,
+			r.user as rUser,
+			r.movie as rMovie,
+			r.title as rTitle,
+			r.text as rText,
+			r.positive as rPositive,
+			r.negative as rNegative,
+			r.date_added as rDateAdded
+  	from 	user_movie um 
+  				inner join movie m on um.movie = m.id 
+  				inner join director d on d.id = m.director
+  				left join review r on r.user = um.user and r.movie = um.movie
+	where 	um.user = (select id from user where username = #username#) and wishlist = 1
+	<isParameterPresent>
+  		<isNotNull property="filter" prepend="and">
+  			<iterate property="filter" conjunction="and">
+  				(
+  					m.title like concat('%', #filter[]#, '%') or concat(d.name, d.surname) like concat('%', #filter[]#, '%')
+  				)
+  			</iterate>
+  		</isNotNull>
+  	</isParameterPresent>
+	order by umDateAdded desc
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getAllWishlistCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  	select	count(*)
+  	from 	user_movie um <isNotNull property="filter">inner join movie m on um.movie = m.id inner join director d on m.director = d.id</isNotNull>
+	where 	um.user = (select id from user where username = #username#) and wishlist = 1
+	<isParameterPresent>
+  		<isNotNull property="filter" prepend="and">
+  			<iterate property="filter" conjunction="and">
+  				(
+  					m.title like concat('%', #filter[]#, '%') or concat(d.name, d.surname) like concat('%', #filter[]#, '%')
+  				)
+  			</iterate>
+  		</isNotNull>
+  	</isParameterPresent>
+  </select>
+  <select id="getUserMovieByMovieId" parameterClass="java.util.Map" resultMap="ShelfItemMap">
+  	select	um.user as umUser,
+			um.movie as umMovie,
+			um.date_added as umDateAdded,
+			um.date_viewed as umDateViewed,
+			um.mark as umMark,
+			um.wishlist as umWishlist,
+			m.id as mId,
+			m.title as mTitle,
+			m.plot as mPlot,
+			m.duration as mDuration,
+			m.image as mImage,
+			m.year as mYear,
+			m.director as mDirector,
+			d.id as dId,
+			d.name as dName,
+			d.surname as dSurname,
+			d.nickname as dNickname,
+			r.user as rUser,
+			r.movie as rMovie,
+			r.title as rTitle,
+			r.text as rText,
+			r.positive as rPositive,
+			r.negative as rNegative,
+			r.date_added as rDateAdded
+  	from 	user_movie um 
+  				inner join movie m on um.movie = m.id 
+  				inner join director d on d.id = m.director
+  				left join review r on r.user = um.user and r.movie = um.movie
+	where 	um.user = (select id from user where username = #username#) and um.movie = #movie#
+  </select>
+  
+  
+  <select id="getShelfItemBelonging" parameterClass="java.util.Map" resultMap="MovieItemBelongingMap">
+  	select 	um1.movie, um1.wishlist
+	from 	user_movie um1 inner join user_movie um2 on um1.movie = um2.movie
+	where 	um1.user = (select id from user where username = #first#)
+			and um2.user = (select id from user where username = #second#) 
+			and um2.movie in (
+				<iterate property="items" conjunction=",">
+					#items[].movie.id#
+				</iterate>
+			)
+  </select>
+  <select id="getMovieItemBelonging" parameterClass="java.util.Map" resultMap="MovieItemBelongingMap">
+  	select 	um1.movie, um1.wishlist
+	from 	user_movie um1 inner join movie m on m.id = um1.movie
+	where 	um1.user = (select id from user where username = #username#)
+			and m.id in (
+				<iterate property="items" conjunction=",">
+					#items[].movie.id#
+				</iterate>
+			)
+  </select>
+  <select id="getSingleMovieItemBelonging" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  	select 	um1.wishlist
+	from 	user_movie um1
+	where 	um1.user = (select id from user where username = #username#)
+			and um1.movie = #movie#
+  </select>
+  
+  <update id="moveToShelf" parameterClass="java.util.Map">
+	  update user_movie set
+	    wishlist = 0
+	  where user = (select id from user where username = #username#) and movie = #movie#
+  </update>
+  
+  
+  <insert id="addUserMovie" parameterClass="com.tamuvii.model.UserMovie">
+  	insert into user_movie (user, movie, date_added, mark, wishlist)
+	values (#user#, #movie#, #dateAdded#, #mark#, #wishlist#)
+  </insert>
+  <update id="updateUserMovie" parameterClass="com.tamuvii.model.UserMovie">
+	  update user_movie set
+	    mark = #mark#,
+	    date_viewed = #dateViewed#,
+	    wishlist = #wishlist#
+	  where user = #user# and movie = #movie#
+  </update>
+  <delete id="deleteUserMovieById" parameterClass="java.util.Map">
+  	delete from 	user_movie
+  	where			user = (select id from user where username = #username#) and movie = #movie#
+  </delete>
+  
+</sqlMap>

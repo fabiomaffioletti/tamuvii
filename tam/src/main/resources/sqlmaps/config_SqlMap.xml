@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="config" >
+  
+  <resultMap id="ConfigMap" class="com.tamuvii.model.Config" >
+    <result column="id" property="id" />
+    <result column="config_key" property="configKey" />
+    <result column="config_value" property="configValue" />
+  </resultMap>
+  
+  <select id="getAll" resultMap="ConfigMap">
+  	select	*
+  	from	config
+  </select>
+  
+  <select id="getStringValueById" parameterClass="java.lang.Long" resultClass="java.lang.String">
+  	select	config_value
+  	from	config
+  	where	id = #id#
+  </select>
+  
+  <select id="getStringValueByKey" parameterClass="java.lang.String" resultClass="java.lang.String">
+  	select	config_value
+  	from	config
+  	where	config_key = #key#
+  </select>
+  
+  <select id="getIntegerValueById" parameterClass="java.lang.Long" resultClass="java.lang.Integer">
+  	select	config_value
+  	from	config
+  	where	id = #id#
+  </select>
+  
+  <select id="getIntegerValueByKey" parameterClass="java.lang.String" resultClass="java.lang.Integer">
+  	select	config_value
+  	from	config
+  	where	config_key = #key#
+  </select>
+  
+</sqlMap>

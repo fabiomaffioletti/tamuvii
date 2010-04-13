@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.tamuvii</groupId>
+  <artifactId>tam</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>tam</name>
+  <url>http://maven.apache.org</url>
+
+	<build>
+
+		<defaultGoal>install</defaultGoal>
+
+		<plugins>
+		
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<additionalProjectnatures>
+						<projectnature>org.eclipse.wst.common.project.facet.core.builder</projectnature>
+					</additionalProjectnatures>
+					<additionalProjectnatures>
+                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                    </additionalProjectnatures>
+					<additionalBuildcommands>
+						<buildcommand>org.eclipse.wst.common.project.facet.core.builder</buildcommand>
+					</additionalBuildcommands>
+					<additionalBuildcommands>
+                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+                    </additionalBuildcommands>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+					<wtpversion>1.5</wtpversion>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>1.3</version>
+                <configuration>
+                    <driver>${jdbc.driverClassName}</driver>
+                    <username>${jdbc.username}</username>
+                    <password>${jdbc.password}</password>
+                    <url>${jdbc.url}</url>
+                    <autocommit>true</autocommit>
+                    <skip>${skip.database.creation}</skip>
+                </configuration>
+                <executions>                    
+                    <execution>
+                        <id>create-data</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <autocommit>true</autocommit>
+                            <srcFiles>
+                                <srcFile>src/test/resources/tam-schema.sql</srcFile>
+                            </srcFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>${jdbc.groupId}</groupId>
+                        <artifactId>${jdbc.artifactId}</artifactId>
+                        <version>${jdbc.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>dbunit-maven-plugin</artifactId>
+                <version>1.0-beta-1</version>
+                <configuration>
+                    <dataTypeFactoryName>${dbunit.dataTypeFactoryName}</dataTypeFactoryName>
+                    <driver>${jdbc.driverClassName}</driver>
+                    <username>${jdbc.username}</username>
+                    <password>${jdbc.password}</password>
+                    <url>${jdbc.url}</url>
+                    <src>src/test/resources/sample-data.xml</src>
+                    <type>${dbunit.operation.type}</type>
+                    <schema>tam</schema>
+                    <skip>${skip.insert.data}</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>operation</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <!-- Runs before integration tests and jetty:run-war -->
+                        <id>test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>operation</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>${jdbc.groupId}</groupId>
+                        <artifactId>${jdbc.artifactId}</artifactId>
+                        <version>${jdbc.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.22</version>
+				<configuration>
+					<contextPath>/</contextPath>
+					<scanIntervalSeconds>3</scanIntervalSeconds>
+					<contextHandlers>
+			            <!-- setup a simple webapp to serve our images -->
+			            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
+			                <contextPath>/user_images</contextPath>
+			                <resourceBase>${context.user.images}</resourceBase>
+			            </contextHandler>
+			            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
+			                <contextPath>/movie_images/t</contextPath>
+			                <resourceBase>${context.movie.images.t}</resourceBase>
+			            </contextHandler>
+			            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
+			                <contextPath>/movie_images/m</contextPath>
+			                <resourceBase>${context.movie.images.m}</resourceBase>
+			            </contextHandler>
+			            <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext">
+			                <contextPath>/movie_images/b</contextPath>
+			                <resourceBase>${context.movie.images.b}</resourceBase>
+			            </contextHandler>
+					</contextHandlers>
+					<scanTargetPatterns>
+						<scanTargetPattern>
+							<directory>src/main/webapp/WEB-INF</directory>
+							<excludes>
+								<exclude>**/*.jsp</exclude>
+							</excludes>
+							<includes>
+								<include>**/*.properties</include>
+								<include>**/*.xml</include>
+							</includes>
+						</scanTargetPattern>
+					</scanTargetPatterns>
+				</configuration>
+			</plugin>
+            
+		</plugins>
+
+		<resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                	<exclude>applicationContext-resources.xml</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>applicationContext-resources.xml</include>
+                </includes>
+            </resource>
+        </resources>
+		
+		<testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+            <testResource>
+                <directory>src/main/webapp</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </testResource>
+        </testResources>		
+	</build>
+
+
+	<dependencies>
+		<dependency>
+            <groupId>${jdbc.groupId}</groupId>
+            <artifactId>${jdbc.artifactId}</artifactId>
+            <version>${jdbc.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${commons.dbcp.version}</version>
+        </dependency>
+	
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
+		
+		<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+		
+		<dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons.beanutils.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons.collections.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons.fileupload.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons.lang.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${javamail.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.ibatis</groupId>
+            <artifactId>ibatis-sqlmap</artifactId>
+            <version>${ibatis.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>displaytag</groupId>
+            <artifactId>displaytag</artifactId>
+            <version>${displaytag.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>sitemesh</artifactId>
+            <version>${sitemesh.version}</version>
+        </dependency>
+        
+        <dependency>
+		    <groupId>org.directwebremoting</groupId>
+		    <artifactId>dwr</artifactId>
+		    <version>${dwr.version}</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core-tiger</artifactId>
+            <version>${spring.security.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-core</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-support</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-web</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-support</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springmodules</groupId>
+            <artifactId>spring-modules-validation</artifactId>
+            <version>${springmodules.validation.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-support</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>xml-apis</artifactId>
+                    <groupId>xml-apis</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>struts-menu</groupId>
+            <artifactId>struts-menu</artifactId>
+            <version>${struts.menu.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>xml-apis</artifactId>
+                    <groupId>xml-apis</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.tuckey</groupId>
+            <artifactId>urlrewritefilter</artifactId>
+            <version>${urlrewrite.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>ant</artifactId>
+                    <groupId>ant</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+	</dependencies>
+	
+	
+	
+	
+	<properties>
+		<jdbc.groupId>mysql</jdbc.groupId>
+		<!-- DATABASE -->
+		<dbunit.dataTypeFactoryName>org.dbunit.dataset.datatype.DefaultDataTypeFactory</dbunit.dataTypeFactoryName>
+		<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+        <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
+        <jdbc.version>5.0.5</jdbc.version>
+        <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+        <jdbc.url>jdbc:mysql://localhost:3306/tam?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf-8</jdbc.url>
+        <jdbc.username>root</jdbc.username>
+        <jdbc.password>1nf1n1tel00p</jdbc.password>
+        <skip.database.creation>true</skip.database.creation>
+        <skip.insert.data>false</skip.insert.data>
+        
+		<!-- LOG4J -->
+        <log4j.log.path>C:/temp/tam.log</log4j.log.path>
+		<log4j.appenders>&lt;appender-ref ref="CONSOLE"/&gt;&lt;appender-ref ref="EMAIL"/&gt;</log4j.appenders>
+		<log4j.mail.appender.from>tam@tamuvii.it</log4j.mail.appender.from>
+		<log4j.mail.appender.to>fabio.maffioletti@gmail.com</log4j.mail.appender.to>
+		<log4j.mail.appender.subject>[SMTPAppender] tam Error</log4j.mail.appender.subject>
+		
+		<!-- EMAIL -->
+		<mail.from>no-reply@tamuvii.com</mail.from>
+		<mail.host>localhost</mail.host>
+		
+		<listeners.email.class></listeners.email.class>
+		<listeners.email.events>REGISTRATION_SUCCESS,FRIEND_ADDED,NEARBY_ADDED,RELATIONSHIP_CHANGED,REVIEW_VOTED,OPINION_WROTE,COMMUNICATION,INVITATION</listeners.email.events>
+		
+		<!-- Eventi disponibili
+
+	 			REGISTRATION_SUCCESS
+	 			FRIEND_ADDED
+	 			NEARBY_ADDED
+	 			RELATIONSHIP_CHANGED
+	 			REVIEW_VOTED
+	 			OPINION_WROTE
+	 			COMMUNICATION
+	 			INVITATION
+ 		-->
+	
+		<context.user.images>D:/tam/user_images</context.user.images>
+		<context.movie.images.t>D:/tam/movie_images/t</context.movie.images.t>
+		<context.movie.images.m>D:/tam/movie_images/m</context.movie.images.m>
+		<context.movie.images.b>D:/tam/movie_images/b</context.movie.images.b>
+	
+	
+	
+		<junit.version>4.7</junit.version>
+		<log4j.version>1.2.13</log4j.version>
+		<jstl.version>1.1.2</jstl.version>
+		<jsp.version>2.0</jsp.version>
+        <servlet.version>2.4</servlet.version>
+        <spring.version>2.5.4</spring.version>
+        <commons.beanutils.version>1.7.0</commons.beanutils.version>
+        <commons.fileupload.version>1.2.1</commons.fileupload.version>
+        <commons.io.version>1.3.2</commons.io.version>
+        <commons.lang.version>2.4</commons.lang.version>
+        <javamail.version>1.4.1</javamail.version>
+        <ibatis.version>2.3.0</ibatis.version>
+        <commons.dbcp.version>1.2.1</commons.dbcp.version>
+        <displaytag.version>1.2</displaytag.version>
+        <commons.collections.version>3.2</commons.collections.version>
+        <sitemesh.version>2.2.1</sitemesh.version>
+        <dwr.version>3.0.M1</dwr.version>
+        <spring.security.version>2.0.1</spring.security.version>
+        <springmodules.validation.version>0.8</springmodules.validation.version>
+        <struts.menu.version>2.4.3</struts.menu.version>
+        <urlrewrite.version>3.0.4</urlrewrite.version>
+        
+	</properties>
+  
+</project>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="genre" >
+  
+  <resultMap id="GenreMap" class="com.tamuvii.model.Genre" >
+    <result column="name" property="name" />
+  </resultMap>
+  
+  <select id="getAll" resultMap="GenreMap">
+  	select	*
+  	from	genre
+  </select>
+  
+  <select id="getMovieGenres" parameterClass="java.lang.Long" resultMap="GenreMap">
+  	select	g.*
+	from	movie_genre mg inner join genre g on mg.genre = g.name
+	where mg.movie = #id#
+  </select>
+  
+  <select id="getGenreByName" resultMap="GenreMap">
+  	select	*
+  	from	genre
+  	where	name = #name#
+  </select>
+  
+</sqlMap>

@@ -1,0 +1,17 @@
+= Getting started =
+
+== Technology stack ==
+
+  * Maven 2
+  * Spring + Spring MVC
+  * iBatis
+  * MySQL 5.0
+
+== Mail server ==
+  * Apache James
+
+== IDE == 
+  * Eclipse
+
+== SVN ==
+  * Subclipse

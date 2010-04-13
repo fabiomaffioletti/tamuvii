@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="director" >
+  
+  <resultMap id="DirectorMap" class="com.tamuvii.model.Director" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="surname" property="surname" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getAll" parameterClass="java.util.Map" resultMap="DirectorMap">
+  	select	*
+  	from	director
+  	<include refid="common.fakeWhere" />
+  	<isParameterPresent>
+  		<isNotNull property="filter" prepend="and">
+  			<iterate property="filter" conjunction="and">
+  				(
+  					concat(name, surname) like concat('%', #filter[]#, '%')
+  				)
+  			</iterate>
+  		</isNotNull>
+  	</isParameterPresent>
+  	<include refid="common.orderParameter"/>
+	<include refid="common.limitParameter"/>
+  </select>
+  
+  <select id="getDirectorById" parameterClass="java.lang.Long" resultMap="DirectorMap">
+  	select	*
+  	from 	director 
+  	where 	id = #id#
+  </select>
+  
+  <insert id="addDirector" parameterClass="com.tamuvii.model.Director">
+  	insert into 	director (name, surname, nickname)
+	values 			(#name#, #surname#, #nickname#)
+	<selectKey resultClass="java.lang.Long" keyProperty="id" type="post">
+        select last_insert_id();
+    </selectKey>
+  </insert>
+  
+  <update id="updateDirector" parameterClass="com.tamuvii.model.Director">
+	  update director set
+		name = #name#,
+	    surname = #surname#,
+	    nickname = #nickname#
+	  where id = #id#
+  </update>
+  
+  <delete id="deleteDirectorById" parameterClass="java.lang.Long">
+  	delete from 	director
+  	where			id = #id#	
+  </delete>
+  
+</sqlMap>

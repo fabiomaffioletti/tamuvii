@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="movie" >
+  
+  <resultMap id="MovieMap" class="com.tamuvii.model.Movie" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="plot" property="plot" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="director" property="director" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="MovieItemMap" class="com.tamuvii.pojo.MovieItem" >
+  	<!-- movie -->
+    <result column="mId" property="movie.id" jdbcType="INTEGER" />
+    <result column="mTitle" property="movie.title" jdbcType="VARCHAR" />
+    <result column="mPlot" property="movie.plot" jdbcType="VARCHAR" />
+    <result column="mDuration" property="movie.duration" jdbcType="INTEGER" />
+    <result column="mImage" property="movie.image" jdbcType="VARCHAR" />
+    <result column="mYear" property="movie.year" jdbcType="INTEGER" />
+    <result column="mDirector" property="movie.director" jdbcType="INTEGER" />
+    <!-- director -->
+    <result column="dId" property="director.id" jdbcType="INTEGER" />
+    <result column="dName" property="director.name" jdbcType="VARCHAR" />
+    <result column="dSurname" property="director.surname" jdbcType="VARCHAR" />
+    <result column="dNickname" property="director.nickname" jdbcType="VARCHAR" />
+    <!-- other -->
+    <result column="avgMark" property="avgMark" />
+    <result column="userCount" property="userCount" />
+    <result column="reviewCount" property="reviewCount" />
+  </resultMap>
+  
+  <resultMap id="MovieItemMarksMap" class="com.tamuvii.pojo.MovieItemMark">
+  	<result property="mark" column="mark"/>
+  	<result property="numMarks" column="numMarks"/>
+  </resultMap>
+  
+  <select id="getLastAdded" resultMap="MovieItemMap" parameterClass="java.lang.Integer">
+  	select		m.id as mId,
+				m.title as mTitle,
+				m.plot as mPlot,
+				m.duration as mDuration,
+				m.image as mImage,
+				m.year as mYear,
+				m.director as mDirector,
+				d.id as dId,
+				d.name as dName,
+				d.surname as dSurname,
+				d.nickname as dNickname,
+				avg(um.mark) as avgMark, 
+				count(distinct um.movie, um.user) as userCount, 
+				count(distinct r.movie, r.user) as reviewCount
+	from		movie m 	inner join director d on m.director = d.id 
+							inner join user_movie um on um.movie = m.id
+							left join review r on r.movie = m.id
+	group by 	m.id
+	order by 	m.date_added desc
+	limit 		0, #num#
+  </select>
+  
+  <select id="getMovieItem" parameterClass="java.lang.Long" resultMap="MovieItemMap">
+	 select		m.id as mId,
+				m.title as mTitle,
+				m.plot as mPlot,
+				m.duration as mDuration,
+				m.image as mImage,
+				m.year as mYear,
+				m.director as mDirector,
+				d.id as dId,
+				d.name as dName,
+				d.surname as dSurname,
+				d.nickname as dNickname,
+				avg(um.mark) as avgMark, 
+				count(distinct um.movie, um.user) as userCount, 
+				count(distinct r.movie, r.user) as reviewCount
+	from		movie m 	inner join director d on m.director = d.id 
+							inner join user_movie um on um.movie = m.id
+							left join review r on r.movie = m.id
+	where		m.id = #id#
+	group by 	m.id
+  </select>
+  <select id="getMovieItemMarks" parameterClass="java.lang.Long" resultMap="MovieItemMarksMap">
+  	select 		mark, count(mark) as numMarks
+	from		user_movie
+	where		movie = #id# and mark is not null
+	group by 	mark
+  </select>
+  
+  <select id="getMoviesByDirector" parameterClass="java.util.Map" resultMap="MovieItemMap">
+  	select		m.id as mId,
+				m.title as mTitle,
+				m.plot as mPlot,
+				m.duration as mDuration,
+				m.image as mImage,
+				m.year as mYear,
+				m.director as mDirector,
+				d.id as dId,
+				d.name as dName,
+				d.surname as dSurname,
+				d.nickname as dNickname,
+				avg(um.mark) as avgMark, 
+				count(distinct um.movie, um.user) as userCount, 
+				count(distinct r.movie, r.user) as reviewCount
+	from		movie m 	inner join director d on m.director = d.id 
+							inner join user_movie um on um.movie = m.id
+							left join review r on r.movie = m.id
+	where		d.id = #id#
+	group by 	m.id
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getMoviesByDirectorCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  	select		count(*)
+	from		movie m 	inner join director d on m.director = d.id
+	where		d.id = #id#
+  </select>
+  
+  
+  <select id="getAll" parameterClass="java.util.Map" resultMap="MovieItemMap">
+  	select		m.id as mId,
+				m.title as mTitle,
+				m.plot as mPlot,
+				m.duration as mDuration,
+				m.image as mImage,
+				m.year as mYear,
+				m.director as mDirector,
+				d.id as dId,
+				d.name as dName,
+				d.surname as dSurname,
+				d.nickname as dNickname,
+				avg(um.mark) as avgMark, 
+				count(distinct um.movie, um.user) as userCount, 
+				count(distinct r.movie, r.user) as reviewCount
+	from		movie m 	inner join director d on m.director = d.id 
+							left join user_movie um on um.movie = m.id
+							left join review r on r.movie = m.id
+  	<include refid="common.fakeWhere" />
+  	<isParameterPresent>
+  		<isNotNull property="filter" prepend="and">
+  			<iterate property="filter" conjunction="and">
+  				(
+  					m.title like concat('%', #filter[]#, '%') or concat(d.name, d.surname) like concat('%', #filter[]#, '%')
+  				)
+  			</iterate>
+  		</isNotNull>
+  	</isParameterPresent>
+  	group by 	m.id
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getAllCount" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  	select		count(distinct m.id)
+	from		movie m 	inner join director d on m.director = d.id 
+  	<include refid="common.fakeWhere" />
+  	<isParameterPresent>
+  		<isNotNull property="filter" prepend="and">
+  			<iterate property="filter" conjunction="and">
+  				(
+  					m.title like concat('%', #filter[]#, '%') or concat(d.name, d.surname) like concat('%', #filter[]#, '%')
+  				)
+  			</iterate>
+  		</isNotNull>
+  	</isParameterPresent>
+  </select>
+  
+  <select id="getMovieById" parameterClass="java.lang.Long" resultMap="MovieMap">
+  	select	m.*
+  	from 	movie m inner join director d on m.director = d.id 
+  	where 	m.id = #id#
+  </select>
+  
+  <insert id="addMovie" parameterClass="com.tamuvii.model.Movie">
+  	insert into 	movie (title, plot, duration, image, year, director, date_added)
+	values 			(#title#, #plot#, #duration#, #image#, #year#, #director#, #dateAdded#)
+	<selectKey resultClass="java.lang.Long" keyProperty="id" type="post">
+        select last_insert_id();
+    </selectKey>
+  </insert>
+  
+  <update id="updateMovie" parameterClass="com.tamuvii.model.Movie">
+	  update movie set
+		title = #title#,
+	    plot = #plot#,
+	    duration = #duration#,
+	    year = #year#,
+	    director = #director#
+	  where id = #id#
+  </update>
+  <update id="updateMovieImage" parameterClass="com.tamuvii.model.Movie">
+	  update movie set
+		image = #image#
+	  where id = #id#
+  </update>
+  
+  <delete id="deleteMovieById" parameterClass="java.lang.Long">
+  	delete from 	movie
+  	where			id = #id#	
+  </delete>
+  
+  <select id="getAllAdmin" resultMap="MovieMap" parameterClass="java.util.Map">
+  	select	m.*
+  	from 	movie m inner join director d on m.director = d.id
+  	<include refid="common.fakeWhere" />
+  	<isParameterPresent>
+  		<isNotNull property="filter" prepend="and">
+  			<iterate property="filter" conjunction="and">
+  				(
+  					m.id = #filter[]# or m.title like concat('%', #filter[]#, '%') or concat(d.name, d.surname) like concat('%', #filter[]#, '%')
+  				)
+  			</iterate>
+  		</isNotNull>
+  	</isParameterPresent>
+  </select>
+  
+</sqlMap>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="review" >
+  
+  <resultMap id="ReviewMap" class="com.tamuvii.model.Review" >
+    <result column="user" property="user" />
+    <result column="movie" property="movie" />
+    <result column="title" property="title" />
+    <result column="text" property="text" />
+    <result column="positive" property="positive" />
+    <result column="negative" property="negative" />
+    <result column="date_added" property="dateAdded" />
+  </resultMap>
+  
+  <resultMap id="ReviewItemMap" class="com.tamuvii.pojo.ReviewItem" >
+    <result column="rUser" property="review.user" />
+    <result column="rMovie" property="review.movie" />
+    <result column="rTitle" property="review.title" />
+    <result column="rText" property="review.text" />
+    <result column="rPositive" property="review.positive" />
+    <result column="rNegative" property="review.negative" />
+    <result column="rDateAdded" property="review.dateAdded" />
+    <result column="uId" property="userInfo.id" />
+    <result column="uUsername" property="userInfo.username" />
+    <result column="uFirstName" property="userInfo.firstName" />
+    <result column="uLastName" property="userInfo.lastName" />
+    <result column="uDateAdded" property="userInfo.dateAdded" />
+    <result column="opinionCount" property="opinionCount" />
+  </resultMap>
+  
+  <resultMap id="OpinionItemMap" class="com.tamuvii.pojo.OpinionItem" >
+    <result column="oId" property="opinion.id" />
+    <result column="oUser" property="opinion.user" />
+    <result column="oReviewer" property="opinion.reviewer" />
+    <result column="oMovie" property="opinion.movie" />
+    <result column="oText" property="opinion.text" />
+    <result column="oDateAdded" property="opinion.dateAdded" />
+    <result column="uId" property="userInfo.id" />
+    <result column="uUsername" property="userInfo.username" />
+    <result column="uFirstName" property="userInfo.firstName" />
+    <result column="uLastName" property="userInfo.lastName" />
+    <result column="uDateAdded" property="userInfo.dateAdded" />
+  </resultMap>
+  
+  
+  <select id="getReviewByMovieAndUsername" parameterClass="java.util.Map" resultMap="ReviewMap">
+  	select	*
+	from 	review
+	where 	movie = #movie# and user = (select id from user where username = #username#)
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getReviewsByMovie" parameterClass="java.util.Map" resultMap="ReviewMap">
+  	select	*
+	from 	review
+	where 	movie = #movie#
+	<include refid="common.limitParameter"/>
+  </select>
+  <select id="getReviewsByUsername" parameterClass="java.util.Map" resultMap="ReviewMap">
+  	select	*
+	from 	review
+	where 	user = (select id from user where username = #username#)
+	<include refid="common.limitParameter"/>
+  </select>
+  
+  <select id="getReviewsCountByUsername" parameterClass="java.lang.String" resultClass="java.lang.Integer">
+  	select	count(*)
+	from 	review
+	where 	user = (select id from user where username = #username#)
+  </select>
+  
+  <select id="isReviewWrittenByUser" parameterClass="java.util.Map" resultMap="ReviewMap">
+  	select *
+	from review
+	where user = (select id from user where username = #username#) and movie = #movie#
+	<include refid="common.limitParameter"/>
+  </select>
+  
+  <select id="isReviewVotedByUser" parameterClass="java.util.Map" resultClass="java.lang.Integer">
+  	select count(*)
+	from user_review_vote
+	where voter = (select id from user where username = #voter#) and reviewer = (select id from user where username = #username#) and movie = #movie#
+  </select>
+  <insert id="addReviewVote" parameterClass="java.util.Map">
+  	insert into user_review_vote(voter, reviewer, movie, date_voted, positive)
+  	values (
+	  	(select id from user where username = #voter#), 
+		(select id from user where username = #username#), 
+		#movie#, 
+		#dateVoted#,
+		#positive#
+	)
+  </insert>
+  
+  <insert id="addReview" parameterClass="com.tamuvii.model.Review">
+  	insert into review (user, movie, title, text, date_added)
+	values (#user#, #movie#, #title#, #text#, #dateAdded#)
+  </insert>
+  
+  <update id="updateReview" parameterClass="com.tamuvii.model.Review">
+  	update review set
+        title = #title#,
+        text = #text#
+    where user = #user# and movie = #movie#
+  </update>
+  
+  <delete id="deleteReview" parameterClass="java.util.Map">
+  	delete from	review
+    where 		user = (select id from user where username = #username#) and movie = #movie#
+  </delete>
+  
+  
+  <update id="addPositive" parameterClass="java.util.Map">
+  	update review set positive = positive + 1
+    where user = (select id from user where username = #username#) and movie = #movie#
+  </update>
+  
+    <update id="addNegative" parameterClass="java.util.Map">
+  	update review set negative = negative + 1
+    where user = (select id from user where username = #username#) and movie = #movie#
+  </update>
+  
+  <select id="getReviewItemsByMovie" parameterClass="java.util.Map" resultMap="ReviewItemMap">
+  	select	r.user as rUser, 
+			r.movie as rMovie,
+			r.title as rTitle,
+			r.text as rText,
+			r.positive as rPositive,
+			r.negative as rNegative,
+			r.date_added as rDateAdded,
+			u.id as uId,
+			u.username as uUsername,
+			u.first_name as uFirstName,
+			u.last_name as uLastName,
+			u.date_added as uDateAdded,
+			count(distinct o.id) as opinionCount
+
+	from review r 	inner join movie m on r.movie = m.id 
+					inner join user u on r.user = u.id
+					left join opinion o on (o.reviewer = r.user and o.movie = r.movie)
+	where 		r.movie = #movie#
+	group by 	r.user, r.movie
+	order by 	r.positive desc
+	<include refid="common.limitParameter"/>
+  </select>
+  
+  <select id="getReviewItemByMovieAndUsername" parameterClass="java.util.Map" resultMap="ReviewItemMap">
+  	select	r.user as rUser, 
+			r.movie as rMovie,
+			r.title as rTitle,
+			r.text as rText,
+			r.positive as rPositive,
+			r.negative as rNegative,
+			r.date_added as rDateAdded,
+			u.id as uId,
+			u.username as uUsername,
+			u.first_name as uFirstName,
+			u.last_name as uLastName,
+			u.date_added as uDateAdded,
+			count(distinct o.id) as opinionCount
+	from 	review r 	inner join movie m on r.movie = m.id 
+						inner join user u on r.user = u.id
+						left join opinion o on (o.reviewer = r.user and o.movie = r.movie)
+	where 	r.movie = #movie# and r.user = (select id from user where username = #username#)
+  </select>
+  
+  <select id="getReviewOpinions" parameterClass="java.util.Map" resultMap="OpinionItemMap">
+	  select	o.id as oId, 
+				o.user as oUser,
+				o.reviewer as oReviewer,
+				o.movie as oMovie,
+				o.text as oText,
+				o.date_added as oDateAdded,
+				u.id as uId,
+				u.username as uUsername,
+				u.first_name as uFirstName,
+				u.last_name as uLastName,
+				u.date_added as uDateAdded
+	from 		opinion o inner join user u on o.user = u.id
+	where 		reviewer = (select id from user where username = #username#) and movie = #movie#
+	order by 	o.date_added desc
+  </select>
+  
+  <insert id="addOpinion" parameterClass="com.tamuvii.model.Opinion">
+  	insert into opinion (user, reviewer, movie, text, date_added)
+	values (#user#, #reviewer#, #movie#, #text#, #dateAdded#)
+  </insert>
+</sqlMap>

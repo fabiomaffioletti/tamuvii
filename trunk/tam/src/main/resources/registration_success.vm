@@ -1,0 +1,9 @@
+Ciao ${user.username},
+<br/><br/>
+grazie per esserti iscritto a taMuvii! Per iniziare subito a costruire la tua videoteca devi attivare il tuo profilo, cliccando su <a href="${appURL}/enable.html?id=${user.id}&email=${user.email}">questo link</a>.
+<br/><br/>
+Nel caso non ti fossi iscritto ignora questa email.
+<br/><br/><br/>
+Grazie,
+<br/><br/>
+taMuvii

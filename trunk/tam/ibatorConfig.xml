@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ibatorConfiguration
+  PUBLIC "-//Apache Software Foundation//DTD Apache iBATIS Ibator Configuration 1.0//EN"
+  "http://ibatis.apache.org/dtd/ibator-config_1_0.dtd">
+
+<ibatorConfiguration>
+  <classPathEntry location="c:/source/tam/build-resources/mysql-connector-java-5.1.6.jar" />
+
+  <ibatorContext id="DB2Tables" targetRuntime="Ibatis2Java2">
+  
+  <!-- Se a "true" non mette il timestamp della creazione del file xml nei commenti -->
+	<commentGenerator>
+	  <property name="suppressDate" value="true" />
+	</commentGenerator>
+  
+  <!-- Dati di connessione al DB - EXTRANET -->
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/tam"
+        userId="root"
+        password="1nf1n1tel00p">
+    </jdbcConnection>
+
+	
+	<!-- Se a "true" usa la classe BigDecimal per i campi DECIMAL e NUMERIC -->
+	<javaTypeResolver>
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+	
+	<!-- Package delle classi di modello -->
+    <javaModelGenerator targetPackage="com.tamuvii.model" targetProject="tam">
+      <property name="enableSubPackages" value="true" />
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+	
+	<!-- Package dei mapping xml -->
+    <sqlMapGenerator targetPackage="sqlmaps"  targetProject="tam\src\main\resources\">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+
+	<!-- Package delle classi dei DAO-->
+    <daoGenerator type="SPRING" targetPackage="com.tamuvii.dao" implementationPackage="com.tamuvii.dao.impl" targetProject="tam">
+      <property name="enableSubPackages" value="true" />
+    </daoGenerator>
+  
+    <table tableName="user" domainObjectName="User" >
+      <property name="useActualColumnNames" value="false"/>
+    </table>
+    <table tableName="role" domainObjectName="Role" >
+      <property name="useActualColumnNames" value="false"/>
+    </table>
+    
+  </ibatorContext>
+</ibatorConfiguration>

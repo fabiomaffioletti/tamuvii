@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                value="%p [%t] %c{1}.%M(%L) | %m%n"/>
+        </layout>
+    </appender>
+    
+    <appender name="R" class="org.apache.log4j.RollingFileAppender"> 
+	    <param name="file" value="${log4j.log.path}"/>
+	    <param name="MaxFileSize" value="10000KB"/>
+	    <!-- Keep one backup file -->
+	    <param name="MaxBackupIndex" value="10"/>
+	    <layout class="org.apache.log4j.PatternLayout"> 
+	      <param name="ConversionPattern" value="%5p %d{yyyy-MM-dd HH\:mm\:ss } (%F\:%L) - %m%n"/> 
+	    </layout> 
+	</appender>
+	
+	<appender name="EMAIL"  class="org.apache.log4j.net.SMTPAppender">
+        <param name="BufferSize" value="512" />
+        <param name="SMTPHost" value="${mail.host}" />
+        <param name="From" value="${log4j.mail.appender.from}" />
+        <param name="To" value="${log4j.mail.appender.to}" />
+        <param name="Subject" value="${log4j.mail.appender.subject}" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+              value="%5p %d{yyyy-MM-dd HH\:mm\:ss } (%F\:%L) - %m%n" />
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="ERROR"/>
+            <param name="LevelMax" value="FATAL"/>
+        </filter>
+    </appender>
+    
+    <logger name="org.apache">
+        <level value="WARN"/>
+    </logger>
+    
+    <logger name="org.apache.velocity">
+        <level value="FATAL"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="WARN"/>
+    </logger>
+   
+    <logger name="com.tamuvii">
+        <level value="DEBUG"/>
+    </logger>
+    
+     <logger name="java.sql">
+        <level value="DEBUG"/>
+    </logger>
+
+    <root>
+        <level value="WARN"/>
+        ${log4j.appenders}
+    </root>
+
+</log4j:configuration>

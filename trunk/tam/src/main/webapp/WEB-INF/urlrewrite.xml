@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
+    "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+
+<urlrewrite>
+    <rule>
+        <from>^/(.*)/movies/$</from>
+        <to type="forward">/shelf.html?username=$1</to>
+    </rule>
+    <rule>
+        <from>^/(.*)/contacts/$</from>
+        <to type="forward">/shelf.html?username=$1</to>
+    </rule>
+    <rule>
+        <from>^/(.*)/home/$</from>
+        <to type="forward">/home.html</to>
+    </rule>
+    <!-- The following fixes a bug in XFire:        -->
+    <!-- http://jira.codehaus.org/browse/XFIRE-1089 -->
+    <rule>
+        <from>^//services/(.*)$</from>
+        <to type="forward">/services/$1</to>
+    </rule>
+</urlrewrite>

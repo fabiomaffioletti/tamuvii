@@ -1,0 +1,54 @@
+.req {
+	margin-left: 5px;
+	color: red; 
+}
+
+#user_form_ul {
+	list-style: none;
+	padding: 0;
+	margin-bottom: 20px;
+}
+
+#user_form_ul li {
+	padding: 2px;
+}
+
+#user_form_roles {
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+#user_form_roles li {
+	padding: 2px;
+}
+
+#user_form_buttons {
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+#user_form_buttons li {
+	display: inline;
+	float: left;
+	padding: 2px;
+}
+
+.form_label {
+	width: 150px;
+	float: left;
+}
+
+.form_input {
+	width: 200px;
+}
+
+.form_input_role {
+	margin-left: 10px;
+}
+
+#user_form_errors {
+	list-style: none;
+	padding: 0;
+	margin-bottom: 20px;
+	color: red;
+}

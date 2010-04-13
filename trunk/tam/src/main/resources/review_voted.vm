@@ -1,0 +1,9 @@
+Ciao ${user.username},
+
+La recensione che hai scritto a proposito del film "${movie.movie.title}" ha ricevuto un voto ${vote}.
+
+Puoi vedere la tua videoteca qui: ${appURL}/${user.username}/movies/ oppure la pagina del film qui: ${appURL}/${user.username}/movies/?movie=${movie.movie.id} 
+
+Alla prossima!
+
+taMuvii

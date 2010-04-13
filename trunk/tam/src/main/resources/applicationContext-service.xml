@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+       default-lazy-init="true">
+    
+    <!-- SECURITY -->
+    <bean id="passwordEncoder" class="org.springframework.security.providers.encoding.ShaPasswordEncoder"/>
+    
+    
+    
+    <!-- EMAIL CONFIGURATION -->
+    <bean id="mailEngine" class="com.tamuvii.mail.MailEngine">
+        <property name="mailSender" ref="mailSender"/>
+        <property name="velocityEngine" ref="velocityEngine"/>
+        <property name="from" value="${mail.from}"/>
+    </bean>
+
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host}"/>
+        <property name="defaultEncoding" value="UTF-8"/> 
+    </bean>
+
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="velocityProperties">
+            <props>
+                <prop key="resource.loader">class</prop>
+                <prop key="class.resource.loader.class">
+                    org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+                </prop>
+                <prop key="velocimacro.library"></prop>
+            </props>
+        </property>
+    </bean>
+    
+<!--    <bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage" scope="prototype">-->
+<!--        <property name="from" value="${mail.from}"/>-->
+<!--    </bean>-->
+    
+    
+    
+	<!-- MANAGERS -->
+	<bean id="configManager" class="com.tamuvii.service.impl.ConfigManagerImpl">
+        <property name="configDao" ref="configDao"/>
+    </bean>
+	
+    <bean id="userManager" class="com.tamuvii.service.impl.UserManagerImpl">
+    	<property name="passwordEncoder" ref="passwordEncoder" />
+        <property name="userDao" ref="userDao"/>
+        <property name="tamuviiEventDispatcher" ref="tamuviiSubject"/>
+    </bean>
+    <bean id="roleManager" class="com.tamuvii.service.impl.RoleManagerImpl">
+        <property name="roleDao" ref="roleDao"/>
+    </bean>
+    
+    <bean id="communicationManager" class="com.tamuvii.service.impl.CommunicationManagerImpl">
+        <property name="tamuviiEventDispatcher" ref="tamuviiSubject"/>
+        <property name="userDao" ref="userDao"/>
+        <property name="invitationDao" ref="invitationDao"/>
+        <property name="configDao" ref="configDao"/>
+    </bean>
+    
+    <bean id="movieManager" class="com.tamuvii.service.impl.MovieManagerImpl">
+        <property name="movieDao" ref="movieDao"/>
+        <property name="genreDao" ref="genreDao"/>
+    </bean>
+    <bean id="userMovieManager" class="com.tamuvii.service.impl.UserMovieManagerImpl">
+        <property name="userMovieDao" ref="userMovieDao"/>
+        <property name="userDao" ref="userDao"/>
+        <property name="reviewDao" ref="reviewDao"/>
+    </bean>
+    <bean id="reviewManager" class="com.tamuvii.service.impl.ReviewManagerImpl">
+        <property name="reviewDao" ref="reviewDao"/>
+        <property name="userDao" ref="userDao"/>
+        <property name="movieDao" ref="movieDao"/>
+        <property name="tamuviiEventDispatcher" ref="tamuviiSubject"/>
+    </bean>
+    <bean id="opinionManager" class="com.tamuvii.service.impl.OpinionManagerImpl">
+        <property name="opinionDao" ref="opinionDao"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+    <bean id="directorManager" class="com.tamuvii.service.impl.DirectorManagerImpl">
+        <property name="directorDao" ref="directorDao"/>
+    </bean>
+    
+    <bean id="shelfManager" class="com.tamuvii.service.impl.ShelfManagerImpl">
+        <property name="userMovieManager" ref="userMovieManager"/>
+        <property name="userManager" ref="userManager"/>
+        <property name="movieManager" ref="movieManager"/>
+    </bean>
+    <bean id="genreManager" class="com.tamuvii.service.impl.GenreManagerImpl">
+        <property name="genreDao" ref="genreDao"/>
+    </bean>
+    
+    
+    <!-- LISTENERS -->
+    <bean id="tamuviiEmailSenderListener" class="com.tamuvii.observer.listeners.TamuviiEmailSenderListener">
+	    <!-- In the managedEvents value set a comma delimited list of Managed EventTypes -->
+	    <property name="mailEngine" ref="mailEngine" />
+	    <property name="managedEventsCSVList" value="${listeners.email.events}"/>
+    </bean>
+    
+    <bean id="tamuviiSubject" class="com.tamuvii.observer.subject.TamuviiEventDispatcher">
+        <property name="listeners">
+        	<list>
+        		<ref bean="tamuviiEmailSenderListener" />
+        	</list>
+        </property>
+    </bean>
+    
+</beans>

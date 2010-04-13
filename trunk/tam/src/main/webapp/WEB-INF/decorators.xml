@@ -1,0 +1,21 @@
+<decorators defaultdir="/decorators">
+    <excludes>
+        <pattern>/40*.jsp</pattern>
+        <pattern>/*ajax=true*</pattern>
+        <pattern>/scripts/dojo/*</pattern>
+        <pattern>/struts/dojo/*</pattern> 
+        <pattern>/resources/*</pattern>
+        <pattern>*login*</pattern>
+        <pattern>*shelfItems*</pattern>
+        <pattern>*searchItems*</pattern>
+        <pattern>*wishlistItems*</pattern>
+        <pattern>*movieItem*</pattern>
+        <pattern>*moviesByDirector*</pattern>
+        <pattern>*reviewItem*</pattern>
+        <pattern>*friends*</pattern>
+        <pattern>*nearbies*</pattern>
+    </excludes>
+    <decorator name="shelfDecorator" page="shelf_decorator.jsp">
+    	<pattern>/*</pattern>
+    </decorator>
+</decorators>

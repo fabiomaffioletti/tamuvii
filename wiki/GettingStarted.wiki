@@ -16,6 +16,9 @@
 == SVN ==
   * Subclipse
 
+== Set-up database ==
+In the {{{extra}}} folder there is a model.mwb file representing the database. Open it with MySQL Workbench and select {{{Database --> Forward engineering}}}. Follow the instructions for the automatic creation of the model schema on your local MySQL.
+
 
 == Set-up Eclipse ==
   # *Add a classpath variable to Eclipse:* go to {{{Window --> Preferences --> Java --> Build path --> Classpath variables}}} and add a new variable called {{{M2_REPO}}} that points to the location of the maven repository for example {{{C:\Users\Test\.m2\repository}}}

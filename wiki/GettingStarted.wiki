@@ -15,3 +15,10 @@
 
 == SVN ==
   * Subclipse
+
+
+== Set-up Eclipse ==
+  # *Add a classpath variable to Eclipse:* go to {{{Window --> Preferences --> Java --> Build path --> Classpath variables}}} and add a new variable called {{{M2_REPO}}} that points to the location of the maven repository for example {{{C:\Users\Test\.m2\repository}}}
+  # *Create project files:* once you have downloaded the project from SVN open a terminal and move to the project folder. Type {{{mvn eclipse:eclipse}}} and wait for the project to build. To run it
+  # *Create an external tool configuration:* go to {{{Run --> External Tools --> External Tools Configurations}}} and select {{{Program --> New}}}. In the {{{Main}}} tab insert the {{{Location}}} of your mvn executable and the {{{Working directory}}} by clicking {{{Browse workspace}}} and selecting the name of the project. Under {{{Arguments}}} write {{{jetty:run}}}. Move to the {{{Environment}}} tab and add a new variable called {{{MAVEN_OPTS}}} with value: {{{-XX:MaxPermSize=256m -Xmx512m -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=4000,server=y,suspend=y}}}. Click {{{Run}}}.
+  # *Create a new debug configuration:* go to {{{Run --> Debug configurations}}}, select {{{Remote Java Application --> New}}} and in the {{{Connect}}} tab insert {{{4000}}} in the {{{Port}}} field and check {{{Allow termination of remote VM}}}. Click {{{Debug}}} and the application should start.

@@ -102,6 +102,8 @@
     	<property name="validator" ref="beanValidator"/>
     	<property name="userManager" ref="userManager" />
     	<property name="roleManager" ref="roleManager" />
+    	<property name="configManager" ref="configManager" />
+    	<property name="communicationManager" ref="communicationManager" />
     </bean>
     <bean id="enableUserController" class="com.tamuvii.controller.EnableUserController">
     	<property name="userManager" ref="userManager" />

@@ -18,6 +18,15 @@
     </c:if>
 </spring:bind>
 
+<c:choose>
+	<c:when test="${invitation_enabled != 1}">
+		Iscrizione libera.
+	</c:when>
+	<c:otherwise>
+		Per ora funziona solo ad inviti, iscriviti usando l'indirizzo email segnalato da chi ti ha invitato.
+	</c:otherwise>
+</c:choose>
+
 <form:form commandName="user" method="post" action="signup.html" id="userForm" name="userForm">
 	<form:hidden path="id"/>
 	

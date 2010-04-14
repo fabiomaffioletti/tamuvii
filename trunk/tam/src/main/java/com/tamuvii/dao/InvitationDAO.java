@@ -7,5 +7,7 @@ public interface InvitationDAO {
 	public Long addInvitation(Invitation invitation);
 	
 	public Integer getSentInvitationsCount(Long id);
+	
+	public Invitation getInvitationByInvitedEmail(String invitedEmail);
 
 }

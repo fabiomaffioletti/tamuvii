@@ -97,16 +97,28 @@ public class UserMovieManagerImpl extends ApplicationManager implements UserMovi
 		String username = RequestUtils.getRequestUsername(null);
 		ShelfItem shelfItem = getUserMovieByMovieId(username, movie);
 		
+		
 		// Save review if title or text are different from the previous
-		if(!(shelfItem.getReview().getTitle().equals(reviewTitle) && shelfItem.getReview().getText().equals(reviewText))) {
-			Map queryMap = new HashMap();
-			queryMap.put("username", username);
-			queryMap.put("movie", movie);
-			Review review = reviewDao.getReviewByMovieAndUsername(queryMap);
+		if(shelfItem.getReview() != null) {
+			if(!(shelfItem.getReview().getTitle().equals(reviewTitle) && shelfItem.getReview().getText().equals(reviewText))) {
+				Map queryMap = new HashMap();
+				queryMap.put("username", username);
+				queryMap.put("movie", movie);
+				Review review = reviewDao.getReviewByMovieAndUsername(queryMap);
+				review.setText(reviewText);
+				review.setTitle(reviewTitle);
+				reviewDao.updateReview(review);
+			}
+		} else {
+			Review review = new Review();
+			review.setDateAdded(new Date());
+			review.setUser(userDao.getUserByUsername(username).getId());
+			review.setMovie(movie);
 			review.setText(reviewText);
 			review.setTitle(reviewTitle);
-			reviewDao.updateReview(review);
+			reviewDao.addReview(review);
 		}
+		
 		
 		// Save mark
 		if(shelfItem != null) {

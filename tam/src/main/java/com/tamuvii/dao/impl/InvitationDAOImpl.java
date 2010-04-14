@@ -15,4 +15,8 @@ public class InvitationDAOImpl extends SqlMapClientDaoSupport implements Invitat
 		return (Integer) getSqlMapClientTemplate().queryForObject("invitation.getSentInvitationsCount", id);
 	}
 
+	public Invitation getInvitationByInvitedEmail(String invitedEmail) {
+		return (Invitation) getSqlMapClientTemplate().queryForObject("invitation.getInvitationByInvitedEmail", invitedEmail);
+	}
+
 }

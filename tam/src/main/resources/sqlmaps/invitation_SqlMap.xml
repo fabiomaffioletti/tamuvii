@@ -31,4 +31,10 @@
 	where	user = #id#
   </select>
   
+  <select id="getInvitationByInvitedEmail" resultMap="InvitationMap" parameterClass="java.lang.String">
+  	select 	*
+  	from	invitation
+	where	invited_email = #invitedEmail#
+  </select>
+  
 </sqlMap>

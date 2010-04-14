@@ -111,5 +111,11 @@ public class CommunicationManagerImpl extends ApplicationManager implements Comm
 		}
 		
 	}
+	
+	
+	
+	public Invitation getInvitationByInvitedEmail(String invitedEmail) {
+		return invitationDao.getInvitationByInvitedEmail(invitedEmail);
+	}
 
 }

@@ -24,7 +24,7 @@
 <br/><br/><br/>
 <h2>Ultimi film aggiunti</h2>
 <c:forEach var="la" items="${lastAdded}">
-	<a href="/${la.movie.title}/movies/">${la.movie.title}</a><br/>
+	<a href="/shelf.html?movie=${la.movie.id}">${la.movie.title}</a><br/>
 </c:forEach>
 
 <c:if test="${userInfo.canInvite == true}">

@@ -23,4 +23,9 @@ public class GenreManagerImpl implements GenreManager {
 		return genreDao.getGenreByName(name);
 	}
 
+
+	public Genre getGenreById(Long id) {
+		return genreDao.getGenreById(id);
+	}
+
 }

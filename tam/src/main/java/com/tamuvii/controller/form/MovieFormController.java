@@ -3,12 +3,14 @@ package com.tamuvii.controller.form;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -18,7 +20,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.tamuvii.ApplicationConstants;
 import com.tamuvii.model.Genre;
 import com.tamuvii.model.Movie;
-import com.tamuvii.property.editors.GenrePropertyEditor;
 import com.tamuvii.service.DirectorManager;
 import com.tamuvii.service.GenreManager;
 import com.tamuvii.service.MovieManager;
@@ -133,8 +134,20 @@ public class MovieFormController extends ApplicationFormController {
 	}
 	
 	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
-		binder.registerCustomEditor(Genre.class, new GenrePropertyEditor(genreManager));
+//		binder.registerCustomEditor(Genre.class, new GenrePropertyEditor(genreManager));
+		binder.registerCustomEditor(Set.class, "genres", new CustomCollectionEditor(Set.class)
+		  {
+			protected Object convertElement(Object element) {
+	               if (element != null) {
+	                   Long id = new Long((String)element);
+	                   Genre genre = genreManager.getGenreById(id);
+	                   return genre;
+	               }
+	               return null;
+	           }
+		  });
 	}
+	
 	
 	protected boolean isAdd(HttpServletRequest request) {
         String method = request.getParameter("method");

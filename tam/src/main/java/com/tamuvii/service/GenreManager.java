@@ -10,4 +10,6 @@ public interface GenreManager {
 	
 	public Genre getGenreByName(String name);
 	
+	public Genre getGenreById(Long id);
+	
 }

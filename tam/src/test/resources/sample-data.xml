@@ -391,14 +391,18 @@
   </table>
   
   <table name="genre">
+  	<column>id</column>
     <column>name</column>
     <row>
+    	<value>1</value>
     	<value>Azione</value>
     </row>
     <row>
+    	<value>2</value>
     	<value>Drammatico</value>
     </row>
     <row>
+    	<value>3</value>
     	<value>Commedia</value>
     </row>
   </table>
@@ -499,23 +503,23 @@
     <column>genre</column>
     <row>
     	<value>1</value>
-    	<value>Azione</value>
+    	<value>1</value>
     </row>
     <row>
     	<value>1</value>
-    	<value>Drammatico</value>
+    	<value>2</value>
     </row>
     <row>
     	<value>2</value>
-    	<value>Commedia</value>
+    	<value>3</value>
     </row>
     <row>
     	<value>3</value>
-    	<value>Drammatico</value>
+    	<value>2</value>
     </row>
     <row>
     	<value>3</value>
-    	<value>Commedia</value>
+    	<value>3</value>
     </row>
   </table>
   

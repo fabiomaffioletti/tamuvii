@@ -97,11 +97,26 @@
 		<li>
 			<span class="form_label">Genere</span>
 			<span class="form_input">
-			${movie.genres }
-				<form:select path="genres" multiple="multiple">
-					<form:options items="${allgenres}" itemLabel="name" itemValue="name"/>
-				</form:select>
+			
+				<spring:bind path="movie.genres">
+			       <select name="${status.expression}" multiple="multiple" style="width: 150px">
+			           <c:forEach items="${allgenres}" var="gen">
+			               <c:forEach items="${status.value}" var="currentGen">
+			                   <c:if test="${currentGen.id == gen.id}">
+			                       <c:set var="selected" value="true"/>
+			                   </c:if>
+			               </c:forEach>
+			           <option value="${gen.id}"
+			             <c:if test="${selected}">selected="selected"</c:if>>
+			               ${gen.name}
+			           </option>
+			           <c:remove var="selected"/>
+			         </c:forEach>
+			       </select>
+			       <span class="fieldError">${status.errorMessage}</span>
+			       </spring:bind>
 			</span>
+			
 		</li>
 	</ul>
 	

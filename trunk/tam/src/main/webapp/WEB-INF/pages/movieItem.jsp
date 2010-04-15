@@ -15,6 +15,12 @@ ID: ${movieItem.movie.id}
 <br/>
 TITOLO: ${movieItem.movie.title}
 <br/>
+GENERI:
+<c:forEach var="g" items="${movieItem.movie.genres}">
+	${g}
+	<br/>
+</c:forEach>
+<br/>
 TRAMA: ${movieItem.movie.plot}
 <br/>
 DURATA: ${movieItem.movie.duration}

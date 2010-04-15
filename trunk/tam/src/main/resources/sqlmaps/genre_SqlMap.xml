@@ -3,6 +3,7 @@
 <sqlMap namespace="genre" >
   
   <resultMap id="GenreMap" class="com.tamuvii.model.Genre" >
+  	<result column="id" property="id" />
     <result column="name" property="name" />
   </resultMap>
   
@@ -13,14 +14,29 @@
   
   <select id="getMovieGenres" parameterClass="java.lang.Long" resultMap="GenreMap">
   	select	g.*
-	from	movie_genre mg inner join genre g on mg.genre = g.name
+	from	movie_genre mg inner join genre g on mg.genre = g.id
 	where mg.movie = #id#
   </select>
   
-  <select id="getGenreByName" resultMap="GenreMap">
+  <select id="getGenreByName" resultMap="GenreMap" parameterClass="java.lang.String">
   	select	*
   	from	genre
   	where	name = #name#
   </select>
+  
+  <select id="getGenreById" resultMap="GenreMap" parameterClass="java.lang.Long">
+  	select	*
+  	from	genre
+  	where	id = #id#
+  </select>
+  
+  <delete id="deleteMovieGenres" parameterClass="java.lang.Long">
+  	delete from movie_genre where movie = #movie#
+  </delete>
+  
+  <insert id="addMovieGenre" parameterClass="java.util.Map">
+  	insert into movie_genre (movie, genre) 
+  	values (#movie#, #genre#)
+  </insert>
   
 </sqlMap>

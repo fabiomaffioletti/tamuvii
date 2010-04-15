@@ -1,7 +1,8 @@
 package com.tamuvii.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Movie {
 	private Long id;
@@ -12,13 +13,13 @@ public class Movie {
     private Integer year;
     private Long director;
     private Date dateAdded;
-    private List<Genre> genres;
+    private Set<Genre> genres = new HashSet<Genre>();
     
    
-	public List<Genre> getGenres() {
+	public Set<Genre> getGenres() {
 		return genres;
 	}
-	public void setGenres(List<Genre> genres) {
+	public void setGenres(Set<Genre> genres) {
 		this.genres = genres;
 	}
 	public Date getDateAdded() {

@@ -1,13 +1,16 @@
 package com.tamuvii.service.impl;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.tamuvii.dao.GenreDAO;
 import com.tamuvii.dao.MovieDAO;
+import com.tamuvii.model.Genre;
 import com.tamuvii.model.Movie;
 import com.tamuvii.pojo.MovieItem;
 import com.tamuvii.pojo.ReviewItem;
@@ -44,7 +47,7 @@ public class MovieManagerImpl implements MovieManager {
 
 	public Movie getMovieById(Long id) {
 		Movie movie = movieDao.getMovieById(id);
-		movie.setGenres(genreDao.getMovieGenres(id));
+		movie.setGenres(new HashSet<Genre>(genreDao.getMovieGenres(id)));
 		return movie;
 	}
 
@@ -81,6 +84,7 @@ public class MovieManagerImpl implements MovieManager {
 	@SuppressWarnings("unchecked")
 	public MovieItem getMovieItem(Long id) {
 		MovieItem movieItem = movieDao.getMovieItem(id);
+		movieItem.getMovie().setGenres(new HashSet<Genre>(genreDao.getMovieGenres(id)));
 		movieItem.setMarks(movieDao.getMovieItemMarks(id));
 		return movieItem;
 	}
@@ -122,7 +126,17 @@ public class MovieManagerImpl implements MovieManager {
 		queryMap.put("filter", StringUtils.isNotEmpty(filter)?filter.split(" "):null); 
 		return movieDao.getAllAdmin(queryMap);
 	}
+	@SuppressWarnings("unchecked")
 	public void updateMovie(Movie movie) {
+		//FIXME Rendere transazionale questo metodo
+		genreDao.deleteMovieGenres(movie.getId());
+		Set<Genre> genres = movie.getGenres();
+		for (Genre genre : genres) {
+			Map queryMap = new HashMap();
+			queryMap.put("movie", movie.getId());
+			queryMap.put("genre", genre.getId());
+			genreDao.addMovieGenre(queryMap);
+		}
 		movieDao.updateMovie(movie);
 	}
 	public void updateMovieImage(Movie movie) {

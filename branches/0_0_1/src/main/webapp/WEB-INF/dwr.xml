@@ -1,0 +1,60 @@
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://getahead.org/dwr//dwr30.dtd">
+<dwr>
+    <allow>
+        <create creator="spring" javascript="ShelfManager">
+			<filter class="com.tamuvii.dwr.DwrSessionFilter" />
+        	<param name="class" value="com.tamuvii.service.ShelfManager"/>
+            <param name="beanName" value="shelfManager"/>
+        </create>
+        
+        <create creator="spring" javascript="UserManager">
+			<filter class="com.tamuvii.dwr.DwrSessionFilter" />
+        	<param name="class" value="com.tamuvii.service.UserManager"/>
+            <param name="beanName" value="userManager"/>
+            
+            <include method="addFriend"/>
+            <include method="addNearby"/>
+            <include method="changeToFriend"/>
+            <include method="changeToNearby"/>
+            <include method="deleteRelationship"/>
+            
+            <include method="getUsersByMovie"/>
+            <include method="getFriendsByMovie"/>
+            <include method="getNearbiesByMovie"/>
+        </create>
+        
+        <create creator="spring" javascript="UserMovieManager">
+			<filter class="com.tamuvii.dwr.DwrSessionFilter" />
+        	<param name="class" value="com.tamuvii.service.UserMovieManager"/>
+            <param name="beanName" value="userMovieManager"/>
+            
+            <include method="addUserMovie"/>
+            <include method="updateUserMovie"/>
+            <include method="moveToShelf"/>
+            <include method="deleteUserMovieById"/>
+        </create>
+        
+        <create creator="spring" javascript="ReviewManager">
+			<filter class="com.tamuvii.dwr.DwrSessionFilter" />
+        	<param name="class" value="com.tamuvii.service.ReviewManager"/>
+            <param name="beanName" value="reviewManager"/>
+            
+            <include method="addPositive"/>
+            <include method="addNegative"/>
+            <include method="addOpinion"/>
+        </create>
+        
+        <create creator="spring" javascript="CommunicationManager">
+			<filter class="com.tamuvii.dwr.DwrSessionFilter" />
+        	<param name="class" value="com.tamuvii.service.CommunicationManager"/>
+            <param name="beanName" value="communicationManager"/>
+            
+            <include method="sendCommunication"/>
+            <include method="sendInvitation"/>
+        </create>
+        
+        <convert converter="bean" match="com.tamuvii.model.User" />
+        <convert converter="bean" match="com.tamuvii.pojo.UserInfo" />
+    </allow>
+    
+</dwr>

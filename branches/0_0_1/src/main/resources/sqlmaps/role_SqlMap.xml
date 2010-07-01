@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="role" >
+  
+  <resultMap id="RoleMap" class="com.tamuvii.model.Role" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getAll" parameterClass="java.lang.String" resultMap="RoleMap">
+  	select	*
+  	from	role
+  </select>
+  
+  <select id="getRoleById" parameterClass="java.lang.Long" resultMap="RoleMap">
+  	select	*
+  	from	role
+  	where	id = #id#
+  </select>
+  
+  <select id="getRoleByName" parameterClass="java.lang.String" resultMap="RoleMap">
+  	select	*
+  	from	role
+  	where	name = #name#
+  </select>
+  
+</sqlMap>

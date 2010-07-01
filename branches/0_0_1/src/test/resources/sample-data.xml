@@ -1,0 +1,796 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <table name="role">
+    <column>id</column>
+    <column>name</column>
+    <column>description</column>
+    <row>
+      <value>1</value>
+      <value>ROLE_ADMIN</value>
+      <value><![CDATA[Administrator role]]></value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>ROLE_USER</value>
+      <value><![CDATA[Default role for all Users]]></value>
+    </row>
+  </table>
+  
+  <table name="user">
+  	<column>id</column>
+    <column>username</column>
+    <column>password</column>
+    <column>email</column>
+    <column>first_name</column>
+    <column>last_name</column>
+    <column>date_added</column>
+    <column>website_title</column>
+    <column>website_url</column>
+    <column>can_invite</column>
+    <column>account_enabled</column>
+    <column>account_expired</column>
+    <column>account_locked</column>
+    <column>credentials_expired</column>
+    <row>
+      <value>1</value>
+      <value>admin</value>
+      <value>d033e22ae348aeb5660fc2140aec35850c4da997</value>
+      <value>admin.admin@company.com</value>
+      <value>admin</value>
+      <value>admin</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null />
+      <null />
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>user</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>user.user@company.com</value>
+      <value>user</value>
+      <value>user</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null />
+      <null />
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>fubbyo</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>fabio.maffioletti+10@gmail.com</value>
+      <value>fabio</value>
+      <value>maffioletti</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value><![CDATA[Fubbyo's Flickr]]></value>
+      <value><![CDATA[http://www.google.it]]></value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>freddy</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>fabio.maffioletti+1@gmail.com</value>
+      <value>francesco</value>
+      <value>cottone</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value><![CDATA[Kesiev Blog]]></value>
+      <value><![CDATA[http://www.google.it]]></value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>5</value>
+      <value>irene</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>fabio.maffioletti+2@gmail.com</value>
+      <value>irene</value>
+      <value>rubino</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value><![CDATA[Rubiry]]></value>
+      <value><![CDATA[http://www.google.it]]></value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>6</value>
+      <value>andrea</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>fabio.maffioletti+3@gmail.com</value>
+      <value>andrea</value>
+      <value>buscemi</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value><![CDATA[Andrea Buscemi Weblog]]></value>
+      <value><![CDATA[http://www.google.it]]></value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>7</value>
+      <value>laura</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>fabio.maffioletti+4@gmail.com</value>
+      <value>laura</value>
+      <value>baggini</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value><![CDATA[Laura's]]></value>
+      <value><![CDATA[http://www.google.it]]></value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>8</value>
+      <value>giulia</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>fabio.maffioletti+5@gmail.com</value>
+      <value>giulia</value>
+      <value>maffioletti</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value><![CDATA[Giulia Maffioletti website]]></value>
+      <value><![CDATA[http://www.google.it]]></value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>9</value>
+      <value>giorgio</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>fabio.maffioletti+6@gmail.com</value>
+      <value>giorgio</value>
+      <value>maffioletti</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value><![CDATA[La Repubblica]]></value>
+      <value><![CDATA[http://www.google.it]]></value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>10</value>
+      <value>lorenzo</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>fabio.maffioletti+7@gmail.com</value>
+      <value>lorenzo</value>
+      <value>frattini</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value><![CDATA[I miei eroi spaziali]]></value>
+      <value><![CDATA[http://www.google.it]]></value>
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>virginia</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>fabio.maffioletti+8@gmail.com</value>
+      <value>virginia</value>
+      <value>monaco</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null />
+      <null />
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>elisa</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>fabio.maffioletti+9@gmail.com</value>
+      <value>elisa</value>
+      <value>ridolfi</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null />
+      <null />
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>23</value>
+      <value>valerio</value>
+      <value>12dea96fec20593566ab75692c9949596833adc9</value>
+      <value>fabio.maffioletti@gmail.com</value>
+      <null/>
+      <null/>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null />
+      <null />
+      <value>1</value>
+      <value>1</value>
+      <value>0</value>
+      <value>0</value>
+      <value>0</value>
+    </row>
+  </table>
+  
+  <table name="user_role">
+  	<column>user</column>
+    <column>role</column>
+    <row>
+      <value>1</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>5</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>6</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>7</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>8</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>9</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>10</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>2</value>
+    </row>
+    <row>
+      <value>23</value>
+      <value>2</value>
+    </row>
+  </table>
+  
+  <table name="user_user">
+  	<column>first</column>
+    <column>second</column>
+    <column>friend</column>
+    <column>date_added</column>
+    <row>
+      <value>3</value>
+      <value>4</value>
+      <value>1</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>5</value>
+      <value>1</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>5</value>
+      <value>1</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>6</value>
+      <value>0</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>11</value>
+      <value>1</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+  </table>
+  
+  <table name="director">
+  	<column>id</column>
+    <column>name</column>
+    <column>surname</column>
+    <column>nickname</column>
+    <row>
+      <value>1</value>
+      <value>Silvio</value>
+      <value>Muccino</value>
+      <null/>
+    </row>
+    <row>
+      <value>2</value>
+      <value>Gabriele</value>
+      <value>Salvatores</value>
+      <null/>
+    </row>
+    <row>
+      <value>3</value>
+      <value>Giorgio</value>
+      <value>Diritti</value>
+      <null/>
+    </row>
+    <row>
+      <value>4</value>
+      <value>James</value>
+      <value>Cameron</value>
+      <null/>
+    </row>
+    <row>
+      <value>5</value>
+      <value>Gabriele</value>
+      <value>Muccino</value>
+      <null/>
+    </row>
+    <row>
+      <value>6</value>
+      <value>Jason</value>
+      <value>Reitman</value>
+      <null/>
+    </row>
+    <row>
+      <value>7</value>
+      <value>Rob</value>
+      <value>Marshall</value>
+      <null/>
+    </row>
+    <row>
+      <value>8</value>
+      <value>Quentin</value>
+      <value>Tarantino</value>
+      <null/>
+    </row>
+  </table>
+  
+  <table name="genre">
+  	<column>id</column>
+    <column>name</column>
+    <row>
+    	<value>1</value>
+    	<value>Azione</value>
+    </row>
+    <row>
+    	<value>2</value>
+    	<value>Drammatico</value>
+    </row>
+    <row>
+    	<value>3</value>
+    	<value>Commedia</value>
+    </row>
+  </table>
+  
+  <table name="movie">
+  	<column>id</column>
+    <column>title</column>
+    <column>plot</column>
+    <column>duration</column>
+    <column>image</column>
+    <column>year</column>
+    <column>director</column>
+    <column>date_added</column>
+    <row>
+    	<value>1</value>
+    	<value><![CDATA[L'uomo che verrà]]></value>
+    	<value><![CDATA[Inverno, 1943. Martina, unica figlia di una povera famiglia di contadini, ha 8 anni e vive alle pendici di Monte Sole. Anni prima ha perso un fratellino di pochi giorni e da allora ha smesso di parlare. La mamma rimane nuovamente incinta e Martina vive nell'attesa del bambino che nascerà, mentre la guerra man mano si avvicina e la vita diventa sempre più difficile fra le brigate partigiane del comandante Lupo e l'avanzare dei nazisti. Nella notte tra il 28 e il 29 settembre 1944 il bambino viene finalmente alla luce. Quasi contemporaneamente le SS scatenano nella zona un rastrellamento senza precedenti, che passerà alla storia come la strage di Marzabotto.]]></value>
+    	<value>117</value>
+    	<value>movie_placeholder.jpg</value>
+    	<value>2009</value>
+    	<value>3</value>
+    	<value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+    	<value>2</value>
+    	<value><![CDATA[Il vento fa il suo giro]]></value>
+    	<value><![CDATA[In una piccola comunità delle Alpi Occitane italiane arriva un pastore francese. All'inizio ben accolto, col tempo la sua presenza infastidisce alcuni abitanti.]]></value>
+    	<value>110</value>
+    	<value>movie_placeholder.jpg</value>
+    	<value>2005</value>
+    	<value>3</value>
+    	<value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+    	<value>3</value>
+    	<value><![CDATA[Mediterraneo]]></value>
+    	<value><![CDATA[Rivalità, sogni e amori di un gruppo di soldati italiani, stanziati e abbandonati su una piccola isoletta greca dell'Egeo. Alla fine della guerra però qualcuno preferirà restare nell'isola...]]></value>
+    	<value>99</value>
+    	<value>movie_placeholder.jpg</value>
+    	<value>1991</value>
+    	<value>2</value>
+    	<value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+    	<value>4</value>
+    	<value><![CDATA[Avatar]]></value>
+    	<value><![CDATA[Jake Sully, un ex Marine costretto a vivere sulla sedia a rotelle, è, tutto sommato, ancora un combattente. E' stato reclutato per viaggiare anni luce sino all'avamposto umano su Pandora, dove alcune società stanno estraendo un raro minerale che è la chiave per risolvere la crisi energetica sulla Terra. Poiché l'atmosfera di Pandora è tossica è stato creato il Programma Avatar, in cui i "piloti" umani collegano le loro coscienze a un avatar, un corpo organico controllato a distanza che può sopravvivere nell'atmosfera letale. Questi avatar sono degli ibridi geneticamente sviluppati dal DNA umano unito al DNA dei nativi di Pandora, i Na'vi. Rinato nel suo corpo di Avatar, Jake può camminare nuovamente. Gli viene affidata la missione d'infiltrarsi tra i Na'vi, che sono diventati l'ostacolo maggiore per l'estrazione del prezioso minerale. Ma una bellissima donna Na'vi, Neytiri, salva la vita a Jake, e cambia tutto lo scenario: Jake viene introdotto da lei nel clan e impara a diventare uno di loro attraverso numerose prove e avventure. Man mano che il rapporto tra Jake e la sua istruttrice ribelle Neytiri si approfondisce, lui impara a rispettare il modo di vivere dei Na'vi e finisce col trovare il suo posto tra loro. Presto dovrà superare la prova finale mettendosi alla loro guida in un'epica battaglia che deciderà il destino di un intero mondo.]]></value>
+    	<value>162</value>
+    	<value>movie_placeholder.jpg</value>
+    	<value>2009</value>
+    	<value>4</value>
+    	<value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+    	<value>5</value>
+    	<value><![CDATA[Baciami ancora]]></value>
+    	<value><![CDATA[La storia di Carlo e Giulia, e dei loro amici, la coppia Marco-Veronica, Paolo, Livia, Adriano e Alberto, prosegue sulla scia dei vecchi e dei nuovi errori, lungo i traguardi raggiunti, inseguendo i desideri ancora irrealizzati e provando a dimenticare le delusioni che li hanno cambiati e che li hanno trasformati in adulti. Dai ragazzi trentenni che non volevano crescere, i protagonisti de 'L'ultimo bacio' sono oggi uomini e donne più maturi, padri e madri che affrontano in maniera più decisa i loro problemi, ai quali trovano talvolta la soluzione meno semplice.]]></value>
+    	<value>139</value>
+    	<value>movie_placeholder.jpg</value>
+    	<value>2009</value>
+    	<value>5</value>
+    	<value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+    	<value>6</value>
+    	<value><![CDATA[Tra le nuvole]]></value>
+    	<value><![CDATA[La storia vede protagonista Ryan Bingham, un manager esperto in risorse umane e riorganizzazione del personale il cui unico divertimento è quello di raccogliere punti nei suoi numerosi voli per raggiungere lo status di "one million frequent flyer miles", obiettivo che persegue meticolosamente visto che passa tutta la sua vita in volo da un aereo all'altro. Quando il suo capo gli chiederà di licenziare la giovane Nathalie capirà che è arrivato il momento di un cambiamento...]]></value>
+    	<value>108</value>
+    	<value>movie_placeholder.jpg</value>
+    	<value>2009</value>
+    	<value>6</value>
+    	<value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+    	<value>7</value>
+    	<value><![CDATA[Nine]]></value>
+    	<value><![CDATA[Ispirato alla leggendaria figura del regista Federico Fellini, 'Nine' racconta la storia di Guido Contini, regista di fama mondiale che si sta preparando alle riprese del suo ultimo film, e delle donne che hanno fatto parte della sua vita: sua moglie, una produttrice, una diva del cinema e sua madre defunta.]]></value>
+    	<value>110</value>
+    	<value>movie_placeholder.jpg</value>
+    	<value>2009</value>
+    	<value>7</value>
+    	<value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+    	<value>8</value>
+    	<value><![CDATA[Bastardi senza gloria]]></value>
+    	<value><![CDATA[Nella Francia occupata dai nazisti, durante la Seconda Guerra Mondiale, Shosanna Dreyfus assiste all'esecuzione della sua famiglia su ordine del colonnello nazista Hans Landa, ma riesce a fuggire a Parigi dove assume una nuova identità, come operatrice e titolare di un cinematografo. Nel frattempo, in un'altra località europea, il tenente Aldo Raine si mette alla guida di un gruppo di soldati ebrei conosciuti dai loro nemici come I Bastardi. Insieme ai suoi uomini, Raine collabora con con l'attrice tedesca Bridget Von Hammersmark, che in realtà è un agente segreto, in una missione speciale per rovesciare il Terzo Reich. Il loro destino si incrocerà con quello della Dreyfus, che tra l'altro sta pianificando una vendetta personale.]]></value>
+    	<value>153</value>
+    	<value>movie_placeholder.jpg</value>
+    	<value>2009</value>
+    	<value>8</value>
+    	<value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+  </table>
+  
+  <table name="movie_genre">
+  	<column>movie</column>
+    <column>genre</column>
+    <row>
+    	<value>1</value>
+    	<value>1</value>
+    </row>
+    <row>
+    	<value>1</value>
+    	<value>2</value>
+    </row>
+    <row>
+    	<value>2</value>
+    	<value>3</value>
+    </row>
+    <row>
+    	<value>3</value>
+    	<value>2</value>
+    </row>
+    <row>
+    	<value>3</value>
+    	<value>3</value>
+    </row>
+  </table>
+  
+  <table name="user_movie">
+  	<column>user</column>
+    <column>movie</column>
+    <column>date_added</column>
+    <column>mark</column>
+    <column>wishlist</column>
+    <row>
+      <value>3</value>
+      <value>1</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>1</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>2</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null/>
+      <value>1</value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>3</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>1</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>2</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>5</value>
+      <value>2</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null/>
+      <value>1</value>
+    </row>
+    <row>
+      <value>5</value>
+      <value>3</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null/>
+      <value>0</value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>3</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>1</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>2</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>3</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>4</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>5</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>6</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>7</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>12</value>
+      <value>8</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>4</value>
+      <value>0</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>1</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null/>
+      <value>1</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>2</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null/>
+      <value>1</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>3</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null/>
+      <value>1</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>4</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null/>
+      <value>1</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>5</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null/>
+      <value>1</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>6</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null/>
+      <value>1</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>7</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null/>
+      <value>1</value>
+    </row>
+    <row>
+      <value>11</value>
+      <value>8</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <null/>
+      <value>1</value>
+    </row>
+  </table>
+  
+  <table name="review">
+  	<column>user</column>
+    <column>movie</column>
+    <column>title</column>
+    <column>text</column>
+    <column>positive</column>
+    <column>negative</column>
+    <column>date_added</column>
+    <row>
+      <value>3</value>
+      <value>1</value>
+      <value><![CDATA[Recensione personale sul film]]></value>
+      <value><![CDATA[Testo della recensione personale sul film con id 1]]></value>
+      <value>1</value>
+      <value>3</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>2</value>
+      <null/>
+      <value><![CDATA[Testo della recensione personale sul film con id 2]]></value>
+      <value>4</value>
+      <value>0</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+      <value>4</value>
+      <value>1</value>
+      <null/>
+      <value><![CDATA[Testo della recensione personale sul film con id 1 da parte dello user 4]]></value>
+      <value>0</value>
+      <value>0</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+  </table>
+  
+  <table name="user_review_vote">
+  	<column>voter</column>
+  	<column>reviewer</column>
+    <column>movie</column>
+    <column>date_voted</column>
+    <column>positive</column>
+    <row>
+      <value>3</value>
+      <value>4</value>
+      <value>1</value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+      <value>1</value>
+    </row>
+  </table>
+  
+  <table name="opinion">
+  	<column>id</column>
+  	<column>user</column>
+    <column>reviewer</column>
+    <column>movie</column>
+    <column>text</column>
+    <column>date_added</column>
+    <row>
+      <value>1</value>
+      <value>3</value>
+      <value>4</value>
+      <value>1</value>
+      <value><![CDATA[Opinione dell'utente 3 alla review dell'utente 4 sul film 1]]></value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>4</value>
+      <value>4</value>
+      <value>1</value>
+      <value><![CDATA[Opinione dell'utente 4 alla review dell'utente 4 sul film 1]]></value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+    <row>
+      <value>3</value>
+      <value>5</value>
+      <value>4</value>
+      <value>1</value>
+      <value><![CDATA[Opinione dell'utente 5 alla review dell'utente 4 sul film 1]]></value>
+      <value><![CDATA[2010-02-10 00:00:00]]></value>
+    </row>
+  </table>
+  
+  <table name="config">
+    <column>id</column>
+    <column>config_key</column>
+    <column>config_value</column>
+    <row>
+      <value>1</value>
+      <value>INVITATION_ENABLED</value>
+      <value>1</value>
+    </row>
+    <row>
+      <value>2</value>
+      <value>INVITATIONS_PER_USER</value>
+      <value>5</value>
+    </row>
+  </table>
+  
+</dataset>

@@ -1,0 +1,411 @@
+<html>
+
+<head>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+<script>
+	$(function() {
+		$('.movie_li').hover(
+		function() {
+			$(this).children('.my_hover').slideDown("fast");
+		}, 
+		function() {
+		  $(this).children('.my_hover').slideUp("fast");
+		});
+	});
+</script>
+<link type="text/css" href="css.css" rel="stylesheet" />
+
+<!--
+#search_container {
+	position: relative;
+	text-align: center;
+	width: 980px;
+}
+
+#topPanel{
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: -17px;
+	width: 100%;
+	z-index: 25;
+}
+#panel{
+	height: 0px;
+	position: relative;
+	overflow: hidden;
+	text-align: left;
+	top: 1px;
+	width: 100%;
+	z-index: 10;
+}
+#pnlContent{
+	background: #000;
+	filter: alpha(opacity=85);
+	height: 100%;
+	opacity: .85;
+	padding: 1em;
+	position: absolute;
+	width: 100%;
+	z-index: -1;
+}-->
+
+
+
+</head>
+
+<body>
+
+<div id="container">
+
+	<div id="sidebar">
+		<!-- PROFILE -->
+		<div id="username_container">fubbyo</div>
+		<div id="profile_picture">
+			<img src="profile_picture.jpg">
+		</div>
+		<div id="other_info_container">
+			<div id="other_info_personal">27 anni, Legnano</div>
+			<div id="other_info_movies">138 film visti - 14682 minuti</div>
+			<div id="other_info_website"><a href="htttp://www.google.it">Fubbyo's flickr</a></div>
+		</div>
+		
+		<!-- MOVIES -->
+		<div id="movies_report">
+			<div class="section_title">Report</div>
+			<ul id="movies_report_ul">
+				<li class="first">Tutti (143)</li>
+				<li class="active">Visti (138)</li>
+				<li>Recensiti (10)</li>
+				<li>Da vedere (2)</li>
+				<li class="last">Abbandonati (3)</li>
+			</ul>
+		</div>
+		
+		<!-- DIRECTORS -->
+		<div id="movies_director_report">
+			<div class="section_title">Registi preferiti</div>
+			<ul id="movies_director_report_ul">
+				<li class="first">Silvio Muccino (4)</li>
+				<li>Gabriele Salvatores (3)</li>
+				<li>Tim Burton (2)</li>
+				<li>Martin Scorsese (2)</li>
+				<li>James Cameron (1)</li>
+				<li class="last">Quentin Tarantino (1)</li>
+			</ul>
+		</div>
+		
+		<!-- FRIENDS -->
+		<div class="contacts">
+			<div class="section_title">Amici (10)</div>
+			<ul class="contacts_ul">
+				<li><a href="#"><img src="flickr4.jpg"></a></li>
+				<li><a href="#"><img src="flickr1.jpg"></a></li>
+				<li><a href="#"><img src="flickr2.jpg"></a></li>
+				<li><a href="#"><img src="flickr3.jpg"></a></li>
+				<li><a href="#"><img src="flickr6.jpg"></a></li>
+				<li><a href="#"><img src="flickr5.jpg"></a></li>
+				<li><a href="#"><img src="flickr7.jpg"></a></li>
+				<li><a href="#"><img src="flickr8.jpg"></a></li>
+				<li><a href="#"><img src="flickr9.jpg"></a></li>
+				<li><a href="#"><img src="flickr10.jpg"></a></li>
+			</ul>
+		</div>
+		
+		<!-- NEARBIES -->
+		<div class="contacts">
+			<div class="section_title">Vicini (13)</div>
+			<ul class="contacts_ul">
+				<li><a href="#"><img src="flickr11.jpg"></a></li>
+				<li><a href="#"><img src="flickr12.jpg"></a></li>
+				<li><a href="#"><img src="flickr13.jpg"></a></li>
+				<li><a href="#"><img src="flickr14.jpg"></a></li>
+				<li><a href="#"><img src="flickr15.jpg"></a></li>
+				<li><a href="#"><img src="flickr16.jpg"></a></li>
+				<li><a href="#"><img src="flickr17.jpg"></a></li>
+				<li><a href="#"><img src="flickr18.jpg"></a></li>
+				<li><a href="#"><img src="flickr19.jpg"></a></li>
+				<li><a href="#"><img src="flickr20.jpg"></a></li>
+				<li><a href="#"><img src="flickr8.jpg"></a></li>
+				<li><a href="#"><img src="flickr9.jpg"></a></li>
+				<li><a href="#"><img src="flickr10.jpg"></a></li>
+			</ul>
+		</div>
+		
+	</div>
+	<div id="content">
+		<div id="header">
+			<div id="global_search_button">
+				Cerca
+			</div>
+			<ul id="menu_ul">
+				<li class="first">home</li>
+				<li onclick="alert('eseguire funzione di shelf.html')">fubbyo</li>
+				<li>contatti</li>
+				<li>messaggi</li>
+				<li>profilo</li>
+				<li class="last">esci</li>
+			</ul>
+		</div>
+		
+		<div id="main_content">
+			<div id="panels">
+				<div id="left_panel">
+					<a href="#" onclick="goRight(1)">Go right</a>
+					left
+				</div>
+				<div id="central_panel">
+					<!--<a href="#" onclick="goLeft(0)">Go left</a>
+					<a href="#" onclick="goRight(2)">Go right</a>-->
+					<div id="shelf_middle_bar">
+						<!--<div id="shelf_middle_bar_order">
+							<select name="shelf_items_order">
+								<option name="1">Visti (dal più recente)</option>
+								<option name="1">Visti (dal meno recente)</option>
+								<option name="1">Aggiunti (dal più recente)</option>
+								<option name="1">Aggiunti (dal meno recente)</option>
+							</select>
+						</div>-->
+						
+						<ul id="shelf_middle_bar_options">
+							<li class="first">Videoteca</li>
+							<li>Vorrei vedere</li>
+							<li class="last" id="search_button">Cerca qui</li>
+						</ul>
+					</div>
+					
+					<div id="shelf_content">
+						<!--<div id="search_container">
+							<div id="topPanel">
+								<div id="panel">
+									<div id="pnlContent">
+										ciao ciao
+									</div>
+								</div>
+							</div>
+						</div>-->
+					
+						<ul id="shelf_content_ul">
+							<li class="movie_li">
+								<a href="movie.html"><img src="1556.jpg"></a>
+								<div class="my_hover" id="1_text" style="display:none">
+									<ul class="sub_ul">
+										<li>
+											<img src="plus.gif" /><a href="http://www.google.it">videoteca</a>
+										</li>
+										<li>
+											<img src="plus.gif" /><a href="http://www.corriere.it">wishlist</a>
+										</li>
+									</ul>
+								</div>
+								<div class="my_options">
+									<ul class="sub_options">
+										<li class="up_option">
+											<a href="#"><img src="plus.gif" /></a>
+										</li>
+									</ul>
+								</div>
+								<div class="shelf_item_info_container">
+									<span class="shelf_item_title">Shutter</span>
+									<span class="shelf_item_director">di Martin Scorsese</span>
+									<span class="shelf_item_date_viewed">Da vedere</span>
+								</div>
+							</li>
+							<li class="movie_li">
+								<a href="movie.html"><img src="47208.jpg"></a>
+								<div class="my_hover" id="1_text" style="display:none">
+									<ul class="sub_ul">
+										<li>
+											<img src="in_shelf.gif" /><a href="http://www.corriere.it">modifica</a>
+										</li>
+										<li>
+											<img src="review.gif" /><a href="http://www.corriere.it">recensione</a>
+										</li>
+									</ul>
+								</div>
+								<div class="my_options">
+									<ul class="sub_options">
+										<li class="up_option">
+											<a href="http://www.google.it"><img src="in_shelf.gif" /></a>
+										</li>
+										<li class="up_option">
+											<a href="http://www.google.it"><img src="review.gif" /></a>
+										</li>
+									</ul>
+								</div>
+								<div class="shelf_item_info_container">
+									<span class="shelf_item_title">Alice nel paese delle meraviglie</span>
+									<span class="shelf_item_director">di Tim Burton</span>
+									<span class="shelf_item_date_viewed">Da vedere</span>
+								</div>
+							</li>
+							<li class="movie_li">
+								<a href="movie.html"><img src="39371.jpg"></a>
+								<div class="my_hover" id="1_text" style="display:none">
+									<ul class="sub_ul">
+										<li>
+											<img src="in_shelf.gif" /><a href="http://www.corriere.it">modifica</a>
+										</li>
+										<li>
+											<img src="review.gif" /><a href="http://www.corriere.it">recensione</a>
+										</li>
+									</ul>
+								</div>
+								<div class="my_options">
+									<ul class="sub_options">
+										<li class="up_option">
+											<a href="http://www.google.it"><img src="in_shelf.gif" /></a>
+										</li>
+										<li class="up_option">
+											<a href="http://www.google.it"><img src="review.gif" /></a>
+										</li>
+									</ul>
+								</div>
+								<div class="shelf_item_info_container">
+									<span class="shelf_item_title">Robin Hood</span>
+									<span class="shelf_item_director">di Ridley Scott</span>
+									<span class="shelf_item_date_viewed">Visto il 27 Dicembre 2009</span>
+									<span class="shelf_item_mark">
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_empty.png"/>
+										<img class="star" src="star_empty.png"/>
+										<img class="star" src="star_empty.png"/>
+									</span>
+								</div>
+							</li>
+							<li class="movie_li">
+								<a href="movie.html"><img src="47616.jpg"></a>
+								<div class="my_hover" id="1_text" style="display:none">
+									<ul class="sub_ul">
+										<li>
+											<img src="in_shelf.gif" /><a href="http://www.corriere.it">modifica</a>
+										</li>
+										<li>
+											<img src="review.gif" /><a href="http://www.corriere.it">recensione</a>
+										</li>
+									</ul>
+								</div>
+								<div class="my_options">
+									<ul class="sub_options">
+										<li class="up_option">
+											<a href="http://www.google.it"><img src="in_shelf.gif" /></a>
+										</li>
+										<li class="up_option">
+											<a href="http://www.google.it"><img src="review.gif" /></a>
+										</li>
+									</ul>
+								</div>
+								<div class="shelf_item_info_container">
+									<span class="shelf_item_title">Mine vaganti</span>
+									<span class="shelf_item_director">di Ferzan Ozpetek</span>
+									<span class="shelf_item_date_viewed">Visto il 15 Febbraio 2010</span>
+									<span class="shelf_item_mark">
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_full.png"/>
+									</span>
+								</div>
+							</li>
+							<li class="fifth movie_li">
+								<a href="movie.html"><img src="47805.jpg"></a>
+								<div class="shelf_item_info_container">
+									<span class="shelf_item_title">La valigia sul letto</span>
+									<span class="shelf_item_director">di Eduardo Tartaglia</span>
+									<span class="shelf_item_date_viewed">Visto il 3 Marzo 2010</span>
+									<span class="shelf_item_mark">
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_empty.png"/>
+										<img class="star" src="star_empty.png"/>
+									</span>
+								</div>
+							</li>
+							<li class="movie_li">
+								<a href="movie.html"><img src="47553.jpg"></a>
+								<div class="shelf_item_info_container">
+									<span class="shelf_item_title">Legion</span>
+									<span class="shelf_item_director">di Scott Stewart</span>
+									<span class="shelf_item_date_viewed">Visto il 18 Gennaio 2010</span>
+									<span class="shelf_item_mark">
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_empty.png"/>
+									</span>
+								</div>
+							</li>
+							<li class="movie_li">
+								<a href="movie.html"><img src="3462.jpg"></a>
+								<div class="shelf_item_info_container">
+									<span class="shelf_item_title">Fantastic Mr. Fox</span>
+									<span class="shelf_item_director">di Wes Anderson</span>
+									<span class="shelf_item_date_viewed">Visto il 1 Gennaio 2010</span>
+								</div>
+							</li>
+							<li class="movie_li">
+								<a href="movie.html"><img src="47643.jpg"></a>
+								<div class="shelf_item_info_container">
+									<span class="shelf_item_title">Genitori e figli</span>
+									<span class="shelf_item_director">di Giovanni Veronesi</span>
+									<span class="shelf_item_date_viewed">Visto il 24 Febbraio 2010</span>
+									<span class="shelf_item_mark">
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_empty.png"/>
+										<img class="star" src="star_empty.png"/>
+										<img class="star" src="star_empty.png"/>
+										<img class="star" src="star_empty.png"/>
+									</span>
+								</div>
+							</li>
+							<li class="fifth movie_li">
+								<a href="movie.html"><img src="47217.jpg"></a>
+								<div class="shelf_item_info_container">
+									<span class="shelf_item_title">Tron</span>
+									<span class="shelf_item_director">di Steven Lisberger</span>
+									<span class="shelf_item_date_viewed">Visto il 28 Gennaio 2010</span>
+									<span class="shelf_item_mark">
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_full.png"/>
+										<img class="star" src="star_empty.png"/>
+										<img class="star" src="star_empty.png"/>
+										<img class="star" src="star_empty.png"/>
+									</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+					
+					<div id="shelf_navigation_bar">
+						<ul id="shelf_navigation_bar_ul">
+							<li class="first">Indietro</li>
+							<li class="last">Avanti</li>
+						</ul>
+					</div>
+					
+				</div>
+				<div id="right_panel">
+					<a href="#" onclick="goLeft(-1)">Go left</a>
+					right
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div id="footer">
+	<a href="#">Informazioni su taMuvii</a> | <a href="#">Contatti</a> | <a href="#">Blog di taMuvii</a> | <a href="#">Aiuto</a>
+</div>
+
+</body>
+
+
+</html>

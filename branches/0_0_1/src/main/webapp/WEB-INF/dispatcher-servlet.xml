@@ -1,0 +1,160 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+       default-lazy-init="true">
+
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.dao.DataAccessException">        
+                    dataAccessFailure
+                </prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="2097152"/>
+    </bean>
+
+    <bean id="filenameController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="ApplicationResources"/>
+        <property name="useCodeAsDefaultMessage" value="true"/>
+    </bean>
+
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <value>
+                /users.html=userController
+                /userForm.html=userFormController
+                /movies.html=movieController
+                /movieForm.html=movieFormController
+                /movieImage.html=movieImageController
+                /communication.html=communicationController
+                
+                /home.html=homeController
+                /signup.html=signupFormController
+                /enable.html=enableUserController
+                
+                /shelf.html=shelfController
+                /shelfItems.html=shelfItemsController
+                /wishlistItems.html=wishlistItemsController
+                
+                /userMovieItem.html=userMovieItemController
+                
+                /movieItem.html=movieItemController
+                /moviesByDirector.html=movieDirectorController
+                
+                /searchItems.html=searchItemsController
+                
+                /reviewItem.html=reviewItemController
+                
+                /friends.html=relationshipController
+                /nearbies.html=relationshipController
+                
+                /profile.html=profileFormController
+                /profileImage.html=profileImageController
+            </value>
+        </property>
+        <property name="order" value="0"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+        <property name="order" value="1"/>
+    </bean>
+
+    <!-- View Resolver for JSPs -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="requestContextAttribute" value="rc"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    
+    <bean id="userController" class="com.tamuvii.controller.UserController">
+    	<property name="userManager" ref="userManager" />
+    </bean>
+    <bean id="userFormController" class="com.tamuvii.controller.form.UserFormController">
+    	<property name="validator" ref="beanValidator"/>
+    	<property name="userManager" ref="userManager" />
+    	<property name="roleManager" ref="roleManager" />
+    </bean>
+    
+    <bean id="movieController" class="com.tamuvii.controller.MovieController">
+    	<property name="movieManager" ref="movieManager" />
+    </bean>
+    <bean id="movieFormController" class="com.tamuvii.controller.form.MovieFormController">
+    	<property name="movieManager" ref="movieManager" />
+    	<property name="genreManager" ref="genreManager" />
+    	<property name="directorManager" ref="directorManager" />
+    </bean>
+    <bean id="movieImageController" class="com.tamuvii.controller.MovieImageController">
+    	<property name="movieManager" ref="movieManager" />
+    </bean>
+    <bean id="communicationController" class="com.tamuvii.controller.CommunicationController">
+    	<property name="userManager" ref="userManager" />
+    </bean>
+    
+    
+    
+    <bean id="signupFormController" class="com.tamuvii.controller.form.SignupFormController">
+    	<property name="validator" ref="beanValidator"/>
+    	<property name="userManager" ref="userManager" />
+    	<property name="roleManager" ref="roleManager" />
+    	<property name="configManager" ref="configManager" />
+    	<property name="communicationManager" ref="communicationManager" />
+    </bean>
+    <bean id="enableUserController" class="com.tamuvii.controller.EnableUserController">
+    	<property name="userManager" ref="userManager" />
+    </bean>
+    <bean id="profileFormController" class="com.tamuvii.controller.form.ProfileFormController">
+    	<property name="validator" ref="beanValidator"/>
+    	<property name="userManager" ref="userManager" />
+    </bean>
+    <bean id="profileImageController" class="com.tamuvii.controller.ProfileImageController">
+    	<property name="userManager" ref="userManager" />
+    </bean>
+    
+    
+    <bean id="shelfController" class="com.tamuvii.controller.ShelfController">
+    	<property name="shelfManager" ref="shelfManager" />
+    </bean>
+    <bean id="shelfItemsController" class="com.tamuvii.controller.ShelfItemsController">
+    	<property name="shelfManager" ref="shelfManager" />
+    </bean>
+    <bean id="wishlistItemsController" class="com.tamuvii.controller.WishlistItemsController">
+    	<property name="shelfManager" ref="shelfManager" />
+    </bean>
+    
+    <bean id="homeController" class="com.tamuvii.controller.HomeController">
+    	<property name="shelfManager" ref="shelfManager" />
+    </bean>
+    <bean id="searchItemsController" class="com.tamuvii.controller.SearchItemsController">
+    	<property name="movieManager" ref="movieManager" />
+    	<property name="shelfManager" ref="shelfManager" />
+    </bean>
+    
+    <bean id="movieItemController" class="com.tamuvii.controller.MovieItemController">
+    	<property name="movieManager" ref="movieManager" />
+    	<property name="userManager" ref="userManager" />
+    	<property name="shelfManager" ref="shelfManager" />
+    </bean>
+    <bean id="movieDirectorController" class="com.tamuvii.controller.MovieDirectorController">
+    	<property name="movieManager" ref="movieManager" />
+    	<property name="shelfManager" ref="shelfManager" />
+    </bean>
+    
+    <bean id="reviewItemController" class="com.tamuvii.controller.ReviewItemController">
+    	<property name="reviewManager" ref="reviewManager" />
+    </bean>
+    
+    <bean id="relationshipController" class="com.tamuvii.controller.RelationshipController">
+    	<property name="userManager" ref="userManager" />
+    </bean>
+    
+    <bean id="userMovieItemController" class="com.tamuvii.controller.UserMovieItemController">
+    	<property name="userMovieManager" ref="userMovieManager" />
+    </bean>
+    
+</beans>

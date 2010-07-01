@@ -1,0 +1,9 @@
+Ciao ${user.username},
+
+${writer.username} ha aggiunto un commento alla recensione che hai scritto a proposito del film "${movie.movie.title}".
+
+Puoi vedere la videoteca di ${writer.username} qui: ${appURL}/${writer.username}/movies/ oppure la pagina del film qui: ${appURL}/${user.username}/movies/?movie=${movie.movie.id} 
+
+Alla prossima!
+
+taMuvii

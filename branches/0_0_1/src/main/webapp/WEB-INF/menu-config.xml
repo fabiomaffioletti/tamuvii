@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MenuConfig>
+    <Displayers>
+        <Displayer name="Velocity" type="net.sf.navigator.displayer.VelocityMenuDisplayer"/>
+    </Displayers>
+    <Menus>
+    	<Menu name="HomeMenu" title="Home" page="/home.html" roles="ROLE_ADMIN,ROLE_USER" width="120" />
+    	
+        <Menu name="AdminMenu" title="Admin" roles="ROLE_ADMIN" width="120">
+        	<Item name="NewUser" title="Nuovo utente" page="/userForm.html?method=add"/>
+        	<Item name="UserList" title="Lista utenti" page="/users.html"/>
+        </Menu>
+        
+        <Menu name="UserMenu" title="User" roles="ROLE_ADMIN,ROLE_USER" width="120">
+        	<Item name="ModifyUser" title="Modifica utente" page="/userForm.html"/>
+        </Menu>
+        
+        <Menu name="Logout" title="Logout" page="/logout.jsp" roles="ROLE_ADMIN,ROLE_USER" width="120" />
+    </Menus>
+</MenuConfig>

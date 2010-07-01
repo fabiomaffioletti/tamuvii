@@ -1,0 +1,9 @@
+Ciao ${user.username},
+
+${first} ora ti segue come ${relationship}.
+
+Puoi vedere la sua videoteca qui: ${appURL}/${first}/movies/
+
+Alla prossima!
+
+taMuvii

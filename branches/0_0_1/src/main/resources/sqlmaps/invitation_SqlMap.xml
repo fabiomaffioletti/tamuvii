@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="invitation" >
+  
+  <resultMap id="InvitationMap" class="com.tamuvii.model.Invitation" >
+    <result column="id" property="id" />
+    <result column="user" property="user" />
+    <result column="user_email" property="userEmail" />
+    <result column="code" property="code" />
+    <result column="invited_email" property="invitedEmail" />
+    <result column="date_sent" property="dateSent" />
+  </resultMap>
+  
+  <select id="getAll" resultMap="InvitationMap">
+  	select	*
+  	from	config
+  </select>
+  
+  <insert id="addInvitation" parameterClass="com.tamuvii.model.Invitation">
+  	insert into
+    invitation (user, user_email, code, invited_email, date_sent)
+    values (#user#, #userEmail#, #code#, #invitedEmail#, #dateSent#)
+    <selectKey resultClass="java.lang.Long" keyProperty="id" type="post">
+        select last_insert_id();
+    </selectKey>
+  </insert>
+  
+  <select id="getSentInvitationsCount" resultClass="java.lang.Integer" parameterClass="java.lang.Long">
+  	select 	count(*)
+  	from	invitation
+	where	user = #id#
+  </select>
+  
+  <select id="getInvitationByInvitedEmail" resultMap="InvitationMap" parameterClass="java.lang.String">
+  	select 	*
+  	from	invitation
+	where	invited_email = #invitedEmail#
+  </select>
+  
+</sqlMap>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>CSS Reset</title>
+
+<style>
+.red{
+    color: red;
+}
+.blue{
+    color: blue;
+}
+.green{
+    color: green;
+}
+
+#reset *{
+    color: black;
+}
+
+#resetc > *{
+    color: black;
+}
+
+</style>
+</head>
+<body>
+<h1>With Descendant Reset Style</h1>
+<div id="reset">
+  <div class="red">Red</div>
+  <p class="green">Green<span class="blue">Blue</span></p>
+</div>
+
+<h1>With Child Reset Style</h1>
+<div id="resetc">
+  <div class="red">Red</div>
+  <p class="green">Green<span class="blue">Blue</span></p>
+</div>
+
+<h1>Without Reset Style</h1>
+<div>
+  <div class="red">Red</div>
+  <p class="green">Green<span class="blue">Blue</span></p>
+</div>
+</body>
+</html>

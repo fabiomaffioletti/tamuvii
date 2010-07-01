@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+       default-lazy-init="true">
+    
+    <!-- Transaction manager for a single JDBC DataSource -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- SqlMap setup for iBATIS Database Layer -->
+    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="configLocation">
+            <value>classpath:/sql-map-config.xml</value>
+        </property>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+	<bean id="configDao" class="com.tamuvii.dao.impl.ConfigDAOImpl"> 
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean> 
+    <bean id="userDao" class="com.tamuvii.dao.impl.UserDAOImpl"> 
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean> 
+    <bean id="roleDao" class="com.tamuvii.dao.impl.RoleDAOImpl"> 
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="movieDao" class="com.tamuvii.dao.impl.MovieDAOImpl"> 
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="genreDao" class="com.tamuvii.dao.impl.GenreDAOImpl"> 
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="directorDao" class="com.tamuvii.dao.impl.DirectorDAOImpl"> 
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="userMovieDao" class="com.tamuvii.dao.impl.UserMovieDAOImpl"> 
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="reviewDao" class="com.tamuvii.dao.impl.ReviewDAOImpl"> 
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="opinionDao" class="com.tamuvii.dao.impl.OpinionDAOImpl"> 
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <bean id="invitationDao" class="com.tamuvii.dao.impl.InvitationDAOImpl"> 
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+
+</beans>
